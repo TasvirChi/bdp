@@ -1,16 +1,16 @@
-package com.kaltura.kdpfl.controller.media
+package com.borhan.bdpfl.controller.media
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.types.KalturaStatsFeatureType;
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.osmf.proxy.KSwitchingProxyElement;
+	import com.borhan.types.BorhanStatsFeatureType;
+	import com.borhan.vo.BorhanBaseEntry;
 	
 	import flash.net.SharedObject;
 	
@@ -47,7 +47,7 @@ package com.kaltura.kdpfl.controller.media
 			if (note.originFeature)
 				flashvars.originFeature = note.originFeature;
 			else
-				flashvars.originFeature = KalturaStatsFeatureType.NONE;
+				flashvars.originFeature = BorhanStatsFeatureType.NONE;
 			
 			sendNotification(NotificationType.CHANGE_MEDIA_PROCESS_STARTED, {entryId: notification.getBody().entryId});
 			
@@ -88,9 +88,9 @@ package com.kaltura.kdpfl.controller.media
 			}
 			
 			// set the new entry to be loaded (the rest of the params will be override when loaded
-			mediaProxy.vo.entry = new KalturaBaseEntry();
+			mediaProxy.vo.entry = new BorhanBaseEntry();
 			mediaProxy.vo.entryExtraData = null;
-			mediaProxy.vo.kalturaMediaFlavorArray = null;
+			mediaProxy.vo.borhanMediaFlavorArray = null;
 			mediaProxy.vo.selectedFlavorId = null;
 			mediaProxy.vo.keyframeValuesArray = null;
 			if (newEntryId) {
@@ -124,7 +124,7 @@ package com.kaltura.kdpfl.controller.media
 				var flavorCookie : SharedObject;
 				try
 				{
-					flavorCookie = SharedObject.getLocal("Kaltura");
+					flavorCookie = SharedObject.getLocal("Borhan");
 				}
 				catch (e : Error)
 				{

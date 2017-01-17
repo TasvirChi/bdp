@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,11 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.managers.downloadManagers.pluginManager
+package com.borhan.managers.downloadManagers.pluginManager
 {
-	import com.kaltura.base.IDisposable;
-	import com.kaltura.managers.downloadManagers.pluginManager.events.PluginLoaderEvent;
-	import com.kaltura.plugin.logic.Plugin;
+	import com.borhan.base.IDisposable;
+	import com.borhan.managers.downloadManagers.pluginManager.events.PluginLoaderEvent;
+	import com.borhan.plugin.logic.Plugin;
 	
 	import flash.display.Loader;
 	import flash.events.Event;
@@ -39,9 +39,9 @@ package com.kaltura.managers.downloadManagers.pluginManager
 	
 	import mx.utils.ObjectUtil;
 	[Event(name="complete", type="flash.events.Event")]
-	[Event(name="XMLRestrictionsComplete", 		type="com.kaltura.managers.downloadManagers.pluginManager.events.PluginLoaderEvent")]
-	[Event(name="PluginInstanceComplete",  		type="com.kaltura.managers.downloadManagers.pluginManager.events.PluginLoaderEvent")]
-	[Event(name="XMLUILoadComplete", 			type="com.kaltura.managers.downloadManagers.pluginManager.events.PluginLoaderEvent")]
+	[Event(name="XMLRestrictionsComplete", 		type="com.borhan.managers.downloadManagers.pluginManager.events.PluginLoaderEvent")]
+	[Event(name="PluginInstanceComplete",  		type="com.borhan.managers.downloadManagers.pluginManager.events.PluginLoaderEvent")]
+	[Event(name="XMLUILoadComplete", 			type="com.borhan.managers.downloadManagers.pluginManager.events.PluginLoaderEvent")]
 
 	public class PluginModuleLoader extends EventDispatcher implements IDisposable
 	{

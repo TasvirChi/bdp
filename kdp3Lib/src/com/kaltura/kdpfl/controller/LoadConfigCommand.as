@@ -1,68 +1,68 @@
-package com.kaltura.kdpfl.controller
+package com.borhan.bdpfl.controller
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.session.SessionStartWidgetSession;
-	import com.kaltura.commands.uiConf.UiConfGet;
-	import com.kaltura.commands.widget.WidgetGet;
-	import com.kaltura.delegates.uiConf.UiConfGetDelegate;
-	import com.kaltura.delegates.widget.WidgetGetDelegate;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.vo.KalturaLiveStreamBitrate;
-	import com.kaltura.vo.KalturaStartWidgetSessionResponse;
-	import com.kaltura.vo.KalturaUiConf;
-	import com.kaltura.vo.KalturaWidget;KalturaLiveStreamBitrate;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.MultiRequest;
+	import com.borhan.commands.session.SessionStartWidgetSession;
+	import com.borhan.commands.uiConf.UiConfGet;
+	import com.borhan.commands.widget.WidgetGet;
+	import com.borhan.delegates.uiConf.UiConfGetDelegate;
+	import com.borhan.delegates.widget.WidgetGetDelegate;
+	import com.borhan.errors.BorhanError;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.SourceType;
+	import com.borhan.vo.BorhanLiveStreamBitrate;
+	import com.borhan.vo.BorhanStartWidgetSessionResponse;
+	import com.borhan.vo.BorhanUiConf;
+	import com.borhan.vo.BorhanWidget;BorhanLiveStreamBitrate;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-	import com.kaltura.vo.KalturaLiveStreamEntry;KalturaLiveStreamEntry;
-	import com.kaltura.vo.KalturaLiveStreamBitrate; KalturaLiveStreamBitrate;
+	import com.borhan.vo.BorhanLiveStreamEntry;BorhanLiveStreamEntry;
+	import com.borhan.vo.BorhanLiveStreamBitrate; BorhanLiveStreamBitrate;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.AsyncCommand;
 	import org.puremvc.as3.patterns.proxy.Proxy;
-	import com.kaltura.vo.KalturaFlavorAsset;
+	import com.borhan.vo.BorhanFlavorAsset;
 	import mx.utils.UIDUtil;
 	import fl.core.UIComponent;
 	import flash.events.ErrorEvent;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.kdpfl.plugin.PluginManager;
+	import com.borhan.bdpfl.util.URLUtils;
+	import com.borhan.bdpfl.plugin.PluginManager;
 	import flash.sampler.DeleteObjectSample;
-	import com.kaltura.vo.KalturaMetadataFilter;
-	import com.kaltura.types.KalturaMetadataObjectType;
-	import com.kaltura.commands.metadata.MetadataList;
-	import com.kaltura.vo.KalturaMetadataListResponse;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.vo.KalturaMetadata;
-	import com.kaltura.types.KalturaMetadataStatus;
-	import com.kaltura.vo.KalturaMetadataProfile;
-	import com.kaltura.types.KalturaMetadataProfileStatus;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.commands.metadata.MetadataGet;
-	import com.kaltura.vo.KalturaFilter;
-	import com.kaltura.types.KalturaMetadataOrderBy;
-	import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.kdpfl.view.controls.ToolTipManager;
+	import com.borhan.vo.BorhanMetadataFilter;
+	import com.borhan.types.BorhanMetadataObjectType;
+	import com.borhan.commands.metadata.MetadataList;
+	import com.borhan.vo.BorhanMetadataListResponse;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.vo.BorhanMetadata;
+	import com.borhan.types.BorhanMetadataStatus;
+	import com.borhan.vo.BorhanMetadataProfile;
+	import com.borhan.types.BorhanMetadataProfileStatus;
+	import com.borhan.net.BorhanCall;
+	import com.borhan.commands.metadata.MetadataGet;
+	import com.borhan.vo.BorhanFilter;
+	import com.borhan.types.BorhanMetadataOrderBy;
+	import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.bdpfl.view.controls.ToolTipManager;
 	import com.yahoo.astra.fl.managers.AlertManager;
-	import com.kaltura.kdpfl.view.controls.AlertMediator;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.view.controls.AlertMediator;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
 	import flash.utils.getQualifiedClassName;
 	import com.yahoo.astra.containers.formClasses.RequiredIndicator;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.controls.KTrace;
 	import org.osmf.utils.OSMFSettings;
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
+	import com.borhan.bdpfl.model.ExternalInterfaceProxy;
 	import flash.external.ExternalInterface;
 	import flash.net.SharedObject;
-	import com.kaltura.kdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.model.type.StreamerType;
 
 	/**
-	 * This class handles the retrieval of the player groundwork - the KS (Kaltura Session),KWidget and the uiConf.xml
+	 * This class handles the retrieval of the player groundwork - the KS (Borhan Session),BWidget and the uiConf.xml
 	 * @author Hila
 	 * 
 	 */
@@ -78,11 +78,11 @@ package com.kaltura.kdpfl.controller
 		private var _layoutProxy : LayoutProxy;
 		private var _mediaProxy : MediaProxy;
 		private var _flashvars : Object;
-		private var _kc : KalturaClient;
+		private var _kc : BorhanClient;
 		private var _numPreInitPlugins : Number;
 		
 		/**
-		 * Function tries to retrieve the uiconf from the KDP embedded data.
+		 * Function tries to retrieve the uiconf from the BDP embedded data.
 		 * @return true if embedded data was used and we can skip requesting the widget and uiconf from the server 
 		 * 
 		 */
@@ -97,7 +97,7 @@ package com.kaltura.kdpfl.controller
 				var getUiconfXml:XML = new XML(xml);
 				var getUiconfDelegate:UiConfGetDelegate = new UiConfGetDelegate(null, null);
 					 
-				var uiConf:KalturaUiConf = getUiconfDelegate.parse(getUiconfXml);
+				var uiConf:BorhanUiConf = getUiconfDelegate.parse(getUiconfXml);
 					
 				// if flashvars requested a uiconf different from the one embedded check if need to fetch uiconf from server
 				if (_flashvars.uiConfId && _flashvars.uiConfId != uiConf.id)
@@ -108,7 +108,7 @@ package com.kaltura.kdpfl.controller
 				xml = "<result>" + embeddedXML.result[0].toString() + "</result>";
 				var getWidgetXml:XML = new XML(xml);
 				var getWidgetDelegate:WidgetGetDelegate = new WidgetGetDelegate(null, null);
-				var kw:KalturaWidget = getWidgetDelegate.parse(getWidgetXml);
+				var kw:BorhanWidget = getWidgetDelegate.parse(getWidgetXml);
 				_configProxy.vo.kw = kw;
 		
 				return true;
@@ -118,7 +118,7 @@ package com.kaltura.kdpfl.controller
 		}
 		
 		/**
-		 * This function uses the Kaltura Client to retrieve the KS, Widget data and UIConf from the Kaltura CMS.
+		 * This function uses the Borhan Client to retrieve the KS, Widget data and UIConf from the Borhan CMS.
 		 * @param notification
 		 * 
 		 */		
@@ -149,7 +149,7 @@ package com.kaltura.kdpfl.controller
 			
 			if(_flashvars.widgetId == null)
 			{
-				_configProxy.vo.kw = new KalturaWidget();
+				_configProxy.vo.kw = new BorhanWidget();
 				fetchLayout();
 				return;
 			}	
@@ -160,8 +160,8 @@ package com.kaltura.kdpfl.controller
 				return;
 			} 
 			
-			//get a hold on the kaltura client
-			_kc = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).kalturaClient;
+			//get a hold on the borhan client
+			_kc = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).borhanClient;
 			
 			//start a multi request to get session if needed widget and uiconf
 			var mr : MultiRequest = new MultiRequest();
@@ -205,15 +205,15 @@ package com.kaltura.kdpfl.controller
  	
 			
            
-			mr.addEventListener( KalturaEvent.COMPLETE , result );
-			mr.addEventListener( KalturaEvent.FAILED , fault );
+			mr.addEventListener( BorhanEvent.COMPLETE , result );
+			mr.addEventListener( BorhanEvent.FAILED , fault );
 		
 			_kc.post( mr );
 			/////////////////////////////////////////////	
 		}
 		
 		/**
-		 * Response to successful call to the Kaltura CMS. This function assigns the result to the value objects used
+		 * Response to successful call to the Borhan CMS. This function assigns the result to the value objects used
 		 * by the PureMVC components comprising the player.
 		 * @param data - object returned by the server.
 		 * 
@@ -228,7 +228,7 @@ package com.kaltura.kdpfl.controller
 			//ifd we didn't got the ks from the flashvars we have a result on start widger session
 			if(!_kc.ks)
 			{
-				if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+				if(arr[i] is BorhanError || (arr[i].hasOwnProperty("error")))
 				{
 					++i; //procced anyway
 					//TODO: Trace, Report, and notify the user
@@ -237,12 +237,12 @@ package com.kaltura.kdpfl.controller
 				}
 				else
 				{	
-					var kws : KalturaStartWidgetSessionResponse = arr[i++];
+					var kws : BorhanStartWidgetSessionResponse = arr[i++];
 					_kc.ks = kws.ks;
 				}
 			}
 			
-			if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+			if(arr[i] is BorhanError || (arr[i].hasOwnProperty("error")))
 			{
 				++i; //procced anyway
 				//TODO: Trace, Report, and notify the user
@@ -252,11 +252,11 @@ package com.kaltura.kdpfl.controller
 			else
 			{
 				//set the config proxy with the new kalture widget
-				var kw : KalturaWidget = arr[i++];
+				var kw : BorhanWidget = arr[i++];
 				_configProxy.vo.kw = kw;
 			}
 		
-			if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+			if(arr[i] is BorhanError || (arr[i].hasOwnProperty("error")))
 			{
 				++i; //procced anyway
 				//TODO: Trace, Report, and notify the user
@@ -266,7 +266,7 @@ package com.kaltura.kdpfl.controller
 			else
 			{
 				//set the config proxy with the new kalture uiconf 
-				var kuiConf : KalturaUiConf = arr[i++];
+				var kuiConf : BorhanUiConf = arr[i++];
 				_configProxy.vo.kuiConf = kuiConf;
 			}
 				
@@ -287,13 +287,13 @@ package com.kaltura.kdpfl.controller
 		
 		
 		/**
-		 *  Resolve the retrieval of the layout xml file. It can be injected into the KDP, loaded from an external source, or it may already
+		 *  Resolve the retrieval of the layout xml file. It can be injected into the BDP, loaded from an external source, or it may already
 		 * have been retrieved from the CMS in the multi-request created by the <code>execute</code> function.
 		 * 
 		 */		
 		public function fetchLayout():void
 		{
-			//if we inject the xml through the init( kml : XML ) function in kdp3 class 
+			//if we inject the xml through the init( kml : XML ) function in bdp3 class 
 			//we can setLayout xml right away
 			if( _flashvars.kml == INJECT )
 			{
@@ -334,7 +334,7 @@ package com.kaltura.kdpfl.controller
 		 * If both attributes are ommited the plugin is prepended to the first child of the layout.
 		 * This would be probably be a non visual plugin
 		 * Builtin components can be added as well by specfying a className attribute such as Button, Label etc.. 
-		 * @param layoutXML the whole kdp layout
+		 * @param layoutXML the whole bdp layout
 		 * @param pluginXML the plugin xml including the relativeTo and position attributes
 		 * 
 		 */
@@ -398,7 +398,7 @@ package com.kaltura.kdpfl.controller
 		 * Look for all flashvars with .plugin attribute and treat them as plugins
 		 * The id of the given plugin is the flashvars prefix
 		 * Insert all children of the <plugins> segment of the layout xml as well
-		 * @param layoutXML the whole kdp layout
+		 * @param layoutXML the whole bdp layout
 		 * 
 		 */
 		private function appendPluginsToLayout(layoutXML:XML):void
@@ -499,7 +499,7 @@ package com.kaltura.kdpfl.controller
 			return uiVarObj;
 		}
 		/**
-		 * Function which removes dotted flashvars (not UIVars) from the KDP configuration. 
+		 * Function which removes dotted flashvars (not UIVars) from the BDP configuration. 
 		 * @return 
 		 * 
 		 */		
@@ -519,7 +519,7 @@ package com.kaltura.kdpfl.controller
 		 * Originally dotted variables are now container objects (after calling buildFlashvarsTree).
 		 * these parameters override components using their id's as the first part of the flashvar dotted name
 		 * if a component wasnt found we try to retrieve a proxy object with the container name (e.g. mediaProxy)   
-		 * @param layoutXML the whole kdp layout
+		 * @param layoutXML the whole bdp layout
 		 * 
 		 */
 		private function overrideAttributes(layoutXML:XML):void
@@ -563,7 +563,7 @@ package com.kaltura.kdpfl.controller
 		 * 3. Add partner data variables from retrieved widget
 		 * 4. Convert all flashvars with dot syntax (e.g. watermark.path) to objects 
 		 * 5. Append plugins into actual layout from flashvars and plugins section
-		 * 6. Parse parameters related to the KDP managers : TooltipManager and AlertMediator
+		 * 6. Parse parameters related to the BDP managers : TooltipManager and AlertMediator
 		 * @param xml the layout xml received from either uiconf or local configuration
 		 * 
 		 */
@@ -590,7 +590,7 @@ package com.kaltura.kdpfl.controller
 			// add the strings section of the layout to the flashvars
 			addLayoutVars(xml..strings.children(), "strings.");
 			
-			//check whether variable which blocks the KDP from accepting plugins/layout definitions passed through the embed code is present
+			//check whether variable which blocks the BDP from accepting plugins/layout definitions passed through the embed code is present
 			var uiVars : Object = parseKeyValuePairs( xml..uiVars.children() );
 			
 			if ( _flashvars.blockExternalInterference || uiVars.blockExternalInterference )
@@ -602,7 +602,7 @@ package com.kaltura.kdpfl.controller
 			addLayoutVars(xml..uiVars.children());
 			
 			// add partner data variables from retrieved widget
-			var kw:KalturaWidget = _configProxy.vo.kw;
+			var kw:BorhanWidget = _configProxy.vo.kw;
 			//kw.partnerData = '<xml><uiVars><var key="pageName" value="my blog post" /><var key="pageUrl" value="http://my.blog.com/blog?article=1234" /></uiVars></xml>';
 			
 			if (kw && kw.partnerData)
@@ -619,7 +619,7 @@ package com.kaltura.kdpfl.controller
 			{
 				extProxy.vo.enabled = true;
 				extProxy.jsCallBackReadyFunc = _flashvars.jsCallBackReadyFunc;
-				extProxy.registerKDPCallbacks();
+				extProxy.registerBDPCallbacks();
 				
 				if (_flashvars.jsTraces=="true")
 					KTrace.getInstance().jsCallback = true;
@@ -656,7 +656,7 @@ package com.kaltura.kdpfl.controller
 			
 			if (_flashvars.clientDefaultMethod)
 			{
-				KalturaCall.defaultMethod = _flashvars.clientDefaultMethod;
+				BorhanCall.defaultMethod = _flashvars.clientDefaultMethod;
 			}
 			
 			
@@ -687,7 +687,7 @@ package com.kaltura.kdpfl.controller
 					var flavorCookie : SharedObject;
 					try
 					{
-						flavorCookie = SharedObject.getLocal("Kaltura");
+						flavorCookie = SharedObject.getLocal("Borhan");
 					}
 					catch (e: Error)
 					{

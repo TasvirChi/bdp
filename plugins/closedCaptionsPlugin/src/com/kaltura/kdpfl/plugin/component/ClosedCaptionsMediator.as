@@ -1,19 +1,19 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.captionAsset.CaptionAssetGetUrl;
-	import com.kaltura.commands.captionAsset.CaptionAssetList;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.types.KalturaCaptionType;
-	import com.kaltura.vo.KalturaCaptionAsset;
-	import com.kaltura.vo.KalturaCaptionAssetFilter;
-	import com.kaltura.vo.KalturaCaptionAssetListResponse;
-	import com.kaltura.vo.KalturaMediaEntry;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.captionAsset.CaptionAssetGetUrl;
+	import com.borhan.commands.captionAsset.CaptionAssetList;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.types.BorhanCaptionType;
+	import com.borhan.vo.BorhanCaptionAsset;
+	import com.borhan.vo.BorhanCaptionAssetFilter;
+	import com.borhan.vo.BorhanCaptionAssetListResponse;
+	import com.borhan.vo.BorhanMediaEntry;
 	import com.type.ClosedCaptionsNotifications;
 	
 	import flash.display.DisplayObject;
@@ -194,7 +194,7 @@ package com.kaltura.kdpfl.plugin.component
 						(viewComponent as ClosedCaptions).visible = true;
 					}
 					
-					for each (var ccObj : KalturaCaptionAsset in _closedCaptionsDefs.availableCCFiles)
+					for each (var ccObj : BorhanCaptionAsset in _closedCaptionsDefs.availableCCFiles)
 					{
 						if (currentLabel == ccObj.label)
 						{
@@ -240,7 +240,7 @@ package com.kaltura.kdpfl.plugin.component
 			{
 				try
 				{
-					var sharedObj : SharedObject = SharedObject.getLocal("Kaltura_CC_SO");
+					var sharedObj : SharedObject = SharedObject.getLocal("Borhan_CC_SO");
 					sharedObj.data.language = langKey;
 					sharedObj.flush();
 				}
@@ -298,7 +298,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		private function onGetEntryResult(evt:Object):void
 		{
-			var me:KalturaMediaEntry = evt["data"] as KalturaMediaEntry;
+			var me:BorhanMediaEntry = evt["data"] as BorhanMediaEntry;
 			(view as ClosedCaptions).loadCaptions(me.downloadUrl, _flashvars.captions.type);
 		}
 		
@@ -309,30 +309,30 @@ package com.kaltura.kdpfl.plugin.component
 		
 		private function loadEntryCCData () : void
 		{
-			var entryCCDataFilter : KalturaCaptionAssetFilter = new KalturaCaptionAssetFilter();
+			var entryCCDataFilter : BorhanCaptionAssetFilter = new BorhanCaptionAssetFilter();
 			
 			entryCCDataFilter.entryIdEqual = (facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry.id;
 			//filter only to XML and SRT (Hiding the WebVTT CC file in m3u8 that is relevant just for IOS)
-			entryCCDataFilter.formatIn = KalturaCaptionType.SRT+","+KalturaCaptionType.DFXP;
+			entryCCDataFilter.formatIn = BorhanCaptionType.SRT+","+BorhanCaptionType.DFXP;
 			
 			var entryCCDataList : CaptionAssetList = new CaptionAssetList( entryCCDataFilter );
 			
-			var kalturaClient : KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.kalturaClient;
+			var borhanClient : BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.borhanClient;
 			
-			entryCCDataList.addEventListener( KalturaEvent.COMPLETE, captionsListSuccess );
-			entryCCDataList.addEventListener( KalturaEvent.FAILED, captionsListFault );
+			entryCCDataList.addEventListener( BorhanEvent.COMPLETE, captionsListSuccess );
+			entryCCDataList.addEventListener( BorhanEvent.FAILED, captionsListFault );
 			
-			kalturaClient.post( entryCCDataList );
+			borhanClient.post( entryCCDataList );
 		}
 		
-		private function captionsListSuccess (e : KalturaEvent=null) : void
+		private function captionsListSuccess (e : BorhanEvent=null) : void
 		{
 			_closedCaptionsDefs.availableCCFiles = new Array();
 			
-			var listResponse : KalturaCaptionAssetListResponse = e.data as KalturaCaptionAssetListResponse;
+			var listResponse : BorhanCaptionAssetListResponse = e.data as BorhanCaptionAssetListResponse;
 			
 			if (listResponse.objects && listResponse.objects.length) {
-				for each (var ccItem : KalturaCaptionAsset in listResponse.objects )
+				for each (var ccItem : BorhanCaptionAsset in listResponse.objects )
 				{
 					_closedCaptionsDefs.availableCCFiles.push( ccItem );
 				}
@@ -352,7 +352,7 @@ package com.kaltura.kdpfl.plugin.component
 			}
 		}
 		
-		private function captionsListFault (e : KalturaEvent=null) : void
+		private function captionsListFault (e : BorhanEvent=null) : void
 		{
 			sendNotification( ClosedCaptionsNotifications.CC_DATA_LOAD_FAILED );
 		}
@@ -364,7 +364,7 @@ package com.kaltura.kdpfl.plugin.component
 			var preferredLang : String;
 			try
 			{
-				var sharedObj : SharedObject =  SharedObject.getLocal( "Kaltura_CC_SO" );
+				var sharedObj : SharedObject =  SharedObject.getLocal( "Borhan_CC_SO" );
 				preferredLang = sharedObj.data.language;
 			}
 			catch (e : Error)
@@ -372,8 +372,8 @@ package com.kaltura.kdpfl.plugin.component
 				sendNotification( NotificationType.ALERT, {message: "Application is unable to access your file system.", title: "Error saving localized settings"} );
 			}
 			
-			var ccFileToLoad : KalturaCaptionAsset;
-			for each (var ccObj : KalturaCaptionAsset in _closedCaptionsDefs.availableCCFiles)
+			var ccFileToLoad : BorhanCaptionAsset;
+			for each (var ccObj : BorhanCaptionAsset in _closedCaptionsDefs.availableCCFiles)
 			{
 				if (!ccObj.label)
 				{
@@ -443,26 +443,26 @@ package com.kaltura.kdpfl.plugin.component
 			
 		}
 		
-		private function switchActiveCCFile ( ccFileAsset : KalturaCaptionAsset) : void
+		private function switchActiveCCFile ( ccFileAsset : BorhanCaptionAsset) : void
 		{
 			_showingEmbeddedCaptions = false;
 			
-			var kalturaClient : KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.kalturaClient;
+			var borhanClient : BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.borhanClient;
 			
 			var getCaptionsUrl : CaptionAssetGetUrl = new CaptionAssetGetUrl ( ccFileAsset.id );
 			
-			getCaptionsUrl.addEventListener( KalturaEvent.COMPLETE, loadActiveCCFile );
+			getCaptionsUrl.addEventListener( BorhanEvent.COMPLETE, loadActiveCCFile );
 			
-			getCaptionsUrl.addEventListener( KalturaEvent.FAILED, getURLFailed );
+			getCaptionsUrl.addEventListener( BorhanEvent.FAILED, getURLFailed );
 			
-			kalturaClient.post(getCaptionsUrl);
+			borhanClient.post(getCaptionsUrl);
 			
-			function loadActiveCCFile ( e : KalturaEvent) : void
+			function loadActiveCCFile ( e : BorhanEvent) : void
 			{
 				(viewComponent as ClosedCaptions).loadCaptions(e.data as String, ccFileAsset.format);
 			}
 			
-			function getURLFailed ( e : KalturaEvent) : void
+			function getURLFailed ( e : BorhanEvent) : void
 			{
 				
 			}

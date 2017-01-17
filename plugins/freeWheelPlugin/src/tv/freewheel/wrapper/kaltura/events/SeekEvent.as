@@ -1,4 +1,4 @@
-package tv.freewheel.wrapper.kaltura.events
+package tv.freewheel.wrapper.borhan.events
 {
 	import flash.events.Event;
 	

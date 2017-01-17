@@ -1,10 +1,10 @@
-package tv.freewheel.wrapper.kaltura
+package tv.freewheel.wrapper.borhan
 {
-	import com.kaltura.kdpfl.model.vo.ConfigVO;
-	import com.kaltura.types.KalturaAdProtocolType;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.types.KalturaCuePointType;
-	import com.kaltura.vo.KalturaAdCuePoint;
+	import com.borhan.bdpfl.model.vo.ConfigVO;
+	import com.borhan.types.BorhanAdProtocolType;
+	import com.borhan.types.BorhanAdType;
+	import com.borhan.types.BorhanCuePointType;
+	import com.borhan.vo.BorhanAdCuePoint;
 	import com.serialization.json.JSON;
 	import com.yahoo.astra.fl.charts.skins.CircleSkin;
 	
@@ -84,7 +84,7 @@ package tv.freewheel.wrapper.kaltura
 		
 		public function FreeWheelParameters(flashvars:Object=null, entryMetadata:Object=null)
 		{
-			this.logger = Logger.getSimpleLogger("KDPPlugin.Parameters ");
+			this.logger = Logger.getSimpleLogger("BDPPlugin.Parameters ");
 			this.logger.debug('new FreeWheelParameters()');
 			this.defaultValues = {
 				PARAM_ADMANAGER_URL: null,
@@ -294,8 +294,8 @@ package tv.freewheel.wrapper.kaltura
 			for (var intime:String in map) {
 				var cpArr:Array = map[intime] as Array;
 				for (var i:int = 0; i<cpArr.length; i++) {
-					var curCP:KalturaAdCuePoint = cpArr[i] as KalturaAdCuePoint;
-					if (curCP && curCP.protocolType == KalturaAdProtocolType.CUSTOM)
+					var curCP:BorhanAdCuePoint = cpArr[i] as BorhanAdCuePoint;
+					if (curCP && curCP.protocolType == BorhanAdProtocolType.CUSTOM)
 						transformedMap[curCP.id] = curCP;
 				}
 			}

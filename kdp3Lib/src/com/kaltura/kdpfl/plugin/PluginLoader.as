@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
-	import com.kaltura.kdpfl.util.KdpEmbeddedData;
+	import com.borhan.bdpfl.util.BdpEmbeddedData;
 	
 	import flash.display.Loader;
 	import flash.events.AsyncErrorEvent;
@@ -110,7 +110,7 @@ package com.kaltura.kdpfl.plugin
 				
 			//trace("load plug-in:" + _url);
 			
-			var ba:ByteArray = KdpEmbeddedData.getData(_url);
+			var ba:ByteArray = BdpEmbeddedData.getData(_url);
 			if (ba) // if bytes are supplied, then load the bytes instead of loading from the url.
 			{
 				context.securityDomain = null;

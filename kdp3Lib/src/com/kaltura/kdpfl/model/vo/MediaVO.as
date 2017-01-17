@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.model.vo
+package com.borhan.bdpfl.model.vo
 {
 
-	import com.kaltura.kdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.model.type.StreamerType;
 	
 	import org.osmf.media.pluginClasses.PluginManager;PluginManager;
-	import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.vo.KalturaEntryContextDataResult;
+	import com.borhan.vo.BorhanBaseEntry;
+	import com.borhan.vo.BorhanEntryContextDataResult;
 	import org.osmf.media.MediaElement;MediaElement;
 	import org.osmf.media.MediaFactory;MediaFactory;
 	import org.osmf.media.MediaResourceBase;
@@ -15,7 +15,7 @@ package com.kaltura.kdpfl.model.vo
 	
 	
 	/**
-	 * Class MediaVO holds parameters related to the media that the KDP plays. 
+	 * Class MediaVO holds parameters related to the media that the BDP plays. 
 	 * 
 	 */	
 	public class MediaVO
@@ -34,16 +34,16 @@ package com.kaltura.kdpfl.model.vo
 		
 		[Bindable] 
 		/**
-		 * entry already loaded entryLoadedBeforeChangeMedia by kdp first multirequest 
+		 * entry already loaded entryLoadedBeforeChangeMedia by bdp first multirequest 
 		 */
 		public var entryLoadedBeforeChangeMedia:Boolean = false;
 		
 		[Bindable] 
 		/** 
-		 * Kaltura Entry hold all the Metadata about the Entry from witch a URLResource
+		 * Borhan Entry hold all the Metadata about the Entry from witch a URLResource
 		 * can be created and a MediaElemnt can be built
 		 */		
-		public var entry:KalturaBaseEntry;
+		public var entry:BorhanBaseEntry;
 		
 		private var _selectedFlavorId:String;
 		
@@ -64,7 +64,7 @@ package com.kaltura.kdpfl.model.vo
 		/**
 		 * Extra data the we might want to know about the current entry 
 		 */		
-		public var entryExtraData:KalturaEntryContextDataResult;
+		public var entryExtraData:BorhanEntryContextDataResult;
 		
 		[Bindable] 
 		/**
@@ -81,9 +81,9 @@ package com.kaltura.kdpfl.model.vo
 		
 		[Bindable] 
 		/**
-		 * Array that contains the Kaltura Flavor Asset collection as objects. 
+		 * Array that contains the Borhan Flavor Asset collection as objects. 
 		 */		
-		public var kalturaMediaFlavorArray:Array;
+		public var borhanMediaFlavorArray:Array;
 		
 		[Bindable] 
 		/**
@@ -93,7 +93,7 @@ package com.kaltura.kdpfl.model.vo
 		
 		[Bindable]
 		/**
-		 *Placeholder for the KDP meta-data. 
+		 *Placeholder for the BDP meta-data. 
 		 */		
 		public var entryMetadata : Object;
 		
@@ -144,7 +144,7 @@ package com.kaltura.kdpfl.model.vo
 		[Bindable] 
 		/**
 		 * When we get an entry with a valid restriction, we don't event want it loaded
-		 * to the kdp3.
+		 * to the bdp3.
 		 */	
 		 public var isMediaDisabled : Boolean = false;
 		 

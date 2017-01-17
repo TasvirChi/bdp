@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
-	import com.kaltura.kdpfl.controller.media.LiveStreamCommand;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.bdpfl.controller.media.LiveStreamCommand;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
 	
 	import flash.events.TimerEvent;
 	import flash.geom.ColorTransform;
@@ -75,7 +75,7 @@ package com.kaltura.kdpfl.view.controls
 						spinner.setBufferingAnimation(applicationLoadStyleName == '' ? SPINNER_CLASS : applicationLoadStyleName );					
 					}
 					break;
-				case NotificationType.KDP_READY:
+				case NotificationType.BDP_READY:
 				case NotificationType.READY_TO_PLAY:
 					var spinnerColor:Number = -1;
 					if(flashvars.spinnerColorAttribute && flashvars[flashvars.spinnerColorAttribute] )
@@ -192,7 +192,7 @@ package com.kaltura.kdpfl.view.controls
 					_reachedEnd=true;
 					fadeOutSpinner();
 					break;
-				case NotificationType.KDP_EMPTY:
+				case NotificationType.BDP_EMPTY:
 				case NotificationType.READY_TO_LOAD:
 					fadeOutSpinner();
 					_reachedEnd=false;
@@ -316,8 +316,8 @@ package com.kaltura.kdpfl.view.controls
 				NotificationType.ENTRY_FAILED,
 				NotificationType.CHANGE_MEDIA,
 				NotificationType.PLAYER_PLAY_END,
-				NotificationType.KDP_EMPTY,
-				NotificationType.KDP_READY,
+				NotificationType.BDP_EMPTY,
+				NotificationType.BDP_READY,
 				NotificationType.LAYOUT_READY,
 				NotificationType.LIVE_ENTRY,
 				LiveStreamCommand.LIVE_STREAM_READY,

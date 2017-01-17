@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.style.FontManager;
-	import com.kaltura.kdpfl.style.TextFormatManager;
+package com.borhan.bdpfl.view.controls {
+	import com.borhan.bdpfl.component.IComponent;
+	import com.borhan.bdpfl.style.FontManager;
+	import com.borhan.bdpfl.style.TextFormatManager;
 	
 	import fl.core.UIComponent;
 	
@@ -12,7 +12,7 @@ package com.kaltura.kdpfl.view.controls {
 	import flash.text.TextFormat;
 	
 	/**
-	 * Class KTextField represents the multi-line text-field used by the KDP.
+	 * Class KTextField represents the multi-line text-field used by the BDP.
 	 * @author Hila
 	 *
 	 */

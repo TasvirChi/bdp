@@ -1,20 +1,20 @@
-package com.kaltura.osmf.kalturaMix
+package com.borhan.osmf.borhanMix
 {
-	import com.kaltura.components.players.eplayer.Eplayer;
-	import com.kaltura.roughcut.events.RoughcutStatusEvent;
+	import com.borhan.components.players.eplayer.Eplayer;
+	import com.borhan.roughcut.events.RoughcutStatusEvent;
 	
 	import flash.events.Event;
 	
 	import org.osmf.traits.PlayState;
 	import org.osmf.traits.PlayTrait;
 
-	public class KalturaMixPlayTrait extends PlayTrait
+	public class BorhanMixPlayTrait extends PlayTrait
 	{
 		public var eplayer:Eplayer;
 		private var _roughCutReady : Boolean = false;
 		private var _playing : Boolean = false;
 		
-		public function KalturaMixPlayTrait(_eplayer:Eplayer)
+		public function BorhanMixPlayTrait(_eplayer:Eplayer)
 		{
 			super();
 			eplayer = _eplayer;

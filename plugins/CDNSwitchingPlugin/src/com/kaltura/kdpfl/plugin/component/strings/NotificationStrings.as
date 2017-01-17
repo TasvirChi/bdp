@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component.strings
+package com.borhan.bdpfl.plugin.component.strings
 {
 	public class NotificationStrings
 	{

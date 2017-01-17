@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,14 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.base.vo
+package com.borhan.base.vo
 {
-	import com.kaltura.base.types.MediaTypes;
+	import com.borhan.base.types.MediaTypes;
 
 	import flash.events.EventDispatcher;
 
 	//[Bindable]
-	public class KalturaEntry extends EventDispatcher
+	public class BorhanEntry extends EventDispatcher
 	{
 		/**
 		 *the id of this entry.
@@ -71,7 +71,7 @@ package com.kaltura.base.vo
 		public var adminTags:String;
 		/**
 		 * the status of this entry currently on the server.
-		 * @see com.kaltura.base.types.EntryStatuses
+		 * @see com.borhan.base.types.EntryStatuses
 		 */
 		public var status:int;
 		/**
@@ -80,7 +80,7 @@ package com.kaltura.base.vo
 		public var entryType:int;
 		/**
 		 *the media type of this entry.
-		 * @see  com.kaltura.base.types.MediaTypes
+		 * @see  com.borhan.base.types.MediaTypes
 		 */
 		public var mediaType:uint = MediaTypes.ANY_TYPE;
 		/**
@@ -141,7 +141,7 @@ package com.kaltura.base.vo
 		public var height:Number;
 
 
-		public function KalturaEntry (entryInfoXML:XML = null):void
+		public function BorhanEntry (entryInfoXML:XML = null):void
 		{
 			if (entryInfoXML)
 			{

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.playlist
+package com.borhan.commands.playlist
 {
-		import com.kaltura.vo.KalturaPlaylist;
-	import com.kaltura.delegates.playlist.PlaylistCloneDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanPlaylist;
+	import com.borhan.delegates.playlist.PlaylistCloneDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Clone an existing playlist
 	* 
 	**/
-	public class PlaylistClone extends KalturaCall
+	public class PlaylistClone extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id String
-		* @param newPlaylist KalturaPlaylist
+		* @param newPlaylist BorhanPlaylist
 		**/
-		public function PlaylistClone( id : String,newPlaylist : KalturaPlaylist=null )
+		public function PlaylistClone( id : String,newPlaylist : BorhanPlaylist=null )
 		{
 			service= 'playlist';
 			action= 'clone';
@@ -54,7 +54,7 @@ package com.kaltura.commands.playlist
 			keyArr.push('id');
 			valueArr.push(id);
 			if (newPlaylist) { 
-				keyValArr = kalturaObject2Arrays(newPlaylist, 'newPlaylist');
+				keyValArr = borhanObject2Arrays(newPlaylist, 'newPlaylist');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

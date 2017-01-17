@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin 
+package com.borhan.bdpfl.plugin 
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.NotificationType;
 	
 	import fl.core.UIComponent;
 	

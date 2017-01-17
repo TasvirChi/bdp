@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.drmProfile
+package com.borhan.commands.drmProfile
 {
-		import com.kaltura.vo.KalturaDrmProfile;
-	import com.kaltura.delegates.drmProfile.DrmProfileUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanDrmProfile;
+	import com.borhan.delegates.drmProfile.DrmProfileUpdateDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
-	* Update an existing KalturaDrmProfile object
+	* Update an existing BorhanDrmProfile object
 	* 
 	**/
-	public class DrmProfileUpdate extends KalturaCall
+	public class DrmProfileUpdate extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param drmProfileId int
-		* @param drmProfile KalturaDrmProfile
+		* @param drmProfile BorhanDrmProfile
 		**/
-		public function DrmProfileUpdate( drmProfileId : int,drmProfile : KalturaDrmProfile )
+		public function DrmProfileUpdate( drmProfileId : int,drmProfile : BorhanDrmProfile )
 		{
 			service= 'drm_drmprofile';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.drmProfile
 			var keyValArr : Array = new Array();
 			keyArr.push('drmProfileId');
 			valueArr.push(drmProfileId);
-				keyValArr = kalturaObject2Arrays(drmProfile, 'drmProfile');
+				keyValArr = borhanObject2Arrays(drmProfile, 'drmProfile');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

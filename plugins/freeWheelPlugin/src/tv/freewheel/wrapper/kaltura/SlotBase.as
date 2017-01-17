@@ -1,4 +1,4 @@
-package tv.freewheel.wrapper.kaltura
+package tv.freewheel.wrapper.borhan
 {
 	import flash.display.Sprite;
 	import tv.freewheel.logging.Logger;

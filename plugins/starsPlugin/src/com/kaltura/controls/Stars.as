@@ -1,4 +1,4 @@
-﻿package com.kaltura.controls
+﻿package com.borhan.controls
 {
 	import flash.display.MovieClip;
 	import flash.events.Event;

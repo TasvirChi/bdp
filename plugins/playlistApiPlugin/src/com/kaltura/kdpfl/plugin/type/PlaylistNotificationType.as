@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.type
+package com.borhan.bdpfl.plugin.type
 {
 	/**
 	 * This class represents playlist notification types 
@@ -17,7 +17,7 @@ package com.kaltura.kdpfl.plugin.type
 		public static const PLAYLIST_PLAY_NEXT : String		 	= "playlistPlayNext";
 		/**
 		 * load playlist
-		 * Body: kplName=kaltura playlist name, kplUrl=kaltura playlist URL 
+		 * Body: kplName=borhan playlist name, kplUrl=borhan playlist URL 
 		 */		
 		public static const LOAD_PLAYLIST : String				= "loadPlaylist";
 		

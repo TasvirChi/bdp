@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.vo.KalturaLiveStreamEntry;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.vo.BorhanLiveStreamEntry;
 	
 	import org.osmf.elements.ParallelElement;
 	import org.osmf.events.MediaElementEvent;
@@ -34,7 +34,7 @@ package com.kaltura.kdpfl.plugin
 		
 		override public function listNotificationInterests():Array
 		{
-			return [NotificationType.CREATE_PARALLEL_ELEMENT, NotificationType.RESTORE_MAIN_PARALLEL_ELEMENT, NotificationType.KDP_EMPTY, NotificationType.ENTRY_READY];
+			return [NotificationType.CREATE_PARALLEL_ELEMENT, NotificationType.RESTORE_MAIN_PARALLEL_ELEMENT, NotificationType.BDP_EMPTY, NotificationType.ENTRY_READY];
 		}
 		
 		override public function handleNotification(notification:INotification):void
@@ -69,7 +69,7 @@ package com.kaltura.kdpfl.plugin
 					audioTrait.muted = false;
 					break;
 				
-				case NotificationType.KDP_EMPTY:
+				case NotificationType.BDP_EMPTY:
 					if (_mediaProxy.vo.deliveryType == StreamerType.LIVE)
 					{
 						_mediaProxy.vo.useParallelElement = true;
@@ -77,7 +77,7 @@ package com.kaltura.kdpfl.plugin
 					break;
 				
 				case NotificationType.ENTRY_READY:
-					if (_mediaProxy.vo.entry is KalturaLiveStreamEntry || _mediaProxy.vo.deliveryType == StreamerType.LIVE)
+					if (_mediaProxy.vo.entry is BorhanLiveStreamEntry || _mediaProxy.vo.deliveryType == StreamerType.LIVE)
 					{
 						_mediaProxy.vo.useParallelElement = true;
 					}

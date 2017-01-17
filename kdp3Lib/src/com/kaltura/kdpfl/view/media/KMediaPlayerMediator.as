@@ -1,27 +1,27 @@
-package com.kaltura.kdpfl.view.media
+package com.borhan.bdpfl.view.media
 {
-	import com.kaltura.commands.stats.StatsReportError;
-	import com.kaltura.kdpfl.controller.media.LiveStreamCommand;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.util.SharedObjectUtil;
-	import com.kaltura.kdpfl.view.controls.BufferAnimation;
-	import com.kaltura.kdpfl.view.controls.BufferAnimationMediator;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.types.KalturaDVRStatus;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.vo.KalturaFlavorAsset;
-	import com.kaltura.vo.KalturaLiveStreamEntry;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.borhan.commands.stats.StatsReportError;
+	import com.borhan.bdpfl.controller.media.LiveStreamCommand;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.PlayerStatusProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SourceType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.util.SharedObjectUtil;
+	import com.borhan.bdpfl.view.controls.BufferAnimation;
+	import com.borhan.bdpfl.view.controls.BufferAnimationMediator;
+	import com.borhan.bdpfl.view.controls.KTrace;
+	import com.borhan.types.BorhanDVRStatus;
+	import com.borhan.types.BorhanMediaType;
+	import com.borhan.vo.BorhanFlavorAsset;
+	import com.borhan.vo.BorhanLiveStreamEntry;
+	import com.borhan.vo.BorhanMediaEntry;
+	import com.borhan.vo.BorhanMixEntry;
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
@@ -80,7 +80,7 @@ package com.kaltura.kdpfl.view.media
 		private var _isIntelliSeeking :Boolean=false;
 		private var _lastCurrentTime:Number = 0;
 		private var _newdDuration:Number;
-		private var _kdp3Preloader : BufferAnimation;
+		private var _bdp3Preloader : BufferAnimation;
 		private var _autoPlay : Boolean;
 		/**
 		 * indicates if first "playing" state for playing the current media was called 
@@ -116,7 +116,7 @@ package com.kaltura.kdpfl.view.media
 		private var _metadataTimer:Timer;
 		
 		/**
-		 * indicates if the "doSeek" was sent before "doPlay" and KDP intiate the "doPlay" in order to load the entry. 
+		 * indicates if the "doSeek" was sent before "doPlay" and BDP intiate the "doPlay" in order to load the entry. 
 		 */		
 		private var _isPrePlaySeek:Boolean = false;
 		/**
@@ -231,7 +231,7 @@ package com.kaltura.kdpfl.view.media
 			//if an autoMute flashvar passed as true mute the volume 
 			if(_flashvars.autoMute == "true") _autoMute=true;
 			
-			//add all the event listeners needed from video component to make the KDP works
+			//add all the event listeners needed from video component to make the BDP works
 			player.addEventListener( DisplayObjectEvent.DISPLAY_OBJECT_CHANGE , onViewableChange );
 			player.addEventListener( DisplayObjectEvent.MEDIA_SIZE_CHANGE , onMediaSizeChange );		
 			
@@ -260,8 +260,8 @@ package com.kaltura.kdpfl.view.media
 		{
 			var size : Object = {width : playerContainer.width, height : playerContainer.height};
 			
-			_kdp3Preloader.height = size.height;
-			_kdp3Preloader.width = size.width;
+			_bdp3Preloader.height = size.height;
+			_bdp3Preloader.width = size.width;
 		}
 		
 		
@@ -315,8 +315,8 @@ package com.kaltura.kdpfl.view.media
 				NotificationType.CLEAN_MEDIA,
 				NotificationType.CHANGE_VOLUME,
 				NotificationType.VOLUME_CHANGED_END,
-				NotificationType.KDP_EMPTY,
-				NotificationType.KDP_READY,
+				NotificationType.BDP_EMPTY,
+				NotificationType.BDP_READY,
 				LiveStreamCommand.LIVE_STREAM_READY,
 				NotificationType.PLAYER_PLAYED,
 				NotificationType.OPEN_FULL_SCREEN,
@@ -348,7 +348,7 @@ package com.kaltura.kdpfl.view.media
 						{
 							//set b64referrer here, in case referrer has changed when entry was set
 							setB64Referrer();		
-							kMediaPlayer.loadThumbnail( _mediaProxy.vo.entry.thumbnailUrl,_mediaProxy.vo.entry.width,_mediaProxy.vo.entry.height, (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.kalturaClient.ks, _flashvars );
+							kMediaPlayer.loadThumbnail( _mediaProxy.vo.entry.thumbnailUrl,_mediaProxy.vo.entry.width,_mediaProxy.vo.entry.height, (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.borhanClient.ks, _flashvars );
 						}
 					}
 					if (_flashvars.autoPlay !="true" && !_mediaProxy.vo.singleAutoPlay)
@@ -360,10 +360,10 @@ package com.kaltura.kdpfl.view.media
 						kMediaPlayer.hideThumbnail();
 					}
 					
-					if (_mediaProxy.vo.entry is KalturaLiveStreamEntry && (_mediaProxy.vo.entry as KalturaLiveStreamEntry).dvrStatus == KalturaDVRStatus.ENABLED)
+					if (_mediaProxy.vo.entry is BorhanLiveStreamEntry && (_mediaProxy.vo.entry as BorhanLiveStreamEntry).dvrStatus == BorhanDVRStatus.ENABLED)
 					{
 						_mediaProxy.vo.canSeek = true;
-						dvrWinSize = (_mediaProxy.vo.entry as KalturaLiveStreamEntry).dvrWindow * 60;
+						dvrWinSize = (_mediaProxy.vo.entry as BorhanLiveStreamEntry).dvrWindow * 60;
 						if ( !_flashvars.useLiveStreamMinDuration ) 
 							sendNotification( NotificationType.DURATION_CHANGE , {newValue:dvrWinSize});
 					}
@@ -579,7 +579,7 @@ package com.kaltura.kdpfl.view.media
 						return;	
 					}
 					
-					if ( (_mediaProxy.vo.entry is KalturaMixEntry) ||
+					if ( (_mediaProxy.vo.entry is BorhanMixEntry) ||
 						(seekTo <= _loadedTime  && !_isIntelliSeeking))
 					{
 						if(player.canSeek) 
@@ -615,11 +615,11 @@ package com.kaltura.kdpfl.view.media
 					break;
 				
 				case NotificationType.VOLUME_CHANGED_END: //change volume process ended, save to cookie if possible
-					SharedObjectUtil.writeToCookie("KalturaVolume", "volume", kMediaPlayer.volume, _flashvars.allowCookies);
+					SharedObjectUtil.writeToCookie("BorhanVolume", "volume", kMediaPlayer.volume, _flashvars.allowCookies);
 					break;
 				
-				case NotificationType.KDP_EMPTY:
-				case NotificationType.KDP_READY:
+				case NotificationType.BDP_EMPTY:
+				case NotificationType.BDP_READY:
 					setB64Referrer();
 					var preloaderMediator : BufferAnimationMediator = facade.retrieveMediator( BufferAnimationMediator.NAME ) as BufferAnimationMediator;
 					kMediaPlayer.bufferSprite = preloaderMediator.spinner; 
@@ -639,7 +639,7 @@ package com.kaltura.kdpfl.view.media
 				
 				case NotificationType.OPEN_FULL_SCREEN:
 					
-					if (!_sequenceProxy.vo.isInSequence && _mediaProxy.vo.entry.mediaType == KalturaMediaType.IMAGE)
+					if (!_sequenceProxy.vo.isInSequence && _mediaProxy.vo.entry.mediaType == BorhanMediaType.IMAGE)
 					{
 						_mediaProxy.vo.entry.width=0;
 						_mediaProxy.vo.entry.height=0;
@@ -666,7 +666,7 @@ package com.kaltura.kdpfl.view.media
 				
 				case NotificationType.CHANGE_PREFERRED_BITRATE:
 					//save the value from bitrate detection plugin:
-					SharedObjectUtil.writeToCookie("Kaltura", "detectedBitrate", note.getBody().bitrate, _flashvars.allowCookies); 
+					SharedObjectUtil.writeToCookie("Borhan", "detectedBitrate", note.getBody().bitrate, _flashvars.allowCookies); 
 					changePreferredBitrate(note.getBody().bitrate);
 					break;
 				
@@ -722,7 +722,7 @@ package com.kaltura.kdpfl.view.media
 						var sendError:StatsReportError = new StatsReportError(NotificationType.MEDIA_ERROR, message);
 						sendError.method = URLRequestMethod.POST;
 						
-						(facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.kalturaClient.post(sendError);
+						(facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.borhanClient.post(sendError);
 						_mediaErrorSent = true;
 					}
 				
@@ -752,11 +752,11 @@ package com.kaltura.kdpfl.view.media
 		private function changePreferredBitrate(val:int):void 
 		{
 			var curIndex : int = _mediaProxy.findDynamicStreamIndexByProp(val);
-			if ((curIndex > -1) && (curIndex < _mediaProxy.vo.kalturaMediaFlavorArray.length) )
+			if ((curIndex > -1) && (curIndex < _mediaProxy.vo.borhanMediaFlavorArray.length) )
 			{
-				_mediaProxy.vo.preferedFlavorBR = _mediaProxy.vo.kalturaMediaFlavorArray[curIndex].bitrate;
+				_mediaProxy.vo.preferedFlavorBR = _mediaProxy.vo.borhanMediaFlavorArray[curIndex].bitrate;
 				if (_mediaProxy.vo.deliveryType == StreamerType.HTTP)
-					_mediaProxy.vo.selectedFlavorId = _mediaProxy.vo.kalturaMediaFlavorArray[curIndex].id 
+					_mediaProxy.vo.selectedFlavorId = _mediaProxy.vo.borhanMediaFlavorArray[curIndex].id 
 				if (!_mediaProxy.shouldWaitForElement)
 					_mediaProxy.prepareMediaElement();		
 			}
@@ -767,8 +767,8 @@ package com.kaltura.kdpfl.view.media
 			
 			if (!isAkamaiHD())
 			{
-				SharedObjectUtil.writeToCookie("Kaltura", "preferedFlavorBR", _mediaProxy.vo.preferedFlavorBR, _flashvars.allowCookies);				
-				SharedObjectUtil.writeToCookie("Kaltura", "timeStamp", (new Date()).time, _flashvars.allowCookies);				
+				SharedObjectUtil.writeToCookie("Borhan", "preferedFlavorBR", _mediaProxy.vo.preferedFlavorBR, _flashvars.allowCookies);				
+				SharedObjectUtil.writeToCookie("Borhan", "timeStamp", (new Date()).time, _flashvars.allowCookies);				
 				sendNotification( NotificationType.SWITCHING_CHANGE_COMPLETE, {newIndex : curIndex, newBitrate: _mediaProxy.vo.preferedFlavorBR}  );
 			}
 		}
@@ -803,7 +803,7 @@ package com.kaltura.kdpfl.view.media
 			}
 			//hide the thumbnail 
 			//if this is Audio and not blocked entry countinue to show the Thumbnail
-			if(_mediaProxy.vo.entry.mediaType==KalturaMediaType.AUDIO && !_blockThumb &&!_sequenceProxy.vo.isInSequence)
+			if(_mediaProxy.vo.entry.mediaType==BorhanMediaType.AUDIO && !_blockThumb &&!_sequenceProxy.vo.isInSequence)
 			{
 				kMediaPlayer.showThumbnail();
 			}
@@ -829,7 +829,7 @@ package com.kaltura.kdpfl.view.media
 				return;
 				
 			}
-			else if(_mediaProxy.vo.entry is KalturaMixEntry && 
+			else if(_mediaProxy.vo.entry is BorhanMixEntry && 
 				player.media.getTrait(MediaTraitType.DISPLAY_OBJECT)["isReadyForLoad"] &&
 				!player.media.getTrait(MediaTraitType.DISPLAY_OBJECT)["isSpriteLoaded"])
 			{
@@ -885,7 +885,7 @@ package com.kaltura.kdpfl.view.media
 			else //not playable
 			{
 				//if we play image that not support duration we should act like we play somthing static
-				if(	_mediaProxy.vo.entry is KalturaMediaEntry && _mediaProxy.vo.entry.mediaType==KalturaMediaType.IMAGE)				
+				if(	_mediaProxy.vo.entry is BorhanMediaEntry && _mediaProxy.vo.entry.mediaType==BorhanMediaType.IMAGE)				
 					sendNotification( NotificationType.PLAYER_PLAYED);	
 				else
 				{
@@ -1178,7 +1178,7 @@ package com.kaltura.kdpfl.view.media
 			}
 			
 			
-			if ( (_mediaProxy.vo.entry is KalturaMixEntry) ||
+			if ( (_mediaProxy.vo.entry is BorhanMixEntry) ||
 				(startTime <= _loadedTime  && !_isIntelliSeeking))
 			{
 				if(player.canSeek) 
@@ -1433,8 +1433,8 @@ package com.kaltura.kdpfl.view.media
 			else if(event.time)
 			{
 				//in live dvr: minimum duration should be dvrwindow size
-				if (!_sequenceProxy.vo.isInSequence && (_mediaProxy.vo.entry is KalturaLiveStreamEntry &&
-					(_mediaProxy.vo.entry as KalturaLiveStreamEntry).dvrStatus == KalturaDVRStatus.ENABLED))
+				if (!_sequenceProxy.vo.isInSequence && (_mediaProxy.vo.entry is BorhanLiveStreamEntry &&
+					(_mediaProxy.vo.entry as BorhanLiveStreamEntry).dvrStatus == BorhanDVRStatus.ENABLED))
 				{
 					if ( _flashvars.useLiveStreamMinDuration ) {
 						if ( !_liveDurationSet ) {
@@ -1584,11 +1584,11 @@ package com.kaltura.kdpfl.view.media
 		 * 
 		 */		
 		private function isMP4Stream():Boolean {
-			if (_mediaProxy.vo.kalturaMediaFlavorArray)
+			if (_mediaProxy.vo.borhanMediaFlavorArray)
 			{
 				if (_mediaProxy.vo.selectedFlavorId)
 				{
-					for each (var flavor:KalturaFlavorAsset in _mediaProxy.vo.kalturaMediaFlavorArray)
+					for each (var flavor:BorhanFlavorAsset in _mediaProxy.vo.borhanMediaFlavorArray)
 					{
 						if (flavor.id==_mediaProxy.vo.selectedFlavorId)
 						{
@@ -1600,9 +1600,9 @@ package com.kaltura.kdpfl.view.media
 					}	
 				}
 				//if we don't have selected flavor ID we are playing the first one
-				else if (_mediaProxy.vo.kalturaMediaFlavorArray.length)
+				else if (_mediaProxy.vo.borhanMediaFlavorArray.length)
 				{
-					if ((_mediaProxy.vo.kalturaMediaFlavorArray[0] as KalturaFlavorAsset).fileExt=="mp4")
+					if ((_mediaProxy.vo.borhanMediaFlavorArray[0] as BorhanFlavorAsset).fileExt=="mp4")
 						return true;
 				}
 			}

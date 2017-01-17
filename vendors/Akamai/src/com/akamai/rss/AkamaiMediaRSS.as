@@ -207,8 +207,8 @@
 					enclosure.length=Number(_rss.channel.item[i].enclosure.@length.toString());
 					enclosure.type=_rss.channel.item[i].enclosure.@type;
 
-					//kaltura patches:
-					var kalNs:Namespace = new Namespace("http://kaltura.com/playlist/1.0");
+					//borhan patches:
+					var kalNs:Namespace = new Namespace("http://borhan.com/playlist/1.0");
 
 
 					//patches:
@@ -223,7 +223,7 @@
 							item[xmlItemProperty.localName()] = xmlItemProperty.toString();
 					}
 
-					//end of kaltura patches
+					//end of borhan patches
 
 					item.enclosure = enclosure;
 					if (_rss.channel.item[i].mediaNs::group == undefined) {

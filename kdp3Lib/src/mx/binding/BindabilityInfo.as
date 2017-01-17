@@ -149,7 +149,7 @@ public class BindabilityInfo
 				addBindabilityEvents(childDesc.metadata, changeEvents);
 			}
 			
-			if (typeDescription.metadata.(@name == "KalturaBind").length() > 0)
+			if (typeDescription.metadata.(@name == "BorhanBind").length() > 0)
 			{
 				changeEvents = {};
 				changeEvents[PropertyChangeEvent.PROPERTY_CHANGE + childName] = true; 

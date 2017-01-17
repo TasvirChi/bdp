@@ -1,18 +1,18 @@
-package com.kaltura.kdpfl.controller
+package com.borhan.bdpfl.controller
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
-	import com.kaltura.kdpfl.model.FuncsProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.util.Functor;
-	import com.kaltura.kdpfl.view.CuePointsMediator;
-	import com.kaltura.kdpfl.view.RootMediator;
-	import com.kaltura.kdpfl.view.controls.AlertMediator;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.ExternalInterfaceProxy;
+	import com.borhan.bdpfl.model.FuncsProxy;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.PlayerStatusProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.util.Functor;
+	import com.borhan.bdpfl.view.CuePointsMediator;
+	import com.borhan.bdpfl.view.RootMediator;
+	import com.borhan.bdpfl.view.controls.AlertMediator;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;

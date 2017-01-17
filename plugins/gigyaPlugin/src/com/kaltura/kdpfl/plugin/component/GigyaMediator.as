@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.commands.widget.WidgetAdd;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.types.KalturaWidgetSecurityType;
-	import com.kaltura.vo.KalturaWidget;
+package com.borhan.bdpfl.plugin.component {
+	import com.borhan.commands.widget.WidgetAdd;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.types.BorhanWidgetSecurityType;
+	import com.borhan.vo.BorhanWidget;
 	
 	import flash.display.DisplayObject;
 	import flash.system.Security;
@@ -129,18 +129,18 @@ package com.kaltura.kdpfl.plugin.component {
 			// build client instacr
 			//if there are more places to use this - make this global 	
 			//configuration 
-			var kw:KalturaWidget = new KalturaWidget();
+			var kw:BorhanWidget = new BorhanWidget();
 			kw.entryId = media["vo"]["entry"]["id"];
 			// the uiconf that will be the new widget uiconf
 			kw.uiConfId = int(uiconfId); //kw.uiConfId = int(uiconfId);  
 			kw.sourceWidgetId = config["vo"]["kw"]["id"]; //"_1";// 
 			kw.partnerData = createWidgetPartnerData(_flashvars);
-			kw.securityType = KalturaWidgetSecurityType.NONE;
+			kw.securityType = BorhanWidgetSecurityType.NONE;
 
 			//add widget			
 			var addWidget:WidgetAdd = new WidgetAdd(kw);
-			addWidget.addEventListener(KalturaEvent.COMPLETE, onWidgetComplete);
-			addWidget.addEventListener(KalturaEvent.FAILED, onWidgetFailed);
+			addWidget.addEventListener(BorhanEvent.COMPLETE, onWidgetComplete);
+			addWidget.addEventListener(BorhanEvent.FAILED, onWidgetFailed);
 			kc.post(addWidget);
 		}
 
@@ -166,7 +166,7 @@ package com.kaltura.kdpfl.plugin.component {
 		 * @inheritDocs 
 		 */
 		override public function handleNotification(note:INotification):void {
-			var kc:Object = facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var kc:Object = facade.retrieveProxy("servicesProxy")["borhanClient"];
 			var media:Object = facade.retrieveProxy("mediaProxy");
 			var entry:String = media["vo"]["entry"]["id"];
 			switch (note.getName()) {

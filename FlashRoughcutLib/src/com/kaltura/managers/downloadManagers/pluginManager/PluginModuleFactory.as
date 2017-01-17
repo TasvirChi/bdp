@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,15 +20,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.managers.downloadManagers.pluginManager
+package com.borhan.managers.downloadManagers.pluginManager
 {
-	import com.kaltura.managers.downloadManagers.pluginManager.events.PluginFactoryEvent;
-	import com.kaltura.net.interfaces.ILoadableObject;
-	import com.kaltura.net.interfaces.IMediaSource;
-	//import com.kaltura.plugin.UI.PluginUI;
-	//import com.kaltura.plugin.events.PluginUIEvent;
-	import com.kaltura.plugin.logic.Plugin;
-	import com.kaltura.plugin.logic.properties.restrictions.Restrictions;
+	import com.borhan.managers.downloadManagers.pluginManager.events.PluginFactoryEvent;
+	import com.borhan.net.interfaces.ILoadableObject;
+	import com.borhan.net.interfaces.IMediaSource;
+	//import com.borhan.plugin.UI.PluginUI;
+	//import com.borhan.plugin.events.PluginUIEvent;
+	import com.borhan.plugin.logic.Plugin;
+	import com.borhan.plugin.logic.properties.restrictions.Restrictions;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;

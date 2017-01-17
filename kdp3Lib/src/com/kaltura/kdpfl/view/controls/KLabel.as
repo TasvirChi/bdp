@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
 	
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.style.FontManager;
-	import com.kaltura.kdpfl.style.TextFormatManager;
+	import com.borhan.bdpfl.component.IComponent;
+	import com.borhan.bdpfl.style.FontManager;
+	import com.borhan.bdpfl.style.TextFormatManager;
 	
 	import fl.controls.Label;
 	
@@ -11,7 +11,7 @@ package com.kaltura.kdpfl.view.controls
 	import flash.text.TextFormat;
 
 	/**
-	 * Class representing the Label used by the KDP. 
+	 * Class representing the Label used by the BDP. 
 	 * @author Hila
 	 * 
 	 */	

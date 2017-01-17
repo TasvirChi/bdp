@@ -1,7 +1,7 @@
-package com.kaltura.osmf.proxy
+package com.borhan.osmf.proxy
 {
-	import com.kaltura.osmf.events.KSwitchingProxyEvent;
-	import com.kaltura.osmf.events.KSwitchingProxySwitchContext;
+	import com.borhan.osmf.events.KSwitchingProxyEvent;
+	import com.borhan.osmf.events.KSwitchingProxySwitchContext;
 	
 	import org.osmf.elements.ProxyElement;
 	import org.osmf.events.MediaErrorEvent;

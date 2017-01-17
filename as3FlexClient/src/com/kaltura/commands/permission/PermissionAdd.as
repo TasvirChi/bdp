@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.permission
+package com.borhan.commands.permission
 {
-		import com.kaltura.vo.KalturaPermission;
-	import com.kaltura.delegates.permission.PermissionAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanPermission;
+	import com.borhan.delegates.permission.PermissionAddDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Adds a new permission object to the account.
 	* 
 	**/
-	public class PermissionAdd extends KalturaCall
+	public class PermissionAdd extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param permission KalturaPermission
+		* @param permission BorhanPermission
 		**/
-		public function PermissionAdd( permission : KalturaPermission )
+		public function PermissionAdd( permission : BorhanPermission )
 		{
 			service= 'permission';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.permission
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(permission, 'permission');
+				keyValArr = borhanObject2Arrays(permission, 'permission');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

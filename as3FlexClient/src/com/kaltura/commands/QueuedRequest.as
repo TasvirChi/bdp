@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,18 +25,18 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands {
-	import com.kaltura.delegates.QueuedRequestDelegate;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.net.KalturaCall;
+package com.borhan.commands {
+	import com.borhan.delegates.QueuedRequestDelegate;
+	import com.borhan.errors.BorhanError;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.net.BorhanCall;
 
-	public class QueuedRequest extends KalturaCall {
+	public class QueuedRequest extends BorhanCall {
 
 		/**
 		 * a list of calls to execute.
 		 */
-		public var calls:Vector.<KalturaCall>;
+		public var calls:Vector.<BorhanCall>;
 
 		/**
 		 * params mapped between calls.
@@ -47,17 +47,17 @@ package com.kaltura.commands {
 
 		public function QueuedRequest() {
 			service = 'multirequest';
-			calls = new Vector.<KalturaCall>();
+			calls = new Vector.<BorhanCall>();
 			queued = false;
 		}
 
 
 	 	/**
 		 * add the given call to the calls list
-		 * @param kalturaCall	call to add
+		 * @param borhanCall	call to add
 		 */
-		public function addAction(kalturaCall:KalturaCall):void {
-			calls.push(kalturaCall);
+		public function addAction(borhanCall:BorhanCall):void {
+			calls.push(borhanCall);
 		}
 		
 		
@@ -74,7 +74,7 @@ package com.kaltura.commands {
 					fixParamMapping(calls[j] as MultiRequest, paramOffset);
 					
 					var actions:Array = (calls[j] as MultiRequest).actions;
-					for each (var call:KalturaCall in actions) {
+					for each (var call:BorhanCall in actions) {
 						addCall(ind, call, keyArray, valueArr);
 						ind++;
 					}
@@ -132,7 +132,7 @@ package com.kaltura.commands {
 		 * @param keyArray 	keys array
 		 * @param valueArr	values array
 		 */
-		protected function addCall(ind:int, call:KalturaCall, keyArray:Array, valueArr:Array):void {
+		protected function addCall(ind:int, call:BorhanCall, keyArray:Array, valueArr:Array):void {
 			// add service and action
 			keyArray.push((ind + 1) + ":service");
 			valueArr.push(call.service);
@@ -173,7 +173,7 @@ package com.kaltura.commands {
 			success = true;
 			var results:Array = result as Array;
 			for (var i:int = 0; i< calls.length; i++) {
-				if (results[i] is KalturaError) {
+				if (results[i] is BorhanError) {
 					calls[i].handleError(results[i]);
 				}
 				else {
@@ -188,7 +188,7 @@ package com.kaltura.commands {
 		 * don't have individual answers. make each call dispatch an error.  
 		 * @param error
 		 */		
-		override public function handleError(error:KalturaError):void {
+		override public function handleError(error:BorhanError):void {
 			this.error = error;
 			success = false;
 			error.requestArgs = args;

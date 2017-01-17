@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.userRole
+package com.borhan.commands.userRole
 {
-		import com.kaltura.vo.KalturaUserRoleFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.userRole.UserRoleListDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanUserRoleFilter;
+		import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.delegates.userRole.UserRoleListDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Lists user role objects that are associated with an account.
@@ -38,15 +38,15 @@ package com.kaltura.commands.userRole
 	* Deleted user roles are not listed unless you use a filter to include them.
 	* 
 	**/
-	public class UserRoleList extends KalturaCall
+	public class UserRoleList extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param filter KalturaUserRoleFilter
-		* @param pager KalturaFilterPager
+		* @param filter BorhanUserRoleFilter
+		* @param pager BorhanFilterPager
 		**/
-		public function UserRoleList( filter : KalturaUserRoleFilter=null,pager : KalturaFilterPager=null )
+		public function UserRoleList( filter : BorhanUserRoleFilter=null,pager : BorhanFilterPager=null )
 		{
 			service= 'userrole';
 			action= 'list';
@@ -55,12 +55,12 @@ package com.kaltura.commands.userRole
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (filter) { 
-				keyValArr = kalturaObject2Arrays(filter, 'filter');
+				keyValArr = borhanObject2Arrays(filter, 'filter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = borhanObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

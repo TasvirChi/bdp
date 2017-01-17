@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
 
 	public class PPTWidgetStrings 
 	{

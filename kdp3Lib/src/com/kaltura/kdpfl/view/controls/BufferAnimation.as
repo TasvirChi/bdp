@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
 	import com.yahoo.astra.fl.containers.BoxPane;
 	
@@ -7,7 +7,7 @@ package com.kaltura.kdpfl.view.controls
 	import flash.utils.getDefinitionByName;
 
 	/**
-	 * class for the buffer indicator animation that appears when media playing in the KDP goes into buffering mode. 
+	 * class for the buffer indicator animation that appears when media playing in the BDP goes into buffering mode. 
 	 * @author Hila
 	 * 
 	 */

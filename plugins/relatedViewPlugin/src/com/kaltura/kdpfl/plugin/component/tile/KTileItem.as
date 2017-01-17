@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component.tile
+package com.borhan.bdpfl.plugin.component.tile
 {
 
-import com.kaltura.kdpfl.view.controls.KTrace;
+import com.borhan.bdpfl.view.controls.KTrace;
 
 import fl.controls.listClasses.CellRenderer;
 import fl.controls.listClasses.ListData;

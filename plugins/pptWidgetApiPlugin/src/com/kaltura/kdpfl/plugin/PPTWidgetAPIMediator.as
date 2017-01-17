@@ -1,15 +1,15 @@
-package com.kaltura.kdpfl.plugin {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.baseEntry.BaseEntryGet;
-	import com.kaltura.commands.data.DataUpdate;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.util.URLProccessing;
-	import com.kaltura.vo.KalturaDataEntry;
+package com.borhan.bdpfl.plugin {
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.baseEntry.BaseEntryGet;
+	import com.borhan.commands.data.DataUpdate;
+	import com.borhan.errors.BorhanError;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.util.URLProccessing;
+	import com.borhan.vo.BorhanDataEntry;
 	
 	import fl.data.DataProvider;
 	
@@ -85,7 +85,7 @@ package com.kaltura.kdpfl.plugin {
 		protected var _debugMode:Boolean;
 		
 		/**
-		 * reference to KDP's sequence proxy. 
+		 * reference to BDP's sequence proxy. 
 		 */		
 		private var _sequenceProxy:SequenceProxy;
 
@@ -235,25 +235,25 @@ package com.kaltura.kdpfl.plugin {
 				sendNotification(NotificationType.CHANGE_MEDIA, {entryId: "-1"});
 				return;
 			}
-			var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+			var kc:BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient;
 			var baseEntryGet:BaseEntryGet = new BaseEntryGet(syncEntryId);
-			baseEntryGet.addEventListener(KalturaEvent.COMPLETE, loadSyncEntryComplete);
-			baseEntryGet.addEventListener(KalturaEvent.FAILED, loadSyncEntryError);
+			baseEntryGet.addEventListener(BorhanEvent.COMPLETE, loadSyncEntryComplete);
+			baseEntryGet.addEventListener(BorhanEvent.FAILED, loadSyncEntryError);
 			kc.post(baseEntryGet);
 		}
 
 
-		protected function loadSyncEntryComplete(result:KalturaEvent):void {
-			var dataEntry:KalturaDataEntry;
-			if (!result.data is KalturaDataEntry) {
+		protected function loadSyncEntryComplete(result:BorhanEvent):void {
+			var dataEntry:BorhanDataEntry;
+			if (!result.data is BorhanDataEntry) {
 				if (_debugMode) {
-					trace("Entry is not KalturaDataEntry");
+					trace("Entry is not BorhanDataEntry");
 				}
 				sendNotification(PPTWidgetNotifications.NOT_DATA_ENTRY);
 				return;
 			}
 
-			dataEntry = result.data as KalturaDataEntry;
+			dataEntry = result.data as BorhanDataEntry;
 			view.dataEntry = dataEntry;
 			// get the xml from partner data
 			var dataContentXML:XML = XML(dataEntry.dataContent);
@@ -400,7 +400,7 @@ package com.kaltura.kdpfl.plugin {
 		}
 
 
-		protected function loadSyncEntryError(event:KalturaEvent):void {
+		protected function loadSyncEntryError(event:BorhanEvent):void {
 			logError("loadSyncEntryError", event.error)
 			if (event.error)
 				sendNotification(NotificationType.ALERT, {message: event.error.errorMsg, title: PPTWidgetStrings.getString("PPTWIDGET_GENERIC_ERROR_TITLE")});
@@ -625,19 +625,19 @@ package com.kaltura.kdpfl.plugin {
 			}
 			videoMarksXML.appendChild(slidesXML);
 
-			var entry:KalturaDataEntry = new KalturaDataEntry();
+			var entry:BorhanDataEntry = new BorhanDataEntry();
 			entry.dataContent = videoMarksXML.toXMLString();
 			entry.retrieveDataContentByGet = view.dataEntry.retrieveDataContentByGet;
 			var entryUpdate:DataUpdate = new DataUpdate(syncEntryId, entry);
-			entryUpdate.addEventListener(KalturaEvent.COMPLETE, saveDataEntryComplete);
-			entryUpdate.addEventListener(KalturaEvent.FAILED, saveDataEntryError);
+			entryUpdate.addEventListener(BorhanEvent.COMPLETE, saveDataEntryComplete);
+			entryUpdate.addEventListener(BorhanEvent.FAILED, saveDataEntryError);
 
-			var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+			var kc:BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient;
 			kc.post(entryUpdate);
 		}
 
 
-		protected function saveDataEntryComplete(event:KalturaEvent):void {
+		protected function saveDataEntryComplete(event:BorhanEvent):void {
 			if (_sendCloseNotification)
 				sendNotification(PPTWidgetNotifications.PPT_WIDGET_CLOSE);
 			else
@@ -648,7 +648,7 @@ package com.kaltura.kdpfl.plugin {
 		}
 
 
-		protected function saveDataEntryError(event:KalturaEvent):void {
+		protected function saveDataEntryError(event:BorhanEvent):void {
 			logError("saveDataEntryError", event.error);
 			view.shouldSave = true;
 			alertGenericError();
@@ -685,7 +685,7 @@ package com.kaltura.kdpfl.plugin {
 		}
 
 
-		protected function logError(method:String, error:KalturaError):void {
+		protected function logError(method:String, error:BorhanError):void {
 			trace(method + ": " + error.errorCode + " (" + error.errorMsg + ")");
 		}
 		

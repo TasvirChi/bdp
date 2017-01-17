@@ -1,18 +1,18 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.annotation.AnnotationList;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.plugin.strings.NotificationStrings;
-	import com.kaltura.kdpfl.plugin.strings.SortOrderString;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.vo.KalturaAnnotation;
-	import com.kaltura.vo.KalturaAnnotationFilter;
-	import com.kaltura.vo.KalturaFilter;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.annotation.AnnotationList;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.plugin.strings.NotificationStrings;
+	import com.borhan.bdpfl.plugin.strings.SortOrderString;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.vo.BorhanAnnotation;
+	import com.borhan.vo.BorhanAnnotationFilter;
+	import com.borhan.vo.BorhanFilter;
 	
 	import flash.events.Event;
 	import flash.utils.setTimeout;
@@ -74,7 +74,7 @@ package com.kaltura.kdpfl.plugin
 					if ((viewComponent as AnnotationsDataPluginCode).annotationsGroup && (viewComponent as AnnotationsDataPluginCode).annotationsGroup.length) 
 					{
 						//Basing on the assumption that all the annotation group's annotations must belong to the same entry id.
-						var firstAnnotation : KalturaAnnotation = (viewComponent as AnnotationsDataPluginCode).annotationsGroup[0];
+						var firstAnnotation : BorhanAnnotation = (viewComponent as AnnotationsDataPluginCode).annotationsGroup[0];
 						(viewComponent as AnnotationsDataPluginCode).activeChapterId = firstAnnotation.id;
 						//Hot Fix for Akmai hd-network plugin
 						if (_player && _player.media &&  _mediaProxy.vo.entry.id == firstAnnotation.entryId && _mediaProxy.vo.deliveryType == StreamerType.HDNETWORK)
@@ -86,7 +86,7 @@ package com.kaltura.kdpfl.plugin
 				case NotificationType.PLAYER_UPDATE_PLAYHEAD:
 					var latestStartTime : int = (viewComponent as AnnotationsDataPluginCode).annotationsGroup[0].startTime;
 					var latestStartTimeAnnotationId : String = (viewComponent as AnnotationsDataPluginCode).annotationsGroup[0].id;
-					for each(var annotation : KalturaAnnotation in (viewComponent as AnnotationsDataPluginCode).annotationsGroup )
+					for each(var annotation : BorhanAnnotation in (viewComponent as AnnotationsDataPluginCode).annotationsGroup )
 					{
 						if ( annotation.startTime <= Number(notification.getBody() ) && annotation.startTime > latestStartTime )
 						{
@@ -135,7 +135,7 @@ package com.kaltura.kdpfl.plugin
 		
 		private function createTimeBasedData () : void
 		{
-			for each(var annotation : KalturaAnnotation in (viewComponent as AnnotationsDataPluginCode).annotationsGroup)
+			for each(var annotation : BorhanAnnotation in (viewComponent as AnnotationsDataPluginCode).annotationsGroup)
 			{
 				_timelineMetadata.addMarker(new TimelineMarker(annotation.startTime, _player.duration) );
 				
@@ -144,7 +144,7 @@ package com.kaltura.kdpfl.plugin
 		
 		private function changeActiveAnnotationId (e : TimelineMetadataEvent) : void
 		{
-			for each (var annotation : KalturaAnnotation in  (viewComponent as AnnotationsDataPluginCode).annotationsGroup )
+			for each (var annotation : BorhanAnnotation in  (viewComponent as AnnotationsDataPluginCode).annotationsGroup )
 			{
 				if (Math.round(annotation.startTime) == Math.round(e.marker.time) )
 				{
@@ -155,31 +155,31 @@ package com.kaltura.kdpfl.plugin
 		
 		private function retrieveAnnotationGroup (groupId : String) : void
 		{	
-			var kc : KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+			var kc : BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient;
 			
-			var annotationsListFilter : KalturaAnnotationFilter = new KalturaAnnotationFilter();
+			var annotationsListFilter : BorhanAnnotationFilter = new BorhanAnnotationFilter();
 			
 			annotationsListFilter.parentIdEqual = groupId;
 			
 			var listAnnotationGroup : AnnotationList = new AnnotationList(annotationsListFilter);
 			
-			listAnnotationGroup.addEventListener(KalturaEvent.COMPLETE, onAnnotationGroupLoaded);
+			listAnnotationGroup.addEventListener(BorhanEvent.COMPLETE, onAnnotationGroupLoaded);
 			
-			listAnnotationGroup.addEventListener(KalturaEvent.FAILED, onAnnotationGroupLoadFailed );
+			listAnnotationGroup.addEventListener(BorhanEvent.FAILED, onAnnotationGroupLoadFailed );
 			
 			kc.post(listAnnotationGroup);
 			
 		}
 		
-		private function onAnnotationGroupLoaded (e : KalturaEvent) : void
+		private function onAnnotationGroupLoaded (e : BorhanEvent) : void
 		{
-			var kalturaAnnotationsArr : Array = new Array();
-			for each(var annotation : KalturaAnnotation in e.data.objects)
+			var borhanAnnotationsArr : Array = new Array();
+			for each(var annotation : BorhanAnnotation in e.data.objects)
 			{
-				kalturaAnnotationsArr.push(annotation);
+				borhanAnnotationsArr.push(annotation);
 			}
 			
-			(viewComponent as AnnotationsDataPluginCode).annotationsGroup = kalturaAnnotationsArr;
+			(viewComponent as AnnotationsDataPluginCode).annotationsGroup = borhanAnnotationsArr;
 			
 			if ((viewComponent as AnnotationsDataPluginCode).sortOrder)
 			{
@@ -191,7 +191,7 @@ package com.kaltura.kdpfl.plugin
 			(viewComponent as AnnotationsDataPluginCode).activeChapterId = (viewComponent as AnnotationsDataPluginCode).annotationsGroup[0].id;
 		}
 		
-		private function onAnnotationGroupLoadFailed ( e : KalturaEvent) : void
+		private function onAnnotationGroupLoadFailed ( e : BorhanEvent) : void
 		{
 			
 		}
@@ -217,7 +217,7 @@ package com.kaltura.kdpfl.plugin
 		{
 			if ((viewComponent as AnnotationsDataPluginCode).annotationsGroup && (viewComponent as AnnotationsDataPluginCode).annotationsGroup.length)
 			{
-				for each (var annotation : KalturaAnnotation in (viewComponent as AnnotationsDataPluginCode).annotationsGroup)
+				for each (var annotation : BorhanAnnotation in (viewComponent as AnnotationsDataPluginCode).annotationsGroup)
 				{
 					if (annotation.id == id)
 					{

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.liveChannelSegment
+package com.borhan.commands.liveChannelSegment
 {
-		import com.kaltura.vo.KalturaLiveChannelSegment;
-	import com.kaltura.delegates.liveChannelSegment.LiveChannelSegmentUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanLiveChannelSegment;
+	import com.borhan.delegates.liveChannelSegment.LiveChannelSegmentUpdateDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Update live channel segment by id
 	* 
 	**/
-	public class LiveChannelSegmentUpdate extends KalturaCall
+	public class LiveChannelSegmentUpdate extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id int
-		* @param liveChannelSegment KalturaLiveChannelSegment
+		* @param liveChannelSegment BorhanLiveChannelSegment
 		**/
-		public function LiveChannelSegmentUpdate( id : int,liveChannelSegment : KalturaLiveChannelSegment )
+		public function LiveChannelSegmentUpdate( id : int,liveChannelSegment : BorhanLiveChannelSegment )
 		{
 			service= 'livechannelsegment';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.liveChannelSegment
 			var keyValArr : Array = new Array();
 			keyArr.push('id');
 			valueArr.push(id);
-				keyValArr = kalturaObject2Arrays(liveChannelSegment, 'liveChannelSegment');
+				keyValArr = borhanObject2Arrays(liveChannelSegment, 'liveChannelSegment');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.borhan.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaStatsKmcEvent extends BaseFlexVo
+	public dynamic class BorhanStatsBmcEvent extends BaseFlexVo
 	{
 		/**
 		**/
@@ -38,12 +38,12 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var kmcEventActionPath : String = null;
+		public var bmcEventActionPath : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaStatsKmcEventType
+		* @see com.borhan.types.BorhanStatsBmcEventType
 		**/
-		public var kmcEventType : int = int.MIN_VALUE;
+		public var bmcEventType : int = int.MIN_VALUE;
 
 		/**
 		* the client's timestamp of this event
@@ -93,8 +93,8 @@ package com.kaltura.vo
 			var arr : Array;
 			arr = new Array();
 			arr.push('clientVer');
-			arr.push('kmcEventActionPath');
-			arr.push('kmcEventType');
+			arr.push('bmcEventActionPath');
+			arr.push('bmcEventType');
 			arr.push('eventTimestamp');
 			arr.push('sessionId');
 			arr.push('partnerId');

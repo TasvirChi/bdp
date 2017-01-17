@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.model.vo
+package com.borhan.bdpfl.model.vo
 {
 	/**
-	 * Class ExternalInterfaceVO holds parameters related to the KDP communication with its external interface. 
+	 * Class ExternalInterfaceVO holds parameters related to the BDP communication with its external interface. 
 	 * 
 	 */	
 	public class ExternalInterfaceVO

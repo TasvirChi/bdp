@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.util
+package com.borhan.bdpfl.util
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.controls.KTrace;
 	
 	import flash.net.SharedObject;
 

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.widget
+package com.borhan.commands.widget
 {
-		import com.kaltura.vo.KalturaWidget;
-	import com.kaltura.delegates.widget.WidgetAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanWidget;
+	import com.borhan.delegates.widget.WidgetAddDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Add new widget, can be attached to entry or kshow
 	* SourceWidget is ignored.
 	* 
 	**/
-	public class WidgetAdd extends KalturaCall
+	public class WidgetAdd extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param widget KalturaWidget
+		* @param widget BorhanWidget
 		**/
-		public function WidgetAdd( widget : KalturaWidget )
+		public function WidgetAdd( widget : BorhanWidget )
 		{
 			service= 'widget';
 			action= 'add';
@@ -51,7 +51,7 @@ package com.kaltura.commands.widget
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(widget, 'widget');
+				keyValArr = borhanObject2Arrays(widget, 'widget');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

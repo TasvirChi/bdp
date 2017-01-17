@@ -1,4 +1,4 @@
-package com.kaltura.kdfl.plugin.component
+package com.borhan.kdfl.plugin.component
 {
 	import com.eyewonder.instream.players.AdManager;
 	

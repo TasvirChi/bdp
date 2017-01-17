@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.view.media
+package com.borhan.bdpfl.view.media
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.kdpfl.view.controls.BufferAnimation;
+	import com.borhan.bdpfl.component.IComponent;
+	import com.borhan.bdpfl.util.URLUtils;
+	import com.borhan.bdpfl.view.controls.BufferAnimation;
 	import com.yahoo.astra.fl.containers.layoutClasses.AdvancedLayoutPane;
 	
 	import flash.display.Sprite;

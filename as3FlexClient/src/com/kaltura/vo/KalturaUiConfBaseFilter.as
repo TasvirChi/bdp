@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaFilter;
+	import com.borhan.vo.BorhanFilter;
 
 	[Bindable]
-	public dynamic class KalturaUiConfBaseFilter extends KalturaFilter
+	public dynamic class BorhanUiConfBaseFilter extends BorhanFilter
 	{
 		/**
 		**/
@@ -53,7 +53,7 @@ package com.kaltura.vo
 		public var partnerIdIn : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaUiConfObjType
+		* @see com.borhan.types.BorhanUiConfObjType
 		**/
 		public var objTypeEqual : int = int.MIN_VALUE;
 
@@ -86,7 +86,7 @@ package com.kaltura.vo
 		public var updatedAtLessThanOrEqual : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaUiConfCreationMode
+		* @see com.borhan.types.BorhanUiConfCreationMode
 		**/
 		public var creationModeEqual : int = int.MIN_VALUE;
 

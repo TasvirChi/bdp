@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.controls.KTrace;
 	
 	import flash.display.Loader;
 	import flash.errors.IOError;
@@ -15,7 +15,7 @@ package com.kaltura.kdpfl.plugin
 	import mx.rpc.mxml.Concurrency;
 
 	/**
-	 * Singleton class which manages the loading of the KDP plugins according to the plugin's different loading policies. 
+	 * Singleton class which manages the loading of the BDP plugins according to the plugin's different loading policies. 
 	 * @author Hila
 	 * 
 	 */	
@@ -73,12 +73,12 @@ package com.kaltura.kdpfl.plugin
 			//TODO: Check if it is loaded
 		}
 		/**
-		 * loads a single KDP plugin 
+		 * loads a single BDP plugin 
 		 * @param url the url from which the plugis is loaded
 		 * @param pluginName the name of the plugin
 		 * @param loadingPolicy the loading policy of the plugin (preInitialize, onDemand, wait, noWait).
 		 * @param asyncInit flag indicating whether the Manager should wait until the plugin itself reports its initialize process as complete (if the plugin makes an async load on its <code>initializePlugin</code> function.
-		 * @param fileSystemMode - flag indicating whether the KDP is running in the user's file system or from a remote server.
+		 * @param fileSystemMode - flag indicating whether the BDP is running in the user's file system or from a remote server.
 		 * @return Plugin
 		 * 
 		 */		
@@ -119,7 +119,7 @@ package com.kaltura.kdpfl.plugin
 			return plugin;
 		}
 		/**
-		 * method for unloading the plugin from the KDP. 
+		 * method for unloading the plugin from the BDP. 
 		 * @param url url which serves as a unique id of the plugin to the PluginManager.
 		 * 
 		 */		

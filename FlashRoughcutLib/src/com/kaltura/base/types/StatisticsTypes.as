@@ -1,4 +1,4 @@
-package com.kaltura.base.types
+package com.borhan.base.types
 {
 	public class StatisticsTypes
 	{

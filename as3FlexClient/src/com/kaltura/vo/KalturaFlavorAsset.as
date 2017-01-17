@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaAsset;
+	import com.borhan.vo.BorhanAsset;
 
 	[Bindable]
-	public dynamic class KalturaFlavorAsset extends KalturaAsset
+	public dynamic class BorhanFlavorAsset extends BorhanAsset
 	{
 		/**
 		* The Flavor Params used to create this Flavor Asset
@@ -65,14 +65,14 @@ package com.kaltura.vo
 		/**
 		* True if this Flavor Asset is the original source
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var isOriginal : Boolean;
 
 		/**
-		* True if this Flavor Asset is playable in KDP
+		* True if this Flavor Asset is playable in BDP
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var isWeb : Boolean;
 
@@ -91,7 +91,7 @@ package com.kaltura.vo
 		/**
 		* The status of the Flavor Asset
 		* 
-		* @see com.kaltura.types.KalturaFlavorAssetStatus
+		* @see com.borhan.types.BorhanFlavorAssetStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 

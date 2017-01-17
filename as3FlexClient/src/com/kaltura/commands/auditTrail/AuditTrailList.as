@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.auditTrail
+package com.borhan.commands.auditTrail
 {
-		import com.kaltura.vo.KalturaAuditTrailFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.auditTrail.AuditTrailListDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanAuditTrailFilter;
+		import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.delegates.auditTrail.AuditTrailListDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* List audit trail objects by filter and pager
 	* 
 	**/
-	public class AuditTrailList extends KalturaCall
+	public class AuditTrailList extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param filter KalturaAuditTrailFilter
-		* @param pager KalturaFilterPager
+		* @param filter BorhanAuditTrailFilter
+		* @param pager BorhanFilterPager
 		**/
-		public function AuditTrailList( filter : KalturaAuditTrailFilter=null,pager : KalturaFilterPager=null )
+		public function AuditTrailList( filter : BorhanAuditTrailFilter=null,pager : BorhanFilterPager=null )
 		{
 			service= 'audit_audittrail';
 			action= 'list';
@@ -53,12 +53,12 @@ package com.kaltura.commands.auditTrail
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (filter) { 
-				keyValArr = kalturaObject2Arrays(filter, 'filter');
+				keyValArr = borhanObject2Arrays(filter, 'filter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = borhanObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

@@ -1,17 +1,17 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.stats.StatsCollect;
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.types.KalturaStatsEventType;
-	import com.kaltura.vo.KalturaStatsEvent;
+package com.borhan.bdpfl.plugin.component {
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.stats.StatsCollect;
+	import com.borhan.config.BorhanConfig;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.ExternalInterfaceProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.AdsNotificationTypes;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.types.BorhanStatsEventType;
+	import com.borhan.vo.BorhanStatsEvent;
 	
 	import flash.display.DisplayObject;
 	import flash.external.ExternalInterface;
@@ -24,7 +24,7 @@ package com.kaltura.kdpfl.plugin.component {
 	import org.puremvc.as3.patterns.mediator.Mediator;
 
 	/**
-	 * Class StatisticsPluginMediator is responsible for "catching" the KDP notifications and translating them to the appropriate statistics events.
+	 * Class StatisticsPluginMediator is responsible for "catching" the BDP notifications and translating them to the appropriate statistics events.
 	 * @author Hila
 	 * 
 	 */	
@@ -112,11 +112,11 @@ package com.kaltura.kdpfl.plugin.component {
 		private var _lastSeek:Number = 0;
 		
 		/**
-		 * Parameter holds the Id of the last entry played by the KDP.
+		 * Parameter holds the Id of the last entry played by the BDP.
 		 */		
 		private var _lastId:String = "";
 		
-		private var _kc : KalturaClient;
+		private var _kc : BorhanClient;
 		
 		private var _bufferStarted:Boolean = false;
 		
@@ -131,7 +131,7 @@ package com.kaltura.kdpfl.plugin.component {
 		
 		public var trackEventMonitor:String;
 		/**
-		 * will hold string represantations of KalturaStatsEventType keys
+		 * will hold string represantations of BorhanStatsEventType keys
 		 * */
 		private var statsKeys:Object;
 		
@@ -145,17 +145,17 @@ package com.kaltura.kdpfl.plugin.component {
 		public function StatisticsMediator(disStats:Boolean, viewComponent:Object = null) {
 			super(NAME, viewComponent);
 			statsDis = disStats;
-			// will save all keys from KalturaStatsEventType with their matching values
+			// will save all keys from BorhanStatsEventType with their matching values
 			statsKeys = {};
-			var statsEventType:XML = describeType(KalturaStatsEventType);
+			var statsEventType:XML = describeType(BorhanStatsEventType);
 			var consts:XMLList = statsEventType..constant;
 			for each (var constant:XML in consts) {
-				statsKeys[KalturaStatsEventType[constant.@name.toXMLString()]] = constant.@name.toXMLString();
+				statsKeys[BorhanStatsEventType[constant.@name.toXMLString()]] = constant.@name.toXMLString();
 			}
 		}
 
 		/**
-		 * Function returns the array of KDP notifications that the Mediator listens for. 
+		 * Function returns the array of BDP notifications that the Mediator listens for. 
 		 * @return array of the notifications that interest the Mediator.
 		 * 
 		 */		
@@ -170,8 +170,8 @@ package com.kaltura.kdpfl.plugin.component {
 				NotificationType.SCRUBBER_DRAG_START, 
 				NotificationType.SCRUBBER_DRAG_END, 
 				NotificationType.PLAYER_STATE_CHANGE, 
-				NotificationType.KDP_READY,
-				NotificationType.KDP_EMPTY,
+				NotificationType.BDP_READY,
+				NotificationType.BDP_EMPTY,
 				NotificationType.DO_SEEK, 
 				"gotoEditorWindow", 
 				"doDownload", 
@@ -196,24 +196,24 @@ package com.kaltura.kdpfl.plugin.component {
 			_configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			_flashvars = _configProxy.vo.flashvars;
 			
-			var config : KalturaConfig = new KalturaConfig();
+			var config : BorhanConfig = new BorhanConfig();
 			config.domain = statsDomain ? statsDomain : _flashvars.host;
-			config.ks = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient.ks;
+			config.ks = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient.ks;
 			config.partnerId = _flashvars.partnerId;
 			config.protocol = _flashvars.httpProtocol;
-			config.clientTag = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient.clientTag;	
-			_kc = new KalturaClient(config);
+			config.clientTag = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient.clientTag;	
+			_kc = new BorhanClient(config);
 		}
 
 
 		/**
-		 * Function creates a statistics callback and initiates it with the basic data from the KDP.
+		 * Function creates a statistics callback and initiates it with the basic data from the BDP.
 		 * @param ks	session id 
 		 * @return statistics event with basic (common) data
 		 */
-		private function getBasicStatsData(ks:String):KalturaStatsEvent {
+		private function getBasicStatsData(ks:String):BorhanStatsEvent {
 			var mediaPlayer:KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
-			var kse:KalturaStatsEvent = new KalturaStatsEvent();
+			var kse:BorhanStatsEvent = new BorhanStatsEvent();
 			kse.partnerId = _flashvars.partnerId;
 			kse.widgetId = _flashvars.id;
 			kse.uiconfId = _flashvars.uiConfId;
@@ -224,7 +224,7 @@ package com.kaltura.kdpfl.plugin.component {
 				kse.partnerId = _mediaProxy.vo.entry.partnerId;
 			}
 
-			kse.clientVer = "3.0:" + facade["kdpVersion"];
+			kse.clientVer = "3.0:" + facade["bdpVersion"];
 			var dt:Date = new Date();
 			kse.eventTimestamp = dt.time + dt.timezoneOffset - dt.timezoneOffset * 60; // milisec UTC + users timezone offset
 			if (mediaPlayer) {
@@ -274,35 +274,35 @@ package com.kaltura.kdpfl.plugin.component {
 
 			if (!_p25Once && Math.round(percent * 100) >= 25 && seekPercent < 0.25) {
 				_p25Once = true;
-				return KalturaStatsEventType.PLAY_REACHED_25;
+				return BorhanStatsEventType.PLAY_REACHED_25;
 			}
 			else if (!_p50Once && Math.round(percent * 100) >= 50 && seekPercent < 0.50) {
 				_p50Once = true;
-				return KalturaStatsEventType.PLAY_REACHED_50;
+				return BorhanStatsEventType.PLAY_REACHED_50;
 			}
 			else if (!_p75Once && Math.round(percent * 100) >= 75 && seekPercent < 0.75) {
 				_p75Once = true;
-				return KalturaStatsEventType.PLAY_REACHED_75;
+				return BorhanStatsEventType.PLAY_REACHED_75;
 			}
 			else if (!_p100Once && Math.round(percent * 100) >= 98 && seekPercent < 1) {
 				_p100Once = true;
-				return KalturaStatsEventType.PLAY_REACHED_100;
+				return BorhanStatsEventType.PLAY_REACHED_100;
 			}
 
 			return int.MIN_VALUE;
 		}
 
 		/**
-		 *  Function responsible for dispatching the appropriate statistics event according to the notification fired by the KDP.
-		 * @param note notification fired by the KDP and caught by the Mediator.
+		 *  Function responsible for dispatching the appropriate statistics event according to the notification fired by the BDP.
+		 * @param note notification fired by the BDP and caught by the Mediator.
 		 * 
 		 */		
 		override public function handleNotification(note:INotification):void {
 			if (statsDis)
 				return;
 			var timeSlot:String;
-			//var _kc:KalturaClient = facade.retrieveProxy("servicesProxy")["kalturaClient"];		
-			var kse:KalturaStatsEvent = getBasicStatsData(_kc.ks);
+			//var _kc:BorhanClient = facade.retrieveProxy("servicesProxy")["borhanClient"];		
+			var kse:BorhanStatsEvent = getBasicStatsData(_kc.ks);
 			var data:Object = note.getBody();
 			
 			var sequenceProxy : SequenceProxy = facade.retrieveProxy( SequenceProxy.NAME ) as SequenceProxy;
@@ -357,23 +357,23 @@ package com.kaltura.kdpfl.plugin.component {
 				{
 					case NotificationType.HAS_OPENED_FULL_SCREEN:
 						if (_fullScreen == false) {
-							kse.eventType = KalturaStatsEventType.OPEN_FULL_SCREEN;
+							kse.eventType = BorhanStatsEventType.OPEN_FULL_SCREEN;
 						}
 						_fullScreen = true;
 						_normalScreen = false;
 						break;
 					case NotificationType.HAS_CLOSED_FULL_SCREEN:
 						if (_normalScreen == false) {
-							kse.eventType = KalturaStatsEventType.CLOSE_FULL_SCREEN;
+							kse.eventType = BorhanStatsEventType.CLOSE_FULL_SCREEN;
 						}
 						_fullScreen = false;
 						_normalScreen = true;
 						break;
 	
-					case NotificationType.KDP_EMPTY:
+					case NotificationType.BDP_EMPTY:
 						if (_ready)
 							return;
-						kse.eventType = KalturaStatsEventType.WIDGET_LOADED;
+						kse.eventType = BorhanStatsEventType.WIDGET_LOADED;
 						_ready = true;
 						break;
 	
@@ -388,7 +388,7 @@ package com.kaltura.kdpfl.plugin.component {
 						}
 						
 						if (!_played) {
-							kse.eventType = KalturaStatsEventType.PLAY;
+							kse.eventType = BorhanStatsEventType.PLAY;
 							_p25Once = false;
 							_p50Once = false;
 							_p75Once = false;
@@ -406,7 +406,7 @@ package com.kaltura.kdpfl.plugin.component {
 								_played = false;
 								_lastId = kse.entryId;
 								_hasSeeked = false;
-								kse.eventType = KalturaStatsEventType.MEDIA_LOADED;
+								kse.eventType = BorhanStatsEventType.MEDIA_LOADED;
 							}
 							else {
 								_lastSeek = 0;
@@ -438,29 +438,29 @@ package com.kaltura.kdpfl.plugin.component {
 							}
 							break;
 	
-					case NotificationType.KDP_READY:
+					case NotificationType.BDP_READY:
 						// Ready should not occur more than once
 						if (_ready)
 							return;
-						kse.eventType = KalturaStatsEventType.WIDGET_LOADED;
+						kse.eventType = BorhanStatsEventType.WIDGET_LOADED;
 						_ready = true;
 						break;
 					case "gotoEditorWindow":
-						kse.eventType = KalturaStatsEventType.OPEN_EDIT;
+						kse.eventType = BorhanStatsEventType.OPEN_EDIT;
 						break
 					case "doDownload":
-						kse.eventType = KalturaStatsEventType.OPEN_DOWNLOAD;
+						kse.eventType = BorhanStatsEventType.OPEN_DOWNLOAD;
 						break;
 					case "doGigya":
 					case "showAdvancedShare":
-						kse.eventType = KalturaStatsEventType.OPEN_VIRAL;
+						kse.eventType = BorhanStatsEventType.OPEN_VIRAL;
 						break;
 					case "flagForReview":
-						kse.eventType = KalturaStatsEventType.OPEN_REPORT;
+						kse.eventType = BorhanStatsEventType.OPEN_REPORT;
 						break;
 					case NotificationType.DO_SEEK:
 						if (_inDrag && !_inSeek) {
-							kse.eventType = KalturaStatsEventType.SEEK;
+							kse.eventType = BorhanStatsEventType.SEEK;
 						}
 						_lastSeek = Number(note.getBody());
 						_inSeek = true;
@@ -468,7 +468,7 @@ package com.kaltura.kdpfl.plugin.component {
 						break;
 					
 					case "gotoContributorWindow":
-						kse.eventType = KalturaStatsEventType.OPEN_UPLOAD;
+						kse.eventType = BorhanStatsEventType.OPEN_UPLOAD;
 						break;
 					
 					case NotificationType.PLAYER_STATE_CHANGE:
@@ -478,20 +478,20 @@ package com.kaltura.kdpfl.plugin.component {
 							{
 								if (!_bufferStarted)
 								{
-									kse.eventType = KalturaStatsEventType.BUFFER_START;
+									kse.eventType = BorhanStatsEventType.BUFFER_START;
 									_bufferStarted = true;
 								}
 							}
 							else if (_bufferStarted)
 							{
-								kse.eventType = KalturaStatsEventType.BUFFER_END;
+								kse.eventType = BorhanStatsEventType.BUFFER_END;
 								_bufferStarted = false;
 							}
 						}	
 						break;
 					
 					case NotificationType.DO_REPLAY:
-						kse.eventType = KalturaStatsEventType.REPLAY;
+						kse.eventType = BorhanStatsEventType.REPLAY;
 						break;
 				}
 			}
@@ -502,30 +502,30 @@ package com.kaltura.kdpfl.plugin.component {
 				switch (note.getName())
 				{
 					case AdsNotificationTypes.BUMPER_CLICKED:
-						kse.eventType = KalturaStatsEventType.BUMPER_CLICKED;
+						kse.eventType = BorhanStatsEventType.BUMPER_CLICKED;
 						break;
 					case AdsNotificationTypes.BUMPER_STARTED:
 						if (note.getBody().timeSlot == "preroll") {
-							kse.eventType = KalturaStatsEventType.PRE_BUMPER_PLAYED;
+							kse.eventType = BorhanStatsEventType.PRE_BUMPER_PLAYED;
 						}
 						else if (note.getBody().timeSlot == "postroll") {
-							kse.eventType = KalturaStatsEventType.POST_BUMPER_PLAYED;
+							kse.eventType = BorhanStatsEventType.POST_BUMPER_PLAYED;
 						}
 						break;
 					case AdsNotificationTypes.AD_CLICK:
 						timeSlot = note.getBody().timeSlot;
 						switch (timeSlot) {
 							case "preroll":
-								kse.eventType = KalturaStatsEventType.PREROLL_CLICKED;
+								kse.eventType = BorhanStatsEventType.PREROLL_CLICKED;
 								break;
 							case "midroll":
-								kse.eventType = KalturaStatsEventType.MIDROLL_CLICKED;
+								kse.eventType = BorhanStatsEventType.MIDROLL_CLICKED;
 								break;
 							case "postroll":
-								kse.eventType = KalturaStatsEventType.POSTROLL_CLICKED;
+								kse.eventType = BorhanStatsEventType.POSTROLL_CLICKED;
 								break;
 							case "overlay":
-								kse.eventType = KalturaStatsEventType.OVERLAY_CLICKED;
+								kse.eventType = BorhanStatsEventType.OVERLAY_CLICKED;
 								break;
 							
 						}
@@ -534,16 +534,16 @@ package com.kaltura.kdpfl.plugin.component {
 						timeSlot = note.getBody().timeSlot;
 						switch (timeSlot) {
 							case "preroll":
-								kse.eventType = KalturaStatsEventType.PREROLL_STARTED;
+								kse.eventType = BorhanStatsEventType.PREROLL_STARTED;
 								break;
 							case "midroll":
-								kse.eventType = KalturaStatsEventType.MIDROLL_STARTED;
+								kse.eventType = BorhanStatsEventType.MIDROLL_STARTED;
 								break;
 							case "postroll":
-								kse.eventType = KalturaStatsEventType.POSTROLL_STARTED;
+								kse.eventType = BorhanStatsEventType.POSTROLL_STARTED;
 								break;
 							case "overlay":
-								kse.eventType = KalturaStatsEventType.OVERLAY_STARTED;
+								kse.eventType = BorhanStatsEventType.OVERLAY_STARTED;
 								break;
 						}
 						break;
@@ -551,16 +551,16 @@ package com.kaltura.kdpfl.plugin.component {
 						timeSlot = note.getBody().timeSlot;
 						switch (timeSlot) {
 							case "preroll":
-								kse.eventType = KalturaStatsEventType.PREROLL_25;
+								kse.eventType = BorhanStatsEventType.PREROLL_25;
 								break;
 							case "midroll":
-								kse.eventType = KalturaStatsEventType.MIDROLL_25;
+								kse.eventType = BorhanStatsEventType.MIDROLL_25;
 								break;
 							case "postroll":
-								kse.eventType = KalturaStatsEventType.POSTROLL_25;
+								kse.eventType = BorhanStatsEventType.POSTROLL_25;
 								break;
 							case "overlay":
-	//							kse.eventType = KalturaStatsEventType.OVERLAY_STARTED;
+	//							kse.eventType = BorhanStatsEventType.OVERLAY_STARTED;
 								break;
 						}
 						break;
@@ -568,16 +568,16 @@ package com.kaltura.kdpfl.plugin.component {
 						timeSlot = note.getBody().timeSlot;
 						switch (timeSlot) {
 							case "preroll":
-								kse.eventType = KalturaStatsEventType.PREROLL_50;
+								kse.eventType = BorhanStatsEventType.PREROLL_50;
 								break;
 							case "midroll":
-								kse.eventType = KalturaStatsEventType.MIDROLL_50;
+								kse.eventType = BorhanStatsEventType.MIDROLL_50;
 								break;
 							case "postroll":
-								kse.eventType = KalturaStatsEventType.POSTROLL_50;
+								kse.eventType = BorhanStatsEventType.POSTROLL_50;
 								break;
 							case "overlay":
-	//							kse.eventType = KalturaStatsEventType.OVERLAY_STARTED;
+	//							kse.eventType = BorhanStatsEventType.OVERLAY_STARTED;
 								break;
 						}
 						break;
@@ -585,16 +585,16 @@ package com.kaltura.kdpfl.plugin.component {
 						timeSlot = note.getBody().timeSlot;
 						switch (timeSlot) {
 							case "preroll":
-								kse.eventType = KalturaStatsEventType.PREROLL_75;
+								kse.eventType = BorhanStatsEventType.PREROLL_75;
 								break;
 							case "midroll":
-								kse.eventType = KalturaStatsEventType.MIDROLL_75;
+								kse.eventType = BorhanStatsEventType.MIDROLL_75;
 								break;
 							case "postroll":
-								kse.eventType = KalturaStatsEventType.POSTROLL_75;
+								kse.eventType = BorhanStatsEventType.POSTROLL_75;
 								break;
 							case "overlay":
-	//							kse.eventType = KalturaStatsEventType.OVERLAY_STARTED;
+	//							kse.eventType = BorhanStatsEventType.OVERLAY_STARTED;
 								break;
 						}
 						break;

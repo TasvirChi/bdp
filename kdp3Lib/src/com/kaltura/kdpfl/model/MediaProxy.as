@@ -1,28 +1,28 @@
-package com.kaltura.kdpfl.model
+package com.borhan.bdpfl.model
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.model.vo.MediaVO;
-	import com.kaltura.kdpfl.model.vo.SequenceVO;
-	import com.kaltura.kdpfl.model.vo.StorageProfileVO;
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.buffering.DualThresholdBufferingProxyElement;
-	import com.kaltura.osmf.events.KSwitchingProxyEvent;
-	import com.kaltura.osmf.events.KSwitchingProxySwitchContext;
-	import com.kaltura.osmf.image.TimedImageElement;
-	import com.kaltura.osmf.kaltura.KalturaBaseEntryResource;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.vo.KalturaFlavorAsset;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.borhan.BorhanClient;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SourceType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.model.vo.MediaVO;
+	import com.borhan.bdpfl.model.vo.SequenceVO;
+	import com.borhan.bdpfl.model.vo.StorageProfileVO;
+	import com.borhan.bdpfl.util.KTextParser;
+	import com.borhan.bdpfl.util.URLUtils;
+	import com.borhan.bdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.osmf.buffering.DualThresholdBufferingProxyElement;
+	import com.borhan.osmf.events.KSwitchingProxyEvent;
+	import com.borhan.osmf.events.KSwitchingProxySwitchContext;
+	import com.borhan.osmf.image.TimedImageElement;
+	import com.borhan.osmf.borhan.BorhanBaseEntryResource;
+	import com.borhan.osmf.proxy.KSwitchingProxyElement;
+	import com.borhan.types.BorhanMediaType;
+	import com.borhan.vo.BorhanFlavorAsset;
+	import com.borhan.vo.BorhanMediaEntry;
+	import com.borhan.vo.BorhanMixEntry;
 	
 	import flash.events.Event;
 	import flash.net.URLLoader;
@@ -64,7 +64,7 @@ package com.kaltura.kdpfl.model
 		
 		private var _sendMediaReady : Boolean;
 		private var _flashvars : Object;
-		private var _client : KalturaClient;
+		private var _client : BorhanClient;
 		private var _isElementLoaded : Boolean;
 		/**
 		 * indicates if this is a new media and we should wait for mediaElementReady notification
@@ -87,14 +87,14 @@ package com.kaltura.kdpfl.model
 			
 		}
 		/**
-		 * Function prepares a new media element according to the information from the kaltura MediaEntry
+		 * Function prepares a new media element according to the information from the borhan MediaEntry
 		 * @param seekFrom - optional parameter, passed if the video being loaded is a response to intelligent seeking.
 		 * 
 		 */		
 		public function prepareMediaElement(seekFrom :uint = 0) : void
 		{
 			if (!_client)
-				_client = (facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).kalturaClient as KalturaClient;
+				_client = (facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).borhanClient as BorhanClient;
 			var resource:MediaResourceBase;
 			var sourceType : String = _flashvars.sourceType;
 			switch (sourceType) 
@@ -118,16 +118,16 @@ package com.kaltura.kdpfl.model
 					}
 					
 					//When using a mix entry the load is still done using flvclipper
-					if (vo.entry is KalturaMixEntry)
+					if (vo.entry is BorhanMixEntry)
 					{
 						resource = new URLResource(vo.entry.dataUrl);
 						addMetadataToResource(resource);
-						vo.media = vo.mediaFactory.createMediaElement(new KalturaBaseEntryResource( vo.entry ));
+						vo.media = vo.mediaFactory.createMediaElement(new BorhanBaseEntryResource( vo.entry ));
 						break;
 					}	
 					
 					//when loading a media entry we still use the flvclipper
-					if((vo.entry is KalturaMediaEntry) && (vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.IMAGE)
+					if((vo.entry is BorhanMediaEntry) && (vo.entry as BorhanMediaEntry).mediaType == BorhanMediaType.IMAGE)
 					{
 						if (vo.entry.width < 0)
 						{
@@ -530,7 +530,7 @@ package com.kaltura.kdpfl.model
 		
 		/**
 		 * Function stores the array of key frames from the media meta data on the MediaVO.
-		 * @param info the Meta Data for the kaltura media.
+		 * @param info the Meta Data for the borhan media.
 		 * 
 		 */       
 		private function onMetadata(info:Object):void// reads metadata..
@@ -603,21 +603,21 @@ package com.kaltura.kdpfl.model
 		public function findDynamicStreamIndexByProp(preferedBitrate : int , propName : String="bitrate") : int
 		{
 			var foundStreamIndex:int = -1;
-			if (!vo.kalturaMediaFlavorArray)
+			if (!vo.borhanMediaFlavorArray)
 				return foundStreamIndex;
 			
-			if (vo.kalturaMediaFlavorArray.length > 0)
+			if (vo.borhanMediaFlavorArray.length > 0)
 			{
-				for(var i:int = 0; i < vo.kalturaMediaFlavorArray.length; i++)
+				for(var i:int = 0; i < vo.borhanMediaFlavorArray.length; i++)
 				{
 					var lastb:Number;
 					if(i!=0)
 					{
-						lastb = vo.kalturaMediaFlavorArray[i-1].bitrate;
+						lastb = vo.borhanMediaFlavorArray[i-1].bitrate;
 						lastb = Math.round(lastb/100) * 100;
 					}
 					
-					var b:Number = vo.kalturaMediaFlavorArray[i].bitrate;
+					var b:Number = vo.borhanMediaFlavorArray[i].bitrate;
 					b = Math.round(b/100) * 100;
 					
 					if (b == preferedBitrate)
@@ -648,7 +648,7 @@ package com.kaltura.kdpfl.model
 							return foundStreamIndex;
 						}
 					}
-					else if(i == vo.kalturaMediaFlavorArray.length-1 && preferedBitrate >= b)
+					else if(i == vo.borhanMediaFlavorArray.length-1 && preferedBitrate >= b)
 					{
 						//if this is the last index and the prefered bitrate is still bigger then the last one
 						foundStreamIndex = i;
@@ -727,11 +727,11 @@ package com.kaltura.kdpfl.model
 		 */		
 		public function getFlavorByBitrate(bitrate:int):int {
 			var foundStreamIndex:int = -1;
-			var flavorsArr:Array = vo.kalturaMediaFlavorArray;
+			var flavorsArr:Array = vo.borhanMediaFlavorArray;
 			if (flavorsArr && flavorsArr.length) {
 				for(var i:int = 0; i < flavorsArr.length; i++)
 				{
-					var b:int = (flavorsArr[i] as KalturaFlavorAsset).bitrate;
+					var b:int = (flavorsArr[i] as BorhanFlavorAsset).bitrate;
 					if ( b==bitrate)
 						foundStreamIndex = i;
 						
@@ -740,7 +740,7 @@ package com.kaltura.kdpfl.model
 							foundStreamIndex = 0;
 						}
 						else {
-							var oldb:int = (flavorsArr[i-1] as KalturaFlavorAsset).bitrate; 
+							var oldb:int = (flavorsArr[i-1] as BorhanFlavorAsset).bitrate; 
 							if ((bitrate - oldb) > (b - bitrate))
 								foundStreamIndex = i;
 							else
@@ -767,7 +767,7 @@ package com.kaltura.kdpfl.model
 		{
 			startingIndex = index;
 			//to display correct value in KFlavorComboBox
-			sendNotification( NotificationType.SWITCHING_CHANGE_COMPLETE, {newIndex : index, newBitrate: (vo.kalturaMediaFlavorArray[index] as KalturaFlavorAsset).bitrate}  );	
+			sendNotification( NotificationType.SWITCHING_CHANGE_COMPLETE, {newIndex : index, newBitrate: (vo.borhanMediaFlavorArray[index] as BorhanFlavorAsset).bitrate}  );	
 		}
 		
 		

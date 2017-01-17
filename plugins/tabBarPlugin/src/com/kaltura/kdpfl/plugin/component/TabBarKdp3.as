@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.borhan.bdpfl.view.controls.KButton;
 	import com.yahoo.astra.fl.controls.TabBar;
 	
 	import fl.data.DataProvider;
@@ -11,7 +11,7 @@ package com.kaltura.kdpfl.plugin.component
 	import flash.geom.Rectangle;
 	
 	
-	public class TabBarKdp3 extends Sprite 
+	public class TabBarBdp3 extends Sprite 
 	{
 		public var tabBar:TabBar; 
 		public var prevBut:KButton;
@@ -25,7 +25,7 @@ package com.kaltura.kdpfl.plugin.component
 		private var _needToMove:Number = 0; 
 		
 		
-		public function TabBarKdp3() 
+		public function TabBarBdp3() 
 		{	
 			prevBut = new KButton();
 			nextBut = new KButton();

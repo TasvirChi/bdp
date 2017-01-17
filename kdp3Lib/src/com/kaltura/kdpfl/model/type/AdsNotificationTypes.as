@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.model.type {
+package com.borhan.bdpfl.model.type {
 
 	/**
 	 * the AdsNotificationTypes class declares constants which are used as 

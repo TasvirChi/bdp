@@ -1,15 +1,15 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
 	import com.akamai.playeranalytics.AnalyticsPluginLoader;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.vo.KalturaFlavorAsset;
-	import com.kaltura.vo.KalturaMediaEntry;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.PlayerStatusProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.types.BorhanMediaType;
+	import com.borhan.vo.BorhanBaseEntry;
+	import com.borhan.vo.BorhanFlavorAsset;
+	import com.borhan.vo.BorhanMediaEntry;
 	
 	import flash.system.Capabilities;
 	
@@ -47,33 +47,33 @@ package com.kaltura.kdpfl.plugin
 				case NotificationType.MEDIA_READY:
 					//populate analytics metadata
 					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					var entry:KalturaBaseEntry = _mediaProxy.vo.entry;			
+					var entry:BorhanBaseEntry = _mediaProxy.vo.entry;			
 					
 					AnalyticsPluginLoader.setData("publisherId", configProxy.vo.flashvars.partnerId);
-					AnalyticsPluginLoader.setData("playerVersion", facade["kdpVersion"]);
+					AnalyticsPluginLoader.setData("playerVersion", facade["bdpVersion"]);
 					AnalyticsPluginLoader.setData("playerId", _pluginCode.playerId || configProxy.vo.kuiConf.id);
 					AnalyticsPluginLoader.setData("device", Capabilities.os );
 					AnalyticsPluginLoader.setData("playerLoadtime",(facade.retrieveProxy(PlayerStatusProxy.NAME) as PlayerStatusProxy).vo.loadTime);
 					
 					
-					if (entry is KalturaMediaEntry)
+					if (entry is BorhanMediaEntry)
 					{
 						AnalyticsPluginLoader.setData("title", _pluginCode.title || entry.id);
 						
-						var mediaEntry:KalturaMediaEntry = entry as KalturaMediaEntry;
+						var mediaEntry:BorhanMediaEntry = entry as BorhanMediaEntry;
 						AnalyticsPluginLoader.setData("contentLength", mediaEntry.msDuration);
 						
 						//find content type
 						var contentType:String;
 						switch (mediaEntry.mediaType)
 						{
-							case KalturaMediaType.VIDEO:
+							case BorhanMediaType.VIDEO:
 								contentType = "video";
 								break;
-							case KalturaMediaType.AUDIO:
+							case BorhanMediaType.AUDIO:
 								contentType = "audio";
 								break;
-							case KalturaMediaType.IMAGE:
+							case BorhanMediaType.IMAGE:
 								contentType = "image";
 								break;
 							default:
@@ -99,7 +99,7 @@ package com.kaltura.kdpfl.plugin
 						flavorAssetId = getFlavorIdByIndex(_mediaProxy.startingIndex);
 					}
 					
-					for each (var kfa:KalturaFlavorAsset in _mediaProxy.vo.kalturaMediaFlavorArray) {
+					for each (var kfa:BorhanFlavorAsset in _mediaProxy.vo.borhanMediaFlavorArray) {
 						if (kfa.id == flavorAssetId) {
 							flavorParamsId = kfa.flavorParamsId.toString();
 							break;
@@ -135,10 +135,10 @@ package com.kaltura.kdpfl.plugin
 			var flavorId:String;
 			
 			if (index >= 0 && 
-				_mediaProxy.vo.kalturaMediaFlavorArray &&
-				index < _mediaProxy.vo.kalturaMediaFlavorArray.length)	{
+				_mediaProxy.vo.borhanMediaFlavorArray &&
+				index < _mediaProxy.vo.borhanMediaFlavorArray.length)	{
 				
-				flavorId = (_mediaProxy.vo.kalturaMediaFlavorArray[index] as KalturaFlavorAsset).id;
+				flavorId = (_mediaProxy.vo.borhanMediaFlavorArray[index] as BorhanFlavorAsset).id;
 			}
 			
 			return flavorId;

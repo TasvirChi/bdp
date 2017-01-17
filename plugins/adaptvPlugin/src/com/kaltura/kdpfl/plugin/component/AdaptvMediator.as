@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+package com.borhan.bdpfl.plugin.component {
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.puremvc.as3.patterns.mediator.SequenceMultiMediator;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -133,7 +133,7 @@ package com.kaltura.kdpfl.plugin.component {
 
 
 		override public function handleNotification(note:INotification):void {
-			var kc:Object = facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var kc:Object = facade.retrieveProxy("servicesProxy")["borhanClient"];
 			var sequenceProxy:Object = facade.retrieveProxy("sequenceProxy");
 			var config:Object = facade.retrieveProxy("configProxy");
 			var media:Object = facade.retrieveProxy("mediaProxy");

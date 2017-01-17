@@ -1,11 +1,11 @@
-package com.kaltura.managers.downloadManagers.protocols
+package com.borhan.managers.downloadManagers.protocols
 {
-	import com.kaltura.application.KalturaApplication;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.managers.downloadManagers.protocols.interfaces.INetProtocol;
-	import com.kaltura.net.loaders.interfaces.IMediaSourceLoader;
-	//xxx import com.kaltura.utils.colors.ColorsUtil;
+	import com.borhan.application.BorhanApplication;
+	import com.borhan.assets.abstracts.AbstractAsset;
+	import com.borhan.base.types.MediaTypes;
+	import com.borhan.managers.downloadManagers.protocols.interfaces.INetProtocol;
+	import com.borhan.net.loaders.interfaces.IMediaSourceLoader;
+	//xxx import com.borhan.utils.colors.ColorsUtil;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -47,8 +47,8 @@ package com.kaltura.managers.downloadManagers.protocols
 		public function load(source_asset:AbstractAsset):IMediaSourceLoader
 		{
 			_asset = source_asset;
-			var bd:BitmapData = new BitmapData (KalturaApplication.getInstance().initPlayerWidth,
-								KalturaApplication.getInstance().initPlayerHeight, false, uint(_asset.thumbnailURL));
+			var bd:BitmapData = new BitmapData (BorhanApplication.getInstance().initPlayerWidth,
+								BorhanApplication.getInstance().initPlayerHeight, false, uint(_asset.thumbnailURL));
 			var bmp:Bitmap = new Bitmap (bd);
 			var colorName:String = "";//xxx ColorsUtil.getName(uint(_asset.thumbnailURL))[1];
 			_asset.entryName = MediaTypes.getLocaleMediaType(MediaTypes.SOLID) + " (" + colorName + ")";

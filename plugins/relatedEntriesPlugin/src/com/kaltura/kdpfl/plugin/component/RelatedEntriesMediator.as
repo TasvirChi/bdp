@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.NotificationType;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;

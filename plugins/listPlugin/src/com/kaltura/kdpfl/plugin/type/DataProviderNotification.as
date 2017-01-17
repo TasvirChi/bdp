@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.type
+package com.borhan.bdpfl.plugin.type
 {
 	public class DataProviderNotification
 	{

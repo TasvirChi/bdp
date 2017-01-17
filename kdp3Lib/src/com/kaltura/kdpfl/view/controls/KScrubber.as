@@ -6,11 +6,11 @@
  * @author Dan X Bacon		baconoppenheim.com
  * @author Dwight Bridges 	astra.yahoo.com 
  */
-package com.kaltura.kdpfl.view.controls 
+package com.borhan.bdpfl.view.controls 
 {
 
-import com.kaltura.kdpfl.component.IComponent;
-import com.kaltura.kdpfl.util.KColorUtil;
+import com.borhan.bdpfl.component.IComponent;
+import com.borhan.bdpfl.util.KColorUtil;
 
 import fl.controls.BaseButton;
 import fl.core.InvalidationType;

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaAssetFilter;
+	import com.borhan.vo.BorhanAssetFilter;
 
 	[Bindable]
-	public dynamic class KalturaFlavorAssetBaseFilter extends KalturaAssetFilter
+	public dynamic class BorhanFlavorAssetBaseFilter extends BorhanAssetFilter
 	{
 		/**
 		**/
@@ -41,7 +41,7 @@ package com.kaltura.vo
 		public var flavorParamsIdIn : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaFlavorAssetStatus
+		* @see com.borhan.types.BorhanFlavorAssetStatus
 		**/
 		public var statusEqual : int = int.MIN_VALUE;
 

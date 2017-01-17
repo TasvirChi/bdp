@@ -1,13 +1,13 @@
-package com.kaltura.kdpfl.controller
+package com.borhan.bdpfl.controller
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.MainViewMediator;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.PlayerStatusProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.MainViewMediator;
+	import com.borhan.bdpfl.view.controls.KTrace;
 	
 	import flash.display.Loader;
 	import flash.events.Event;
@@ -17,7 +17,7 @@ package com.kaltura.kdpfl.controller
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 
 	/**
-	 * This class defines the actions that are taken once KDP layout is ready. 
+	 * This class defines the actions that are taken once BDP layout is ready. 
 	 */
 	public class LayoutReadyCommand extends SimpleCommand
 	{
@@ -32,7 +32,7 @@ package com.kaltura.kdpfl.controller
 		override public function execute(notification:INotification):void
 		{
 			var playerStatus : PlayerStatusProxy = facade.retrieveProxy(PlayerStatusProxy.NAME) as PlayerStatusProxy;
-			playerStatus.vo.kdpStatus = "ready";
+			playerStatus.vo.bdpStatus = "ready";
 			_flashvars = (facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars;
 			// remove the preloader
 			var rm:Object = facade.retrieveMediator("stageMediator");
@@ -53,13 +53,13 @@ package com.kaltura.kdpfl.controller
 			}
 			(facade.retrieveMediator(MainViewMediator.NAME) as MainViewMediator).createContextMenu();
 						
-			//check if kdp is allowed to save cookies, do it here before flow starts and after alert buttons are available from skin
+			//check if bdp is allowed to save cookies, do it here before flow starts and after alert buttons are available from skin
 			if (_flashvars.alertForCookies && _flashvars.alertForCookies=="true")
 			{
 				var cookie : SharedObject;
 				try
 				{
-					cookie = SharedObject.getLocal("KalturaCookies");
+					cookie = SharedObject.getLocal("BorhanCookies");
 				}
 				catch (e: Error)
 				{
@@ -112,7 +112,7 @@ package com.kaltura.kdpfl.controller
 				var cookie : SharedObject;
 				try
 				{
-					cookie= SharedObject.getLocal("KalturaCookies");
+					cookie= SharedObject.getLocal("BorhanCookies");
 				}
 				catch (e : Error)
 				{

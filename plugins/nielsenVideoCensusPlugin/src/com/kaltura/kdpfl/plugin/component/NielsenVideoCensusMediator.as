@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
-	import com.kaltura.vo.KalturaCuePoint;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.types.BorhanAdType;
+	import com.borhan.vo.BorhanAdCuePoint;
+	import com.borhan.vo.BorhanCuePoint;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -37,7 +37,7 @@ package com.kaltura.kdpfl.plugin.component
 		}
 		
 		/**
-		 * Hook to the relevant KDP notifications
+		 * Hook to the relevant BDP notifications
 		 */
 		override public function listNotificationInterests():Array
 		{
@@ -128,8 +128,8 @@ package com.kaltura.kdpfl.plugin.component
 							var cpArray:Array = cuePointsMap[inTime];
 							//if at least one cuePoint represents a midroll
 							for (var i:int = 0; i<cpArray.length; i++) {
-								if ((cpArray[i] is KalturaAdCuePoint) &&
-									(cpArray[i] as KalturaAdCuePoint).adType == KalturaAdType.VIDEO)
+								if ((cpArray[i] is BorhanAdCuePoint) &&
+									(cpArray[i] as BorhanAdCuePoint).adType == BorhanAdType.VIDEO)
 								{
 									_numOfSegments++;
 									break;
@@ -157,7 +157,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		private function getEndTime(data:Object, id:Number):Number{
 			if(data[id] != null){
-				return Number((data[id][0] as KalturaCuePoint).startTime);
+				return Number((data[id][0] as BorhanCuePoint).startTime);
 			}else{
 				return (facade.retrieveProxy( MediaProxy.NAME ) as MediaProxy).vo.entry.msDuration;
 			}

@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view {
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.kdpfl.view.controls.KButton;
-	import com.kaltura.kdpfl.view.events.AnnotationEvent;
-	import com.kaltura.kdpfl.view.strings.AnnotationStrings;
-	import com.kaltura.vo.KalturaAnnotation;
+package com.borhan.bdpfl.view {
+	import com.borhan.bdpfl.view.containers.KHBox;
+	import com.borhan.bdpfl.view.controls.KButton;
+	import com.borhan.bdpfl.view.events.AnnotationEvent;
+	import com.borhan.bdpfl.view.strings.AnnotationStrings;
+	import com.borhan.vo.BorhanAnnotation;
 	
 	import fl.core.UIComponent;
 	
@@ -24,7 +24,7 @@ package com.kaltura.kdpfl.view {
 	public class Annotation extends UIComponent {
 		protected var _viewMode:String;
 		
-		private var _kalturaAnnotation:KalturaAnnotation;
+		private var _borhanAnnotation:BorhanAnnotation;
 		
 		public static var userMode:String;
 		public static const ANNOTATION_HEIGHT:int = 40;
@@ -52,21 +52,21 @@ package com.kaltura.kdpfl.view {
 		private var _textExceedsLength:Boolean = false;
 		
 		
-		public function Annotation(n_viewMode:String, n_inTime:Number = -1, n_annotationText:String = ANNOTATION_PROMPT, n_entryId:String = "", n_kalturaAnnotation:KalturaAnnotation = null, tabIndex:int = 0) {
+		public function Annotation(n_viewMode:String, n_inTime:Number = -1, n_annotationText:String = ANNOTATION_PROMPT, n_entryId:String = "", n_borhanAnnotation:BorhanAnnotation = null, tabIndex:int = 0) {
 			annotationTextField.defaultTextFormat = annotationTextFormat;
 			_annotaionBox.horizontalScrollPolicy = "off";
 			_annotaionBox.verticalAlign = "middle";
 			_annotaionBox.paddingTop = 0;
 			_annotaionBox.height = ANNOTATION_HEIGHT;
 			_initialTabIndex = tabIndex;
-			if (!n_kalturaAnnotation) {
-				_kalturaAnnotation = new KalturaAnnotation();
-				_kalturaAnnotation.text = n_annotationText;
-				_kalturaAnnotation.startTime = n_inTime;
-				_kalturaAnnotation.entryId = n_entryId;
+			if (!n_borhanAnnotation) {
+				_borhanAnnotation = new BorhanAnnotation();
+				_borhanAnnotation.text = n_annotationText;
+				_borhanAnnotation.startTime = n_inTime;
+				_borhanAnnotation.entryId = n_entryId;
 			}
 			else {
-				_kalturaAnnotation = n_kalturaAnnotation;
+				_borhanAnnotation = n_borhanAnnotation;
 			}
 			this.viewMode = n_viewMode;
 			annotationTextField.autoSize = TextFieldAutoSize.LEFT;
@@ -75,7 +75,7 @@ package com.kaltura.kdpfl.view {
 
 			annotationTextField.addEventListener(Event.CHANGE, onTextFieldEdit);
 			
-			if (_kalturaAnnotation.text == Annotation.ANNOTATION_PROMPT) {
+			if (_borhanAnnotation.text == Annotation.ANNOTATION_PROMPT) {
 				annotationTextField.addEventListener(MouseEvent.CLICK, onAnnotationClick);
 				annotationTextField.addEventListener(KeyboardEvent.KEY_DOWN, onAnnotationClick);
 			}
@@ -99,32 +99,32 @@ package com.kaltura.kdpfl.view {
 		
 		
 		public function get annotationText():String {
-			return _kalturaAnnotation.text;
+			return _borhanAnnotation.text;
 		}
 		
 		
 		public function set annotationText(value:String):void {
-			_kalturaAnnotation.text = value;
+			_borhanAnnotation.text = value;
 		}
 		
 		
 		public function get inTime():Number {
-			return _kalturaAnnotation.startTime;
+			return _borhanAnnotation.startTime;
 		}
 		
 		
 		public function set inTime(value:Number):void {
-			_kalturaAnnotation.startTime = value;
+			_borhanAnnotation.startTime = value;
 		}
 		
 		
 		public function set entryId(n_entryId:String):void {
-			_kalturaAnnotation.entryId = n_entryId;
+			_borhanAnnotation.entryId = n_entryId;
 		}
 		
 		
 		public function get entryId():String {
-			return _kalturaAnnotation.entryId;
+			return _borhanAnnotation.entryId;
 		}
 		
 		
@@ -217,9 +217,9 @@ package com.kaltura.kdpfl.view {
 		
 		
 		private function parseInTimeString():String {
-			var hrs:Number = Math.floor(_kalturaAnnotation.startTime / 3600);
-			var mins:Number = Math.floor((_kalturaAnnotation.startTime - hrs * 3600) / 60);
-			var secs:Number = Math.round((_kalturaAnnotation.startTime - hrs * 3600 - mins * 60));
+			var hrs:Number = Math.floor(_borhanAnnotation.startTime / 3600);
+			var mins:Number = Math.floor((_borhanAnnotation.startTime - hrs * 3600) / 60);
+			var secs:Number = Math.round((_borhanAnnotation.startTime - hrs * 3600 - mins * 60));
 			var hrsString:String = hrs.toString();
 			var minsString:String = mins.toString();
 			var secsString:String = secs.toString();
@@ -293,8 +293,8 @@ package com.kaltura.kdpfl.view {
 		}
 		
 		
-		public function get kalturaAnnotation():KalturaAnnotation {
-			return _kalturaAnnotation;
+		public function get borhanAnnotation():BorhanAnnotation {
+			return _borhanAnnotation;
 		}
 
 	}

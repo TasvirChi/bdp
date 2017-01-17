@@ -1,14 +1,14 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
-	import com.kaltura.types.KalturaAdProtocolType;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
+	import com.borhan.bdpfl.ApplicationFacade;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.bdpfl.view.controls.KTrace;
+	import com.borhan.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+	import com.borhan.types.BorhanAdProtocolType;
+	import com.borhan.types.BorhanAdType;
+	import com.borhan.vo.BorhanAdCuePoint;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -179,21 +179,21 @@ package com.kaltura.kdpfl.plugin.component
 					{
 						var adContext : String = notification.getBody().context;
 						
-						var cuePoint : KalturaAdCuePoint = notification.getBody().cuePoint as KalturaAdCuePoint;
+						var cuePoint : BorhanAdCuePoint = notification.getBody().cuePoint as BorhanAdCuePoint;
 						
-						if ( cuePoint.protocolType == KalturaAdProtocolType.VAST || cuePoint.protocolType == KalturaAdProtocolType.VAST_2_0)
+						if ( cuePoint.protocolType == BorhanAdProtocolType.VAST || cuePoint.protocolType == BorhanAdProtocolType.VAST_2_0)
 						{
 							switch ( adContext )
 							{
 								case SequenceContextType.PRE:
-									if (cuePoint.adType == KalturaAdType.VIDEO)
+									if (cuePoint.adType == BorhanAdType.VIDEO)
 									{
 											_pluginCode.prerollUrlArr.push( cuePoint.sourceUrl );
 											sequenceProxy.vo.preSequenceArr.push(_pluginCode);
 									}
 									break;
 								case SequenceContextType.POST:
-									if (cuePoint.adType == KalturaAdType.VIDEO)
+									if (cuePoint.adType == BorhanAdType.VIDEO)
 									{
 										_pluginCode.postrollUrlArr.push( cuePoint.sourceURL );
 										sequenceProxy.vo.postSequenceArr.push(_pluginCode);
@@ -244,9 +244,9 @@ package com.kaltura.kdpfl.plugin.component
 			sequenceProxy.playNextInSequence();
 		}
 		
-		private function resolveMidrollAd( midrollObject : KalturaAdCuePoint , sequenceProxy: SequenceProxy) : void
+		private function resolveMidrollAd( midrollObject : BorhanAdCuePoint , sequenceProxy: SequenceProxy) : void
 		{
-			if ( midrollObject.adType == KalturaAdType.VIDEO )
+			if ( midrollObject.adType == BorhanAdType.VIDEO )
 			{
 				sendNotification( NotificationType.DO_PAUSE );
 				

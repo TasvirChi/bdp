@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.externalMedia
+package com.borhan.commands.externalMedia
 {
-		import com.kaltura.vo.KalturaExternalMediaEntry;
-	import com.kaltura.delegates.externalMedia.ExternalMediaUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanExternalMediaEntry;
+	import com.borhan.delegates.externalMedia.ExternalMediaUpdateDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Update external media entry. Only the properties that were set will be updated.
 	* 
 	**/
-	public class ExternalMediaUpdate extends KalturaCall
+	public class ExternalMediaUpdate extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id String
-		* @param entry KalturaExternalMediaEntry
+		* @param entry BorhanExternalMediaEntry
 		**/
-		public function ExternalMediaUpdate( id : String,entry : KalturaExternalMediaEntry )
+		public function ExternalMediaUpdate( id : String,entry : BorhanExternalMediaEntry )
 		{
 			service= 'externalmedia_externalmedia';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.externalMedia
 			var keyValArr : Array = new Array();
 			keyArr.push('id');
 			valueArr.push(id);
-				keyValArr = kalturaObject2Arrays(entry, 'entry');
+				keyValArr = borhanObject2Arrays(entry, 'entry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

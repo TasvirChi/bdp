@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.style
+package com.borhan.bdpfl.style
 {
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.controller.IResponder;
-	import com.kaltura.kdpfl.events.StyleEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.util.URLUtils;
+	import com.borhan.bdpfl.ApplicationFacade;
+	import com.borhan.bdpfl.controller.IResponder;
+	import com.borhan.bdpfl.events.StyleEvent;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.util.URLUtils;
 	
 	public class KStyleManager
 	{
@@ -38,8 +38,8 @@ package com.kaltura.kdpfl.style
 				}
 				else
 				{
-					//This check is necessary for users running the kdp from their file system, if the skin path begins with "/"
-					//the skin loader automatically loads the skin from this location, instead of the locaion which is relative to the kdp3.swf
+					//This check is necessary for users running the bdp from their file system, if the skin path begins with "/"
+					//the skin loader automatically loads the skin from this location, instead of the locaion which is relative to the bdp3.swf
 					if (skinPath.indexOf("/") == 0)
 					{
 						skinPath = skinPath.substring(1);

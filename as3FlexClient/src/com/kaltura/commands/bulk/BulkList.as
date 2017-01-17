@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.bulk
+package com.borhan.commands.bulk
 {
-		import com.kaltura.vo.KalturaBulkUploadFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.bulk.BulkListDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanBulkUploadFilter;
+		import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.delegates.bulk.BulkListDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* List bulk upload batch jobs
 	* 
 	**/
-	public class BulkList extends KalturaCall
+	public class BulkList extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param bulkUploadFilter KalturaBulkUploadFilter
-		* @param pager KalturaFilterPager
+		* @param bulkUploadFilter BorhanBulkUploadFilter
+		* @param pager BorhanFilterPager
 		**/
-		public function BulkList( bulkUploadFilter : KalturaBulkUploadFilter=null,pager : KalturaFilterPager=null )
+		public function BulkList( bulkUploadFilter : BorhanBulkUploadFilter=null,pager : BorhanFilterPager=null )
 		{
 			service= 'bulkupload_bulk';
 			action= 'list';
@@ -53,12 +53,12 @@ package com.kaltura.commands.bulk
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (bulkUploadFilter) { 
-				keyValArr = kalturaObject2Arrays(bulkUploadFilter, 'bulkUploadFilter');
+				keyValArr = borhanObject2Arrays(bulkUploadFilter, 'bulkUploadFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = borhanObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

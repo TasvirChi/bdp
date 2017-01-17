@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.NotificationType;
 	
 	import fl.controls.Button;
 	

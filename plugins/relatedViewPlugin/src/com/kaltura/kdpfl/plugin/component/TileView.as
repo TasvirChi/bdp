@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.plugin.component.tile.KTile;
-	import com.kaltura.kdpfl.plugin.component.tile.KTileItem;
+	import com.borhan.bdpfl.plugin.component.tile.KTile;
+	import com.borhan.bdpfl.plugin.component.tile.KTileItem;
 	
 	import fl.data.DataProvider;
 	import fl.events.ListEvent;

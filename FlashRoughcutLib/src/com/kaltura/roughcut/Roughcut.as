@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,31 +20,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.roughcut
+package com.borhan.roughcut
 {
-	import com.kaltura.application.KalturaApplication;
-	import com.kaltura.assets.AssetsFactory;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.base.types.TimelineTypes;
-	import com.kaltura.base.vo.KalturaPluginInfo;
-	import com.kaltura.dataStructures.HashMap;
-	import com.kaltura.managers.downloadManagers.DownloadManager;
-	import com.kaltura.managers.downloadManagers.protocols.NetProtocolProgressiveDUAL;
-	import com.kaltura.plugin.types.transitions.TransitionTypes;
-	import com.kaltura.roughcut.assets.RoughcutTimelinesAssets;
-	import com.kaltura.roughcut.buffering.BufferMonitor;
-	import com.kaltura.roughcut.buffering.events.BufferEvent;
-	import com.kaltura.roughcut.events.RoughcutChangeEvent;
-	import com.kaltura.roughcut.events.RoughcutStatusEvent;
-	import com.kaltura.roughcut.interfaces.IRoughcut;
-	import com.kaltura.roughcut.mediaclips.settings.MediaTypesSettings;
-	import com.kaltura.roughcut.sdl.RoughcutSDL;
-	import com.kaltura.roughcut.soundtrack.AudioPlayPolicy;
-	import com.kaltura.types.KalturaEntryStatus;
-	import com.kaltura.utils.ObjectUtil;
-	import com.kaltura.vo.KalturaMixEntry;
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.borhan.application.BorhanApplication;
+	import com.borhan.assets.AssetsFactory;
+	import com.borhan.assets.abstracts.AbstractAsset;
+	import com.borhan.base.types.MediaTypes;
+	import com.borhan.base.types.TimelineTypes;
+	import com.borhan.base.vo.BorhanPluginInfo;
+	import com.borhan.dataStructures.HashMap;
+	import com.borhan.managers.downloadManagers.DownloadManager;
+	import com.borhan.managers.downloadManagers.protocols.NetProtocolProgressiveDUAL;
+	import com.borhan.plugin.types.transitions.TransitionTypes;
+	import com.borhan.roughcut.assets.RoughcutTimelinesAssets;
+	import com.borhan.roughcut.buffering.BufferMonitor;
+	import com.borhan.roughcut.buffering.events.BufferEvent;
+	import com.borhan.roughcut.events.RoughcutChangeEvent;
+	import com.borhan.roughcut.events.RoughcutStatusEvent;
+	import com.borhan.roughcut.interfaces.IRoughcut;
+	import com.borhan.roughcut.mediaclips.settings.MediaTypesSettings;
+	import com.borhan.roughcut.sdl.RoughcutSDL;
+	import com.borhan.roughcut.soundtrack.AudioPlayPolicy;
+	import com.borhan.types.BorhanEntryStatus;
+	import com.borhan.utils.ObjectUtil;
+	import com.borhan.vo.BorhanMixEntry;
+	import com.borhan.vo.BorhanPlayableEntry;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -54,49 +54,49 @@ package com.kaltura.roughcut
 
 	/**
 	* Dispatched when the roughcut was fully downloaded to the client's machine.
-	* @eventType com.kaltura.roughcut.buffering.events.BufferEvent.DOWNLOAD_COMPLETE
+	* @eventType com.borhan.roughcut.buffering.events.BufferEvent.DOWNLOAD_COMPLETE
 	*/
-	[Event(name="downloadComplete", type="com.kaltura.roughcut.buffering.events.BufferEvent")]
+	[Event(name="downloadComplete", type="com.borhan.roughcut.buffering.events.BufferEvent")]
 	/**
 	* Dispatched when the roughcut completed downloading the plugins.
-	* @eventType com.kaltura.roughcut.buffering.events.BufferEvent.PLUGINS_DOWNLOAD_COMPLETE
+	* @eventType com.borhan.roughcut.buffering.events.BufferEvent.PLUGINS_DOWNLOAD_COMPLETE
 	*/
-	[Event(name="pluginsDownloadComplete", type="com.kaltura.roughcut.buffering.events.BufferEvent")]
+	[Event(name="pluginsDownloadComplete", type="com.borhan.roughcut.buffering.events.BufferEvent")]
 	/**
 	* Dispatched after the roughcut duration was changed.
-	* @eventType com.kaltura.roughcut.events.RoughcutChangeEvent.ROUGHCUT_DURATION_CHANGE
+	* @eventType com.borhan.roughcut.events.RoughcutChangeEvent.ROUGHCUT_DURATION_CHANGE
 	*/
-	[Event(name="roughcutDurationChange", type="com.kaltura.roughcut.events.RoughcutChangeEvent")]
+	[Event(name="roughcutDurationChange", type="com.borhan.roughcut.events.RoughcutChangeEvent")]
 	/**
 	* Dispatched after the changes occured on the roughcut's audio timeline (or soundtrack asset).
-	* @eventType com.kaltura.roughcut.buffering.events.BufferEvent.ROUGHCUT_SOUNDTRACK_CHANGE
+	* @eventType com.borhan.roughcut.buffering.events.BufferEvent.ROUGHCUT_SOUNDTRACK_CHANGE
 	*/
-	[Event(name="roughcutSoundtrackChange", type="com.kaltura.roughcut.events.RoughcutChangeEvent")]
+	[Event(name="roughcutSoundtrackChange", type="com.borhan.roughcut.events.RoughcutChangeEvent")]
 	/**
 	* Dispatched after the first frame of the roughcut was downloaded and is ready to show on screen.
 	* after catching this event, it is possible to use <code>Eplayer.seekSequence (0, false, true)</code>
 	* to show the first frame on the screen.
-	* @eventType com.kaltura.roughcut.events.RoughcutChangeEvent.FIRST_FRAME_LOADED
+	* @eventType com.borhan.roughcut.events.RoughcutChangeEvent.FIRST_FRAME_LOADED
 	*/
-	[Event(name="firstFrameLoaded", type="com.kaltura.roughcut.events.RoughcutStatusEvent")]
+	[Event(name="firstFrameLoaded", type="com.borhan.roughcut.events.RoughcutStatusEvent")]
 
 	/**
 	 * the roughcut object is the remixing object, it is used to manage the assets (audio, video, images, plugins...),
-	 * "create the mix" and generate the sdl representation of the Kaltura roughcut.
+	 * "create the mix" and generate the sdl representation of the Borhan roughcut.
 	 */
-	public class Roughcut extends KalturaMixEntry implements IRoughcut
+	public class Roughcut extends BorhanMixEntry implements IRoughcut
 	{
 		/**
 		 * settings of the behaviours of different media types,
 		 * ie, setting default color of a solid clip or default transition id when adding new assets.
-		 * @see com.kaltura.roughcut.mediaclips.settings.Roughcut.mediaTypesSettings
+		 * @see com.borhan.roughcut.mediaclips.settings.Roughcut.mediaTypesSettings
 		 */
 		public static var mediaTypesSettings:MediaTypesSettings = new MediaTypesSettings ();
 
 		/**
 		 *the roughcut's editor user info.
 		 */
-		//xxx public var roughcutEditor:KalturaUser;
+		//xxx public var roughcutEditor:BorhanUser;
 		/**
 		 * the roughtcut's versions (holds RoughcutVersion objects)
 		 */
@@ -107,7 +107,7 @@ package com.kaltura.roughcut
 		public var bufferMonitor:BufferMonitor;
 		/**
 		 *the used streaming mode to download the media sources.
-		 * @see com.kaltura.managers.downloadManagers.types.StreamingModes
+		 * @see com.borhan.managers.downloadManagers.types.StreamingModes
 		 */
 		public var streamingMode:int = 0;
 		/**
@@ -140,13 +140,13 @@ package com.kaltura.roughcut
 			if (soundtrackAsset)
 				return _associatedAssets.getValue (soundtrackAsset.entryId) as AbstractAsset;
 			else
-				return KalturaApplication.nullAsset;
+				return BorhanApplication.nullAsset;
 		}
 		/**
 		* whether this roughcut's soundtrack asset should play once or repeat untill video timeline finish.
-		* @see com.kaltura.roughcut.soundtrack.AudioPlayPolicy#AUDIO_PLAY_POLICY_REPEAT
-		* @see com.kaltura.roughcut.soundtrack.AudioPlayPolicy#AUDIO_PLAY_POLICY_ONCE
-		* @see com.kaltura.roughcut.soundtrack.AudioPlayPolicy#AUDIO_PLAY_POLICY_ALL
+		* @see com.borhan.roughcut.soundtrack.AudioPlayPolicy#AUDIO_PLAY_POLICY_REPEAT
+		* @see com.borhan.roughcut.soundtrack.AudioPlayPolicy#AUDIO_PLAY_POLICY_ONCE
+		* @see com.borhan.roughcut.soundtrack.AudioPlayPolicy#AUDIO_PLAY_POLICY_ALL
 		*/
 		//xxx [Bindable(event="roughcutSoundtrackChange")]
 		public function set soundtrackAudioPolicy (audio_policy:uint):void
@@ -165,9 +165,9 @@ package com.kaltura.roughcut
 		}
 		/**
 		* describe whether the soundtrack should play silently, mute or continue as is when crossing video assets.
-		* @see com.kaltura.roughcut.soundtrack.AudioPlayPolicy#CROSS_VIDEO_SILENT
-		* @see com.kaltura.roughcut.soundtrack.AudioPlayPolicy#CROSS_VIDEO_MUTE
-		* @see com.kaltura.roughcut.soundtrack.AudioPlayPolicy#CROSS_VIDEO_NO_ACTION
+		* @see com.borhan.roughcut.soundtrack.AudioPlayPolicy#CROSS_VIDEO_SILENT
+		* @see com.borhan.roughcut.soundtrack.AudioPlayPolicy#CROSS_VIDEO_MUTE
+		* @see com.borhan.roughcut.soundtrack.AudioPlayPolicy#CROSS_VIDEO_NO_ACTION
 		*/
 		//xxx [Bindable(event="roughcutSoundtrackChange")]
 		public function set soundtrackVolumePlayPolicy (volume_policy:uint):void
@@ -251,7 +251,7 @@ package com.kaltura.roughcut
 		/**
 		 * in case an admin, deleted entries from the system, we mark these entries as deleted.
 		 * contains DeletedEntry instances.
-		 * @see com.kaltura.base.vo.DeletedEntry
+		 * @see com.borhan.base.vo.DeletedEntry
 		 */
 		public function get deletedEntries ():ArrayCollection
 		{
@@ -262,7 +262,7 @@ package com.kaltura.roughcut
 		 *Constructor.
 		 * @param mixEntry		the entry of this roughcut.
 		 */
-		public function Roughcut (mixEntry:KalturaMixEntry):void
+		public function Roughcut (mixEntry:BorhanMixEntry):void
 		{
 			super ();
 			copyEntryProperties (mixEntry);
@@ -272,7 +272,7 @@ package com.kaltura.roughcut
 			_originalMediaClips.addItem(_solidAsset);
 		}
 
-		private function copyEntryProperties (mixEntry:KalturaMixEntry):void
+		private function copyEntryProperties (mixEntry:BorhanMixEntry):void
 		{
 			// the previous loop went only through dynamic keys.
 			var attributes:Array = ObjectUtil.getObjectAllKeys(mixEntry);
@@ -326,8 +326,8 @@ package com.kaltura.roughcut
 
 		/**
 		 *Event handler for roughcut's soundtrack change.
-		 * @see com.kaltura.roughcut.assets.RoughcutTimelinesAssets
-		 * @see com.kaltura.roughcut.events.RoughcutChangeEvent
+		 * @see com.borhan.roughcut.assets.RoughcutTimelinesAssets
+		 * @see com.borhan.roughcut.events.RoughcutChangeEvent
 		 */
 		private function roughcutSoundtrackChange (e:RoughcutChangeEvent):void
 		{
@@ -338,8 +338,8 @@ package com.kaltura.roughcut
 
 		/**
 		 *Event hadnler for roughcut's duration change.
-		 * @see com.kaltura.roughcut.assets.RoughcutTimelinesAssets
-		 * @see com.kaltura.roughcut.events.RoughcutChangeEvent
+		 * @see com.borhan.roughcut.assets.RoughcutTimelinesAssets
+		 * @see com.borhan.roughcut.events.RoughcutChangeEvent
 		 */
 		private function roughcutDurationChanged (e:RoughcutChangeEvent):void
 		{
@@ -568,8 +568,8 @@ package com.kaltura.roughcut
 		{
 			if (event.property != "status")
 				return;
-			var entry:KalturaPlayableEntry = event.currentTarget as KalturaPlayableEntry;
-			if (entry.status == KalturaEntryStatus.BLOCKED || entry.status == KalturaEntryStatus.DELETED || entry.status == KalturaEntryStatus.ERROR_CONVERTING)
+			var entry:BorhanPlayableEntry = event.currentTarget as BorhanPlayableEntry;
+			if (entry.status == BorhanEntryStatus.BLOCKED || entry.status == BorhanEntryStatus.DELETED || entry.status == BorhanEntryStatus.ERROR_CONVERTING)
 			{
 				removeEntryFromArrayById (_mediaClips, entry.id);
 				removeEntryFromArrayById (_originalMediaClips, entry.id);
@@ -599,7 +599,7 @@ package com.kaltura.roughcut
 		/**
 		 * filters the mediaClips to show only selected media types.
 		 * @param types		the types of media assets to be shown (all other will be filtered out).
-		 * @see	com.kaltura.common.types.MediaTypes
+		 * @see	com.borhan.common.types.MediaTypes
 		 */
 		public function filterMediaClipsByMediaType (types:uint):void
 		{
@@ -658,8 +658,8 @@ package com.kaltura.roughcut
 		{
 			if (_solidAsset)
 				return _solidAsset;
-			var bd:BitmapData = new BitmapData (KalturaApplication.getInstance().initPlayerWidth,
-								KalturaApplication.getInstance().initPlayerHeight, false, Roughcut.mediaTypesSettings.defaultSolidColor);
+			var bd:BitmapData = new BitmapData (BorhanApplication.getInstance().initPlayerWidth,
+								BorhanApplication.getInstance().initPlayerHeight, false, Roughcut.mediaTypesSettings.defaultSolidColor);
 			var bmp:Bitmap = new Bitmap (bd);
 			var colorName:String = ""; //xxx ColorsUtil.getName(Roughcut.mediaTypesSettings.defaultSolidColor)[1];	//get the name of that color
 			var solidAsset:AbstractAsset;
@@ -682,14 +682,14 @@ package com.kaltura.roughcut
 
 		/**
 		 *updates the solid color with the values set to Roughcut>mediaTypesSettings.
-		 *@see com.kaltura.roughcut.Roughcut#mediaTypesSettings
+		 *@see com.borhan.roughcut.Roughcut#mediaTypesSettings
 		 */
 		public function updateSolidColor ():void
 		{
 			if (!_solidAsset)
 				_solidAsset = createSolidAsset();
-			var bd:BitmapData = new BitmapData (KalturaApplication.getInstance().initPlayerWidth,
-								KalturaApplication.getInstance().initPlayerHeight, false, Roughcut.mediaTypesSettings.defaultSolidColor);
+			var bd:BitmapData = new BitmapData (BorhanApplication.getInstance().initPlayerWidth,
+								BorhanApplication.getInstance().initPlayerHeight, false, Roughcut.mediaTypesSettings.defaultSolidColor);
 			var bmp:Bitmap = new Bitmap (bd);
 			_solidAsset.thumbnailURL = Roughcut.mediaTypesSettings.defaultSolidColor.toString();
 			_solidAsset.thumbBitmap = bmp;
@@ -722,7 +722,7 @@ package com.kaltura.roughcut
 		 * @param addNullAsset		if true first item of the returned arrayCollection will be an empty AbstractAsset with entryId = -1000
 		 * @param nullAssetName 	the name of the null Asset to add.
 		 * @return 					new collection filtered.
-		 * @see com.kaltura.roughcut.assets.TimelineTypes
+		 * @see com.borhan.roughcut.assets.TimelineTypes
 		 */
 		public function getMediaClipsByTypes (media_types:uint, addNullAsset:Boolean = false, nullAssetName:String = "nullAsset"):ArrayCollection
 		{
@@ -738,7 +738,7 @@ package com.kaltura.roughcut
 			}
 			if (addNullAsset)
 			{
-				asset = KalturaApplication.nullAsset;
+				asset = BorhanApplication.nullAsset;
 				asset.entryName = nullAssetName;
 				collection.addItemAt(asset, 0);
 			}
@@ -748,7 +748,7 @@ package com.kaltura.roughcut
 		/**
 		 *filters the mediaClips to show only the allowed media types for the given timeline type.
 		 * @param timelines		the timelines to filter to.
-		 * @see com.kaltura.roughcut.assets.TimelineTypes
+		 * @see com.borhan.roughcut.assets.TimelineTypes
 		 */
 		public function filterMediaClipsByTimeline (timelines:uint):void
 		{
@@ -784,7 +784,7 @@ package com.kaltura.roughcut
 		 *filter a mediaclips array by using a sort option.
 		 * @param media_clips		the mediaclips array.
 		 * @param sort_option		the sort option to use.
-		 * @see com.kaltura.roughcut.mediaclips.sort.ISortOption
+		 * @see com.borhan.roughcut.mediaclips.sort.ISortOption
 		 */
 /* xxx		public function sortMediaClipsBy (media_clips:ArrayCollection, sort_option:ISortOption):void
 		{
@@ -798,7 +798,7 @@ package com.kaltura.roughcut
 		 *filter a mediaclips array by using a filter option.
 		 * @param media_clips		the mediaclips to filter.
 		 * @param filter_option		the filter option to use.
-		 * @see com.kaltura.roughcut.mediaclips.filter.IFilterOption
+		 * @see com.borhan.roughcut.mediaclips.filter.IFilterOption
 		 */
 /* xxx		public function filterMediaClipsBy (media_clips:ArrayCollection, filter_option:IFilterOption):void
 		{
@@ -879,7 +879,7 @@ package com.kaltura.roughcut
 		/**
 		 *clears all assets from the roughcut's timelines.
 		 * @param timelines		the timelines to clear, pass bitmask according to TimelineTypes.
-		 * @see com.kaltura.roughcut.assets.TimelineTypes
+		 * @see com.borhan.roughcut.assets.TimelineTypes
 		 */
 		public function clearTimeline (timelines:uint = 0xffffffff):void
 		{
@@ -944,7 +944,7 @@ package com.kaltura.roughcut
 		}
 
 		/**
-		 *adds a new asset to the roughcut, apply to only kaltura assets (video, audio, images, solids...) and not plugins such as transitions, overlays or effects.
+		 *adds a new asset to the roughcut, apply to only borhan assets (video, audio, images, solids...) and not plugins such as transitions, overlays or effects.
 		 * @param entryId				the entry id of the asset to be added.
 		 * @param timeline				the timeline to add the assset to.
 		 * @param assetIndex			the index in the timeline to add the new asset to, if -1 asset will be added to the end of the timeline.
@@ -1022,8 +1022,8 @@ package com.kaltura.roughcut
 		 * @param timeline			the type of the timeline.
 		 * @param media_type		the media type.
 		 * @return 					true if the given media type can be added to the given timeline.
-		 * @see com.kaltura.common.types.MediaTypes
-		 * @see com.kaltura.roughcut.assets.TimelineTypes
+		 * @see com.borhan.common.types.MediaTypes
+		 * @see com.borhan.roughcut.assets.TimelineTypes
 		 */
 		public function allowedMediaType (timeline:uint, media_type:uint):Boolean
 		{
@@ -1082,7 +1082,7 @@ package com.kaltura.roughcut
 		 * @param timeline			the timeline this plugin should be added to.
 		 * @return 					the index of the new item.
 		 */
-		public function addPlugin (plugin:KalturaPluginInfo, time_stamp:Number, length_sec:Number = 5, timeline:uint = 0x2):uint
+		public function addPlugin (plugin:BorhanPluginInfo, time_stamp:Number, length_sec:Number = 5, timeline:uint = 0x2):uint
 		{
 			var idx:uint = roughcutTimelines.addPlugin(plugin, time_stamp, length_sec, timeline);
 			dirty = true;
@@ -1222,7 +1222,7 @@ package com.kaltura.roughcut
 		 * @param asset_index		the index the asset is at.
 		 * @param fail_safe			if true, when given asset is beyond timeline length will return last.
 		 * @return 					the asset.
-		 * @see com.kaltura.assets.abstracts.AbstractAsset
+		 * @see com.borhan.assets.abstracts.AbstractAsset
 		 */
 		public function getAssetAt (timeline:uint, asset_index:uint, fail_safe:Boolean = false):AbstractAsset
 		{
@@ -1244,9 +1244,9 @@ package com.kaltura.roughcut
 		 *loads all the mediaSource objects of the assets in the timelines (ExNetStreams, Images, plugoins...).
 		 * @param types							the types of timelines to load, as defined by LoadMediaSourceType.
 		 * @param streamingMode			determine the serving method used to get the media files.
-         * @see com.kaltura.managers.downloadManagers.types.StreamingModes
-		 * @see com.kaltura.roughcut.assets.LoadMediaSourceType
-		 * @see com.kaltura.managers.downloadManagers.DownloadManager
+         * @see com.borhan.managers.downloadManagers.types.StreamingModes
+		 * @see com.borhan.roughcut.assets.LoadMediaSourceType
+		 * @see com.borhan.managers.downloadManagers.DownloadManager
 		 */
 		public function loadAssetsMediaSources (types:int, streamingMode:int = 0):void
 		{
@@ -1294,7 +1294,7 @@ package com.kaltura.roughcut
 		 * @param duration			the duration of the new asset (default will be the duration of the asset).
 		 * @param loadAsset			whether or not to load the asset's media source (eg. ExNetStream, Image...) after adding to the timeline.
 		 * @return					returns true if entry_id represents an asset that is really associated with this roughcut's media clips and is mediaType AUDIO or VIDEO.
-		 * @see com.kaltura.common.types.MediaTypes
+		 * @see com.borhan.common.types.MediaTypes
 		 */
 		public function setSoundtrackAsset (entry_id:String, start_time:Number = 0, duration:Number = -1, load_asset:Boolean = true):Boolean
 		{
@@ -1337,7 +1337,7 @@ package com.kaltura.roughcut
 
 		/**
 		 * clear the audio timeline and the soundtrack asset, if we use setSoundtrackAsset function, we need to use this function to clear the soundtrack.
-		 * @see com.kaltura.roughcut.Roughcut#setSoundtrackAsset
+		 * @see com.borhan.roughcut.Roughcut#setSoundtrackAsset
 		 */
 		public function clearSoundtrack ():void
 		{
@@ -1357,8 +1357,8 @@ package com.kaltura.roughcut
 		 * @param timelines			the timelines to set duration of assets to.
 		 * @param media_types		the media types of the assets to change (ie. change only images).
 		 * @param duration			the desired duration.
-		 * @see com.kaltura.roughcut.assets.TimelineTypes
-		 * @see com.kaltura.common.types.MediaTypes
+		 * @see com.borhan.roughcut.assets.TimelineTypes
+		 * @see com.borhan.common.types.MediaTypes
 		 */
 		public function setAllAssetsDuration (timelines:uint, media_types:uint, duration:Number):void
 		{
@@ -1371,7 +1371,7 @@ package com.kaltura.roughcut
 		 * @param media_types			the media types of the assets to set transition to (ie, set only images).
 		 * @param transition_type		the type of the transition to set.
 		 * @param transition_duration	the duration of the transition.
-		 * @see com.kaltura.plugin.types.transitions.TransitionTypes
+		 * @see com.borhan.plugin.types.transitions.TransitionTypes
 		 */
 		public function setAllAssetsTransition (media_types:uint, transition_type:String, transition_duration:Number):void
 		{

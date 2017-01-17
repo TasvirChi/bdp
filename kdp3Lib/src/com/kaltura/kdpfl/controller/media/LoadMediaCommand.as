@@ -1,19 +1,19 @@
-package com.kaltura.kdpfl.controller.media
+package com.borhan.bdpfl.controller.media
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.plugin.Plugin;
-	import com.kaltura.vo.KalturaLiveStreamEntry;
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.PlayerStatusProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SourceType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.plugin.Plugin;
+	import com.borhan.vo.BorhanLiveStreamEntry;
+	import com.borhan.vo.BorhanMixEntry;
 	
 	import flash.events.Event;
 	
@@ -65,25 +65,25 @@ package com.kaltura.kdpfl.controller.media
 					var foundFlavorBR:int = 0;
 					var foundFlavorId : String = (selectedFlavorId && selectedFlavorId != "" && selectedFlavorId!= "-1") ? selectedFlavorId : null;
 					
-					if(_mediaProxy.vo && _mediaProxy.vo.kalturaMediaFlavorArray)
+					if(_mediaProxy.vo && _mediaProxy.vo.borhanMediaFlavorArray)
 					{
 						var dif : Number = preferedFlavorBR;
 
-						for(var i:int=0;i<_mediaProxy.vo.kalturaMediaFlavorArray.length;i++)//this checks the flavorId at the kalturaMediaFlavorArray
+						for(var i:int=0;i<_mediaProxy.vo.borhanMediaFlavorArray.length;i++)//this checks the flavorId at the borhanMediaFlavorArray
 						{
-							// if a selected flavor was set (e.g. kmc preview via flashvars) search for it
+							// if a selected flavor was set (e.g. bmc preview via flashvars) search for it
 							if (selectedFlavorId)
 							{
-								if (selectedFlavorId == _mediaProxy.vo.kalturaMediaFlavorArray[i].id)
+								if (selectedFlavorId == _mediaProxy.vo.borhanMediaFlavorArray[i].id)
 								{
-									foundFlavorBR = _mediaProxy.vo.kalturaMediaFlavorArray[i].bitrate;
+									foundFlavorBR = _mediaProxy.vo.borhanMediaFlavorArray[i].bitrate;
 									break;
 								}
 							}
 								// if a prefered bitrate is specified search for the most closest bitrate (lower or equal)
 							else if (preferedFlavorBR != 0) 
 							{
-								var b:Number = _mediaProxy.vo.kalturaMediaFlavorArray[i].bitrate;
+								var b:Number = _mediaProxy.vo.borhanMediaFlavorArray[i].bitrate;
 								
 								b = Math.round(b/100) * 100;
 								if (Math.abs(b - preferedFlavorBR) <= dif )
@@ -93,7 +93,7 @@ package com.kaltura.kdpfl.controller.media
 									{
 										
 										foundFlavorBR = b;
-										foundFlavorId = _mediaProxy.vo.kalturaMediaFlavorArray[i].id;
+										foundFlavorId = _mediaProxy.vo.borhanMediaFlavorArray[i].id;
 										flavorIndex = i;
 									}
 									
@@ -111,7 +111,7 @@ package com.kaltura.kdpfl.controller.media
 						{
 							_mediaProxy.vo.selectedFlavorId = null;
 						}
-						if (_mediaProxy.vo.entry is KalturaLiveStreamEntry)
+						if (_mediaProxy.vo.entry is BorhanLiveStreamEntry)
 						{
 							_mediaProxy.vo.selectedFlavorId = null;
 							_mediaProxy.vo.preferedFlavorBR = 0;
@@ -125,14 +125,14 @@ package com.kaltura.kdpfl.controller.media
 			
 			if(_mediaProxy.vo.entry && _mediaProxy.vo.entry.id != "-1")
 			{
-				//_mediaProxy.vo.entry.dataUrl = "http://cdnkaldev.kaltura.com/p/1/sp/100/flvclipper/entry_id/00_r4ei4ohges/version/100000"//url;
+				//_mediaProxy.vo.entry.dataUrl = "http://cdnkaldev.borhan.com/p/1/sp/100/flvclipper/entry_id/00_r4ei4ohges/version/100000"//url;
 				_mediaProxy.vo.entry.dataUrl = url;
 				
-				//In case the entry to view is a KalturaMixEntry, the KalturaMixPlugin must be loaded. The plugin is heavy and should not be loaded 
+				//In case the entry to view is a BorhanMixEntry, the BorhanMixPlugin must be loaded. The plugin is heavy and should not be loaded 
 				//unless needed for an entry. This is the reason that its loading policy is set to "on demand".
-				if (_mediaProxy.vo.entry is KalturaMixEntry)
+				if (_mediaProxy.vo.entry is BorhanMixEntry)
 				{
-					var plugin:Plugin = Plugin(facade['bindObject']['Plugin_kalturaMix']);
+					var plugin:Plugin = Plugin(facade['bindObject']['Plugin_borhanMix']);
 					
 					//if we didn't find the Mix plugin we alert the user
 					if(!plugin)
@@ -160,7 +160,7 @@ package com.kaltura.kdpfl.controller.media
 		}
 		/**
 		 * This function resolves the subsequent mode of the player. If the entry object was empty or restricted, the player
-		 * is considered in status EMPTY and the controls are disabled. If the entry is playable and was successfully loaded, the KDP is in status 
+		 * is considered in status EMPTY and the controls are disabled. If the entry is playable and was successfully loaded, the BDP is in status 
 		 * READY.
 		 */		
 		private function dispatchMediaReady () : void
@@ -168,7 +168,7 @@ package com.kaltura.kdpfl.controller.media
 			if (!_mediaProxy.vo.isMediaDisabled)
 			{
 				_mediaProxy.shouldWaitForElement = true;
-				(facade.retrieveProxy( PlayerStatusProxy.NAME ) as PlayerStatusProxy).dispatchKDPReady();
+				(facade.retrieveProxy( PlayerStatusProxy.NAME ) as PlayerStatusProxy).dispatchBDPReady();
 				sendNotification( NotificationType.MEDIA_READY);
 				sendNotification(NotificationType.READY_TO_PLAY);
 				sendNotification(NotificationType.ENABLE_GUI, {guiEnabled : true , enableType : EnableType.CONTROLS});
@@ -179,7 +179,7 @@ package com.kaltura.kdpfl.controller.media
 			else
 			{
 				sendNotification(NotificationType.ENABLE_GUI,{guiEnabled : false , enableType : EnableType.CONTROLS});
-				(facade.retrieveProxy( PlayerStatusProxy.NAME ) as PlayerStatusProxy).dispatchKDPEmpty();
+				(facade.retrieveProxy( PlayerStatusProxy.NAME ) as PlayerStatusProxy).dispatchBDPEmpty();
 				sendNotification(NotificationType.READY_TO_LOAD);
 			}
 		}

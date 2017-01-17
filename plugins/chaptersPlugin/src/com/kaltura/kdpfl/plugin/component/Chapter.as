@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.view.controls.KButton;
-	import com.kaltura.kdpfl.view.controls.KLabel;
-	import com.kaltura.kdpfl.view.controls.KTextField;
+	import com.borhan.bdpfl.util.KAstraAdvancedLayoutUtil;
+	import com.borhan.bdpfl.view.controls.KButton;
+	import com.borhan.bdpfl.view.controls.KLabel;
+	import com.borhan.bdpfl.view.controls.KTextField;
 	import com.yahoo.astra.fl.containers.BoxPane;
 	
 	import fl.controls.ScrollPolicy;

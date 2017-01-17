@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,14 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.net.downloading
+package com.borhan.net.downloading
 {
-	import com.kaltura.base.IDisposable;
-	import com.kaltura.net.events.LoaderEvent;
-	import com.kaltura.net.streaming.ExNetConnection;
-	import com.kaltura.net.streaming.ExNetStream;
-	import com.kaltura.net.streaming.NetClient;
-	import com.kaltura.net.streaming.status.NetStatus;
+	import com.borhan.base.IDisposable;
+	import com.borhan.net.events.LoaderEvent;
+	import com.borhan.net.streaming.ExNetConnection;
+	import com.borhan.net.streaming.ExNetStream;
+	import com.borhan.net.streaming.NetClient;
+	import com.borhan.net.streaming.status.NetStatus;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;

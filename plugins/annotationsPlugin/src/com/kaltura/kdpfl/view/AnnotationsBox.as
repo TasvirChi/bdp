@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.view
+package com.borhan.bdpfl.view
 {
 	
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.strings.AnnotationStrings;
-	import com.kaltura.vo.KalturaAnnotation;
+	import com.borhan.bdpfl.util.KAstraAdvancedLayoutUtil;
+	import com.borhan.bdpfl.view.containers.KVBox;
+	import com.borhan.bdpfl.view.strings.AnnotationStrings;
+	import com.borhan.vo.BorhanAnnotation;
 	
 	import fl.controls.ScrollPolicy;
 	import fl.data.DataProvider;
@@ -187,11 +187,11 @@ package com.kaltura.kdpfl.view
 			return reArray;
 		}
 		/**
-		 * Method to retrieve the feedback session as an array of KalturaAnnotation objects.
-		 * @return Array of KalturaAnnotation objects.
+		 * Method to retrieve the feedback session as an array of BorhanAnnotation objects.
+		 * @return Array of BorhanAnnotation objects.
 		 * 
 		 */		
-		public function get annotationsAsKalturaAnnotationArray () : Array
+		public function get annotationsAsBorhanAnnotationArray () : Array
 		{
 			var kAnnotationArr : Array = new Array();
 			
@@ -199,7 +199,7 @@ package com.kaltura.kdpfl.view
 			
 			for (var i:int =0; i < dpArray.length; i++)
 			{
-				var kAnnotation : KalturaAnnotation = (dpArray[i]["annotation"] as Annotation).kalturaAnnotation;
+				var kAnnotation : BorhanAnnotation = (dpArray[i]["annotation"] as Annotation).borhanAnnotation;
 				kAnnotationArr.push(kAnnotation);
 			}
 			return kAnnotationArr;
@@ -235,7 +235,7 @@ package com.kaltura.kdpfl.view
 			{
 				annotation = dpArray[i]["annotation"] as Annotation;	
 				annotationXML = new XML ("<annotation><createdAt></createdAt><updatedAt></updatedAt><text>" + escape(annotation.annotationText) + "</text><startTime>"+ annotation.inTime +"</startTime>" +
-					"<endTime>" + annotation.kalturaAnnotation.endTime + "</endTime><userId>" + annotation.kalturaAnnotation.userId + "</userId></annotation>");
+					"<endTime>" + annotation.borhanAnnotation.endTime + "</endTime><userId>" + annotation.borhanAnnotation.userId + "</userId></annotation>");
 				feedbackSessionXML.appendChild( annotationXML );
 			}
 			
@@ -260,17 +260,17 @@ package com.kaltura.kdpfl.view
 			
 			for each(var annotationXML : XML in annotationsXMLList) 
 			{
-				var kalturaAnnotation : KalturaAnnotation = new KalturaAnnotation();
+				var borhanAnnotation : BorhanAnnotation = new BorhanAnnotation();
 				var annotation : Annotation;
-				kalturaAnnotation.entryId = entryId;
-				kalturaAnnotation.partnerId = partnerId;
-				kalturaAnnotation.parentId = parentId;
+				borhanAnnotation.entryId = entryId;
+				borhanAnnotation.partnerId = partnerId;
+				borhanAnnotation.parentId = parentId;
 				for each(var property : XML in annotationXML.children())
 				{
-					kalturaAnnotation[property.localName().toString()] = property.children()[0] ? unescape(property.children()[0].toString()) : "";
+					borhanAnnotation[property.localName().toString()] = property.children()[0] ? unescape(property.children()[0].toString()) : "";
 				}
 				
-				annotation = new Annotation (AnnotationStrings.VIEW_MODE, -1,"","",kalturaAnnotation, initialTabIndex);
+				annotation = new Annotation (AnnotationStrings.VIEW_MODE, -1,"","",borhanAnnotation, initialTabIndex);
 				this.addAnnotation( annotation );
 				
 			}

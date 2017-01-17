@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -36,7 +36,7 @@ package com.kaltura.kdpfl.plugin
 		public function WVPluginInfo(mediaFactoryItems:Vector.<MediaFactoryItem>=null, mediaElementCreationNotificationFunction:Function=null)
 		{
 			_dispatcher = new EventDispatcher();
-			var mediaInfo : MediaFactoryItem = new MediaFactoryItem("com.kaltura.kdpfl.plugin.WVMediaElement", canHandleResource, createWVMediaElement );
+			var mediaInfo : MediaFactoryItem = new MediaFactoryItem("com.borhan.bdpfl.plugin.WVMediaElement", canHandleResource, createWVMediaElement );
 			mediaFactoryItems = new Vector.<MediaFactoryItem>;
 			mediaFactoryItems.push(mediaInfo);
 			super(mediaFactoryItems, mediaElementCreationNotificationFunction);

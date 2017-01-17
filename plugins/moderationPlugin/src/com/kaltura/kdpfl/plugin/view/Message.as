@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin.view
+package com.borhan.bdpfl.plugin.view
 {
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.controls.KLabel;
-	import com.kaltura.kdpfl.view.controls.KTextField;
+	import com.borhan.bdpfl.view.containers.KVBox;
+	import com.borhan.bdpfl.view.controls.KLabel;
+	import com.borhan.bdpfl.view.controls.KTextField;
 	
 	import flash.events.Event;
 	import flash.utils.setTimeout;

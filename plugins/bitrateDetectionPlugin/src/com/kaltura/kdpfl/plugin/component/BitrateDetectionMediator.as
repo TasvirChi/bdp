@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.vo.KalturaMediaEntry;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.types.BorhanMediaType;
+	import com.borhan.vo.BorhanMediaEntry;
 	
 	import flash.display.Loader;
 	import flash.events.Event;
@@ -91,7 +91,7 @@ package com.kaltura.kdpfl.plugin.component
 					
 					var mediaProxy:MediaProxy = facade.retrieveProxy(MediaProxy.NAME) as MediaProxy;
 					if (!mediaProxy.vo.entry || 
-						((mediaProxy.vo.entry is KalturaMediaEntry) && (int(mediaProxy.vo.entry.mediaType)!=KalturaMediaType.VIDEO)))
+						((mediaProxy.vo.entry is BorhanMediaEntry) && (int(mediaProxy.vo.entry.mediaType)!=BorhanMediaType.VIDEO)))
 					{
 						trace ("--bitrate detection: no BW CHECK, not a video entry");					
 						return;
@@ -99,9 +99,9 @@ package com.kaltura.kdpfl.plugin.component
 					
 					if (_viewComp.runPreCheck)
 					{
-						if (mediaProxy.vo.kalturaMediaFlavorArray && mediaProxy.vo.kalturaMediaFlavorArray.length)
+						if (mediaProxy.vo.borhanMediaFlavorArray && mediaProxy.vo.borhanMediaFlavorArray.length)
 						{
-							var highBR:int = mediaProxy.vo.kalturaMediaFlavorArray[mediaProxy.vo.kalturaMediaFlavorArray.length - 1].bitrate;
+							var highBR:int = mediaProxy.vo.borhanMediaFlavorArray[mediaProxy.vo.borhanMediaFlavorArray.length - 1].bitrate;
 							if (0.8 * highBR <= mediaProxy.vo.preferedFlavorBR)  
 							{
 								trace ("--bitrate detection: no BW CHECK, no higher flavors");

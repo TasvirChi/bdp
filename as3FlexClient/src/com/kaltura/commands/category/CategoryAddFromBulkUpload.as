@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,27 +25,27 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.category
+package com.borhan.commands.category
 {
 		import flash.net.FileReference;
-		import com.kaltura.net.KalturaFileCall;
-		import com.kaltura.vo.KalturaBulkUploadJobData;
-		import com.kaltura.vo.KalturaBulkUploadCategoryData;
-	import com.kaltura.delegates.category.CategoryAddFromBulkUploadDelegate;
+		import com.borhan.net.BorhanFileCall;
+		import com.borhan.vo.BorhanBulkUploadJobData;
+		import com.borhan.vo.BorhanBulkUploadCategoryData;
+	import com.borhan.delegates.category.CategoryAddFromBulkUploadDelegate;
 
 	/**
 	**/
-	public class CategoryAddFromBulkUpload extends KalturaFileCall
+	public class CategoryAddFromBulkUpload extends BorhanFileCall
 	{
 		public var fileData:Object;
 
 		
 		/**
 		* @param fileData Object - FileReference or ByteArray
-		* @param bulkUploadData KalturaBulkUploadJobData
-		* @param bulkUploadCategoryData KalturaBulkUploadCategoryData
+		* @param bulkUploadData BorhanBulkUploadJobData
+		* @param bulkUploadCategoryData BorhanBulkUploadCategoryData
 		**/
-		public function CategoryAddFromBulkUpload( fileData : Object,bulkUploadData : KalturaBulkUploadJobData=null,bulkUploadCategoryData : KalturaBulkUploadCategoryData=null )
+		public function CategoryAddFromBulkUpload( fileData : Object,bulkUploadData : BorhanBulkUploadJobData=null,bulkUploadCategoryData : BorhanBulkUploadCategoryData=null )
 		{
 			service= 'category';
 			action= 'addFromBulkUpload';
@@ -55,12 +55,12 @@ package com.kaltura.commands.category
 			var keyValArr : Array = new Array();
 			this.fileData = fileData;
 			if (bulkUploadData) { 
-				keyValArr = kalturaObject2Arrays(bulkUploadData, 'bulkUploadData');
+				keyValArr = borhanObject2Arrays(bulkUploadData, 'bulkUploadData');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (bulkUploadCategoryData) { 
-				keyValArr = kalturaObject2Arrays(bulkUploadCategoryData, 'bulkUploadCategoryData');
+				keyValArr = borhanObject2Arrays(bulkUploadCategoryData, 'bulkUploadCategoryData');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

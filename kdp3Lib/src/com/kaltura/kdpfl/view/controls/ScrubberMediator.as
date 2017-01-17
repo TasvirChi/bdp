@@ -5,13 +5,13 @@
  * @playerversion Flash 9.0.28.0
  * @author Dan X Bacon		baconoppenheim.com
  */
- package com.kaltura.kdpfl.view.controls
+ package com.borhan.bdpfl.view.controls
 {
 	
-import com.kaltura.kdpfl.model.ConfigProxy;
-import com.kaltura.kdpfl.model.type.NotificationType;
-import com.kaltura.vo.KalturaLiveStreamEntry;
-import com.kaltura.vo.KalturaPlayableEntry;
+import com.borhan.bdpfl.model.ConfigProxy;
+import com.borhan.bdpfl.model.type.NotificationType;
+import com.borhan.vo.BorhanLiveStreamEntry;
+import com.borhan.vo.BorhanPlayableEntry;
 
 import flash.events.Event;
 
@@ -19,7 +19,7 @@ import org.puremvc.as3.interfaces.INotification;
 import org.puremvc.as3.patterns.mediator.Mediator;
 
 /**
- * Mediator for the scrubber component of the KDP. 
+ * Mediator for the scrubber component of the BDP. 
  * @author Hila
  * 
  */
@@ -114,7 +114,7 @@ public class ScrubberMediator extends Mediator
 	{	
 		switch( note.getName() )
 		{
-			case NotificationType.KDP_READY:
+			case NotificationType.BDP_READY:
 				_state = STATE_READY;
 			break;
 		
@@ -157,8 +157,8 @@ public class ScrubberMediator extends Mediator
 				break;
 			case NotificationType.ENTRY_READY:
 				var entry:object = note.getBody();
-				if (!(entry is KalturaLiveStreamEntry))
-					scrubber.duration = entry is KalturaPlayableEntry ? (entry as KalturaPlayableEntry).duration : 0;  
+				if (!(entry is BorhanLiveStreamEntry))
+					scrubber.duration = entry is BorhanPlayableEntry ? (entry as BorhanPlayableEntry).duration : 0;  
 				break;
 			
 			case NotificationType.POST_SEQUENCE_COMPLETE:
@@ -172,7 +172,7 @@ public class ScrubberMediator extends Mediator
 	override public function listNotificationInterests():Array
 	{
 		return [
-				NotificationType.KDP_READY,
+				NotificationType.BDP_READY,
 				NotificationType.PLAYER_PLAYED,
 				NotificationType.PLAYER_PAUSED,
 				NotificationType.PLAYER_UPDATE_PLAYHEAD,

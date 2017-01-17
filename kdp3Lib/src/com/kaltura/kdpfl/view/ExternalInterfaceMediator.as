@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.view
+package com.borhan.bdpfl.view
 {
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
+	import com.borhan.bdpfl.model.ExternalInterfaceProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;

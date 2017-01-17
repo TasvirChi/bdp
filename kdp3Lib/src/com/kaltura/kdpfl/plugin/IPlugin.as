@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
 	import org.puremvc.as3.interfaces.IFacade;
 	/**
-	 * Interface for the KDP plugins. 
+	 * Interface for the BDP plugins. 
 	 * @author Hila
 	 * 
 	 */	

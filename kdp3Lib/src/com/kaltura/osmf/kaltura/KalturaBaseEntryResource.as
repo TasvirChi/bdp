@@ -1,14 +1,14 @@
-package com.kaltura.osmf.kaltura
+package com.borhan.osmf.borhan
 {
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.borhan.vo.BorhanBaseEntry;
 	
 	import org.osmf.media.MediaResourceBase;
 
-	public class KalturaBaseEntryResource extends MediaResourceBase
+	public class BorhanBaseEntryResource extends MediaResourceBase
 	{
-		public var entry:KalturaBaseEntry;
+		public var entry:BorhanBaseEntry;
 		
-		public function KalturaBaseEntryResource(_entry:KalturaBaseEntry)
+		public function BorhanBaseEntryResource(_entry:BorhanBaseEntry)
 		{
 			entry = _entry;
 		}

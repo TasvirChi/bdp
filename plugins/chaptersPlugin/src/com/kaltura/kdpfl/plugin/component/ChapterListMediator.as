@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.plugin.constants.NotificationStrings;
-	import com.kaltura.kdpfl.plugin.events.ChapterEvent;
+	import com.borhan.bdpfl.plugin.constants.NotificationStrings;
+	import com.borhan.bdpfl.plugin.events.ChapterEvent;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;

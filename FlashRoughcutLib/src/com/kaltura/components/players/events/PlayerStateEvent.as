@@ -1,4 +1,4 @@
-package com.kaltura.components.players.events
+package com.borhan.components.players.events
 {
 	import flash.events.Event;
 
@@ -8,7 +8,7 @@ package com.kaltura.components.players.events
 
 		/**
 		 * the new state the player changed to.
-		 * @see com.kaltura.components.players.states.VideoStates
+		 * @see com.borhan.components.players.states.VideoStates
 		 */
 		public var newState:uint;
 

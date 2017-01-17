@@ -1,5 +1,5 @@
-package com.kaltura.core {
-	import com.kaltura.utils.ObjectUtil;
+package com.borhan.core {
+	import com.borhan.utils.ObjectUtil;
 
 	import flash.utils.describeType;
 	import flash.utils.getDefinitionByName;
@@ -156,7 +156,7 @@ package com.kaltura.core {
 			var cls:Class;
 			try {
 				// try creating the required type
-				cls = getDefinitionByName('com.kaltura.vo.' + objectType) as Class;
+				cls = getDefinitionByName('com.borhan.vo.' + objectType) as Class;
 			}
 			catch (e:Error) {
 				cls = null;
@@ -165,7 +165,7 @@ package com.kaltura.core {
 			if (!cls && fallbackType != '') {
 				// try creating fallback type instead
 				try {
-					cls = getDefinitionByName('com.kaltura.vo.' + fallbackType) as Class;
+					cls = getDefinitionByName('com.borhan.vo.' + fallbackType) as Class;
 				}
 				catch (e:Error) {
 					cls = null;

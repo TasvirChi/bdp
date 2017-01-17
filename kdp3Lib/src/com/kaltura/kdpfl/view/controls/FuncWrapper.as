@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.puremvc.as3.patterns.mediator.MultiMediator;
+	import com.borhan.bdpfl.util.KTextParser;
+	import com.borhan.puremvc.as3.patterns.mediator.MultiMediator;
 	
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;

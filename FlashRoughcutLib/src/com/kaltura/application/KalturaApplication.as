@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,33 +20,33 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.application
+package com.borhan.application
 {
-	//xxx import com.adobe_kalturaprivate.adobe.cairngorm.control.CairngormEventDispatcher;
-	//xxx import com.kaltura.application.events.GetBaseEntryMultiRequestEvent;
-	//xxx import com.kaltura.application.events.InitKalturaApplicationEvent;
-	//xxx import com.kaltura.application.events.LoadPluginsEvent;
-	//xxx import com.kaltura.application.events.LoadRoughcutAssetsDataEvent;
-	//xxx import com.kaltura.application.events.SetEntryThumbnailEvent;
-	import com.kaltura.assets.AssetsFactory;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.context.KalturaApplicationConfig;
-	import com.kaltura.base.context.PartnerInfo;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.base.vo.KalturaPluginInfo;
-	//xxx import com.kaltura.common.business.KalturaServices;
-	//xxx import com.kaltura.control.KalturaController;
-	import com.kaltura.dataStructures.HashMap;
-	import com.kaltura.model.KalturaModelLocator;
-	import com.kaltura.plugin.logic.effects.KEffect;
-	import com.kaltura.plugin.logic.overlays.Overlay;
-	import com.kaltura.plugin.logic.transitions.KTransition;
-	import com.kaltura.plugin.types.transitions.TransitionTypes;
-	import com.kaltura.roughcut.Roughcut;
-	//xxx import com.kaltura.utils.colors.ColorsUtil;
-	import com.kaltura.utils.url.URLProccessing;
-	//import com.kaltura.versions.KMFVersion;
-	import com.kaltura.vo.KalturaBaseEntry;
+	//xxx import com.adobe_borhanprivate.adobe.cairngorm.control.CairngormEventDispatcher;
+	//xxx import com.borhan.application.events.GetBaseEntryMultiRequestEvent;
+	//xxx import com.borhan.application.events.InitBorhanApplicationEvent;
+	//xxx import com.borhan.application.events.LoadPluginsEvent;
+	//xxx import com.borhan.application.events.LoadRoughcutAssetsDataEvent;
+	//xxx import com.borhan.application.events.SetEntryThumbnailEvent;
+	import com.borhan.assets.AssetsFactory;
+	import com.borhan.assets.abstracts.AbstractAsset;
+	import com.borhan.base.context.BorhanApplicationConfig;
+	import com.borhan.base.context.PartnerInfo;
+	import com.borhan.base.types.MediaTypes;
+	import com.borhan.base.vo.BorhanPluginInfo;
+	//xxx import com.borhan.common.business.BorhanServices;
+	//xxx import com.borhan.control.BorhanController;
+	import com.borhan.dataStructures.HashMap;
+	import com.borhan.model.BorhanModelLocator;
+	import com.borhan.plugin.logic.effects.KEffect;
+	import com.borhan.plugin.logic.overlays.Overlay;
+	import com.borhan.plugin.logic.transitions.KTransition;
+	import com.borhan.plugin.types.transitions.TransitionTypes;
+	import com.borhan.roughcut.Roughcut;
+	//xxx import com.borhan.utils.colors.ColorsUtil;
+	import com.borhan.utils.url.URLProccessing;
+	//import com.borhan.versions.KMFVersion;
+	import com.borhan.vo.BorhanBaseEntry;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -59,19 +59,19 @@ package com.kaltura.application
 	import mx.utils.URLUtil;
 
 	/**
-	 * Singleton manager that acts as a Facade to provide unified interface for managing a kaltura application, it's data and preforming operations on roughcuts.
+	 * Singleton manager that acts as a Facade to provide unified interface for managing a borhan application, it's data and preforming operations on roughcuts.
 	 * Flow:
 	 * user application should call the loadServerConfig as the first call, and wait for it to init before calling any other facade operation.
 	 * </p>
-	 * KalturaEvents:
-	 * <p>KalturaApplication manager will dispatch an Result or Fault event for evenry completion of request.
-	 * In order to disable these events use: <code>KalturaApplication.getInstance().dispatchKalturaEvents = false;</code>
+	 * BorhanEvents:
+	 * <p>BorhanApplication manager will dispatch an Result or Fault event for evenry completion of request.
+	 * In order to disable these events use: <code>BorhanApplication.getInstance().dispatchBorhanEvents = false;</code>
 	 * Concurrency:
-	 * <p>KalturaCVE supports concurrency of requests. In order to have multiple asynchronous requests:
+	 * <p>BorhanCVE supports concurrency of requests. In order to have multiple asynchronous requests:
 	 * Whenever concurrency handling is needed, implement the <code>IResponder</code> interface and pass it as the responder parameter to that request.</p>
 	 * @see mx.rpc.IResponder
 	*/
-	public class KalturaApplication extends EventDispatcher
+	public class BorhanApplication extends EventDispatcher
 	{
 		//TODO: Find a way to remove these, we keep them here just for references in the link report.
 		static private var overlayEmbed:Overlay;
@@ -103,8 +103,8 @@ package com.kaltura.application
 		/**
 		 *serve a repository of available transitions.
 		 * @return 		the available transitions.
-		 * @see com.kaltura.plugin.types.transitions.TransitionTypes
-		 * @see com.kaltura.vo.KalturaPluginInfo
+		 * @see com.borhan.plugin.types.transitions.TransitionTypes
+		 * @see com.borhan.vo.BorhanPluginInfo
 		 */
 		//xxx [Bindable]
 		public function get transitions ():ArrayCollection
@@ -123,7 +123,7 @@ package com.kaltura.application
 		/**
 		 *serve a repository of available overlays.
 		 * @return 		the available overlays.
-		 * @see com.kaltura.vo.KalturaPluginInfo
+		 * @see com.borhan.vo.BorhanPluginInfo
 		 */
 		//xxx [Bindable]
 		public function get overlays ():ArrayCollection
@@ -142,7 +142,7 @@ package com.kaltura.application
 		/**
 		 *serve a repository of available text overlays.
 		 * @return 		the available text overlays.
-		 * @see com.kaltura.vo.KalturaPluginInfo
+		 * @see com.borhan.vo.BorhanPluginInfo
 		 */
 		//xxx [Bindable]
 		public function get textOverlays ():ArrayCollection
@@ -161,7 +161,7 @@ package com.kaltura.application
 		/**
 		 *serve a repository of available effects.
 		 * @return 		the available effects.
-		 * @see com.kaltura.vo.KalturaPluginInfo
+		 * @see com.borhan.vo.BorhanPluginInfo
 		 */
 		//xxx [Bindable]
 		public function get effects ():ArrayCollection
@@ -174,11 +174,11 @@ package com.kaltura.application
 		}
 
 		//if set to true, commands will cause manager to dispatch result and fault events.
-		public var dispatchKalturaEvents:Boolean = true;
+		public var dispatchBorhanEvents:Boolean = true;
 
-		//xxx protected var controller:KalturaController;
-		//xxx protected var services:KalturaServices;
-		protected var model:KalturaModelLocator;
+		//xxx protected var controller:BorhanController;
+		//xxx protected var services:BorhanServices;
+		protected var model:BorhanModelLocator;
 
 		//--------------------------------------------------------------------------------------
 		//Facade interfaces:
@@ -190,7 +190,7 @@ package com.kaltura.application
 		public var initPlayerHeight:Number = 480;
 
 		/**
-		 * loads the config.xml file and init the KalturaApplication model.
+		 * loads the config.xml file and init the BorhanApplication model.
 		 * <p>Support concurrency of requests - operation is asynchronous.</p>
 		 * @param config_file_url			the url of the xml config file to load.
 		 * @param partner_info				the partner info of this application, if null, JS function getPartnerInfo.
@@ -198,26 +198,26 @@ package com.kaltura.application
 		 * @param host_code					sets the host server with which the cve application will communicate.
 		 * @param debug_mode				sets debug mode for the application.
 		 * @param responder					for concurrency pass a request reponder.
-		 * @param cdn_host 					the kaltura cdn server domain name.
-		 * @tiptext	initialize the Kaltura application.
+		 * @param cdn_host 					the borhan cdn server domain name.
+		 * @tiptext	initialize the Borhan application.
 		 */
-		public function initKalturaApplication (config_file_url:String, partner_info:PartnerInfo, load_config:Boolean = false,
+		public function initBorhanApplication (config_file_url:String, partner_info:PartnerInfo, load_config:Boolean = false,
 							host_code:String = "1", debug_mode:Boolean = false, responder:IResponder = null,
-							locale_bundle_name:String = "kalturacvf", load_plugins:Boolean = false, cdn_host:String = "", client_tag:String = ''):void
+							locale_bundle_name:String = "borhancvf", load_plugins:Boolean = false, cdn_host:String = "", client_tag:String = ''):void
 		{
-			//xxx controller = new KalturaController ();
-			//xxx services = new KalturaServices ();
-		  	model = KalturaModelLocator.getInstance();
+			//xxx controller = new BorhanController ();
+			//xxx services = new BorhanServices ();
+		  	model = BorhanModelLocator.getInstance();
 			transitionsMap = new HashMap ();
 			overlaysMap = new HashMap ();
 			textOverlaysMap = new HashMap ();
 			effectsMap = new HashMap ();
 			nullAsset = AssetsFactory.create (MediaTypes.NULL, "null", '-1000', "NullAssets", "", "", 0, 0);
-			//trace ("**************\nKalturaCVF build version is: " + KMFVersion.VERSION + "\n**************");
+			//trace ("**************\nBorhanCVF build version is: " + KMFVersion.VERSION + "\n**************");
 			//set the locale bundle name:
-			//KalturaEntryStatus.localeBundleName = locale_bundle_name;
+			//BorhanEntryStatus.localeBundleName = locale_bundle_name;
 			MediaTypes.localeBundleName = locale_bundle_name;
-			//var evt:InitKalturaApplicationEvent = new InitKalturaApplicationEvent (responder, config_file_url, partner_info,
+			//var evt:InitBorhanApplicationEvent = new InitBorhanApplicationEvent (responder, config_file_url, partner_info,
 			//														load_config, host_code, debug_mode, load_plugins, cdn_host, client_tag);
 			//evt.dispatch();
 		}
@@ -242,7 +242,7 @@ package com.kaltura.application
 		 * the framework build version.
 		 * @return 	the compiled build version.
 		 */
-		public function get KalturaCVFVersion ():String
+		public function get BorhanCVFVersion ():String
 		{
 			return "";//KMFVersion.VERSION;
 		}
@@ -260,7 +260,7 @@ package com.kaltura.application
 		/**
 		 *loads and instantiates partner info on the model of this application.
 		 * @param partner_info		the partner info of this application, if null, function will read from JS function getPartnerInfo.
-		 * @see com.kaltura.common.context.PartnerInfo
+		 * @see com.borhan.common.context.PartnerInfo
 		 */
 		public function readPartnerInfo (partner_info:PartnerInfo):void
 		{
@@ -282,9 +282,9 @@ package com.kaltura.application
 		}
 
 		/**
-		 *the partner information for this kaltura application.
+		 *the partner information for this borhan application.
 		 * @return 	the partner info object.
-		 * @see com.kaltura.common.context.PartnerInfo
+		 * @see com.borhan.common.context.PartnerInfo
 		 */
 		//xxx [Inspectable]
 		//xxx [Bindable]
@@ -299,17 +299,17 @@ package com.kaltura.application
 		}
 
 		/**
-		 *the kaltura application configurations.
-		 * @return 	the configuration of this kaltura application (as shown on config.xml).
-		 * @see com.kaltura.common.context.KalturaApplicationConfig
+		 *the borhan application configurations.
+		 * @return 	the configuration of this borhan application (as shown on config.xml).
+		 * @see com.borhan.common.context.BorhanApplicationConfig
 		 */
 		//xxx [Inspectable]
 		//xxx [Bindable]
-		public function get applicationConfig ():KalturaApplicationConfig
+		public function get applicationConfig ():BorhanApplicationConfig
 		{
 			return model.applicationConfig;
 		}
-		public function set applicationConfig (application_config:KalturaApplicationConfig):void
+		public function set applicationConfig (application_config:BorhanApplicationConfig):void
 		{
 			model.applicationConfig = application_config;
 		}
@@ -331,8 +331,8 @@ package com.kaltura.application
 		 * @param entry_id				the id of the roughcut to load it's mediaSources.
 		 * @param entry_version			the version of the roughcut to load it's mediaSources.
 		 * @param streamingMode			determine the serving method used to get the media files.
-         * @see com.kaltura.managers.downloadManagers.types.StreamingModes
-		 * @see com.kaltura.assets.abstracts.AbstractAsset#mediaSource
+         * @see com.borhan.managers.downloadManagers.types.StreamingModes
+		 * @see com.borhan.assets.abstracts.AbstractAsset#mediaSource
 		 */
 		public function loadRoughcutAssetsMediaSource (entry_id:String, entry_version:int, streaming_mode:int = 0):void
 		{
@@ -346,7 +346,7 @@ package com.kaltura.application
 		 * @param validate_sdl			specify if should validate sdl versus getallentries result.
 		 * @param checkPending			if true will check entries for validation (status).
 		 * @param responder				for concurrency pass a request reponder.
-		 * @see com.kaltura.base.types.ListTypes
+		 * @see com.borhan.base.types.ListTypes
 		 */
 		public function loadEntryMultirequest (entry_id:String, entry_version:int = -1, validate_sdl:Boolean = true, checkPending:Boolean = true, responder:IResponder = null):void
 		{
@@ -359,31 +359,31 @@ package com.kaltura.application
 		 */
 		public function showBussyCursor (val:Boolean):void
 		{
-			//xxx KalturaServices.showBussyCursor = val;
+			//xxx BorhanServices.showBussyCursor = val;
 		}
 		//--------------------------------------------------------------------------------------
 		//internal framework managment.
 
 
 		/**
-		 * adds a new KalturaBaseEntry to the model.
-		 * @param kentry		the KalturaBaseEntry to add.
+		 * adds a new BorhanBaseEntry to the model.
+		 * @param kentry		the BorhanBaseEntry to add.
 		 */
-		public function addEntry (kentry:KalturaBaseEntry):void
+		public function addEntry (kentry:BorhanBaseEntry):void
 		{
 			if (model && model.entriesMap)
 				model.entriesMap.put (kentry.id.toLowerCase() + "." + kentry.version.toString(), kentry);
 		}
 
 		/**
-		 * get a KalturaBaseEntry.
-		 * @param entryId	the entry id of the KalturaBaseEntry.
-		 * @return 			the KalturaBaseEntry of the given entry_id.
+		 * get a BorhanBaseEntry.
+		 * @param entryId	the entry id of the BorhanBaseEntry.
+		 * @return 			the BorhanBaseEntry of the given entry_id.
 		 */
-		public function getEntry (entryId:String, entryVersion:String):KalturaBaseEntry
+		public function getEntry (entryId:String, entryVersion:String):BorhanBaseEntry
 		{
 			if (model && model.entriesMap)
-				return model.entriesMap.getValue(entryId.toLowerCase() + "." + entryVersion.toLowerCase()) as KalturaBaseEntry;
+				return model.entriesMap.getValue(entryId.toLowerCase() + "." + entryVersion.toLowerCase()) as BorhanBaseEntry;
 			return null;
 		}
 
@@ -484,7 +484,7 @@ package com.kaltura.application
 			var dirty:Boolean = ptype[2];
 			if (dirty)
 				buildPluginsMap (collection, map, media_type);
-			var pinfo:KalturaPluginInfo = map.getValue(plugin_id) as KalturaPluginInfo;
+			var pinfo:BorhanPluginInfo = map.getValue(plugin_id) as BorhanPluginInfo;
 			if (pinfo) {
 				return pinfo.label;
 			} else {
@@ -508,7 +508,7 @@ package com.kaltura.application
 			var dirty:Boolean = ptype[2];
 			if (dirty)
 				buildPluginsMap (collection, map, media_type);
-			var pinfo:KalturaPluginInfo = map.getValue(plugin_id) as KalturaPluginInfo;
+			var pinfo:BorhanPluginInfo = map.getValue(plugin_id) as BorhanPluginInfo;
 			if (pinfo)
 				return pinfo.thumbnailUrl;
 			else
@@ -526,7 +526,7 @@ package com.kaltura.application
 			var label:String = getPluginLabel (transition_id, MediaTypes.TRANSITION);
 			if (label === null)
 			{
-				var pinfo:KalturaPluginInfo = transitionsMap.getValue(TransitionTypes.NONE) as KalturaPluginInfo;
+				var pinfo:BorhanPluginInfo = transitionsMap.getValue(TransitionTypes.NONE) as BorhanPluginInfo;
 				if (pinfo)
 					return pinfo.label;
 			}
@@ -561,7 +561,7 @@ package com.kaltura.application
 			var i:int = 0;
 			for (; i < N; ++i)
 			{
-				var pinfo:KalturaPluginInfo = plugins.getItemAt(i) as KalturaPluginInfo;
+				var pinfo:BorhanPluginInfo = plugins.getItemAt(i) as BorhanPluginInfo;
 				map.put (pinfo.pluginId, pinfo);
 			}
 			switch (media_type)
@@ -585,7 +585,7 @@ package com.kaltura.application
 		//manager dispatcher:
 		override public function dispatchEvent(event:Event):Boolean
 		{
-			if (dispatchKalturaEvents)
+			if (dispatchBorhanEvents)
 			{
 				return super.dispatchEvent(event);
 			}
@@ -595,18 +595,18 @@ package com.kaltura.application
 
 		//--------------------------------------------------------------------------------------
 		//singleton instance
-		static private var kAppInstance:KalturaApplication;
-		static public function getInstance ():KalturaApplication
+		static private var kAppInstance:BorhanApplication;
+		static public function getInstance ():BorhanApplication
 		{
 			if (kAppInstance == null)
 			{
-				kAppInstance = new KalturaApplication ();
+				kAppInstance = new BorhanApplication ();
 				//xxx ColorsUtil.init();
 			}
 			return kAppInstance;
 		}
 
-		public function KalturaApplication ():void
+		public function BorhanApplication ():void
 		{
 			if (kAppInstance != null)
 				throw (new Error ("Singleton: use getInstance instead."));

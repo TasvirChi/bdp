@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.accessControlProfile
+package com.borhan.commands.accessControlProfile
 {
-		import com.kaltura.vo.KalturaAccessControlProfile;
-	import com.kaltura.delegates.accessControlProfile.AccessControlProfileUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanAccessControlProfile;
+	import com.borhan.delegates.accessControlProfile.AccessControlProfileUpdateDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Update access control profile by id
 	* 
 	**/
-	public class AccessControlProfileUpdate extends KalturaCall
+	public class AccessControlProfileUpdate extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id int
-		* @param accessControlProfile KalturaAccessControlProfile
+		* @param accessControlProfile BorhanAccessControlProfile
 		**/
-		public function AccessControlProfileUpdate( id : int,accessControlProfile : KalturaAccessControlProfile )
+		public function AccessControlProfileUpdate( id : int,accessControlProfile : BorhanAccessControlProfile )
 		{
 			service= 'accesscontrolprofile';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.accessControlProfile
 			var keyValArr : Array = new Array();
 			keyArr.push('id');
 			valueArr.push(id);
-				keyValArr = kalturaObject2Arrays(accessControlProfile, 'accessControlProfile');
+				keyValArr = borhanObject2Arrays(accessControlProfile, 'accessControlProfile');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

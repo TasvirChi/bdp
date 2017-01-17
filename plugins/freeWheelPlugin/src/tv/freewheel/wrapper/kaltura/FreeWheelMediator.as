@@ -1,21 +1,21 @@
-package tv.freewheel.wrapper.kaltura
+package tv.freewheel.wrapper.borhan
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.kdpfl.model.vo.AdMetadataVO;
-	import com.kaltura.kdpfl.plugin.IMidrollSequencePlugin;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
-	import com.kaltura.types.KalturaAdProtocolType;
-	import com.kaltura.vo.KalturaAdCuePoint;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.AdsNotificationTypes;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.bdpfl.model.type.SourceType;
+	import com.borhan.bdpfl.model.vo.AdMetadataVO;
+	import com.borhan.bdpfl.plugin.IMidrollSequencePlugin;
+	import com.borhan.bdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.media.KMediaPlayer;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.osmf.proxy.KSwitchingProxyElement;
+	import com.borhan.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+	import com.borhan.types.BorhanAdProtocolType;
+	import com.borhan.vo.BorhanAdCuePoint;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -41,13 +41,13 @@ package tv.freewheel.wrapper.kaltura
 	import tv.freewheel.ad.behavior.ISlot;
 	import tv.freewheel.logging.Logger;
 	import tv.freewheel.renderer.util.StringUtil;
-	import tv.freewheel.wrapper.kaltura.events.SeekEvent;
+	import tv.freewheel.wrapper.borhan.events.SeekEvent;
 	import tv.freewheel.wrapper.osmf.events.FWScrubEvent;
 	import tv.freewheel.wrapper.osmf.events.FWSlotEvent;
 	import tv.freewheel.wrapper.osmf.slot.FWSlotElement;
 	
 	/**
-	 * Mediator is for interacting with KDP player
+	 * Mediator is for interacting with BDP player
 	 */
 	public class FreeWheelMediator extends SequenceMultiMediator 
 	{
@@ -91,7 +91,7 @@ package tv.freewheel.wrapper.kaltura
 		
 		public function FreeWheelMediator(pluginCode:freeWheelPluginCode, viewComponent:Object = null)
 		{
-			this.logger = Logger.getSimpleLogger('KDPPlugin.Mediator ');
+			this.logger = Logger.getSimpleLogger('BDPPlugin.Mediator ');
 			this.logger.debug('new FreeWheelMediator()');
 			super(viewComponent);
 			this.plugin = pluginCode;
@@ -120,7 +120,7 @@ package tv.freewheel.wrapper.kaltura
 				END_INTERACTIVE_AD,
 				NotificationType.SEQUENCE_ITEM_PLAY_END,
 				UPDATE_VIDEO_ASSET_ID,
-				NotificationType.KDP_READY,
+				NotificationType.BDP_READY,
 				UPDATE_VIDEO_ASSET_DURATION
 			];
 		}
@@ -147,7 +147,7 @@ package tv.freewheel.wrapper.kaltura
 				case NotificationType.HAS_OPENED_FULL_SCREEN:
 				case NotificationType.HAS_CLOSED_FULL_SCREEN:
 				case NotificationType.ROOT_RESIZE:
-				case NotificationType.KDP_READY:
+				case NotificationType.BDP_READY:
 					flash.utils.setTimeout(this.plugin.resize, 1);
 					break;
 				case NotificationType.PLAYER_STATE_CHANGE:
@@ -177,10 +177,10 @@ package tv.freewheel.wrapper.kaltura
 					break;
 				case NotificationType.AD_OPPORTUNITY:
 					var adContext : String = notification.getBody().context;
-					var cuePoint:KalturaAdCuePoint = notification.getBody().cuePoint as KalturaAdCuePoint;
-					if (this.plugin.useKalturaTemporalSlots || cuePoint[freeWheelPluginCode.FROM_FREEWHEEL])
+					var cuePoint:BorhanAdCuePoint = notification.getBody().cuePoint as BorhanAdCuePoint;
+					if (this.plugin.useBorhanTemporalSlots || cuePoint[freeWheelPluginCode.FROM_FREEWHEEL])
 					{
-						if (cuePoint.protocolType == KalturaAdProtocolType.CUSTOM) {
+						if (cuePoint.protocolType == BorhanAdProtocolType.CUSTOM) {
 							if (adContext== SequenceContextType.PRE)
 								_sequenceProxy.vo.preSequenceArr.push(plugin);
 							else if (adContext== SequenceContextType.POST)
@@ -722,7 +722,7 @@ package tv.freewheel.wrapper.kaltura
 		}
 		private function get shouldWaitForCuePoints():Boolean{
 		//	var configProxy:ConfigProxy = this.facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			return  plugin.useKalturaTemporalSlots && configProxy && configProxy.vo.flashvars.getCuePointsData && !this.entryCuePoints;
+			return  plugin.useBorhanTemporalSlots && configProxy && configProxy.vo.flashvars.getCuePointsData && !this.entryCuePoints;
 		}
 		
 		private function get configProxy():ConfigProxy

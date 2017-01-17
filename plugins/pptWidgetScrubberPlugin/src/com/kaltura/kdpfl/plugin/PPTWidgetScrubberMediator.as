@@ -1,17 +1,17 @@
-package com.kaltura.kdpfl.plugin {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.baseEntry.BaseEntryGet;
-	import com.kaltura.commands.baseEntry.BaseEntryUpdate;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.util.URLProccessing;
-	import com.kaltura.kdpfl.view.controls.ScrubberMediator;
-	import com.kaltura.vo.KalturaDataEntry;
+package com.borhan.bdpfl.plugin {
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.baseEntry.BaseEntryGet;
+	import com.borhan.commands.baseEntry.BaseEntryUpdate;
+	import com.borhan.errors.BorhanError;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.ApplicationFacade;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.util.URLProccessing;
+	import com.borhan.bdpfl.view.controls.ScrubberMediator;
+	import com.borhan.vo.BorhanDataEntry;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;

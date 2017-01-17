@@ -5,13 +5,13 @@
  * @playerversion Flash 9.0.28.0
  * @author Dan Bacon / www.baconoppenheim.com
  */
- package com.kaltura.kdpfl.view.controls
+ package com.borhan.bdpfl.view.controls
 {
 	
-import com.kaltura.kdpfl.model.SequenceProxy;
-import com.kaltura.kdpfl.model.type.NotificationType;
-import com.kaltura.puremvc.as3.patterns.mediator.MultiMediator;
-import com.kaltura.vo.KalturaPlayableEntry;
+import com.borhan.bdpfl.model.SequenceProxy;
+import com.borhan.bdpfl.model.type.NotificationType;
+import com.borhan.puremvc.as3.patterns.mediator.MultiMediator;
+import com.borhan.vo.BorhanPlayableEntry;
 
 import org.puremvc.as3.interfaces.INotification;
 
@@ -51,7 +51,7 @@ public class TimerMediator extends MultiMediator
 
 			case NotificationType.ENTRY_READY:
 				var entry:object = note.getBody();
-				value = entry is KalturaPlayableEntry ? KalturaPlayableEntry(entry).duration : 0;  
+				value = entry is BorhanPlayableEntry ? BorhanPlayableEntry(entry).duration : 0;  
 				_entryDuration = value;
 				timer.setDuration( value );
 				timer.setTime( 0 );

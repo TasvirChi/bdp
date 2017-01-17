@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.model.strings
+package com.borhan.bdpfl.model.strings
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.ConfigProxy;
 	
 	import org.puremvc.as3.interfaces.IFacade;
 	
 	/**
-	 * Class MessageStrings holds constants for messages displayed by the KDP.
+	 * Class MessageStrings holds constants for messages displayed by the BDP.
 	 * 
 	 */		
 	public class MessageStrings
@@ -16,7 +16,7 @@ package com.kaltura.kdpfl.model.strings
 
 		/**
 		 * Function initiates the class. 
-		 * @param o - the KDP flashvars.
+		 * @param o - the BDP flashvars.
 		 * 
 		 */		
 		public static function init(o:Object):void {
@@ -26,7 +26,7 @@ package com.kaltura.kdpfl.model.strings
 		
 
 		/**
-		 * The function returns the string of a KDP message according to a particular key.
+		 * The function returns the string of a BDP message according to a particular key.
 		 * @param key The key of the desired message string.
 		 * @return The function returns the required message string according to the key that was passed.
 		 * 

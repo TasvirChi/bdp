@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.controls.KButton;
 	
 	import fl.core.UIComponent;
 	

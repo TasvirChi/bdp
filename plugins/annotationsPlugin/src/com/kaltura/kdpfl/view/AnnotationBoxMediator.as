@@ -1,24 +1,24 @@
-package com.kaltura.kdpfl.view {
+package com.borhan.bdpfl.view {
 
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.annotation.AnnotationAdd;
-	import com.kaltura.commands.annotation.AnnotationGet;
-	import com.kaltura.commands.annotation.AnnotationList;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.vo.MediaVO;
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.view.events.AnnotationEvent;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.kdpfl.view.strings.AnnotationStrings;
-	import com.kaltura.kdpfl.view.strings.Notifications;
-	import com.kaltura.vo.KalturaAnnotation;
-	import com.kaltura.vo.KalturaAnnotationFilter;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.MultiRequest;
+	import com.borhan.commands.annotation.AnnotationAdd;
+	import com.borhan.commands.annotation.AnnotationGet;
+	import com.borhan.commands.annotation.AnnotationList;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.vo.MediaVO;
+	import com.borhan.bdpfl.util.KAstraAdvancedLayoutUtil;
+	import com.borhan.bdpfl.view.events.AnnotationEvent;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.bdpfl.view.strings.AnnotationStrings;
+	import com.borhan.bdpfl.view.strings.Notifications;
+	import com.borhan.vo.BorhanAnnotation;
+	import com.borhan.vo.BorhanAnnotationFilter;
 	import com.yahoo.astra.fl.controls.containerClasses.AutoSizeButton;
 	
 	import fl.core.UIComponent;
@@ -64,7 +64,7 @@ package com.kaltura.kdpfl.view {
 		/**
 		 * Saved annotations shared object prefix.
 		 */
-		public static const ANNOTATIONS_SO_PREFIX:String = "KalturaSavedAnnotations_";
+		public static const ANNOTATIONS_SO_PREFIX:String = "BorhanSavedAnnotations_";
 		
 		/**
 		 * Saves current displaying annotations, they will be removed before editing, and added back afterwards
@@ -160,7 +160,7 @@ package com.kaltura.kdpfl.view {
 
 				case Notifications.SUBMIT_FEEDBACK_SESSION:
 
-					var kAnnotationArray:Array = _pluginCode.annotationsBox.annotationsAsKalturaAnnotationArray;
+					var kAnnotationArray:Array = _pluginCode.annotationsBox.annotationsAsBorhanAnnotationArray;
 
 					if (kAnnotationArray && kAnnotationArray.length != 0 && _entryId && _entryId != "" && _entryId != "-1") {
 						submitFeedbackSession(kAnnotationArray);
@@ -210,18 +210,18 @@ package com.kaltura.kdpfl.view {
 
 				case Notifications.LOAD_FEEDBACK_SESSION:
 					_pluginCode.annotationsBox.reset();
-					if (_pluginCode.submissionTarget == AnnotationStrings.KALTURA) {
+					if (_pluginCode.submissionTarget == AnnotationStrings.BORHAN) {
 
 						_pluginCode.userMode = AnnotationStrings.CANDIDATE;
 
 						_sessionId = notification.getBody().sessionId;
 
-						var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+						var kc:BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient;
 
 						var sessionParentRequest:AnnotationGet = new AnnotationGet(_sessionId);
 
-						sessionParentRequest.addEventListener(KalturaEvent.COMPLETE, onParentAcquired);
-						sessionParentRequest.addEventListener(KalturaEvent.FAILED, onParentFeedbackFailed);
+						sessionParentRequest.addEventListener(BorhanEvent.COMPLETE, onParentAcquired);
+						sessionParentRequest.addEventListener(BorhanEvent.FAILED, onParentFeedbackFailed);
 						kc.post(sessionParentRequest);
 					}
 					else {
@@ -377,12 +377,12 @@ package com.kaltura.kdpfl.view {
 		
 		/**
 		 * Function is in charge of loading the entry associated with the loaded feedback session.
-		 * @param e - KalturaEvent
+		 * @param e - BorhanEvent
 		 *
 		 */
 		protected function onParentAcquired(data:Object):void {
-			if ((data is KalturaEvent) && _entryId != (data.data as KalturaAnnotation).entryId) {
-				sendNotification(NotificationType.CHANGE_MEDIA, {entryId: (data.data as KalturaAnnotation).entryId});
+			if ((data is BorhanEvent) && _entryId != (data.data as BorhanAnnotation).entryId) {
+				sendNotification(NotificationType.CHANGE_MEDIA, {entryId: (data.data as BorhanAnnotation).entryId});
 			}
 			else if ((data is XML) && _entryId != data.@status[0].toString()) {
 				var feedbackSessionStatus:String = data.@status[0].toString();
@@ -404,7 +404,7 @@ package com.kaltura.kdpfl.view {
 		 * @param e
 		 *
 		 */
-		protected function onParentFeedbackFailed(e:KalturaEvent):void {
+		protected function onParentFeedbackFailed(e:BorhanEvent):void {
 			trace("feedback session load failed");
 			sendNotification(NotificationType.ALERT, {message: AnnotationStrings.INVALID_FEEDBACK_SESSION_MESSAGE, title: AnnotationStrings.INVALID_FEEDBACK_SESSION_TITLE});
 		}
@@ -427,7 +427,7 @@ package com.kaltura.kdpfl.view {
 			if (e.currentTarget is AutoSizeButton) {
 				if ((e.currentTarget as AutoSizeButton).label == "Yes" && _annotationToDelete) {
 					_pluginCode.annotationsBox.removeAnnotation(_annotationToDelete);
-					if (_pluginCode.submissionTarget == AnnotationStrings.KALTURA) {
+					if (_pluginCode.submissionTarget == AnnotationStrings.BORHAN) {
 						sendNotification(Notifications.ANNOTATION_DELETED, {annotation: _annotationToDelete});
 					}
 					else {
@@ -449,7 +449,7 @@ package com.kaltura.kdpfl.view {
 		protected function onAnnotationEdit(e:AnnotationEvent):void {
 			//fix bug: we cannot pass current edited annotation to externalInterface, so we create a copy
 			//////////////////////////////////////////////////////////////////////////
-			var annotationCopy:Annotation = new Annotation(e.annotation.viewMode,e.annotation.inTime, e.annotation.annotationText, e.annotation.entryId, e.annotation.kalturaAnnotation);
+			var annotationCopy:Annotation = new Annotation(e.annotation.viewMode,e.annotation.inTime, e.annotation.annotationText, e.annotation.entryId, e.annotation.borhanAnnotation);
 			sendNotification(Notifications.EDIT_ANNOTATION, {annotation: annotationCopy});
 			//////////////////////////////////////////////////////////////////////////
 			
@@ -584,48 +584,48 @@ package com.kaltura.kdpfl.view {
 		/**
 		 * Function contains the logic which submits the annotations currently found in the
 		 * annotations box and submits it to the server as a feedback session.
-		 * @param kalturaAnnotationsArray - the array of the annotations currently found in the annotations box.
+		 * @param borhanAnnotationsArray - the array of the annotations currently found in the annotations box.
 		 *
 		 */
-		protected function submitFeedbackSession(kalturaAnnotationsArray:Array):void {
-			if (_pluginCode.submissionTarget == AnnotationStrings.KALTURA) {
-				var kalturaClient:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+		protected function submitFeedbackSession(borhanAnnotationsArray:Array):void {
+			if (_pluginCode.submissionTarget == AnnotationStrings.BORHAN) {
+				var borhanClient:BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient;
 
-				var parentAnnotation:KalturaAnnotation = new KalturaAnnotation();
+				var parentAnnotation:BorhanAnnotation = new BorhanAnnotation();
 				parentAnnotation.entryId = _entryId;
 
 				var createParentAnnotation:AnnotationAdd = new AnnotationAdd(parentAnnotation);
 
-				createParentAnnotation.addEventListener(KalturaEvent.COMPLETE, onParentAnnotationCreated);
-				createParentAnnotation.addEventListener(KalturaEvent.FAILED, onCreateParentAnnotationFailed);
-				kalturaClient.post(createParentAnnotation);
+				createParentAnnotation.addEventListener(BorhanEvent.COMPLETE, onParentAnnotationCreated);
+				createParentAnnotation.addEventListener(BorhanEvent.FAILED, onCreateParentAnnotationFailed);
+				borhanClient.post(createParentAnnotation);
 			}
 			else {
 				onFeedbackSaved(null);
 			}
 
-			function onParentAnnotationCreated(e:KalturaEvent):void {
-				var parentId:String = (e.data as KalturaAnnotation).id;
+			function onParentAnnotationCreated(e:BorhanEvent):void {
+				var parentId:String = (e.data as BorhanAnnotation).id;
 				var submitAnnotationsMultiRequest:MultiRequest = new MultiRequest();
 				var addAnnotationToParent:AnnotationAdd;
 
-				for (var i:int = 0; i < kalturaAnnotationsArray.length; i++) {
-					var currentAnnotationToAdd:KalturaAnnotation = kalturaAnnotationsArray[i];
+				for (var i:int = 0; i < borhanAnnotationsArray.length; i++) {
+					var currentAnnotationToAdd:BorhanAnnotation = borhanAnnotationsArray[i];
 					currentAnnotationToAdd.parentId = parentId;
 					addAnnotationToParent = new AnnotationAdd(currentAnnotationToAdd);
 					submitAnnotationsMultiRequest.addAction(addAnnotationToParent);
 				}
-				submitAnnotationsMultiRequest.addEventListener(KalturaEvent.COMPLETE, onFeedbackSaved);
-				submitAnnotationsMultiRequest.addEventListener(KalturaEvent.FAILED, onFeedbackSaveFailed);
-				kalturaClient.post(submitAnnotationsMultiRequest);
+				submitAnnotationsMultiRequest.addEventListener(BorhanEvent.COMPLETE, onFeedbackSaved);
+				submitAnnotationsMultiRequest.addEventListener(BorhanEvent.FAILED, onFeedbackSaveFailed);
+				borhanClient.post(submitAnnotationsMultiRequest);
 			}
 
-			function onCreateParentAnnotationFailed(e:KalturaEvent):void {
+			function onCreateParentAnnotationFailed(e:BorhanEvent):void {
 				sendNotification(Notifications.FEEDBACK_SESSION_SUBMITTED, {error: e.error.errorMsg});
 				trace("failed");
 			}
 
-			function onFeedbackSaved(e:KalturaEvent = null):void {
+			function onFeedbackSaved(e:BorhanEvent = null):void {
 				trace("Feedback saved successfully");
 				if (e) {
 					sendNotification(Notifications.FEEDBACK_SESSION_SUBMITTED, {notificationId: e.data[0].parentId});
@@ -642,7 +642,7 @@ package com.kaltura.kdpfl.view {
 
 			}
 
-			function onFeedbackSaveFailed(e:KalturaEvent):void {
+			function onFeedbackSaveFailed(e:BorhanEvent):void {
 				sendNotification(Notifications.FEEDBACK_SESSION_SUBMITTED, {error: e.error.errorMsg});
 				trace("Feedback not saved");
 			}
@@ -672,27 +672,27 @@ package com.kaltura.kdpfl.view {
 
 
 		protected function loadFeedbackSession():void {
-			var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+			var kc:BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient;
 
-			var filterAnnotationsList:KalturaAnnotationFilter = new KalturaAnnotationFilter();
+			var filterAnnotationsList:BorhanAnnotationFilter = new BorhanAnnotationFilter();
 			filterAnnotationsList.parentIdEqual = _sessionId;
 			var getAnnotationsList:AnnotationList = new AnnotationList(filterAnnotationsList);
 
-			getAnnotationsList.addEventListener(KalturaEvent.COMPLETE, onSessionsAnnotationsLoaded);
-			getAnnotationsList.addEventListener(KalturaEvent.FAILED, onSessionAnnotationsFailed);
+			getAnnotationsList.addEventListener(BorhanEvent.COMPLETE, onSessionsAnnotationsLoaded);
+			getAnnotationsList.addEventListener(BorhanEvent.FAILED, onSessionAnnotationsFailed);
 
 			kc.post(getAnnotationsList);
 		}
 
 
-		protected function onSessionsAnnotationsLoaded(e:KalturaEvent):void {
+		protected function onSessionsAnnotationsLoaded(e:BorhanEvent):void {
 			if (!_pluginCode.showAnnotationsPlugin) {
 				_pluginCode.showAnnotationsPlugin = true;
 			}
-			var kalturaAnnotationList:Array = e.data.objects as Array;
-			if (kalturaAnnotationList && kalturaAnnotationList.length) {
-				for (var i:int = 0; i < kalturaAnnotationList.length; i++) {
-					var annotations2Add:Annotation = new Annotation(AnnotationStrings.VIEW_MODE, -1, "", "", kalturaAnnotationList[i] as KalturaAnnotation, _pluginCode.annotationsBox.initialTabIndex);
+			var borhanAnnotationList:Array = e.data.objects as Array;
+			if (borhanAnnotationList && borhanAnnotationList.length) {
+				for (var i:int = 0; i < borhanAnnotationList.length; i++) {
+					var annotations2Add:Annotation = new Annotation(AnnotationStrings.VIEW_MODE, -1, "", "", borhanAnnotationList[i] as BorhanAnnotation, _pluginCode.annotationsBox.initialTabIndex);
 					_pluginCode.annotationsBox.addAnnotation(annotations2Add);
 				}
 
@@ -701,7 +701,7 @@ package com.kaltura.kdpfl.view {
 		}
 
 
-		protected function onSessionAnnotationsFailed(e:KalturaEvent):void {
+		protected function onSessionAnnotationsFailed(e:BorhanEvent):void {
 
 		}
 

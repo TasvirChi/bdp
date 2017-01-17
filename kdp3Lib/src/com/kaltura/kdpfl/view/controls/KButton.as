@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.style.FontManager;
-	import com.kaltura.kdpfl.style.TextFormatManager;
-	import com.kaltura.kdpfl.util.KColorUtil;
+	import com.borhan.bdpfl.component.IComponent;
+	import com.borhan.bdpfl.style.FontManager;
+	import com.borhan.bdpfl.style.TextFormatManager;
+	import com.borhan.bdpfl.util.KColorUtil;
 	import com.yahoo.astra.fl.controls.containerClasses.AutoSizeButton;
 	
 	import fl.events.ComponentEvent;
@@ -19,7 +19,7 @@ package com.kaltura.kdpfl.view.controls
 	import flash.utils.getQualifiedClassName;
 	
 	/**
-	 * Class KButton is the default class for a button in the KDP GUI.
+	 * Class KButton is the default class for a button in the BDP GUI.
 	 * @author Eitan
 	 * 
 	 */	

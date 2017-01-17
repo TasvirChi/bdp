@@ -4,7 +4,7 @@
 */
 package org.puremvc.as3.patterns.observer
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.controls.KTrace;
 	
 	import org.puremvc.as3.interfaces.*;
 

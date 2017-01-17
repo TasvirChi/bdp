@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,22 +25,22 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.kalturaInternalToolsSystemHelper
+package com.borhan.commands.borhanInternalToolsSystemHelper
 {
-	import com.kaltura.delegates.kalturaInternalToolsSystemHelper.KalturaInternalToolsSystemHelperGetRemoteAddressDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.borhan.delegates.borhanInternalToolsSystemHelper.BorhanInternalToolsSystemHelperGetRemoteAddressDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	**/
-	public class KalturaInternalToolsSystemHelperGetRemoteAddress extends KalturaCall
+	public class BorhanInternalToolsSystemHelperGetRemoteAddress extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		**/
-		public function KalturaInternalToolsSystemHelperGetRemoteAddress(  )
+		public function BorhanInternalToolsSystemHelperGetRemoteAddress(  )
 		{
-			service= 'kalturainternaltools_kalturainternaltoolssystemhelper';
+			service= 'borhaninternaltools_borhaninternaltoolssystemhelper';
 			action= 'getRemoteAddress';
 
 			var keyArr : Array = new Array();
@@ -52,7 +52,7 @@ package com.kaltura.commands.kalturaInternalToolsSystemHelper
 		override public function execute() : void
 		{
 			setRequestArgument('filterFields', filterFields);
-			delegate = new KalturaInternalToolsSystemHelperGetRemoteAddressDelegate( this , config );
+			delegate = new BorhanInternalToolsSystemHelperGetRemoteAddressDelegate( this , config );
 		}
 	}
 }

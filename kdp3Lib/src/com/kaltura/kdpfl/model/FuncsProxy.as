@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.model
+package com.borhan.bdpfl.model
 {
-	import com.kaltura.kdpfl.util.DateTimeUtils;
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.util.DateTimeUtils;
+	import com.borhan.bdpfl.util.KTextParser;
+	import com.borhan.bdpfl.view.controls.KTrace;
 	
 	import flash.external.ExternalInterface;
 	import flash.net.URLRequest;
@@ -11,7 +11,7 @@ package com.kaltura.kdpfl.model
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
 	/**
-	 *  The class FuncsProxy contains general functions used by the KDP. It can be accessed by the alias
+	 *  The class FuncsProxy contains general functions used by the BDP. It can be accessed by the alias
 	 * Functor.globalsFunctionsObject .
 	 * 
 	 */	
@@ -161,7 +161,7 @@ package com.kaltura.kdpfl.model
 		}
 		
 		/**
-		 * The function calls an external js function and injects it with parameters from within the KDP. 
+		 * The function calls an external js function and injects it with parameters from within the BDP. 
 		 * @param args the arguments passed to the js function.
 		 * 
 		 */		
@@ -261,13 +261,13 @@ package com.kaltura.kdpfl.model
 		
 		
 		/**
-		 * KDP 3 Provide a way to set any data attribute using this function from JS
+		 * BDP 3 Provide a way to set any data attribute using this function from JS
 		 * @param componentName
 		 * @param prop
 		 * @param newValue
 		 * 
 		 */		
-		public function setKDPAttribute(componentName : String , prop : String , newValue : String):void
+		public function setBDPAttribute(componentName : String , prop : String , newValue : String):void
 		{
 			var site : Object =  KTextParser.evaluate(facade['bindObject'], '{' + componentName + '}');
 			KTextParser.bind( site , prop , facade['bindObject'], newValue);

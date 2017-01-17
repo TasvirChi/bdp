@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>KDP3</name>
+	<name>BDP3</name>
 	<comment></comment>
 	<projects>
-		<project>kdp3Lib</project>
+		<project>bdp3Lib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

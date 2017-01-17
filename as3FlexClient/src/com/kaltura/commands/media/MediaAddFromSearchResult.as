@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,27 +25,27 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.media
+package com.borhan.commands.media
 {
-		import com.kaltura.vo.KalturaMediaEntry;
-		import com.kaltura.vo.KalturaSearchResult;
-	import com.kaltura.delegates.media.MediaAddFromSearchResultDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanMediaEntry;
+		import com.borhan.vo.BorhanSearchResult;
+	import com.borhan.delegates.media.MediaAddFromSearchResultDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Adds new media entry by importing the media file from a search provider.
 	* This action should be used with the search service result.
 	* 
 	**/
-	public class MediaAddFromSearchResult extends KalturaCall
+	public class MediaAddFromSearchResult extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param mediaEntry KalturaMediaEntry
-		* @param searchResult KalturaSearchResult
+		* @param mediaEntry BorhanMediaEntry
+		* @param searchResult BorhanSearchResult
 		**/
-		public function MediaAddFromSearchResult( mediaEntry : KalturaMediaEntry=null,searchResult : KalturaSearchResult=null )
+		public function MediaAddFromSearchResult( mediaEntry : BorhanMediaEntry=null,searchResult : BorhanSearchResult=null )
 		{
 			service= 'media';
 			action= 'addFromSearchResult';
@@ -54,12 +54,12 @@ package com.kaltura.commands.media
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (mediaEntry) { 
-				keyValArr = kalturaObject2Arrays(mediaEntry, 'mediaEntry');
+				keyValArr = borhanObject2Arrays(mediaEntry, 'mediaEntry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (searchResult) { 
-				keyValArr = kalturaObject2Arrays(searchResult, 'searchResult');
+				keyValArr = borhanObject2Arrays(searchResult, 'searchResult');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

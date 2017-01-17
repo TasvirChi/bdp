@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.style
+package com.borhan.bdpfl.style
 {
-	import com.kaltura.kdpfl.events.StyleEvent;
-	import com.kaltura.kdpfl.util.KdpEmbeddedData;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.events.StyleEvent;
+	import com.borhan.bdpfl.util.BdpEmbeddedData;
+	import com.borhan.bdpfl.view.controls.KTrace;
 	
 	import flash.display.Loader;
 	import flash.events.ErrorEvent;
@@ -68,7 +68,7 @@ package com.kaltura.kdpfl.style
 				_context.checkPolicyFile = true;
 			}
 			
-			var ba:ByteArray = KdpEmbeddedData.getData(url);
+			var ba:ByteArray = BdpEmbeddedData.getData(url);
 			if (ba) // if bytes are supplied, then load the bytes instead of loading from the url.
 			{
 				_context.securityDomain = null;

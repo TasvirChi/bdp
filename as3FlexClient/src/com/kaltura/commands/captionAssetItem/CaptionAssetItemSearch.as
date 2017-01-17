@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,28 +25,28 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.captionAssetItem
+package com.borhan.commands.captionAssetItem
 {
-		import com.kaltura.vo.KalturaBaseEntryFilter;
-		import com.kaltura.vo.KalturaCaptionAssetItemFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.captionAssetItem.CaptionAssetItemSearchDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanBaseEntryFilter;
+		import com.borhan.vo.BorhanCaptionAssetItemFilter;
+		import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.delegates.captionAssetItem.CaptionAssetItemSearchDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Search caption asset items by filter, pager and free text
 	* 
 	**/
-	public class CaptionAssetItemSearch extends KalturaCall
+	public class CaptionAssetItemSearch extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param entryFilter KalturaBaseEntryFilter
-		* @param captionAssetItemFilter KalturaCaptionAssetItemFilter
-		* @param captionAssetItemPager KalturaFilterPager
+		* @param entryFilter BorhanBaseEntryFilter
+		* @param captionAssetItemFilter BorhanCaptionAssetItemFilter
+		* @param captionAssetItemPager BorhanFilterPager
 		**/
-		public function CaptionAssetItemSearch( entryFilter : KalturaBaseEntryFilter=null,captionAssetItemFilter : KalturaCaptionAssetItemFilter=null,captionAssetItemPager : KalturaFilterPager=null )
+		public function CaptionAssetItemSearch( entryFilter : BorhanBaseEntryFilter=null,captionAssetItemFilter : BorhanCaptionAssetItemFilter=null,captionAssetItemPager : BorhanFilterPager=null )
 		{
 			service= 'captionsearch_captionassetitem';
 			action= 'search';
@@ -55,17 +55,17 @@ package com.kaltura.commands.captionAssetItem
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (entryFilter) { 
-				keyValArr = kalturaObject2Arrays(entryFilter, 'entryFilter');
+				keyValArr = borhanObject2Arrays(entryFilter, 'entryFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (captionAssetItemFilter) { 
-				keyValArr = kalturaObject2Arrays(captionAssetItemFilter, 'captionAssetItemFilter');
+				keyValArr = borhanObject2Arrays(captionAssetItemFilter, 'captionAssetItemFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (captionAssetItemPager) { 
-				keyValArr = kalturaObject2Arrays(captionAssetItemPager, 'captionAssetItemPager');
+				keyValArr = borhanObject2Arrays(captionAssetItemPager, 'captionAssetItemPager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.media
+package com.borhan.commands.media
 {
-		import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.delegates.media.MediaAddFromUrlDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanMediaEntry;
+	import com.borhan.delegates.media.MediaAddFromUrlDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Adds new media entry by importing an HTTP or FTP URL.
 	* The entry will be queued for import and then for conversion.
 	* 
 	**/
-	public class MediaAddFromUrl extends KalturaCall
+	public class MediaAddFromUrl extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param mediaEntry KalturaMediaEntry
+		* @param mediaEntry BorhanMediaEntry
 		* @param url String
 		**/
-		public function MediaAddFromUrl( mediaEntry : KalturaMediaEntry,url : String )
+		public function MediaAddFromUrl( mediaEntry : BorhanMediaEntry,url : String )
 		{
 			service= 'media';
 			action= 'addFromUrl';
@@ -52,7 +52,7 @@ package com.kaltura.commands.media
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(mediaEntry, 'mediaEntry');
+				keyValArr = borhanObject2Arrays(mediaEntry, 'mediaEntry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			keyArr.push('url');

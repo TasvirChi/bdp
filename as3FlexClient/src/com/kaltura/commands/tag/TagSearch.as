@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.tag
+package com.borhan.commands.tag
 {
-		import com.kaltura.vo.KalturaTagFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.tag.TagSearchDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanTagFilter;
+		import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.delegates.tag.TagSearchDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	**/
-	public class TagSearch extends KalturaCall
+	public class TagSearch extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param tagFilter KalturaTagFilter
-		* @param pager KalturaFilterPager
+		* @param tagFilter BorhanTagFilter
+		* @param pager BorhanFilterPager
 		**/
-		public function TagSearch( tagFilter : KalturaTagFilter,pager : KalturaFilterPager=null )
+		public function TagSearch( tagFilter : BorhanTagFilter,pager : BorhanFilterPager=null )
 		{
 			service= 'tagsearch_tag';
 			action= 'search';
@@ -50,11 +50,11 @@ package com.kaltura.commands.tag
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(tagFilter, 'tagFilter');
+				keyValArr = borhanObject2Arrays(tagFilter, 'tagFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = borhanObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

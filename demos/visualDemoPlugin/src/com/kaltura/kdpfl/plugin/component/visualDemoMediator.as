@@ -1,5 +1,5 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.kdpfl.model.type.NotificationType;
+package com.borhan.bdpfl.plugin.component {
+	import com.borhan.bdpfl.model.type.NotificationType;
 	
 	import flash.display.DisplayObject;
 	
@@ -8,7 +8,7 @@ package com.kaltura.kdpfl.plugin.component {
 
 	/**
 	 * This class is the mediator for this plugin. it mediates between this plugin and the 
-	 * the KDP application according to the PureMVC framework.
+	 * the BDP application according to the PureMVC framework.
 	 * @author Eitan
 	 */
 	public class visualDemoMediator extends Mediator {
@@ -39,8 +39,8 @@ package com.kaltura.kdpfl.plugin.component {
 		override public function listNotificationInterests():Array {
 			var notify:Array = [NotificationType.PLAYER_UPDATE_PLAYHEAD,
 								NotificationType.VOLUME_CHANGED,
-								NotificationType.KDP_EMPTY,
-								NotificationType.KDP_READY
+								NotificationType.BDP_EMPTY,
+								NotificationType.BDP_READY
 			];
 			return notify;
 		}
@@ -62,9 +62,9 @@ package com.kaltura.kdpfl.plugin.component {
 				case NotificationType.VOLUME_CHANGED:
 					trace("new volume value is : " , data);
 				break;
-				case NotificationType.KDP_EMPTY:
+				case NotificationType.BDP_EMPTY:
 				break;
-				case NotificationType.KDP_READY:
+				case NotificationType.BDP_READY:
 				break;
 			}
 		}

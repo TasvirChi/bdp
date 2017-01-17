@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaCategoryUserProviderFilter;
+	import com.borhan.vo.BorhanCategoryUserProviderFilter;
 
-	import com.kaltura.vo.KalturaStringValue;
+	import com.borhan.vo.BorhanStringValue;
 
-	import com.kaltura.vo.KalturaEmailNotificationRecipientProvider;
+	import com.borhan.vo.BorhanEmailNotificationRecipientProvider;
 
 	[Bindable]
-	public dynamic class KalturaEmailNotificationCategoryRecipientProvider extends KalturaEmailNotificationRecipientProvider
+	public dynamic class BorhanEmailNotificationCategoryRecipientProvider extends BorhanEmailNotificationRecipientProvider
 	{
 		/**
 		* The ID of the category whose subscribers should receive the email notification.
 		* 
 		**/
-		public var categoryId : KalturaStringValue;
+		public var categoryId : BorhanStringValue;
 
 		/**
 		**/
-		public var categoryUserFilter : KalturaCategoryUserProviderFilter;
+		public var categoryUserFilter : BorhanCategoryUserProviderFilter;
 
 		override public function getUpdateableParamKeys():Array
 		{

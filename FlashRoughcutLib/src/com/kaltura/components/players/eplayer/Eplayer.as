@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,30 +20,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.components.players.eplayer
+package com.borhan.components.players.eplayer
 {
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.components.players.events.PlayerBufferEvent;
-	import com.kaltura.components.players.events.PlayerEvent;
-	import com.kaltura.components.players.events.PlayerStateEvent;
-	import com.kaltura.components.players.states.BufferStatuses;
-	import com.kaltura.components.players.states.VideoStates;
-	import com.kaltura.components.players.vo.DelayedInsertVO;
-	import com.kaltura.managers.downloadManagers.types.StreamingModes;
-	import com.kaltura.net.downloading.LoadingStatus;
-	import com.kaltura.net.interfaces.IMediaSource;
-	import com.kaltura.net.nonStreaming.SWFLoaderMediaSource;
-	import com.kaltura.net.streaming.ExNetStream;
-	import com.kaltura.net.streaming.events.ExNetStreamEvent;
-	import com.kaltura.plugin.layer.LayersContainer;
-	import com.kaltura.plugin.logic.Plugin;
-	import com.kaltura.plugin.logic.effects.KEffect;
-	import com.kaltura.plugin.logic.overlays.Overlay;
-	import com.kaltura.plugin.logic.transitions.KTransition;
-	import com.kaltura.roughcut.Roughcut;
-	import com.kaltura.roughcut.soundtrack.AudioPlayPolicy;
-	import com.kaltura.plugin.utils.fonts.*;
+	import com.borhan.assets.abstracts.AbstractAsset;
+	import com.borhan.base.types.MediaTypes;
+	import com.borhan.components.players.events.PlayerBufferEvent;
+	import com.borhan.components.players.events.PlayerEvent;
+	import com.borhan.components.players.events.PlayerStateEvent;
+	import com.borhan.components.players.states.BufferStatuses;
+	import com.borhan.components.players.states.VideoStates;
+	import com.borhan.components.players.vo.DelayedInsertVO;
+	import com.borhan.managers.downloadManagers.types.StreamingModes;
+	import com.borhan.net.downloading.LoadingStatus;
+	import com.borhan.net.interfaces.IMediaSource;
+	import com.borhan.net.nonStreaming.SWFLoaderMediaSource;
+	import com.borhan.net.streaming.ExNetStream;
+	import com.borhan.net.streaming.events.ExNetStreamEvent;
+	import com.borhan.plugin.layer.LayersContainer;
+	import com.borhan.plugin.logic.Plugin;
+	import com.borhan.plugin.logic.effects.KEffect;
+	import com.borhan.plugin.logic.overlays.Overlay;
+	import com.borhan.plugin.logic.transitions.KTransition;
+	import com.borhan.roughcut.Roughcut;
+	import com.borhan.roughcut.soundtrack.AudioPlayPolicy;
+	import com.borhan.plugin.utils.fonts.*;
 	
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
@@ -73,48 +73,48 @@ package com.kaltura.components.players.eplayer
  	[Event(name="roughcutReady", type="flash.events.Event")]
 	/**
 	* Dispatched when the player is playing a roughcut (dispatched approx. every 40ms when in playing state only).
-	* @eventType com.kaltura.components.players.events.PlayerEvent.ROUGHCUT_UPDATE_PLAYHEAD
+	* @eventType com.borhan.components.players.events.PlayerEvent.ROUGHCUT_UPDATE_PLAYHEAD
 	*/
-	[Event(name="roughcutUpdatePlayhead", type="com.kaltura.components.players.events.PlayerEvent")]
+	[Event(name="roughcutUpdatePlayhead", type="com.borhan.components.players.events.PlayerEvent")]
 	/**
 	* Dispatched when the player is playing a roughuct (dispatched every change in visual assets),
 	* whenever a new video / image / solidColor is added to the visual layers.
-	* @eventType com.kaltura.components.players.events.PlayerEvent.UPDATE_PLAYHEAD_NEW_ASSET
+	* @eventType com.borhan.components.players.events.PlayerEvent.UPDATE_PLAYHEAD_NEW_ASSET
 	*/
-	[Event(name="updatePlayheadNewAsset", type="com.kaltura.components.players.events.PlayerEvent")]
+	[Event(name="updatePlayheadNewAsset", type="com.borhan.components.players.events.PlayerEvent")]
 	/**
 	* Dispatched when roughcut play finished.
-	* @eventType com.kaltura.components.players.events.PlayerEvent.ROUGHCUT_PLAY_END
+	* @eventType com.borhan.components.players.events.PlayerEvent.ROUGHCUT_PLAY_END
 	*/
-	[Event(name="roughcutPlayEnd", type="com.kaltura.components.players.events.PlayerEvent")]
+	[Event(name="roughcutPlayEnd", type="com.borhan.components.players.events.PlayerEvent")]
 	/**
 	* Dispatched when player entered pause state.
-	* @eventType com.kaltura.components.players.events.PlayerEvent.ROUGHCUT_PAUSE
+	* @eventType com.borhan.components.players.events.PlayerEvent.ROUGHCUT_PAUSE
 	*/
-	[Event(name="roughcutPause", type="com.kaltura.components.players.events.PlayerEvent")]
+	[Event(name="roughcutPause", type="com.borhan.components.players.events.PlayerEvent")]
 	/**
 	* Dispatched when the player is playing single media clip (dispatched approx. every 40ms when in playing state only).
-	* @eventType com.kaltura.components.players.events.PlayerEvent.SINGLE_VIDEO_UPDATE_PLAYHEAD
+	* @eventType com.borhan.components.players.events.PlayerEvent.SINGLE_VIDEO_UPDATE_PLAYHEAD
 	*/
-	[Event(name="singleVideoUpdatePlayhead", type="com.kaltura.components.players.events.PlayerEvent")]
+	[Event(name="singleVideoUpdatePlayhead", type="com.borhan.components.players.events.PlayerEvent")]
 	/**
 	* Dispatched when player finished playing single media clip.
-	* @eventType com.kaltura.components.players.events.PlayerEvent.ROUGHCUT_PAUSE
+	* @eventType com.borhan.components.players.events.PlayerEvent.ROUGHCUT_PAUSE
 	*/
-	[Event(name="singleVideoPlayEnd", type="com.kaltura.components.players.events.PlayerEvent")]
+	[Event(name="singleVideoPlayEnd", type="com.borhan.components.players.events.PlayerEvent")]
 	/**
 	* dispatched to notify a change in the buffering state of the player.
-	* @eventType com.kaltura.components.players.events.PlayerBufferEvent.PLAYER_BUFFER_STATUS
+	* @eventType com.borhan.components.players.events.PlayerBufferEvent.PLAYER_BUFFER_STATUS
 	*/
-	[Event(name="playerBufferStatus", type="com.kaltura.components.players.events.PlayerBufferEvent")]
+	[Event(name="playerBufferStatus", type="com.borhan.components.players.events.PlayerBufferEvent")]
 	/**
 	* dispatched whenever the player state is changed (play / pause / stop / etc).
-	* @eventType com.kaltura.components.players.events.PlayerStateEvent.CHANGE_PLAYER_STATE
+	* @eventType com.borhan.components.players.events.PlayerStateEvent.CHANGE_PLAYER_STATE
 	*/
-	[Event(name="changePlayerState", type="com.kaltura.components.players.events.PlayerStateEvent")]
+	[Event(name="changePlayerState", type="com.borhan.components.players.events.PlayerStateEvent")]
 
 	/**
-	 *the editing player is the final component in the kaltura hierarchy, this component is responisble for rendering and
+	 *the editing player is the final component in the borhan hierarchy, this component is responisble for rendering and
 	 * synchronizing the final roughcut (audio/visual).
 	 */
 	public class Eplayer extends Sprite
@@ -265,7 +265,7 @@ package com.kaltura.components.players.eplayer
 		}
 		protected var _roughcut:Roughcut;
 		/**
-		* the sequence synch timer, this is used to synch assets and create a playing Kaltura roughcut.
+		* the sequence synch timer, this is used to synch assets and create a playing Borhan roughcut.
 		*/
 		private var sequenceSynchTimer:Timer = new Timer(40);
 		/**
@@ -278,7 +278,7 @@ package com.kaltura.components.players.eplayer
 		private var seqPlayStartTime:uint = 0;
 		/**
 		* the current state of the player.
-		* @see com.kaltura.components.players.states.VideoStates
+		* @see com.borhan.components.players.states.VideoStates
 		*/
 		private var _playState:uint = VideoStates.EMPTY;
 		//xxx [Inspectable]
@@ -689,7 +689,7 @@ xxx*/
 		/**
 		 * preview an asset from roughcut's mediaClips (asset with null mediaSource)
 		 * @param asset		the asset to preview.
-		 * @see com.kaltura.assets.interfaces.IAssetable
+		 * @see com.borhan.assets.interfaces.IAssetable
 		 */
 		//xxx [Inspectable]
 		//xxx [Bindable]
@@ -709,8 +709,8 @@ xxx*/
 			stopPreviewMode ();
 			videoHolder.clearVideo();
 			resetPlayer();
-			var pId:String = KalturaApplication.getInstance().partnerInfo.partnerId;
-			var subpId:String = KalturaApplication.getInstance().partnerInfo.subpId;
+			var pId:String = BorhanApplication.getInstance().partnerInfo.partnerId;
+			var subpId:String = BorhanApplication.getInstance().partnerInfo.subpId;
 			var partnerPart:String = URLProccessing.getPartnerPartForTracking(pId, subpId);
 			var nsSource:String = URLProccessing.clipperServiceUrl(asset.entryId, -1, -1, '1', partnerPart);
 			switch (asset.mediaType)
@@ -975,7 +975,7 @@ xxx*/
 
 		/**
 		 *hides the on-player text error message that is set by showErrorMessage.
-		 * @see com.kaltura.components.players.eplayer.Eplayer#showErrorMessage
+		 * @see com.borhan.components.players.eplayer.Eplayer#showErrorMessage
 		 */
 		public function hideErrorMsg ():void
 		{
@@ -1059,7 +1059,7 @@ xxx*/
 		 * @param vol		the volume to set.
 		 * @param pan		the balance to set.
 		 * @param asset		the asset holding the stream.
-		 * @see com.kaltura.assets.abstracts.AbstractAsset
+		 * @see com.borhan.assets.abstracts.AbstractAsset
 		 */
 		public function setStreamSoundTransform (vol:Number, pan:Number, asset:AbstractAsset):void
 		{
@@ -1080,7 +1080,7 @@ xxx*/
 		 *set a video stream to a specific layer.
 		 * @param stream		the stream to add.
 		 * @param current		true for current layer, false for next.
-		 * @see com.kaltura.plugin.layer.VSPair#stream
+		 * @see com.borhan.plugin.layer.VSPair#stream
 		 */
 		public function insertVideoStream(stream:ExNetStream, current:Boolean = false):void
 		{
@@ -1100,7 +1100,7 @@ xxx*/
 		 * @param current		true for current layer, false for next.
 		 * @param vidwidth		the original video width.
 		 * @param vidheight		the original video height.
-		 * @see com.kaltura.plugin.layer.VSPair#stream
+		 * @see com.borhan.plugin.layer.VSPair#stream
 		 */
 		public function insertVideoStreamSet(stream:ExNetStream, current:Boolean = false, vidwidth:Number = 640, vidheight:Number = 480):void
 		{
@@ -1201,7 +1201,7 @@ xxx*/
 		 * @param seek_time						the time in seconds to seek on the stream.
 		 * @param original_start_offset			if the stream was loaded using clipper service, pass it's cut start offset from original video stream.
 		 * @param nearest_next					preform the seek to the nearest next keyframe or the nearest previous keyframe.
-		 * @see com.kaltura.net.streaming.ExNetStream#seekMedia
+		 * @see com.borhan.net.streaming.ExNetStream#seekMedia
 		 */
 		public function seekOnSingleVideoAsset (seek_time:Number, original_start_offset:Number, nearest_next:Boolean = false):void
 		{
@@ -1325,7 +1325,7 @@ xxx*/
 		 *set an image bitmapData to a specific layer.
 		 * @param bd_image		the bitmapData of the image to add.
 		 * @param current		true for current layer, false for next.
-		 * @see com.kaltura.plugin.layer.VSPair#imageBD
+		 * @see com.borhan.plugin.layer.VSPair#imageBD
 		 */
 		public function insertSingleImage (bd_image:BitmapData, current:Boolean = false):void
 		{
@@ -1443,7 +1443,7 @@ xxx*/
 		 * @param stop_state			set stop state after pausing.
 		 * @param dispatch_pause		if true dispatchs a ROUGHCUT_PAUSE event.
 		 * @param fix_seek				preform fixSeek on current pause time.
-		 * @see com.kaltura.components.players.events.PlayerEvent#ROUGHCUT_PAUSE
+		 * @see com.borhan.components.players.events.PlayerEvent#ROUGHCUT_PAUSE
 		 */
 		public function pauseSequence(stop_state:Boolean = false, dispatch_pause:Boolean = true, fix_seek:Boolean = false):void
 		{
@@ -1491,7 +1491,7 @@ xxx*/
 		/**
 		 *dispatchs a ROUGHCUT_PAUSE event.
 		 * @param do_dispatch		true to preform the dispatch.
-		 * @see com.kaltura.components.players.events.PlayerEvent#ROUGHCUT_PAUSE
+		 * @see com.borhan.components.players.events.PlayerEvent#ROUGHCUT_PAUSE
 		 */
 		private function dispatchPauseEvent (do_dispatch:Boolean = true):void
 		{
@@ -2419,8 +2419,8 @@ xxx*/
 		/**
 		 *control the volume of the soundtrack asset.
 		 * @param silent	if silent, soundtrack volume will be dropped according to the roughcut soundtrackVolumePlayPolicy.
-		 * @see com.kaltura.roughcut.Roughcut#soundtrackVolumePlayPolicy
-		 * @see com.kaltura.roughcut.soundtrack.AudioPlayPolicy
+		 * @see com.borhan.roughcut.Roughcut#soundtrackVolumePlayPolicy
+		 * @see com.borhan.roughcut.soundtrack.AudioPlayPolicy
 		 */
 		private function setSoundtrackVolume (silent:Boolean):void
 		{
@@ -2574,8 +2574,8 @@ xxx*/
 				 case MediaTypes.VIDEO:
 				 	asset.cacheIsSilenceCheck = asset.audioGraph.isSilent();
 					videoHolder.resetProperties();												// b4 inserting make sure the layers are rested to default
-					var vidW:Number = asset.kalturaEntry ? asset.kalturaEntry.width : Eplayer.PLAYER_WIDTH;
-					var vidH:Number = asset.kalturaEntry ? asset.kalturaEntry.height : Eplayer.PLAYER_HEIGHT;
+					var vidW:Number = asset.borhanEntry ? asset.borhanEntry.width : Eplayer.PLAYER_WIDTH;
+					var vidH:Number = asset.borhanEntry ? asset.borhanEntry.height : Eplayer.PLAYER_HEIGHT;
 					insertVideoStreamSet (ExNetStream(asset.mediaSource), isFirstAssetToAdd, vidW, vidH);					//attach the stream to a displaylist layer
 					var seekToStartAsset:Boolean = (dTimeSec > asset.seqStartPlayTime && _playState != VideoStates.PLAY) ? true : false;
 					seekStreamingMedia (asset, seekToStartAsset);

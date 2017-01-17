@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,16 +20,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.managers.downloadManagers.protocols
+package com.borhan.managers.downloadManagers.protocols
 {
-	import com.kaltura.application.KalturaApplication;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.managers.downloadManagers.protocols.interfaces.INetProtocol;
-	import com.kaltura.net.downloading.FLVstream;
-	import com.kaltura.net.loaders.MediaSourceLoader;
-	import com.kaltura.net.loaders.interfaces.IMediaSourceLoader;
-	import com.kaltura.utils.url.URLProccessing;
+	import com.borhan.application.BorhanApplication;
+	import com.borhan.assets.abstracts.AbstractAsset;
+	import com.borhan.base.types.MediaTypes;
+	import com.borhan.managers.downloadManagers.protocols.interfaces.INetProtocol;
+	import com.borhan.net.downloading.FLVstream;
+	import com.borhan.net.loaders.MediaSourceLoader;
+	import com.borhan.net.loaders.interfaces.IMediaSourceLoader;
+	import com.borhan.utils.url.URLProccessing;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -64,20 +64,20 @@ package com.kaltura.managers.downloadManagers.protocols
 		 *loads a netStream with a progressive download flv.
 		 * @param k		the asset to load.
 		 * @return 		the ILoadStream of the loaded netStream.
-		 * @see			com.kaltura.net.streaming.ExNetStream
+		 * @see			com.borhan.net.streaming.ExNetStream
 		 */
 		public function load (source_asset:AbstractAsset):IMediaSourceLoader
 		{
 			_asset = source_asset;
-			var pId:String = KalturaApplication.getInstance().partnerInfo.partnerId;
-			var subpId:String = KalturaApplication.getInstance().partnerInfo.subpId;
+			var pId:String = BorhanApplication.getInstance().partnerInfo.partnerId;
+			var subpId:String = BorhanApplication.getInstance().partnerInfo.subpId;
 			var partnerPart:String = URLProccessing.getPartnerPartForTracking(pId, subpId);
 			var url2Load:String = URLProccessing.hashURLforMultipalDomains (URLProccessing.clipperServiceUrl (source_asset.entryId, source_asset.startTime, source_asset.length, '0', partnerPart), source_asset.entryId);
 			source_asset.mediaURL = url2Load;
         	var FLVloader:FLVstream = new FLVstream ( source_asset.assetUID, source_asset.mediaURL, "flv",
         				source_asset.mediaType == MediaTypes.VIDEO,
-        				_asset.mediaType == MediaTypes.VIDEO ? _asset.kalturaEntry.width : 0,
-        				_asset.mediaType == MediaTypes.VIDEO ? _asset.kalturaEntry.height : 0);
+        				_asset.mediaType == MediaTypes.VIDEO ? _asset.borhanEntry.width : 0,
+        				_asset.mediaType == MediaTypes.VIDEO ? _asset.borhanEntry.height : 0);
         	var stream:IMediaSourceLoader = new MediaSourceLoader (FLVloader.Stream, source_asset.assetUID, source_asset.mediaURL);
 			stream.addEventListener(Event.COMPLETE, dispacthFinish );
 			return stream;

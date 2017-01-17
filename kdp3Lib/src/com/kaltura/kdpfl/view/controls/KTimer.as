@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
 
-import com.kaltura.kdpfl.util.DateTimeUtils;
+import com.borhan.bdpfl.util.DateTimeUtils;
 
 import flash.events.MouseEvent;
 	
 /**
- * Class representing the timers used by the KDP
+ * Class representing the timers used by the BDP
  * @author Hila
  * 
  */

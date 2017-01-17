@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.kalturaInternalToolsSystemHelper
+package com.borhan.commands.borhanInternalToolsSystemHelper
 {
-	import com.kaltura.delegates.kalturaInternalToolsSystemHelper.KalturaInternalToolsSystemHelperFromSecureStringDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.borhan.delegates.borhanInternalToolsSystemHelper.BorhanInternalToolsSystemHelperFromSecureStringDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* KS from Secure String
 	* 
 	**/
-	public class KalturaInternalToolsSystemHelperFromSecureString extends KalturaCall
+	public class BorhanInternalToolsSystemHelperFromSecureString extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param str String
 		**/
-		public function KalturaInternalToolsSystemHelperFromSecureString( str : String )
+		public function BorhanInternalToolsSystemHelperFromSecureString( str : String )
 		{
-			service= 'kalturainternaltools_kalturainternaltoolssystemhelper';
+			service= 'borhaninternaltools_borhaninternaltoolssystemhelper';
 			action= 'fromSecureString';
 
 			var keyArr : Array = new Array();
@@ -57,7 +57,7 @@ package com.kaltura.commands.kalturaInternalToolsSystemHelper
 		override public function execute() : void
 		{
 			setRequestArgument('filterFields', filterFields);
-			delegate = new KalturaInternalToolsSystemHelperFromSecureStringDelegate( this , config );
+			delegate = new BorhanInternalToolsSystemHelperFromSecureStringDelegate( this , config );
 		}
 	}
 }

@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.model.vo.StorageProfileVO;
-	import com.kaltura.kdpfl.plugin.component.strings.NotificationStrings;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.model.vo.StorageProfileVO;
+	import com.borhan.bdpfl.plugin.component.strings.NotificationStrings;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
 	
 	import fl.core.UIComponent;
 	

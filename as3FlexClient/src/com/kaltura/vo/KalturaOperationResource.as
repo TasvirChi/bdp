@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,20 +25,20 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaContentResource;
+	import com.borhan.vo.BorhanContentResource;
 
-	import com.kaltura.vo.KalturaContentResource;
+	import com.borhan.vo.BorhanContentResource;
 
 	[Bindable]
-	public dynamic class KalturaOperationResource extends KalturaContentResource
+	public dynamic class BorhanOperationResource extends BorhanContentResource
 	{
 		/**
-		* Only KalturaEntryResource and KalturaAssetResource are supported
+		* Only BorhanEntryResource and BorhanAssetResource are supported
 		* 
 		**/
-		public var resource : KalturaContentResource;
+		public var resource : BorhanContentResource;
 
 		/**
 		**/
@@ -75,7 +75,7 @@ package com.kaltura.vo
 					result = '';
 					break;
 				case 'operationAttributes':
-					result = 'KalturaOperationAttributes';
+					result = 'BorhanOperationAttributes';
 					break;
 				default:
 					result = super.getElementType(arrayName);

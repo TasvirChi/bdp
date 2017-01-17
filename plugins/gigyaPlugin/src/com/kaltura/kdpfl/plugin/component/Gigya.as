@@ -1,5 +1,5 @@
-package com.kaltura.kdpfl.plugin.component {
-	//import com.kaltura.kdpfl.component.IComponent;
+package com.borhan.bdpfl.plugin.component {
+	//import com.borhan.bdpfl.component.IComponent;
 
 	import flash.display.Loader;
 	import flash.display.MovieClip;

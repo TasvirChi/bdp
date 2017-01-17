@@ -1,9 +1,9 @@
-package com.kaltura.osmf.kalturaMix
+package com.borhan.osmf.borhanMix
 {
 	
-	public class KalturaMixLoadedContext 
+	public class BorhanMixLoadedContext 
 	{
-		public function KalturaMixLoadedContext()
+		public function BorhanMixLoadedContext()
 		{
 		}
 

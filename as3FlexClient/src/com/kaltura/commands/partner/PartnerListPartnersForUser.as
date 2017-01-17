@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.partner
+package com.borhan.commands.partner
 {
-		import com.kaltura.vo.KalturaPartnerFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.partner.PartnerListPartnersForUserDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanPartnerFilter;
+		import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.delegates.partner.PartnerListPartnersForUserDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Retrieve a list of partner objects which the current user is allowed to access.
 	* 
 	**/
-	public class PartnerListPartnersForUser extends KalturaCall
+	public class PartnerListPartnersForUser extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param partnerFilter KalturaPartnerFilter
-		* @param pager KalturaFilterPager
+		* @param partnerFilter BorhanPartnerFilter
+		* @param pager BorhanFilterPager
 		**/
-		public function PartnerListPartnersForUser( partnerFilter : KalturaPartnerFilter=null,pager : KalturaFilterPager=null )
+		public function PartnerListPartnersForUser( partnerFilter : BorhanPartnerFilter=null,pager : BorhanFilterPager=null )
 		{
 			service= 'partner';
 			action= 'listPartnersForUser';
@@ -53,12 +53,12 @@ package com.kaltura.commands.partner
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (partnerFilter) { 
-				keyValArr = kalturaObject2Arrays(partnerFilter, 'partnerFilter');
+				keyValArr = borhanObject2Arrays(partnerFilter, 'partnerFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = borhanObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

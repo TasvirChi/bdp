@@ -6,10 +6,10 @@
  * @author Eitan
  */ 
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.component.visualDemo;
-	import com.kaltura.kdpfl.plugin.component.visualDemoMediator;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.ISequencePlugin;
+	import com.borhan.bdpfl.plugin.component.visualDemo;
+	import com.borhan.bdpfl.plugin.component.visualDemoMediator;
 	
 	import fl.core.UIComponent;
 	
@@ -21,7 +21,7 @@ package {
 	import org.puremvc.as3.interfaces.IFacade;
 
 	/**
-	 * This is the real plugin. The KDP initializes it and then calls <code>setSkin</code>.  
+	 * This is the real plugin. The BDP initializes it and then calls <code>setSkin</code>.  
 	 * @author Eitan
 	 * 
 	 */	
@@ -90,7 +90,7 @@ package {
 
 		
 		/**
-		 * KDP calls this interface method in order to set the plugin's skin.
+		 * BDP calls this interface method in order to set the plugin's skin.
 		 * This plugin has no skin, so the implementation is empty. 
 		 * @param styleName		name of style to be set
 		 * @param setSkinSize

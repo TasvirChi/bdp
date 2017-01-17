@@ -1,4 +1,4 @@
-package com.kaltura.kdfl.plugin.type
+package com.borhan.kdfl.plugin.type
 {
 	public class EyewonderVideoState
 	{

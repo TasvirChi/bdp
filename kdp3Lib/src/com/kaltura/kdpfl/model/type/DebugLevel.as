@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.model.type
+package com.borhan.bdpfl.model.type
 {
 	/**
 	 * This class represents debug levels

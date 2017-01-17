@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
 	
-	import com.kaltura.kdpfl.plugin.model.UniformVastNonLinearAd;
-	import com.kaltura.kdpfl.util.Cloner;
+	import com.borhan.bdpfl.plugin.model.UniformVastNonLinearAd;
+	import com.borhan.bdpfl.util.Cloner;
 	
 	import flash.events.Event;
 	

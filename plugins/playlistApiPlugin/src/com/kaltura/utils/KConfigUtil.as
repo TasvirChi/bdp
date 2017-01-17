@@ -1,7 +1,7 @@
-package com.kaltura.utils
+package com.borhan.utils
 {
 	
-	import com.kaltura.utils.parsers.DateParser;
+	import com.borhan.utils.parsers.DateParser;
 	
 	import flash.utils.describeType;
 	import flash.utils.getDefinitionByName;

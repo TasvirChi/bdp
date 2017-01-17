@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.controller {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.model.SoundProxy;
+package com.borhan.bdpfl.plugin.controller {
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.plugin.model.SoundProxy;
 	
 	import org.puremvc.as3.interfaces.ICommand;
 	import org.puremvc.as3.interfaces.INotification;

@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
 	
-	import com.kaltura.kdpfl.plugin.events.ChapterEvent;
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.util.KColorUtil;
-	import com.kaltura.vo.KalturaAnnotation;
+	import com.borhan.bdpfl.plugin.events.ChapterEvent;
+	import com.borhan.bdpfl.util.KAstraAdvancedLayoutUtil;
+	import com.borhan.bdpfl.util.KColorUtil;
+	import com.borhan.vo.BorhanAnnotation;
 	import com.yahoo.astra.fl.containers.BoxPane;
 	
 	import fl.core.InvalidationType;
@@ -139,7 +139,7 @@ package com.kaltura.kdpfl.plugin.component
 			_dataProvider = value;
 			if (_dataProvider && _dataProvider.length)
 			{
-				for each (var annotation : KalturaAnnotation in _dataProvider.toArray()) {
+				for each (var annotation : BorhanAnnotation in _dataProvider.toArray()) {
 					var chapter : Chapter = new Chapter();
 					chapter.setSkin("default");
 					this.addChild(chapter);

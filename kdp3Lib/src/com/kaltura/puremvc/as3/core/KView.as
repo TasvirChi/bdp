@@ -1,7 +1,7 @@
-package com.kaltura.puremvc.as3.core
+package com.borhan.puremvc.as3.core
 {
-	import com.kaltura.puremvc.as3.patterns.mediator.PriorityMediator;
-	import com.kaltura.puremvc.as3.patterns.observer.PriorityObserver;
+	import com.borhan.puremvc.as3.patterns.mediator.PriorityMediator;
+	import com.borhan.puremvc.as3.patterns.observer.PriorityObserver;
 	
 	import flash.sampler.getMemberNames;
 	

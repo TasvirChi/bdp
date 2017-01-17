@@ -4,30 +4,30 @@ package {
 	import com.akamai.rss.ContentTO;
 	import com.akamai.rss.ItemTO;
 	import com.akamai.rss.Media;
-	import com.kaltura.KalturaClient;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.playlist.PlaylistExecute;
-	import com.kaltura.commands.playlist.PlaylistGet;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.KDataProvider;
-	import com.kaltura.kdpfl.plugin.component.PlaylistAPIMediator;
-	import com.kaltura.kdpfl.plugin.component.PlaylistEntryVO;
-	import com.kaltura.kdpfl.plugin.type.PlaylistNotificationType;
-	import com.kaltura.kdpfl.util.Functor;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.utils.KConfigUtil;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaMediaEntryFilter;
-	import com.kaltura.vo.KalturaMediaEntryFilterForPlaylist;
-	import com.kaltura.vo.KalturaPlayableEntry;
-	import com.kaltura.vo.KalturaPlaylist;
+	import com.borhan.BorhanClient;
+	import com.borhan.base.types.MediaTypes;
+	import com.borhan.commands.MultiRequest;
+	import com.borhan.commands.playlist.PlaylistExecute;
+	import com.borhan.commands.playlist.PlaylistGet;
+	import com.borhan.errors.BorhanError;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.PlayerStatusProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.KDataProvider;
+	import com.borhan.bdpfl.plugin.component.PlaylistAPIMediator;
+	import com.borhan.bdpfl.plugin.component.PlaylistEntryVO;
+	import com.borhan.bdpfl.plugin.type.PlaylistNotificationType;
+	import com.borhan.bdpfl.util.Functor;
+	import com.borhan.bdpfl.util.URLUtils;
+	import com.borhan.utils.KConfigUtil;
+	import com.borhan.vo.BorhanMediaEntry;
+	import com.borhan.vo.BorhanMediaEntryFilter;
+	import com.borhan.vo.BorhanMediaEntryFilterForPlaylist;
+	import com.borhan.vo.BorhanPlayableEntry;
+	import com.borhan.vo.BorhanPlaylist;
 	
 	import fl.data.DataProvider;
 	
@@ -175,7 +175,7 @@ package {
 		
 		private var _shouldAutoInsert:Boolean;
 		
-		private var _kc:KalturaClient;
+		private var _kc:BorhanClient;
 		
 		/**
 		 *indicates if we should use api_v3 
@@ -198,7 +198,7 @@ package {
 		
 		/**
 		 * Commences load of the first playlist (kpl0). <br/>
-		 * This should only happen the first time we recieve kdpEmpty/kdpReady 
+		 * This should only happen the first time we recieve bdpEmpty/bdpReady 
 		 */
 		public function loadFirstPlaylist():void {
 			if (playlistAutoInsert && !_initialLoad) {
@@ -267,9 +267,9 @@ package {
 		
 		/**
 		 * Create a data provider from a non-mrss response and assign it to the view.
-		 * @param evt KalturaEvent
+		 * @param evt BorhanEvent
 		 */
-		private function onDataLoadedNotMRSS(evt:KalturaEvent):void {
+		private function onDataLoadedNotMRSS(evt:BorhanEvent):void {
 			var mediaEntries:Array = evt.data as Array;
 			dataProvider = new KDataProvider(mediaEntries);
 			_dataProvider.addEventListener(Event.CHANGE, onChangeItem, false, 0, true);
@@ -277,40 +277,40 @@ package {
 		}
 		
 		
-		// written by almog @ kaltura
+		// written by almog @ borhan
 		private function mrssToMediaEntryArray():Array {
 			var itemToList:Array = _akamaiMRSS.itemArray;
 			var entries:Array = [];
 		
 			for each (var itemTo:ItemTO in itemToList) {
-				var kalturaEntry:KalturaPlayableEntry = new KalturaPlayableEntry();
+				var borhanEntry:BorhanPlayableEntry = new BorhanPlayableEntry();
 				
 				var media:Media = itemTo.media;
 				var contentTo:ContentTO = media.contentArray[0];
 				for (var itemProperty:String in itemTo) {
-					kalturaEntry[itemProperty] = KConfigUtil.getDefaultValue2(itemTo[itemProperty], kalturaEntry, itemProperty);
+					borhanEntry[itemProperty] = KConfigUtil.getDefaultValue2(itemTo[itemProperty], borhanEntry, itemProperty);
 				}
-				kalturaEntry.duration = parseInt(contentTo.duration);
+				borhanEntry.duration = parseInt(contentTo.duration);
 				if (itemTo.media.thumbnail)
 				{
-					kalturaEntry.thumbnailUrl = itemTo.media.thumbnail.url;
-					if (kalturaEntry.thumbnailUrl.indexOf( "thumbnail/entry_id" ) != -1)
+					borhanEntry.thumbnailUrl = itemTo.media.thumbnail.url;
+					if (borhanEntry.thumbnailUrl.indexOf( "thumbnail/entry_id" ) != -1)
 					{
-						kalturaEntry.thumbnailUrl +=  URLUtils.getThumbURLPostfix((Facade.getInstance().retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars, 
+						borhanEntry.thumbnailUrl +=  URLUtils.getThumbURLPostfix((Facade.getInstance().retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars, 
 						_kc.ks);
 					}
 					
 				}
-				kalturaEntry.name = itemTo.media.title;
-				kalturaEntry.description = itemTo.media.description;
-				kalturaEntry['partnerLandingPage'] = itemTo.link;
-				kalturaEntry.createdAt = itemTo.createdAtInt;
+				borhanEntry.name = itemTo.media.title;
+				borhanEntry.description = itemTo.media.description;
+				borhanEntry['partnerLandingPage'] = itemTo.link;
+				borhanEntry.createdAt = itemTo.createdAtInt;
 				
-				if (!kalturaEntry.id)
-					kalturaEntry.id = contentTo.url;
-				kalturaEntry['seekFromStart'] = KConfigUtil.getDefaultValue(itemTo.seekFromStart, 0);
-				kalturaEntry['mediaType'] = MediaTypes.translateServerType(MediaTypes.translateStringTypeToInt(contentTo.medium.toUpperCase()), true);
-				var playlistVO:PlaylistEntryVO = new PlaylistEntryVO (kalturaEntry);
+				if (!borhanEntry.id)
+					borhanEntry.id = contentTo.url;
+				borhanEntry['seekFromStart'] = KConfigUtil.getDefaultValue(itemTo.seekFromStart, 0);
+				borhanEntry['mediaType'] = MediaTypes.translateServerType(MediaTypes.translateStringTypeToInt(contentTo.medium.toUpperCase()), true);
+				var playlistVO:PlaylistEntryVO = new PlaylistEntryVO (borhanEntry);
 				entries.push(playlistVO);
 			}
 			
@@ -562,11 +562,11 @@ package {
 		
 		/**
 		 * Initialize plugin mediator and data, use pluginCode as view.
-		 * @param facade	KDP application facade
+		 * @param facade	BDP application facade
 		 */
 		public function initializePlugin(facade:IFacade):void {
 			_playlistAPIMediator = new PlaylistAPIMediator(this);
-			_kc = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.kalturaClient;
+			_kc = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).vo.borhanClient;
 			var dataArray:Array = new Array();
 			var i:int = 0;
 			while (this["kpl" + i + "Id"]) {
@@ -575,7 +575,7 @@ package {
 								width: 160};
 				i++;
 			}
-			//get playlist names from kalturaPlaylist object
+			//get playlist names from borhanPlaylist object
 			if (i!=0)
 			{
 				_isV3 = true;
@@ -625,8 +625,8 @@ package {
 				return mm + seperator + dd + seperator + yyyy;
 			}	
 			
-			//in case "kdpEmtpy" was sent before this plugin was initialized
-			if ((facade.retrieveProxy(PlayerStatusProxy.NAME) as PlayerStatusProxy).vo.kdpStatus)
+			//in case "bdpEmtpy" was sent before this plugin was initialized
+			if ((facade.retrieveProxy(PlayerStatusProxy.NAME) as PlayerStatusProxy).vo.bdpStatus)
 			{
 				loadFirstPlaylist();
 			}
@@ -772,7 +772,7 @@ package {
 			_playlistId = playlistId;
 			//apply filters
 			var filteredString:String = playlistId;
-			var filter:KalturaMediaEntryFilterForPlaylist = new KalturaMediaEntryFilterForPlaylist();
+			var filter:BorhanMediaEntryFilterForPlaylist = new BorhanMediaEntryFilterForPlaylist();
 			for (var filt:String in _filters) {
 				if (_filters[filt]) {
 					filteredString += "::" + filt + "=" + _filters[filt];
@@ -786,8 +786,8 @@ package {
 					_playlistUrl = filteredString
 					var execPlaylist:PlaylistExecute = new PlaylistExecute(playlistId, "", null, filter);
 					
-					execPlaylist.addEventListener(KalturaEvent.COMPLETE, onExecuteResult);
-					execPlaylist.addEventListener(KalturaEvent.FAILED, onExecuteFailed);
+					execPlaylist.addEventListener(BorhanEvent.COMPLETE, onExecuteResult);
+					execPlaylist.addEventListener(BorhanEvent.FAILED, onExecuteFailed);
 					_kc.post(execPlaylist);
 				
 			}
@@ -803,7 +803,7 @@ package {
 		}
 		
 		/**
-		 * get all kalturaPlaylist objects
+		 * get all borhanPlaylist objects
 		 * 
 		 */		
 		private function getPlaylists():void
@@ -816,8 +816,8 @@ package {
 				mr.addAction(getPlaylist);
 				i++;
 			}
-			mr.addEventListener(KalturaEvent.COMPLETE, onGetPlaylistsResult);
-			mr.addEventListener(KalturaEvent.FAILED, onGetPlaylistsFault);
+			mr.addEventListener(BorhanEvent.COMPLETE, onGetPlaylistsResult);
+			mr.addEventListener(BorhanEvent.FAILED, onGetPlaylistsFault);
 			_kc.post(mr);
 		}
 		
@@ -826,15 +826,15 @@ package {
 		 * @param event
 		 * 
 		 */		
-		private function onExecuteResult(event:KalturaEvent):void
+		private function onExecuteResult(event:BorhanEvent):void
 		{
-			if(event.data is KalturaError || (event.data.hasOwnProperty("error")))
+			if(event.data is BorhanError || (event.data.hasOwnProperty("error")))
 				trace ("error in execute playlist");
 			else
 			{
 				var resArr:Array = event.data as Array;
 				var mediaEntries:Array = new Array();
-				for each (var entry:KalturaMediaEntry in resArr)
+				for each (var entry:BorhanMediaEntry in resArr)
 				{
 					var playlistVo:PlaylistEntryVO = new PlaylistEntryVO(entry);
 					mediaEntries.push(playlistVo);
@@ -848,31 +848,31 @@ package {
 		 * @param event
 		 * 
 		 */		
-		private function onGetPlaylistsResult(event:KalturaEvent):void{
+		private function onGetPlaylistsResult(event:BorhanEvent):void{
 			
 			if (event.data.length)
 			{
 				for (var i:int = 0; i < event.data.length; i++)
 				{
-					if(event.data[i] is KalturaError || (event.data[i].hasOwnProperty("error")))
+					if(event.data[i] is BorhanError || (event.data[i].hasOwnProperty("error")))
 					{
-						trace ("failed to get kdp"+i+"id name");	
+						trace ("failed to get bdp"+i+"id name");	
 						
 					}
 					else
 					{
-						multiPlaylistDataProvider.getItemAt(i)["label"] = (event.data[i] as KalturaPlaylist).name;
+						multiPlaylistDataProvider.getItemAt(i)["label"] = (event.data[i] as BorhanPlaylist).name;
 					}
 				}
 				multiPlaylistDataProvider.invalidate();
 			}
 		}
 
-		private function onExecuteFailed(event:KalturaEvent):void{
+		private function onExecuteFailed(event:BorhanEvent):void{
 			trace ("failed to execute playlist");
 		}
 		
-		private function onGetPlaylistsFault(event:KalturaEvent):void{
+		private function onGetPlaylistsFault(event:BorhanEvent):void{
 			trace ("failed to get playlists");
 		}
 		

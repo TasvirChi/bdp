@@ -1,16 +1,16 @@
-package com.kaltura.kdpfl.controller.media
+package com.borhan.bdpfl.controller.media
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.liveStream.LiveStreamIsLive;
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.net.KalturaCall;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.liveStream.LiveStreamIsLive;
+	import com.borhan.config.BorhanConfig;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.net.BorhanCall;
 	
 	import flash.events.Event;
 	import flash.events.NetStatusEvent;
@@ -56,7 +56,7 @@ package com.kaltura.kdpfl.controller.media
 		private var _nc : NetConnection;
 		private var _resource : URLResource;
 		private var _mediaProxy:MediaProxy;	
-		private var _kc:KalturaClient;
+		private var _kc:BorhanClient;
 		private var _player:MediaPlayer;
 			
 		/**
@@ -70,7 +70,7 @@ package com.kaltura.kdpfl.controller.media
 		{
 			_mediaProxy = facade.retrieveProxy(MediaProxy.NAME) as MediaProxy;
 			_player = (facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator).player;
-			_kc = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).kalturaClient;
+			_kc = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).borhanClient;
 			_flashvars = (facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars;
 			var interval:int = _flashvars.liveStreamCheckInterval ? _flashvars.liveStreamCheckInterval : DEFAULT_IS_LIVE_INTERVAL;
 			if (_mediaProxy.vo.isHds)
@@ -125,8 +125,8 @@ package com.kaltura.kdpfl.controller.media
 				var ks:String = _kc.ks;
 				//islive should be sent without ks
 				_kc.ks = null;
-				isLive.addEventListener(KalturaEvent.COMPLETE, onIsLive);
-				isLive.addEventListener(KalturaEvent.FAILED, onIsLiveError);
+				isLive.addEventListener(BorhanEvent.COMPLETE, onIsLive);
+				isLive.addEventListener(BorhanEvent.FAILED, onIsLiveError);
 				_kc.post(isLive);
 				//restore ks for other api calls
 				_kc.ks = ks;
@@ -142,7 +142,7 @@ package com.kaltura.kdpfl.controller.media
 		 * @param event
 		 * 
 		 */		
-		private function onIsLive(event:KalturaEvent):void {
+		private function onIsLive(event:BorhanEvent):void {
 			if (event.data=="1") //broadcasting now
 			{
 				if (!_wasLive)
@@ -171,7 +171,7 @@ package com.kaltura.kdpfl.controller.media
 		 * @param event
 		 * 
 		 */		
-		private function onIsLiveError(event:KalturaEvent):void{
+		private function onIsLiveError(event:BorhanEvent):void{
 			trace ("error calling isLive");
 			stopIsLiveCalls();
 		}
@@ -275,7 +275,7 @@ package com.kaltura.kdpfl.controller.media
 	
 		/**
 		 * Function checks whether the NetStream connected to the target live-stream  has an FPS.
-		 * If the FPS is greater than 0, then the stream is currently active and can be shown in the KDP.
+		 * If the FPS is greater than 0, then the stream is currently active and can be shown in the BDP.
 		 * @param e
 		 * 
 		 */		

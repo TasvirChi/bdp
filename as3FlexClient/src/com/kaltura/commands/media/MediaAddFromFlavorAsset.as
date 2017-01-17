@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.media
+package com.borhan.commands.media
 {
-		import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.delegates.media.MediaAddFromFlavorAssetDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanMediaEntry;
+	import com.borhan.delegates.media.MediaAddFromFlavorAssetDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Copy flavor asset into new entry
 	* 
 	**/
-	public class MediaAddFromFlavorAsset extends KalturaCall
+	public class MediaAddFromFlavorAsset extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param sourceFlavorAssetId String
-		* @param mediaEntry KalturaMediaEntry
+		* @param mediaEntry BorhanMediaEntry
 		**/
-		public function MediaAddFromFlavorAsset( sourceFlavorAssetId : String,mediaEntry : KalturaMediaEntry=null )
+		public function MediaAddFromFlavorAsset( sourceFlavorAssetId : String,mediaEntry : BorhanMediaEntry=null )
 		{
 			service= 'media';
 			action= 'addFromFlavorAsset';
@@ -54,7 +54,7 @@ package com.kaltura.commands.media
 			keyArr.push('sourceFlavorAssetId');
 			valueArr.push(sourceFlavorAssetId);
 			if (mediaEntry) { 
-				keyValArr = kalturaObject2Arrays(mediaEntry, 'mediaEntry');
+				keyValArr = borhanObject2Arrays(mediaEntry, 'mediaEntry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

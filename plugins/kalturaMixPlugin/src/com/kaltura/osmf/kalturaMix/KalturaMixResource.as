@@ -1,15 +1,15 @@
-package com.kaltura.osmf.kalturaMix
+package com.borhan.osmf.borhanMix
 {
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.borhan.vo.BorhanMixEntry;
 	
 	import org.osmf.media.IMediaResource;
 	import org.osmf.metadata.Metadata;
 
-	public class KalturaMixResource implements IMediaResource
+	public class BorhanMixResource implements IMediaResource
 	{
-		public var entry:KalturaMixEntry;
+		public var entry:BorhanMixEntry;
 		
-		public function KalturaMixResource(_entry:KalturaMixEntry)
+		public function BorhanMixResource(_entry:BorhanMixEntry)
 		{
 			entry = _entry;
 		}

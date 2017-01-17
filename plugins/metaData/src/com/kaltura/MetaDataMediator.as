@@ -1,13 +1,13 @@
-package com.kaltura
+package com.borhan
 {
-	import com.kaltura.commands.metadata.MetadataList;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.util.XMLUtils;
-	import com.kaltura.puremvc.as3.patterns.mediator.SequenceMultiMediator;
-	import com.kaltura.types.KalturaMetadataObjectType;
-	import com.kaltura.vo.KalturaMetadata;
-	import com.kaltura.vo.KalturaMetadataFilter;
-	import com.kaltura.vo.KalturaMetadataListResponse;KalturaMetadata;
+	import com.borhan.commands.metadata.MetadataList;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.util.XMLUtils;
+	import com.borhan.puremvc.as3.patterns.mediator.SequenceMultiMediator;
+	import com.borhan.types.BorhanMetadataObjectType;
+	import com.borhan.vo.BorhanMetadata;
+	import com.borhan.vo.BorhanMetadataFilter;
+	import com.borhan.vo.BorhanMetadataListResponse;BorhanMetadata;
 
 	
 	public class MetaDataMediator extends SequenceMultiMediator
@@ -25,21 +25,21 @@ package com.kaltura
 		
 		public function start () : void
 		{
-			var kc : KalturaClient = facade.retrieveProxy("servicesProxy")["kalturaClient"] as KalturaClient;
+			var kc : BorhanClient = facade.retrieveProxy("servicesProxy")["borhanClient"] as BorhanClient;
 			var entryId : String = facade.retrieveProxy("mediaProxy")["vo"]["entry"]["id"];
-			var metadataFilter : KalturaMetadataFilter = new KalturaMetadataFilter();
-			metadataFilter.metadataObjectTypeEqual = KalturaMetadataObjectType.ENTRY;
+			var metadataFilter : BorhanMetadataFilter = new BorhanMetadataFilter();
+			metadataFilter.metadataObjectTypeEqual = BorhanMetadataObjectType.ENTRY;
 			metadataFilter.objectIdEqual = entryId;
 			var metaDataList : MetadataList = new MetadataList(metadataFilter);
-			metaDataList.addEventListener(KalturaEvent.COMPLETE, onMetadataReceived);
-			metaDataList.addEventListener( KalturaEvent.FAILED, onMetadataFailed );
+			metaDataList.addEventListener(BorhanEvent.COMPLETE, onMetadataReceived);
+			metaDataList.addEventListener( BorhanEvent.FAILED, onMetadataFailed );
 			kc.post( metaDataList );
 		}
 		
-		private function onMetadataReceived (e : KalturaEvent) : void
+		private function onMetadataReceived (e : BorhanEvent) : void
 		{
 			viewComponent["metaData"] = new Object();
-			var listResponse : KalturaMetadataListResponse = e.data as KalturaMetadataListResponse;
+			var listResponse : BorhanMetadataListResponse = e.data as BorhanMetadataListResponse;
 			if ( listResponse.objects[0])
 			{
 				var metadataXml : XMLList = XML(listResponse.objects[0]["xml"]).children();
@@ -53,7 +53,7 @@ package com.kaltura
 			sendNotification("sequenceItemPlayEnd");
 		}
 		
-		private function onMetadataFailed ( e: KalturaEvent) : void
+		private function onMetadataFailed ( e: BorhanEvent) : void
 		{
 			trace("metadata failed");
 			sendNotification("sequenceItemPlayEnd");

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,20 +25,20 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaDataCenterContentResource;
+	import com.borhan.vo.BorhanDataCenterContentResource;
 
-	import com.kaltura.vo.KalturaOperationAttributes;
+	import com.borhan.vo.BorhanOperationAttributes;
 
 	[Bindable]
-	public dynamic class KalturaConcatAttributes extends KalturaOperationAttributes
+	public dynamic class BorhanConcatAttributes extends BorhanOperationAttributes
 	{
 		/**
 		* The resource to be concatenated
 		* 
 		**/
-		public var resource : KalturaDataCenterContentResource;
+		public var resource : BorhanDataCenterContentResource;
 
 		override public function getUpdateableParamKeys():Array
 		{

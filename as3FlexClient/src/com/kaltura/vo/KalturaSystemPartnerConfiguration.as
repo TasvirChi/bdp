@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaBaseEntryFilter;
+	import com.borhan.vo.BorhanBaseEntryFilter;
 
-	import com.kaltura.vo.BaseFlexVo;
+	import com.borhan.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaSystemPartnerConfiguration extends BaseFlexVo
+	public dynamic class BorhanSystemPartnerConfiguration extends BaseFlexVo
 	{
 		/**
 		**/
@@ -75,7 +75,7 @@ package com.kaltura.vo
 		public var monitorUsage : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var moderateContent : Boolean;
 
@@ -84,25 +84,25 @@ package com.kaltura.vo
 		public var rtmpUrl : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
-		public var storageDeleteFromKaltura : Boolean;
+		public var storageDeleteFromBorhan : Boolean;
 
 		/**
-		* @see com.kaltura.types.KalturaStorageServePriority
+		* @see com.borhan.types.BorhanStorageServePriority
 		**/
 		public var storageServePriority : int = int.MIN_VALUE;
 
 		/**
 		**/
-		public var kmcVersion : int = int.MIN_VALUE;
+		public var bmcVersion : int = int.MIN_VALUE;
 
 		/**
 		**/
 		public var restrictThumbnailByKs : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var supportAnimatedThumbnails : Boolean;
 
@@ -127,7 +127,7 @@ package com.kaltura.vo
 		public var alwaysAllowedPermissionNames : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var importRemoteSourceForConvert : Boolean;
 
@@ -140,7 +140,7 @@ package com.kaltura.vo
 		public var notificationsConfig : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var allowMultiNotification : Boolean;
 
@@ -157,12 +157,12 @@ package com.kaltura.vo
 		public var passReplaceFreq : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var isFirstLogin : Boolean;
 
 		/**
-		* @see com.kaltura.types.KalturaPartnerGroupType
+		* @see com.borhan.types.BorhanPartnerGroupType
 		**/
 		public var partnerGroupType : int = int.MIN_VALUE;
 
@@ -217,7 +217,7 @@ package com.kaltura.vo
 		public var partnerPackageClassOfService : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var enableBulkUploadNotificationsEmails : Boolean;
 
@@ -230,12 +230,12 @@ package com.kaltura.vo
 		public var bulkUploadNotificationsEmail : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var internalUse : Boolean;
 
 		/**
-		* @see com.kaltura.types.KalturaSourceType
+		* @see com.borhan.types.BorhanSourceType
 		**/
 		public var defaultLiveStreamEntrySourceType : String = null;
 
@@ -245,14 +245,14 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var autoModerateEntryFilter : KalturaBaseEntryFilter;
+		public var autoModerateEntryFilter : BorhanBaseEntryFilter;
 
 		/**
 		**/
 		public var logoutUrl : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var defaultEntitlementEnforcement : Boolean;
 
@@ -277,12 +277,12 @@ package com.kaltura.vo
 		public var disabledDeliveryTypes : Array = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var restrictEntryByMetadata : Boolean;
 
 		/**
-		* @see com.kaltura.types.KalturaLanguageCode
+		* @see com.borhan.types.BorhanLanguageCode
 		**/
 		public var language : String = null;
 
@@ -304,9 +304,9 @@ package com.kaltura.vo
 			arr.push('monitorUsage');
 			arr.push('moderateContent');
 			arr.push('rtmpUrl');
-			arr.push('storageDeleteFromKaltura');
+			arr.push('storageDeleteFromBorhan');
 			arr.push('storageServePriority');
-			arr.push('kmcVersion');
+			arr.push('bmcVersion');
 			arr.push('restrictThumbnailByKs');
 			arr.push('supportAnimatedThumbnails');
 			arr.push('defThumbOffset');
@@ -373,16 +373,16 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'permissions':
-					result = 'KalturaPermission';
+					result = 'BorhanPermission';
 					break;
 				case 'limits':
-					result = 'KalturaSystemPartnerLimit';
+					result = 'BorhanSystemPartnerLimit';
 					break;
 				case 'autoModerateEntryFilter':
 					result = '';
 					break;
 				case 'disabledDeliveryTypes':
-					result = 'KalturaString';
+					result = 'BorhanString';
 					break;
 			}
 			return result;
