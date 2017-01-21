@@ -1,9 +1,9 @@
 package {
-	//import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.component.Adaptv;
-	import com.kaltura.kdpfl.plugin.component.AdaptvMediator;
+	//import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.ISequencePlugin;
+	import com.borhan.bdpfl.plugin.component.Adaptv;
+	import com.borhan.bdpfl.plugin.component.AdaptvMediator;
 	
 	import fl.core.UIComponent;
 	import fl.managers.*;

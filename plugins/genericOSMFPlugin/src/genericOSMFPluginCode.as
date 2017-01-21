@@ -1,11 +1,11 @@
 package
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.plugin.component.OSMFPluginMediator;
-	import com.kaltura.kdpfl.util.URLUtils;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.KPluginEvent;
+	import com.borhan.bdpfl.plugin.component.OSMFPluginMediator;
+	import com.borhan.bdpfl.util.URLUtils;
 	
 	import fl.core.UIComponent;
 	
@@ -17,7 +17,7 @@ package
 	import org.puremvc.as3.interfaces.IFacade;
 
 	/**
-	 * Plugin which wraps the load of an OSMF plugin into the OSMF MediaFactory of the KDP 
+	 * Plugin which wraps the load of an OSMF plugin into the OSMF MediaFactory of the BDP 
 	 * @author Hila
 	 * 
 	 */	
@@ -37,7 +37,7 @@ package
 		
 		/**
 		 * A-sync init of the Plugin - this function begins an a-sync load process of the 
-		 * OSMF plugin into the MediaFactory contained by the KDP.  
+		 * OSMF plugin into the MediaFactory contained by the BDP.  
 		 * @param facade
 		 * 
 		 */		

@@ -3,7 +3,7 @@
 		<VBox id="player" width="100%" height="100%" styleName="black">
 			<Plugin id="playlistAPI"  width="0%" height="0%" includeInLayout="false" 
 				selectedDataProvider="{tabBar.selectedDataProvider}" />
-			<Plugin id="kalturaMix"  width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand" disableUrlHashing="true" />
+			<Plugin id="borhanMix"  width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand" disableUrlHashing="true" />
 			
 			<Canvas height="100%" width="100%" id="PlayerHolder" styleName="black" >	
 				
@@ -71,12 +71,12 @@
 			</HBox>
 				<Spacer width="13" />	
 				<Button 
-					id="kalturaLogo" 
+					id="borhanLogo" 
 					height="50" 
 					width="100"
-					kClick="navigate('http://www.kaltura.com')"
+					kClick="navigate('http://www.borhan.com')"
 					styleName="controllerScreen"
-					icon ="kalturaLogo" />
+					icon ="borhanLogo" />
 				<Spacer width="10" />	
 			</HBox>
 			

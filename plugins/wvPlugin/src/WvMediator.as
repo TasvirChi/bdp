@@ -1,21 +1,21 @@
 package
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.plugin.WVLoadTrait;
-	import com.kaltura.kdpfl.plugin.WVPluginInfo;
-	import com.kaltura.kdpfl.view.controls.BufferAnimationMediator;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.vo.KalturaFlavorAsset;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaWidevineFlavorAsset;
+	import com.borhan.BorhanClient;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.plugin.WVLoadTrait;
+	import com.borhan.bdpfl.plugin.WVPluginInfo;
+	import com.borhan.bdpfl.view.controls.BufferAnimationMediator;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.vo.BorhanFlavorAsset;
+	import com.borhan.vo.BorhanMediaEntry;
+	import com.borhan.vo.BorhanWidevineFlavorAsset;
 	import com.widevine.WvNetConnection;
 	
 	import flash.events.Event;
@@ -117,7 +117,7 @@ package
 					//get flavor asset ID
 					if (!_sequenceProxy.vo.isInSequence && _mediaProxy.vo.deliveryType==StreamerType.HTTP)
 					{
-						var flavors:Array = _mediaProxy.vo.kalturaMediaFlavorArray;
+						var flavors:Array = _mediaProxy.vo.borhanMediaFlavorArray;
 						if (flavors && flavors.length)
 						{
 							var wvAssetId:String;
@@ -125,10 +125,10 @@ package
 							{
 								for (var i:int = 0; i<flavors.length; i++)
 								{
-									var flavor:KalturaFlavorAsset = flavors[i] as KalturaFlavorAsset;
+									var flavor:BorhanFlavorAsset = flavors[i] as BorhanFlavorAsset;
 									if (flavor.id == _mediaProxy.vo.selectedFlavorId)
 									{
-										if (flavor is KalturaWidevineFlavorAsset)
+										if (flavor is BorhanWidevineFlavorAsset)
 										{
 											wvAssetId = flavor.id;
 											
@@ -138,15 +138,15 @@ package
 								}
 							}
 								//if we don't have selected flavor ID we are playing the first one
-							else if (flavors[0] is KalturaWidevineFlavorAsset)
+							else if (flavors[0] is BorhanWidevineFlavorAsset)
 							{
-								wvAssetId = (flavors[0] as KalturaWidevineFlavorAsset).id;
+								wvAssetId = (flavors[0] as BorhanWidevineFlavorAsset).id;
 							}
 							
 							if (wvAssetId)
 							{
 								var referrerB64:String = (facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy).vo.flashvars.b64Referrer;
-								var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+								var kc:BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient;
 								var emmUrl:String = kc.protocol + kc.domain + "/api_v3/index.php?service=widevine_widevinedrm&action=getLicense&format=widevine&flavorAssetId=" + wvAssetId + "&ks=" +kc.ks + "&referrer=" + referrerB64;
 								ExternalInterface.call("WVSetEmmURL", emmUrl);		
 							}
@@ -235,20 +235,20 @@ package
 						}
 
 						_wvPluginInfo.wvMediaElement.netStream.selectTrack(index);
-						if (_mediaProxy.vo.kalturaMediaFlavorArray && _mediaProxy.vo.kalturaMediaFlavorArray.length > 1)
+						if (_mediaProxy.vo.borhanMediaFlavorArray && _mediaProxy.vo.borhanMediaFlavorArray.length > 1)
 							sendNotification( NotificationType.SWITCHING_CHANGE_STARTED, {currentIndex : String(index)});
 					}
 					break;
 				
 				case NotificationType.ENTRY_READY:
 					//if the first flavor is wv- all flavors are wv
-					if (_mediaProxy.vo.kalturaMediaFlavorArray && 
-						_mediaProxy.vo.kalturaMediaFlavorArray.length && 
-						(_mediaProxy.vo.kalturaMediaFlavorArray[0] is KalturaWidevineFlavorAsset))
+					if (_mediaProxy.vo.borhanMediaFlavorArray && 
+						_mediaProxy.vo.borhanMediaFlavorArray.length && 
+						(_mediaProxy.vo.borhanMediaFlavorArray[0] is BorhanWidevineFlavorAsset))
 					{
 						_isWv = true;
 						//check if the flavor is packaging mbr
-						if ((_mediaProxy.vo.kalturaMediaFlavorArray[0] as KalturaWidevineFlavorAsset).tags.indexOf(_wvPluginCode.mbrTag)!=-1)
+						if ((_mediaProxy.vo.borhanMediaFlavorArray[0] as BorhanWidevineFlavorAsset).tags.indexOf(_wvPluginCode.mbrTag)!=-1)
 						{
 							_mediaProxy.vo.forceDynamicStream = true;
 							_shouldSetFlavors = true;
@@ -280,17 +280,17 @@ package
 		
 		public function seekWvStream(seekTo:Number): void
 		{
-			var maxSeek:Number = (_mediaProxy.vo.entry as KalturaMediaEntry).duration - _bufferLength;
+			var maxSeek:Number = (_mediaProxy.vo.entry as BorhanMediaEntry).duration - _bufferLength;
 			//can't seek to complete end
 			_wvPluginInfo.wvMediaElement.netStream.seek( Math.min(seekTo, maxSeek));
 		}
 		
 		private function onWVElementCreated(e : Event) : void
 		{
-			if (_mediaProxy.vo.entry && _mediaProxy.vo.entry is KalturaMediaEntry)
+			if (_mediaProxy.vo.entry && _mediaProxy.vo.entry is BorhanMediaEntry)
 			{
-				_wvPluginInfo.wvMediaElement.w = (_mediaProxy.vo.entry as KalturaMediaEntry).width;
-				_wvPluginInfo.wvMediaElement.h = (_mediaProxy.vo.entry as KalturaMediaEntry).height;
+				_wvPluginInfo.wvMediaElement.w = (_mediaProxy.vo.entry as BorhanMediaEntry).width;
+				_wvPluginInfo.wvMediaElement.h = (_mediaProxy.vo.entry as BorhanMediaEntry).height;
 				
 			}
 			_wvPluginInfo.wvMediaElement.addEventListener(NetStatusEvent.NET_STATUS, onNetStatus, false, 0, true);
@@ -323,7 +323,7 @@ package
 		}
 		
 		/**
-		 * wvMediaElement bubbles up all netstatus event. Display proper KDP alerts accordingly.
+		 * wvMediaElement bubbles up all netstatus event. Display proper BDP alerts accordingly.
 		 * @param e
 		 * 
 		 */		
@@ -370,7 +370,7 @@ package
 				case "NetStream.Wv.SwitchUp":
 				case "NetStream.Wv.SwitchDown":
 					_wvPluginInfo.wvMediaElement.netStream.parseTransitionMsg(e.info.details);
-					//first time we get bitrates info - save it to kalturaflavorarray
+					//first time we get bitrates info - save it to borhanflavorarray
 					if (_mediaProxy.vo.forceDynamicStream)
 					{
 						if (_shouldSetFlavors) 
@@ -381,11 +381,11 @@ package
 								var flvArray:Array = new Array();
 								for (var i:int = 0; i<bitrates.length; i++)
 								{
-									var fa : KalturaFlavorAsset = new KalturaFlavorAsset();
+									var fa : BorhanFlavorAsset = new BorhanFlavorAsset();
 									fa.bitrate = bitrates[i] * 8 / 1024;
 									flvArray.push(fa);
 								}
-								_mediaProxy.vo.kalturaMediaFlavorArray = flvArray;
+								_mediaProxy.vo.borhanMediaFlavorArray = flvArray;
 							}
 							_mediaProxy.vo.autoSwitchFlavors = true;
 							//save main media in case we have ads
@@ -394,7 +394,7 @@ package
 						}
 
 						var newIndx:int = _wvPluginInfo.wvMediaElement.netStream.getCurrentQualityLevel() - 1;
-						_mediaProxy.vo.preferedFlavorBR = _mediaProxy.vo.kalturaMediaFlavorArray[newIndx].bitrate;
+						_mediaProxy.vo.preferedFlavorBR = _mediaProxy.vo.borhanMediaFlavorArray[newIndx].bitrate;
 						sendNotification( NotificationType.SWITCHING_CHANGE_COMPLETE, {newIndex : newIndx , newBitrate: _mediaProxy.vo.preferedFlavorBR}  );
 						
 					}

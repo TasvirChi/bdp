@@ -1,15 +1,15 @@
 Project dependencies:
 
-1)KDP3 requires:
-	a. kdp3Lib
+1)BDP3 requires:
+	a. bdp3Lib
 	b.as3FlexClient
 	c.OSMF	(under trunk/vendors)
 
 2)playlistApiPlugin requires:
-	a.kdp3Lib
+	a.bdp3Lib
 	b.Akamai (under trunk/vendors)
 
-3)kalturaMixPlugin requires:
+3)borhanMixPlugin requires:
 	a.as3FlexClient
 	b.FlashRoughcutLib
 

@@ -7,10 +7,10 @@
  */ 
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.IDataProvider;
-	import com.kaltura.kdpfl.plugin.component.KList;
-	import com.kaltura.kdpfl.plugin.component.KListItem;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.IDataProvider;
+	import com.borhan.bdpfl.plugin.component.KList;
+	import com.borhan.bdpfl.plugin.component.KListItem;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;
@@ -52,7 +52,7 @@ package
 			_klist.addEventListener( MouseEvent.CLICK , onListItemClick, false, 0, true );
 			this.addEventListener( MouseEvent.CLICK , onListPluginClick, false, 0, true );
 			_klist.addEventListener( Event.CHANGE, onListChange, false, 0, true );
-			_klist.addEventListener( Event.ADDED_TO_STAGE , resizeKdp );
+			_klist.addEventListener( Event.ADDED_TO_STAGE , resizeBdp );
 
 			addChild( _klist );		
 		}
@@ -87,7 +87,7 @@ package
 			_klist.itemContentLayout = itemLayout;
 			_klist.leftScrollBar = useLeftScrollbar;
 			
-			resizeKdp();
+			resizeBdp();
 		}	
 		
 		public function onListChange( evt:Event ):void
@@ -165,7 +165,7 @@ package
 		 * @param event
 		 * 
 		 */		
-		private function resizeKdp( event : Event = null ) : void
+		private function resizeBdp( event : Event = null ) : void
 		{	
 			if(_facade)
 				_facade.retrieveMediator("stageMediator")["onResize"]();
