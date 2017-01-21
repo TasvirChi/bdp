@@ -1,9 +1,9 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.osmf.kalturaMix.KalturaMixElement;
-	import com.kaltura.osmf.kalturaMix.KalturaMixPluginInfo;
-	import com.kaltura.osmf.kalturaMix.KalturaMixSprite;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
+	import com.borhan.osmf.borhanMix.BorhanMixElement;
+	import com.borhan.osmf.borhanMix.BorhanMixPluginInfo;
+	import com.borhan.osmf.borhanMix.BorhanMixSprite;
 	
 	import flash.display.Sprite;
 	import flash.system.Security;
@@ -17,7 +17,7 @@ package {
 	 * 
 	 * @author Atar
 	 */
-	public class kalturaMixPlugin extends Sprite implements IPlugin, IPluginFactory {
+	public class borhanMixPlugin extends Sprite implements IPlugin, IPluginFactory {
 		
 		/**
 		 * the url from where to load required plugins
@@ -35,9 +35,9 @@ package {
 		/**
 		 * Constructor
 		 */
-		public function kalturaMixPlugin() {
+		public function borhanMixPlugin() {
 			Security.allowDomain("*");
-			var k:KalturaMixElement;
+			var k:BorhanMixElement;
 		}
 
 
@@ -56,10 +56,10 @@ package {
 		 * @param facade	Application Facade
 		 */
 		public function initializePlugin(facade:IFacade):void {
-			KalturaMixSprite.facade = facade;
+			BorhanMixSprite.facade = facade;
 			var mediaProxy:Object = facade.retrieveProxy("mediaProxy");
 			var pluginManager:PluginManager = mediaProxy.vo.osmfPluginManager;
-			var pluginResource:PluginInfoResource = new PluginInfoResource(new KalturaMixPluginInfo(disableUrlHashing));
+			var pluginResource:PluginInfoResource = new PluginInfoResource(new BorhanMixPluginInfo(disableUrlHashing));
 			pluginManager.loadPlugin(pluginResource);
 		}
 

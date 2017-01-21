@@ -1,24 +1,24 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
 	import com.adobe.images.JPGEncoder;
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.baseEntry.BaseEntryUpdateThumbnailJpeg;
-	import com.kaltura.commands.media.MediaUpdateThumbnailFromSourceEntry;
-	import com.kaltura.commands.thumbAsset.ThumbAssetAddFromImage;
-	import com.kaltura.commands.thumbAsset.ThumbAssetGenerate;
-	import com.kaltura.commands.thumbAsset.ThumbAssetSetAsDefault;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.controls.AlertMediator;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.types.KalturaThumbAssetStatus;
-	import com.kaltura.vo.KalturaEntryContextDataResult;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaMixEntry;
-	import com.kaltura.vo.KalturaThumbAsset;
-	import com.kaltura.vo.KalturaThumbParams;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.baseEntry.BaseEntryUpdateThumbnailJpeg;
+	import com.borhan.commands.media.MediaUpdateThumbnailFromSourceEntry;
+	import com.borhan.commands.thumbAsset.ThumbAssetAddFromImage;
+	import com.borhan.commands.thumbAsset.ThumbAssetGenerate;
+	import com.borhan.commands.thumbAsset.ThumbAssetSetAsDefault;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.controls.AlertMediator;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.net.BorhanCall;
+	import com.borhan.types.BorhanMediaType;
+	import com.borhan.types.BorhanThumbAssetStatus;
+	import com.borhan.vo.BorhanEntryContextDataResult;
+	import com.borhan.vo.BorhanMediaEntry;
+	import com.borhan.vo.BorhanMixEntry;
+	import com.borhan.vo.BorhanThumbAsset;
+	import com.borhan.vo.BorhanThumbParams;
 	import com.yahoo.astra.fl.managers.AlertManager;
 	
 	import fl.controls.Button;
@@ -59,15 +59,15 @@ package com.kaltura.kdpfl.plugin.component
 			{
 				case "captureThumbnail":
 					var servicesProxy : Object =  facade.retrieveProxy("servicesProxy");
-					var kc : KalturaClient = servicesProxy.kalturaClient;
+					var kc : BorhanClient = servicesProxy.borhanClient;
 					var mediaProxy : Object = facade.retrieveProxy("mediaProxy");
 					var playerMediator:KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
 					var player : Object = playerMediator.player;
 					var playerView : DisplayObject;
-					if( mediaProxy.vo.entry is KalturaMediaEntry &&
-						((mediaProxy.vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.IMAGE || 
-					    (mediaProxy.vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.AUDIO ||
-						(mediaProxy.vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.LIVE_STREAM_FLASH))
+					if( mediaProxy.vo.entry is BorhanMediaEntry &&
+						((mediaProxy.vo.entry as BorhanMediaEntry).mediaType == BorhanMediaType.IMAGE || 
+					    (mediaProxy.vo.entry as BorhanMediaEntry).mediaType == BorhanMediaType.AUDIO ||
+						(mediaProxy.vo.entry as BorhanMediaEntry).mediaType == BorhanMediaType.LIVE_STREAM_FLASH))
 					{	
 						sendNotification("alert",{message:viewComponent.capture_thumbnail_not_supported,title:viewComponent.capture_thumbnail_success_title});
 					}
@@ -78,8 +78,8 @@ package com.kaltura.kdpfl.plugin.component
 						else 
 							return; //can't capture the player if the view is unreachable
 						
-						var updateThumbnailJpeg : KalturaCall;
-						if (mediaProxy.vo.entry is KalturaMixEntry)
+						var updateThumbnailJpeg : BorhanCall;
+						if (mediaProxy.vo.entry is BorhanMixEntry)
 						{
 							var videoWidth : Number = playerView["videoWidth"];
 							var videoHeight : Number = playerView["videoHeight"]
@@ -95,7 +95,7 @@ package com.kaltura.kdpfl.plugin.component
 						}
 						else
 						{
-							var thumbParams : KalturaThumbParams = new KalturaThumbParams();
+							var thumbParams : BorhanThumbParams = new BorhanThumbParams();
 							thumbParams.videoOffset = playerMediator.getCurrentTime();
 							thumbParams.quality = 75;
 							updateThumbnailJpeg = new ThumbAssetGenerate(mediaProxy.vo.entry.id, thumbParams);
@@ -122,8 +122,8 @@ package com.kaltura.kdpfl.plugin.component
 			if (bitmapData)
 				bitmapData.dispose();
 			
-			var thumb:KalturaThumbAsset = data.data as KalturaThumbAsset;
-			if (thumb.status == KalturaThumbAssetStatus.ERROR)
+			var thumb:BorhanThumbAsset = data.data as BorhanThumbAsset;
+			if (thumb.status == BorhanThumbAssetStatus.ERROR)
 			{
 				sendNotification("thumbnailFailed");
 				sendNotification("alert",{message:viewComponent.error_capture_thumbnail,title:viewComponent.error_capture_thumbnail_title});
@@ -131,10 +131,10 @@ package com.kaltura.kdpfl.plugin.component
 			else if ((viewComponent as captureThumbnailPluginCode).shouldSetAsDefault == "true")
 			{
 				var servicesProxy : Object =  facade.retrieveProxy("servicesProxy");
-				var kc : KalturaClient = servicesProxy.kalturaClient;
+				var kc : BorhanClient = servicesProxy.borhanClient;
 				var setThumbnailAsDefault : ThumbAssetSetAsDefault = new ThumbAssetSetAsDefault(thumb.id );
-				setThumbnailAsDefault.addEventListener(KalturaEvent.COMPLETE, setAsDefaultResult);
-				setThumbnailAsDefault.addEventListener( KalturaEvent.FAILED, setAsDefaultFault );
+				setThumbnailAsDefault.addEventListener(BorhanEvent.COMPLETE, setAsDefaultResult);
+				setThumbnailAsDefault.addEventListener( BorhanEvent.FAILED, setAsDefaultFault );
 				kc.post(setThumbnailAsDefault);
 			}
 			else
@@ -150,14 +150,14 @@ package com.kaltura.kdpfl.plugin.component
 			sendNotification("alert",{message:viewComponent.error_capture_thumbnail,title:viewComponent.error_capture_thumbnail_title});
 		}
 		
-		private function setAsDefaultResult (e : KalturaEvent) : void
+		private function setAsDefaultResult (e : BorhanEvent) : void
 		{
 			onServiceReturn ()
 			sendNotification("alert",{message:viewComponent.set_as_default_success,title:viewComponent.capture_thumbnail_success_title});
 			trace('set as default success!');
 		}
 		
-		private function setAsDefaultFault (e : KalturaEvent ) : void
+		private function setAsDefaultFault (e : BorhanEvent ) : void
 		{
 			onServiceReturn ()
 			trace('set as default failed!');

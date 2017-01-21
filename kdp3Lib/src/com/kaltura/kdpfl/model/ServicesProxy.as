@@ -1,15 +1,15 @@
-package com.kaltura.kdpfl.model
+package com.borhan.bdpfl.model
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.kdpfl.model.vo.ServicesVO;
+	import com.borhan.BorhanClient;
+	import com.borhan.config.BorhanConfig;
+	import com.borhan.bdpfl.model.vo.ServicesVO;
 	
 	import flash.net.URLLoader;
 	
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
 	/**
-	 *  Class ServicesProxy manages the parameters related to Kaltura services, i.e, creating a KalturaClient, KalturaConfig, etc.
+	 *  Class ServicesProxy manages the parameters related to Borhan services, i.e, creating a BorhanClient, BorhanConfig, etc.
 	 * 
 	 */	
 	public class ServicesProxy extends Proxy
@@ -18,7 +18,7 @@ package com.kaltura.kdpfl.model
 		
 		
 		//DEPRECATED
-		public var kalturaClient : KalturaClient;
+		public var borhanClient : BorhanClient;
 		
 		//public static const CONFIG_SERVICE:String = "configService";
 		private var _configService:URLLoader;
@@ -31,14 +31,14 @@ package com.kaltura.kdpfl.model
 			super(NAME, new ServicesVO());
 		}
 		/**
-		 * constructs a new KalturaClient based on a KalturaConfig object.
-		 * @param config object of type KalturaConfig used to construct the KalturaClient
+		 * constructs a new BorhanClient based on a BorhanConfig object.
+		 * @param config object of type BorhanConfig used to construct the BorhanClient
 		 * 
 		 */		
-		public function createClient( config : KalturaConfig ) : void
+		public function createClient( config : BorhanConfig ) : void
 		{
-			this.vo.kalturaClient = new KalturaClient( config );
-			kalturaClient = this.vo.kalturaClient;
+			this.vo.borhanClient = new BorhanClient( config );
+			borhanClient = this.vo.borhanClient;
 			
 		}
 		

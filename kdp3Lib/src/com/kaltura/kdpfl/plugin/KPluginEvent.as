@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
 	import flash.events.Event;
 	/**
-	 * New class for unique events fired by the KDP plug-ins 
+	 * New class for unique events fired by the BDP plug-ins 
 	 * @author Hila
 	 * 
 	 */	

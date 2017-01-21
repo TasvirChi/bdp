@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.view.strings
+package com.borhan.bdpfl.view.strings
 {
 	public class Notifications
 	{

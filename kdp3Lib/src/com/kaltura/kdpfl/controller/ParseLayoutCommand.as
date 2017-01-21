@@ -1,12 +1,12 @@
- package com.kaltura.kdpfl.controller
+ package com.borhan.bdpfl.controller
 {
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.PluginManager;
-	import com.kaltura.kdpfl.view.MainViewMediator;
-	import com.kaltura.kdpfl.view.RootMediator;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.kdpfl.view.controls.ToolTipManager;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.plugin.PluginManager;
+	import com.borhan.bdpfl.view.MainViewMediator;
+	import com.borhan.bdpfl.view.RootMediator;
+	import com.borhan.bdpfl.view.containers.KCanvas;
+	import com.borhan.bdpfl.view.controls.ToolTipManager;
 	
 	import flash.events.Event;
 	
@@ -14,7 +14,7 @@
 	import org.puremvc.as3.patterns.command.AsyncCommand;
 
 	/**
-	 * This class is responsible for parsing layout xml and creating KDP layout. 
+	 * This class is responsible for parsing layout xml and creating BDP layout. 
 	 */	
 	public class ParseLayoutCommand extends AsyncCommand
 	{
@@ -28,7 +28,7 @@
 		{
 			_layoutProxy = facade.retrieveProxy( LayoutProxy.NAME ) as LayoutProxy;
 			//var flashvars : Object = (facade.retrieveProxy( ConfigProxy.NAME ) as ConfigProxy).vo.flashvars;
-			//TODO hook this with the KDP swf path 				
+			//TODO hook this with the BDP swf path 				
 			//if(!flashvars.debugMode) //if this is debug mode load the modules localy
 				//_pluginsPath = "http://" + _flashvars.host + "/";
 				

@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.util
+package com.borhan.bdpfl.util
 {
 	public class URLUtils
 	{
@@ -51,7 +51,7 @@ package com.kaltura.kdpfl.util
 		
 		/**
 		 * Removes the "[[IMPORT]]" from a URL string.
-		 * For example the URL http://sandbox.kaltura.com/[[IMPORT]]/cdnsandbox.kaltura.com/Sample.swf will be cut to http://cdnsandbox.kaltura.com/Sample.swf
+		 * For example the URL http://sandbox.borhan.com/[[IMPORT]]/cdnsandbox.borhan.com/Sample.swf will be cut to http://cdnsandbox.borhan.com/Sample.swf
 		 * If the given url does not contain the [[IMPORT]] string, the url is returned without any changes.
 		 * The [[IMPORT]] string is known to be concatenated when a swf is loaded from a different into an existing security sandbox.
 		 * @param url A URL, that potentially contains the '[[IMPORT]]' String.
@@ -76,7 +76,7 @@ package com.kaltura.kdpfl.util
 		
 		/**
 		 * returns the postfix that should be added to thumbnail request, according to given flashvar 
-		 * @param flashvars kdp flashvars
+		 * @param flashvars bdp flashvars
 		 * @param ks current client ks
 		 * @return 
 		 * 

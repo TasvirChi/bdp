@@ -1,8 +1,8 @@
-package com.kaltura
+package com.borhan
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.vo.KalturaMetadata;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.ISequencePlugin;
+	import com.borhan.vo.BorhanMetadata;
 	
 	import flash.display.Sprite;
 	

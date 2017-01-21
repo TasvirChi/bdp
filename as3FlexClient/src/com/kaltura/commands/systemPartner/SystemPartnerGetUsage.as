@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.systemPartner
+package com.borhan.commands.systemPartner
 {
-		import com.kaltura.vo.KalturaPartnerFilter;
-		import com.kaltura.vo.KalturaSystemPartnerUsageFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.systemPartner.SystemPartnerGetUsageDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanPartnerFilter;
+		import com.borhan.vo.BorhanSystemPartnerUsageFilter;
+		import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.delegates.systemPartner.SystemPartnerGetUsageDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	**/
-	public class SystemPartnerGetUsage extends KalturaCall
+	public class SystemPartnerGetUsage extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param partnerFilter KalturaPartnerFilter
-		* @param usageFilter KalturaSystemPartnerUsageFilter
-		* @param pager KalturaFilterPager
+		* @param partnerFilter BorhanPartnerFilter
+		* @param usageFilter BorhanSystemPartnerUsageFilter
+		* @param pager BorhanFilterPager
 		**/
-		public function SystemPartnerGetUsage( partnerFilter : KalturaPartnerFilter=null,usageFilter : KalturaSystemPartnerUsageFilter=null,pager : KalturaFilterPager=null )
+		public function SystemPartnerGetUsage( partnerFilter : BorhanPartnerFilter=null,usageFilter : BorhanSystemPartnerUsageFilter=null,pager : BorhanFilterPager=null )
 		{
 			service= 'systempartner_systempartner';
 			action= 'getUsage';
@@ -53,17 +53,17 @@ package com.kaltura.commands.systemPartner
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (partnerFilter) { 
-				keyValArr = kalturaObject2Arrays(partnerFilter, 'partnerFilter');
+				keyValArr = borhanObject2Arrays(partnerFilter, 'partnerFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (usageFilter) { 
-				keyValArr = kalturaObject2Arrays(usageFilter, 'usageFilter');
+				keyValArr = borhanObject2Arrays(usageFilter, 'usageFilter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = borhanObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

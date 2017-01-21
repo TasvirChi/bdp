@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.baseEntry.BaseEntryFlag;
-	import com.kaltura.commands.baseEntry.BaseEntryGet;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.vo.KalturaModerationFlag;
+package com.borhan.bdpfl.plugin.component {
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.MultiRequest;
+	import com.borhan.commands.baseEntry.BaseEntryFlag;
+	import com.borhan.commands.baseEntry.BaseEntryGet;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.vo.BorhanModerationFlag;
 
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -52,15 +52,15 @@ package com.kaltura.kdpfl.plugin.component {
 		 * */
 		public function postModeration(comments:String, type:int):void {
 			var mediaProxy:Proxy = (facade.retrieveProxy("mediaProxy") as Proxy);
-			var kClient:KalturaClient = facade.retrieveProxy("servicesProxy")["kalturaClient"] as KalturaClient;
+			var kClient:BorhanClient = facade.retrieveProxy("servicesProxy")["borhanClient"] as BorhanClient;
 			var entryId:String = mediaProxy["vo"]["entry"]["id"];
-			var flag:KalturaModerationFlag = new KalturaModerationFlag();
+			var flag:BorhanModerationFlag = new BorhanModerationFlag();
 			flag.comments = comments;
 			flag.flaggedEntryId = entryId;
 			flag.flagType = type;
 			var flagCommand:BaseEntryFlag = new BaseEntryFlag(flag);
-			flagCommand.addEventListener(KalturaEvent.COMPLETE, moderationComplete);
-			flagCommand.addEventListener(KalturaEvent.FAILED, moderationFailed);
+			flagCommand.addEventListener(BorhanEvent.COMPLETE, moderationComplete);
+			flagCommand.addEventListener(BorhanEvent.FAILED, moderationFailed);
 			kClient.post(flagCommand);
 		}
 
@@ -68,7 +68,7 @@ package com.kaltura.kdpfl.plugin.component {
 		/**
 		 * notify user success
 		 * */
-		private function moderationComplete(e:KalturaEvent):void {
+		private function moderationComplete(e:BorhanEvent):void {
 			mod.flagComplete(true);
 		}
 
@@ -76,7 +76,7 @@ package com.kaltura.kdpfl.plugin.component {
 		/**
 		 * notify user failure
 		 * */
-		private function moderationFailed(e:KalturaEvent):void {
+		private function moderationFailed(e:BorhanEvent):void {
 			mod.flagComplete(false);
 		}
 

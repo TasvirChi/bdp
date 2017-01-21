@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.captionAsset
+package com.borhan.commands.captionAsset
 {
-		import com.kaltura.vo.KalturaCaptionAsset;
-	import com.kaltura.delegates.captionAsset.CaptionAssetUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanCaptionAsset;
+	import com.borhan.delegates.captionAsset.CaptionAssetUpdateDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Update caption asset
 	* 
 	**/
-	public class CaptionAssetUpdate extends KalturaCall
+	public class CaptionAssetUpdate extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id String
-		* @param captionAsset KalturaCaptionAsset
+		* @param captionAsset BorhanCaptionAsset
 		**/
-		public function CaptionAssetUpdate( id : String,captionAsset : KalturaCaptionAsset )
+		public function CaptionAssetUpdate( id : String,captionAsset : BorhanCaptionAsset )
 		{
 			service= 'caption_captionasset';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.captionAsset
 			var keyValArr : Array = new Array();
 			keyArr.push('id');
 			valueArr.push(id);
-				keyValArr = kalturaObject2Arrays(captionAsset, 'captionAsset');
+				keyValArr = borhanObject2Arrays(captionAsset, 'captionAsset');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

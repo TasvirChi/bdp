@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.stats.StatsReportError;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.stats.StatsReportError;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
 	
 	import flash.net.URLRequestMethod;
 	
@@ -35,13 +35,13 @@ package com.kaltura.kdpfl.plugin.component
 		 */		
 		public var resourceUrl:String;
 		
-		private var _kc:KalturaClient;
+		private var _kc:BorhanClient;
 		private var _hasStarted:Boolean = false;
 		
 		public function ErrorNotificationMediator(viewComponent:Object = null)
 		{
 			super(NAME, viewComponent);
-			_kc = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+			_kc = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient;
 		}
 		
 		/**

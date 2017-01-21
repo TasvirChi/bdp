@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.media
+package com.borhan.commands.media
 {
-		import com.kaltura.vo.KalturaModerationFlag;
-	import com.kaltura.delegates.media.MediaFlagDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanModerationFlag;
+	import com.borhan.delegates.media.MediaFlagDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Flag inappropriate media entry for moderation
 	* 
 	**/
-	public class MediaFlag extends KalturaCall
+	public class MediaFlag extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param moderationFlag KalturaModerationFlag
+		* @param moderationFlag BorhanModerationFlag
 		**/
-		public function MediaFlag( moderationFlag : KalturaModerationFlag )
+		public function MediaFlag( moderationFlag : BorhanModerationFlag )
 		{
 			service= 'media';
 			action= 'flag';
@@ -50,7 +50,7 @@ package com.kaltura.commands.media
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(moderationFlag, 'moderationFlag');
+				keyValArr = borhanObject2Arrays(moderationFlag, 'moderationFlag');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
+	import com.borhan.bdpfl.component.IComponent;
+	import com.borhan.bdpfl.view.containers.KCanvas;
 	
 	import fl.core.UIComponent;
 	
@@ -71,16 +71,16 @@ package com.kaltura.kdpfl.view.controls
 			// will hold the given UIconf, and [1] will hold the variable that has the name
 			// value of the screen. [2] will be the state change to listen to
 			//this array is saving a VO type
-			screensArray.push(['_start_screen',startScreenId,ScreensMediator.KDP_STARTED]);
-			screensArray.push(['_start_screen_over',startScreenOverId,ScreensMediator.KDP_STARTED+"_over"]);
-			screensArray.push(['_play_screen',playScreenId,ScreensMediator.KDP_PLAYED]);
-			screensArray.push(['_play_screen_over',playScreenOverId,ScreensMediator.KDP_PLAYED+"_over"]);
-			screensArray.push(['_pause_screen',pauseScreenId,ScreensMediator.KDP_PAUSED]);
-			screensArray.push(['_pause_screen_over',pauseScreenOverId,ScreensMediator.KDP_PAUSED+"_over"]);
-			screensArray.push(['_end_screen',endScreenId,ScreensMediator.KDP_ENDED]);
-			screensArray.push(['_end_screen_over',endScreenOverId,ScreensMediator.KDP_ENDED+"_over"]);
-			screensArray.push(['_change_process_screen',changeProcessScreenId,ScreensMediator.KDP_CHANGE_PROCESS]);
-			screensArray.push(['_change_process_screen_over',changeProcessScreenOverId,ScreensMediator.KDP_CHANGE_PROCESS+"_over"]);
+			screensArray.push(['_start_screen',startScreenId,ScreensMediator.BDP_STARTED]);
+			screensArray.push(['_start_screen_over',startScreenOverId,ScreensMediator.BDP_STARTED+"_over"]);
+			screensArray.push(['_play_screen',playScreenId,ScreensMediator.BDP_PLAYED]);
+			screensArray.push(['_play_screen_over',playScreenOverId,ScreensMediator.BDP_PLAYED+"_over"]);
+			screensArray.push(['_pause_screen',pauseScreenId,ScreensMediator.BDP_PAUSED]);
+			screensArray.push(['_pause_screen_over',pauseScreenOverId,ScreensMediator.BDP_PAUSED+"_over"]);
+			screensArray.push(['_end_screen',endScreenId,ScreensMediator.BDP_ENDED]);
+			screensArray.push(['_end_screen_over',endScreenOverId,ScreensMediator.BDP_ENDED+"_over"]);
+			screensArray.push(['_change_process_screen',changeProcessScreenId,ScreensMediator.BDP_CHANGE_PROCESS]);
+			screensArray.push(['_change_process_screen_over',changeProcessScreenOverId,ScreensMediator.BDP_CHANGE_PROCESS+"_over"]);
 			// set all screens to empty graphics
 			initScreensEmptyGraphics();
 			//set screens that have a match screen id the matching uiComponent
@@ -104,7 +104,7 @@ package com.kaltura.kdpfl.view.controls
  			width = width;
  			height = height;
  			//init the player with the start screen
-			changeState(ScreensMediator.KDP_STARTED);
+			changeState(ScreensMediator.BDP_STARTED);
 			addEventListener(ResizeEvent.RESIZE,onResize);
 		}
 		private function onResize(evt:Event):void

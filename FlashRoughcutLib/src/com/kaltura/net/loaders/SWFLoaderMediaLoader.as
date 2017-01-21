@@ -1,8 +1,8 @@
-package com.kaltura.net.loaders
+package com.borhan.net.loaders
 {
-	import com.kaltura.net.interfaces.ILoadableObject;
-	import com.kaltura.net.interfaces.IMediaSource;
-	import com.kaltura.net.nonStreaming.SWFLoaderMediaSource;
+	import com.borhan.net.interfaces.ILoadableObject;
+	import com.borhan.net.interfaces.IMediaSource;
+	import com.borhan.net.nonStreaming.SWFLoaderMediaSource;
 
 	import flash.events.Event;
 	import flash.events.EventDispatcher;

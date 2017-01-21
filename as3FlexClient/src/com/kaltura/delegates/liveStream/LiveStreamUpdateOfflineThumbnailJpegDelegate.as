@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.delegates.liveStream
+package com.borhan.delegates.liveStream
 {
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.delegates.WebDelegateBase;
-	import com.kaltura.core.KClassFactory;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.commands.liveStream.LiveStreamUpdateOfflineThumbnailJpeg;
+	import com.borhan.config.BorhanConfig;
+	import com.borhan.net.BorhanCall;
+	import com.borhan.delegates.WebDelegateBase;
+	import com.borhan.core.KClassFactory;
+	import com.borhan.errors.BorhanError;
+	import com.borhan.commands.liveStream.LiveStreamUpdateOfflineThumbnailJpeg;
 
 	import ru.inspirit.net.MultipartURLLoader;
 	import mx.utils.UIDUtil;
@@ -49,7 +49,7 @@ package com.kaltura.delegates.liveStream
 	{
 		protected var mrloader:MultipartURLLoader;
 
-		public function LiveStreamUpdateOfflineThumbnailJpegDelegate(call:KalturaCall, config:KalturaConfig)
+		public function LiveStreamUpdateOfflineThumbnailJpegDelegate(call:BorhanCall, config:BorhanConfig)
 		{
 			super(call, config);
 		}
@@ -59,7 +59,7 @@ package com.kaltura.delegates.liveStream
 				return super.parse(result);
 			}
 			else {
-				var cls : Class = getDefinitionByName('com.kaltura.vo.'+ result.result.objectType) as Class;
+				var cls : Class = getDefinitionByName('com.borhan.vo.'+ result.result.objectType) as Class;
 				var obj : * = (new KClassFactory( cls )).newInstanceFromXML( result.result );
 				return obj;
 			}
@@ -95,7 +95,7 @@ package com.kaltura.delegates.liveStream
  				}
 			}
  			catch( e:Error ){
- 				var kErr : KalturaError = new KalturaError();
+ 				var kErr : BorhanError = new BorhanError();
  				kErr.errorCode = String(e.errorID);
  				kErr.errorMsg = e.message;
  				_call.handleError( kErr );

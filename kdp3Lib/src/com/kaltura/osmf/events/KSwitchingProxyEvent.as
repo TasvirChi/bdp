@@ -1,4 +1,4 @@
-package com.kaltura.osmf.events
+package com.borhan.osmf.events
 {
 	import flash.events.Event;
 	/** 

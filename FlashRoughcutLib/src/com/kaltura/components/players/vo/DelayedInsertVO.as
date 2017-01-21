@@ -1,7 +1,7 @@
-package com.kaltura.components.players.vo
+package com.borhan.components.players.vo
 {
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.IDisposable;
+	import com.borhan.assets.abstracts.AbstractAsset;
+	import com.borhan.base.IDisposable;
 
 	public class DelayedInsertVO implements IDisposable
 	{

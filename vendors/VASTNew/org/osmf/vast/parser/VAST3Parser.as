@@ -1,6 +1,6 @@
 package org.osmf.vast.parser
 {
-	import com.kaltura.utils.ObjectUtil;
+	import com.borhan.utils.ObjectUtil;
 	
 	import flash.events.Event;
 	

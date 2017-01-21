@@ -1,6 +1,6 @@
-package com.kaltura.osmf.kalturaMix
+package com.borhan.osmf.borhanMix
 {
-	import com.kaltura.components.players.eplayer.Eplayer;
+	import com.borhan.components.players.eplayer.Eplayer;
 	
 	import org.osmf.media.LoadableElementBase;
 	import org.osmf.media.MediaResourceBase;
@@ -11,12 +11,12 @@ package com.kaltura.osmf.kalturaMix
 	import org.osmf.traits.MediaTraitType;
 	import org.osmf.traits.TimeTrait;
 	/**
-	 * Class KalturaMixElement extends the OSMF with a unique element which is constructed from snippets of different videos. 
+	 * Class BorhanMixElement extends the OSMF with a unique element which is constructed from snippets of different videos. 
 	 * It has all the traits as a regular MediaElement
 	 * @author Hila
 	 * 
 	 */	
-	public class KalturaMixElement extends LoadableElementBase
+	public class BorhanMixElement extends LoadableElementBase
 	{
 		public var disableUrlHashing:Boolean = false;
 		/**
@@ -25,7 +25,7 @@ package com.kaltura.osmf.kalturaMix
 		 * @param resource
 		 * 
 		 */		
-		public function KalturaMixElement(loader:LoaderBase, resource:MediaResourceBase=null)
+		public function BorhanMixElement(loader:LoaderBase, resource:MediaResourceBase=null)
 		{
 			super(resource, loader);
 		}
@@ -35,7 +35,7 @@ package com.kaltura.osmf.kalturaMix
 		 */
 		override protected function createLoadTrait(resource:MediaResourceBase, loader:LoaderBase):LoadTrait
 		{
-			return new KalturaMixLoadTrait(loader, resource);
+			return new BorhanMixLoadTrait(loader, resource);
 		}
        	
 		/**
@@ -54,16 +54,16 @@ package com.kaltura.osmf.kalturaMix
 				}
 			}
 			//var loadTrait:LoadTrait = getTrait(MediaTraitType.LOAD) as LoadTrait;
-			var kalturaMixsprite:KalturaMixSprite = new KalturaMixSprite(this, 640, 480,disableUrlHashing);
-			var eplayer:Eplayer = kalturaMixsprite.eplayer;
-	    	addTrait(MediaTraitType.AUDIO, new KalturaMixAudioTrait(eplayer));
-	    	addTrait(MediaTraitType.BUFFER, new KalturaMixBufferTrait(eplayer));
-			var timeTrait:TimeTrait = new KalturaMixTimeTrait(eplayer);
+			var borhanMixsprite:BorhanMixSprite = new BorhanMixSprite(this, 640, 480,disableUrlHashing);
+			var eplayer:Eplayer = borhanMixsprite.eplayer;
+	    	addTrait(MediaTraitType.AUDIO, new BorhanMixAudioTrait(eplayer));
+	    	addTrait(MediaTraitType.BUFFER, new BorhanMixBufferTrait(eplayer));
+			var timeTrait:TimeTrait = new BorhanMixTimeTrait(eplayer);
 			addTrait(MediaTraitType.TIME, timeTrait);
-			var displayObjectTrait:DisplayObjectTrait = new KalturaMixViewTrait(kalturaMixsprite, 640, 480);
-    		addTrait(MediaTraitType.SEEK, new KalturaMixSeekTrait(timeTrait, eplayer));
+			var displayObjectTrait:DisplayObjectTrait = new BorhanMixViewTrait(borhanMixsprite, 640, 480);
+    		addTrait(MediaTraitType.SEEK, new BorhanMixSeekTrait(timeTrait, eplayer));
 			addTrait(MediaTraitType.DISPLAY_OBJECT, displayObjectTrait);
-			addTrait(MediaTraitType.PLAY, new KalturaMixPlayTrait(eplayer));
+			addTrait(MediaTraitType.PLAY, new BorhanMixPlayTrait(eplayer));
 			
 		}
 		

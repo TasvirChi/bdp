@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,22 +20,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.roughcut.sdl
+package com.borhan.roughcut.sdl
 {
-	import com.kaltura.application.KalturaApplication;
-	import com.kaltura.assets.AssetsFactory;
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.assets.assets.PluginAsset;
-	import com.kaltura.base.IDisposable;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.dataStructures.HashMap;
-	import com.kaltura.plugin.logic.effects.KEffect;
-	import com.kaltura.plugin.logic.overlays.Overlay;
-	import com.kaltura.plugin.types.transitions.TransitionTypes;
-	import com.kaltura.roughcut.Roughcut;
-	import com.kaltura.roughcut.assets.RoughcutTimelinesAssets;
-	import com.kaltura.roughcut.soundtrack.AudioPlayPolicy;
-	import com.kaltura.utils.url.URLProccessing;
+	import com.borhan.application.BorhanApplication;
+	import com.borhan.assets.AssetsFactory;
+	import com.borhan.assets.abstracts.AbstractAsset;
+	import com.borhan.assets.assets.PluginAsset;
+	import com.borhan.base.IDisposable;
+	import com.borhan.base.types.MediaTypes;
+	import com.borhan.dataStructures.HashMap;
+	import com.borhan.plugin.logic.effects.KEffect;
+	import com.borhan.plugin.logic.overlays.Overlay;
+	import com.borhan.plugin.types.transitions.TransitionTypes;
+	import com.borhan.roughcut.Roughcut;
+	import com.borhan.roughcut.assets.RoughcutTimelinesAssets;
+	import com.borhan.roughcut.soundtrack.AudioPlayPolicy;
+	import com.borhan.utils.url.URLProccessing;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -79,7 +79,7 @@ package com.kaltura.roughcut.sdl
 		/**
 		 * in case an admin, deleted entries from the system, we mark these entries as deleted.
 		 * contains DeletedEntry instances.
-		 * @see com.kaltura.base.vo.DeletedEntry
+		 * @see com.borhan.base.vo.DeletedEntry
 		 */
 		public var deletedEntries:ArrayCollection = new ArrayCollection ();
 
@@ -200,7 +200,7 @@ package com.kaltura.roughcut.sdl
 			var addbytes:Array = [0,0];
 			var addTime:Array = [0,0];
 
-			var nullTransitionLabel:String = KalturaApplication.getInstance().getTransitionLabel(TransitionTypes.NONE);
+			var nullTransitionLabel:String = BorhanApplication.getInstance().getTransitionLabel(TransitionTypes.NONE);
 
 			for each (var p:XML in originalSDL.VideoAssets.vidAsset)
 			{
@@ -234,7 +234,7 @@ package com.kaltura.roughcut.sdl
 				 		//create a base asset to work with:
 				 		transitionId = String(p.EndTransition.@type);
 				 		transitionIdlower = transitionId.toLowerCase();
-				 		transitionThumbnail = KalturaApplication.getInstance().getTransitionThumbnail(transitionId);
+				 		transitionThumbnail = BorhanApplication.getInstance().getTransitionThumbnail(transitionId);
 				 		transitionLength = (Number(p.StreamInfo.@len_time) - Number(p.EndTransition.@StartTime));
 				 		// for historic resons we used thumbnail validation to make sure this transition is still valid
 				 		// ie, the partner has authorized the use of this plugin ...
@@ -322,7 +322,7 @@ package com.kaltura.roughcut.sdl
 							solidColor = uint(p.StreamInfo.@file_name);
 						else
 							solidColor = uint(testColor);
-						bd = new BitmapData (KalturaApplication.getInstance().initPlayerWidth, KalturaApplication.getInstance().initPlayerHeight, false, solidColor);
+						bd = new BitmapData (BorhanApplication.getInstance().initPlayerWidth, BorhanApplication.getInstance().initPlayerHeight, false, solidColor);
 						bmp = new Bitmap (bd);
 						colorName = ""; //xxx ColorsUtil.getName(solidColor)[1];									//get the name of that color
 						tempAsset = AssetsFactory.create (MediaTypes.SOLID, 'null', "solid-" + MediaTypes.SOLID.toString(),
@@ -337,7 +337,7 @@ package com.kaltura.roughcut.sdl
 					case MediaTypes.SWF:
 				 		transitionId = String(p.EndTransition.@type);
 				 		transitionIdlower = transitionId.toLowerCase();
-				 		transitionThumbnail = KalturaApplication.getInstance().getTransitionThumbnail(transitionId);
+				 		transitionThumbnail = BorhanApplication.getInstance().getTransitionThumbnail(transitionId);
 				 		transitionLength = (Number(p.StreamInfo.@len_time) - Number(p.EndTransition.@StartTime));
 				 		if ((transitionNone == transitionIdlower) || (transitionThumbnail == TransitionTypes.NONE))
 				 		{
@@ -355,13 +355,13 @@ package com.kaltura.roughcut.sdl
 				{
 					if ( ! Roughcut.mediaTypesSettings.transitionsClearRoughcut)
 					{
-						tempAsset.transitionLabel = KalturaApplication.getInstance().getTransitionLabel(tempAsset.transitionPluginID);
+						tempAsset.transitionLabel = BorhanApplication.getInstance().getTransitionLabel(tempAsset.transitionPluginID);
 						pluginAssetXml = p.EndTransition.arguments[0];
 						tempAsset.pluginAssetXml = pluginAssetXml != '' && pluginAssetXml != null ? pluginAssetXml : null;
 					} else {
 						tempAsset.transitionPluginID = TransitionTypes.NONE;
 						tempAsset.transitionCross = false;
-						tempAsset.transitionLabel = KalturaApplication.getInstance().getTransitionLabel(tempAsset.transitionPluginID);
+						tempAsset.transitionLabel = BorhanApplication.getInstance().getTransitionLabel(tempAsset.transitionPluginID);
 						if (tempAsset.transitionPluginID.toLowerCase() != TransitionTypes.NONE.toLowerCase()) {
 							if (tempAsset.transitionLabel == nullTransitionLabel) {
 								//transition doesn't really exist -
@@ -371,7 +371,7 @@ package com.kaltura.roughcut.sdl
 						tempAsset.transitionLength = 0;
 						transitionAsset = AssetsFactory.create (MediaTypes.TRANSITION, "null", '0',
 												tempAsset.entryName + ".AssetTransition",
-												KalturaApplication.getInstance().getTransitionThumbnail(tempAsset.transitionPluginID), tempAsset.transitionPluginID,
+												BorhanApplication.getInstance().getTransitionThumbnail(tempAsset.transitionPluginID), tempAsset.transitionPluginID,
 												tempAsset.transitionLength, tempAsset.transitionLength, 0, 0, tempAsset.transitionPluginID, tempAsset.transitionLength);
 						tempAsset.transitionAsset = transitionAsset;
 						tempAsset.transitionAsset.transitionCross = tempAsset.transitionCross;
@@ -503,7 +503,7 @@ package com.kaltura.roughcut.sdl
 			for each (p in originalSDL.Plugins.Overlays.Plugin)
 			{
 				duration = Number(p.@length);
-				tempThumbUrl = KalturaApplication.getInstance().getPluginThumbnail(p.@type, MediaTypes.OVERLAY);
+				tempThumbUrl = BorhanApplication.getInstance().getPluginThumbnail(p.@type, MediaTypes.OVERLAY);
 				pluginAsset = AssetsFactory.create (MediaTypes.OVERLAY, 'null', '-1', p.name, tempThumbUrl, p.@type, duration, duration,
 												 0, 0, TransitionTypes.NONE, 0);
 				pluginAsset.seqStartPlayTime = Number(p.@StartTime);
@@ -516,7 +516,7 @@ package com.kaltura.roughcut.sdl
 			for each (p in originalSDL.Plugins.Effects.Plugin)
 			{
 				duration = Number(p.@length);
-				tempThumbUrl = KalturaApplication.getInstance().getPluginThumbnail(p.@type, MediaTypes.OVERLAY);
+				tempThumbUrl = BorhanApplication.getInstance().getPluginThumbnail(p.@type, MediaTypes.OVERLAY);
 				pluginAsset = AssetsFactory.create (MediaTypes.EFFECT, 'null', '-1', p.name, tempThumbUrl, p.@type, duration, duration,
 												 0, 0, TransitionTypes.NONE, 0);
 				pluginAsset.seqStartPlayTime = Number(p.@StartTime);
@@ -559,7 +559,7 @@ package com.kaltura.roughcut.sdl
 								<MetaData>
 									<Publish>
 										<Application>
-											{(editorType == 1 ? 'kalturaSimpleEditor' : 'kalturaAdvancedEditor')}
+											{(editorType == 1 ? 'borhanSimpleEditor' : 'borhanAdvancedEditor')}
 										</Application>
 									</Publish>
 									<SeqDuration>
@@ -714,19 +714,19 @@ package com.kaltura.roughcut.sdl
 }
 
 /*
-<vidAsset k_id={entry id on kaltura server} type={VIDEO | AUDIO | SOLID | IMAGE | SILENCE | VOICE} name={name of entry on kaltura server} url={url of file}>
+<vidAsset k_id={entry id on borhan server} type={VIDEO | AUDIO | SOLID | IMAGE | SILENCE | VOICE} name={name of entry on borhan server} url={url of file}>
 	<StreamInfo file_name={file name} posX="0" posY="0" start_byte="-1" end_byte="-1" total_bytes="-1" real_seek_time="-1" start_time={0-maximum length of original file} len_time={length in seconds} volume={the volume specific to the asset} pan={the audio balance specific to the asset} Clipped_Start={the time we cut the asset relative to the original stream} Clipped_Len={the duration we cut the asset relative to the original stream} />
-	<EndTransition cross={1 if this transition performs cross between this asset and the following or 0 if it affect only this asset} type={type of transition - the id of the plugin on kaltura server} StartTime={the time in seconds relative to the asset duration on which the transition should start} length={the duration of the transition - in seconds}>
+	<EndTransition cross={1 if this transition performs cross between this asset and the following or 0 if it affect only this asset} type={type of transition - the id of the plugin on borhan server} StartTime={the time in seconds relative to the asset duration on which the transition should start} length={the duration of the transition - in seconds}>
 		{transition plugin specific values and description}
 	</EndTransition>
-	<AssetEffect type={type of effect - the id of the plugin on kaltura server} StartTime={the time in seconds relative to the asset duration on which the effect should start} length={the duration of the effect - in seconds}>
+	<AssetEffect type={type of effect - the id of the plugin on borhan server} StartTime={the time in seconds relative to the asset duration on which the effect should start} length={the duration of the effect - in seconds}>
 		{effect plugin specific values and description}
 	</AssetEffect>
 	<VolumePoints>
 		<VolumePoint time={0-length} volume={0-1} />
 	</VolumePoints>
 </vidAsset>
-<Plugin type={type of plugin on the kaltura server} StartTime={the global sequence time in seconds at which plugin starts to affect} length={the duration of the plugin in seconds}>
+<Plugin type={type of plugin on the borhan server} StartTime={the global sequence time in seconds at which plugin starts to affect} length={the duration of the plugin in seconds}>
 	{specific plugin elements}
 </Plugin>
 */

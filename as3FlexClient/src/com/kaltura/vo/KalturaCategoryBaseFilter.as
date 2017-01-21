@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaFilter;
+	import com.borhan.vo.BorhanFilter;
 
 	[Bindable]
-	public dynamic class KalturaCategoryBaseFilter extends KalturaFilter
+	public dynamic class BorhanCategoryBaseFilter extends BorhanFilter
 	{
 		/**
 		**/
@@ -105,12 +105,12 @@ package com.kaltura.vo
 		public var tagsMultiLikeAnd : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaAppearInListType
+		* @see com.borhan.types.BorhanAppearInListType
 		**/
 		public var appearInListEqual : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaPrivacyType
+		* @see com.borhan.types.BorhanPrivacyType
 		**/
 		public var privacyEqual : int = int.MIN_VALUE;
 
@@ -119,7 +119,7 @@ package com.kaltura.vo
 		public var privacyIn : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaInheritanceType
+		* @see com.borhan.types.BorhanInheritanceType
 		**/
 		public var inheritanceTypeEqual : int = int.MIN_VALUE;
 
@@ -132,12 +132,12 @@ package com.kaltura.vo
 		public var referenceIdEqual : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.borhan.types.BorhanNullableBoolean
 		**/
 		public var referenceIdEmpty : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaContributionPolicyType
+		* @see com.borhan.types.BorhanContributionPolicyType
 		**/
 		public var contributionPolicyEqual : int = int.MIN_VALUE;
 
@@ -162,7 +162,7 @@ package com.kaltura.vo
 		public var privacyContextEqual : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaCategoryStatus
+		* @see com.borhan.types.BorhanCategoryStatus
 		**/
 		public var statusEqual : int = int.MIN_VALUE;
 

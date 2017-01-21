@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.dummy
+package com.borhan.bdpfl.dummy
 {
 	import org.flexunit.Assert;
 

@@ -1,5 +1,5 @@
-package com.kaltura.kdfl.plugin {
-	import com.kaltura.kdfl.plugin.events.BumperEvent;
+package com.borhan.kdfl.plugin {
+	import com.borhan.kdfl.plugin.events.BumperEvent;
 	
 	import flash.display.Graphics;
 	import flash.display.Sprite;

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,28 +25,28 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.playlist
+package com.borhan.commands.playlist
 {
-		import com.kaltura.vo.KalturaContext;
-		import com.kaltura.vo.KalturaMediaEntryFilterForPlaylist;
-	import com.kaltura.delegates.playlist.PlaylistExecuteDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanContext;
+		import com.borhan.vo.BorhanMediaEntryFilterForPlaylist;
+	import com.borhan.delegates.playlist.PlaylistExecuteDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Retrieve playlist for playing purpose
 	* 
 	**/
-	public class PlaylistExecute extends KalturaCall
+	public class PlaylistExecute extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id String
 		* @param detailed String
-		* @param playlistContext KalturaContext
-		* @param filter KalturaMediaEntryFilterForPlaylist
+		* @param playlistContext BorhanContext
+		* @param filter BorhanMediaEntryFilterForPlaylist
 		**/
-		public function PlaylistExecute( id : String,detailed : String='',playlistContext : KalturaContext=null,filter : KalturaMediaEntryFilterForPlaylist=null )
+		public function PlaylistExecute( id : String,detailed : String='',playlistContext : BorhanContext=null,filter : BorhanMediaEntryFilterForPlaylist=null )
 		{
 			service= 'playlist';
 			action= 'execute';
@@ -59,12 +59,12 @@ package com.kaltura.commands.playlist
 			keyArr.push('detailed');
 			valueArr.push(detailed);
 			if (playlistContext) { 
-				keyValArr = kalturaObject2Arrays(playlistContext, 'playlistContext');
+				keyValArr = borhanObject2Arrays(playlistContext, 'playlistContext');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (filter) { 
-				keyValArr = kalturaObject2Arrays(filter, 'filter');
+				keyValArr = borhanObject2Arrays(filter, 'filter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

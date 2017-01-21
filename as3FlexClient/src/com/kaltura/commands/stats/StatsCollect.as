@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,11 +25,11 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.stats
+package com.borhan.commands.stats
 {
-		import com.kaltura.vo.KalturaStatsEvent;
-	import com.kaltura.delegates.stats.StatsCollectDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanStatsEvent;
+	import com.borhan.delegates.stats.StatsCollectDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Will write to the event log a single line representing the event
@@ -53,17 +53,17 @@ package com.kaltura.commands.stats
 	* referrer
 	* 
 	* 
-	* KalturaStatsEvent $event
+	* BorhanStatsEvent $event
 	* 
 	**/
-	public class StatsCollect extends KalturaCall
+	public class StatsCollect extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param event KalturaStatsEvent
+		* @param event BorhanStatsEvent
 		**/
-		public function StatsCollect( event : KalturaStatsEvent )
+		public function StatsCollect( event : BorhanStatsEvent )
 		{
 			service= 'stats';
 			action= 'collect';
@@ -71,7 +71,7 @@ package com.kaltura.commands.stats
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(event, 'event');
+				keyValArr = borhanObject2Arrays(event, 'event');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

@@ -1,5 +1,5 @@
-package com.kaltura.kdpfl.plugin.controller {
-	import com.kaltura.kdpfl.plugin.model.SoundProxy;
+package com.borhan.bdpfl.plugin.controller {
+	import com.borhan.bdpfl.plugin.model.SoundProxy;
 	
 	import flash.media.Sound;
 	

@@ -1,17 +1,17 @@
-package com.kaltura.kdpfl.util
+package com.borhan.bdpfl.util
 {
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.controls.KTrace;
 	
 	import flash.utils.ByteArray;
 
-	public class KdpEmbeddedData 
+	public class BdpEmbeddedData 
 	{
-		private static var singleton:KdpEmbeddedData = null;
-		[Embed(source="KdpEmbeddedDataBin.bin", mimeType="application/octet-stream")]
+		private static var singleton:BdpEmbeddedData = null;
+		[Embed(source="BdpEmbeddedDataBin.bin", mimeType="application/octet-stream")]
 		private const embeddedData:Class;
 		public var embeddedModules:Object  = new Object();
 		
-		public function KdpEmbeddedData()
+		public function BdpEmbeddedData()
 		{
 			var embeddedDataBA: ByteArray = new embeddedData() as ByteArray;
 			
@@ -61,10 +61,10 @@ package com.kaltura.kdpfl.util
 		 *  @private
 		 *  Typed as Object, for now. Ideally this should be IModuleManager.
 		 */
-		public static function getSingleton():KdpEmbeddedData
+		public static function getSingleton():BdpEmbeddedData
 		{
 			if (!singleton)
-				singleton = new KdpEmbeddedData();
+				singleton = new BdpEmbeddedData();
 			
 			return singleton;
 		}

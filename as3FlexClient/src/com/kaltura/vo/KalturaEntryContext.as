@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaContext;
+	import com.borhan.vo.BorhanContext;
 
 	[Bindable]
-	public dynamic class KalturaEntryContext extends KalturaContext
+	public dynamic class BorhanEntryContext extends BorhanContext
 	{
 		/**
 		* The entry ID in the context of which the playlist should be built
@@ -41,7 +41,7 @@ package com.kaltura.vo
 		/**
 		* Is this a redirected entry followup?
 		* 
-		* @see com.kaltura.types.KalturaNullableBoolean
+		* @see com.borhan.types.BorhanNullableBoolean
 		**/
 		public var followEntryRedirect : int = int.MIN_VALUE;
 

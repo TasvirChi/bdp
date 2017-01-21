@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.component
+package com.borhan.bdpfl.component
 {
 	import fl.core.UIComponent;
 	
@@ -11,7 +11,7 @@ package com.kaltura.kdpfl.component
 	public class ComponentData
 	{
 		/**
-		 * The component's KDP class (i.e KButton, KLabel, etc).
+		 * The component's BDP class (i.e KButton, KLabel, etc).
 		 */		
 		private var _ui:Object;
 		/**

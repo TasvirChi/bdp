@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.component
+package com.borhan.bdpfl.component
 {
 	/**
-	 * Interface for the UIComponents used be the KDP. 
+	 * Interface for the UIComponents used be the BDP. 
 	 * @author Hila
 	 * 
 	 */	

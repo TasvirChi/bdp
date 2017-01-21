@@ -1,16 +1,16 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.vo.*;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
-	import com.kaltura.vo.KalturaCuePoint;
-	import com.kaltura.vo.KalturaMediaEntry;
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.AdsNotificationTypes;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.vo.*;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.types.BorhanAdType;
+	import com.borhan.vo.BorhanAdCuePoint;
+	import com.borhan.vo.BorhanCuePoint;
+	import com.borhan.vo.BorhanMediaEntry;
+	import com.borhan.vo.BorhanPlayableEntry;
 	
 	import org.osmf.media.URLResource;
 	import org.puremvc.as3.interfaces.INotification;
@@ -24,7 +24,7 @@ package com.kaltura.kdpfl.plugin.component
 		private var _playheadPosition:Number = 0;
 		private var _intervalSentPos:Number = 0;
 		private var _duration:Number = 0;
-		private var _media:KalturaMediaEntry;
+		private var _media:BorhanMediaEntry;
 		private var _seeking:Boolean = false;
 		private var _seekStartEnd:Number = 0;
 		private var _cuePoints:Array;
@@ -179,8 +179,8 @@ package com.kaltura.kdpfl.plugin.component
 						{
 							//will count the intime only if at least one of the cue points in this intime
 							//is a video
-							var cp:KalturaCuePoint = l_media.entryCuePoints[ii][j] as KalturaCuePoint;
-							if (cp && (cp is KalturaAdCuePoint) && ((cp as KalturaAdCuePoint).adType==KalturaAdType.VIDEO))
+							var cp:BorhanCuePoint = l_media.entryCuePoints[ii][j] as BorhanCuePoint;
+							if (cp && (cp is BorhanAdCuePoint) && ((cp as BorhanAdCuePoint).adType==BorhanAdType.VIDEO))
 							{
 								//cue points value is in milliseconds
 								_cuePoints.push(Number(ii) / 1000);
@@ -303,7 +303,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		private function getVideoInfoFromMetadata():String
 		{
-			var metadata:KalturaPlayableEntry = (facade.retrieveProxy("mediaProxy"))["vo"].entry;
+			var metadata:BorhanPlayableEntry = (facade.retrieveProxy("mediaProxy"))["vo"].entry;
 			_duration = isNaN(metadata.duration) ? _duration : metadata.msDuration / 1000;
 			var c_seg:Number = this.getSegmentFromCuePoints()-1;
 			if(this._cuePoints && this._cuePoints.length)

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.mediaInfo
+package com.borhan.commands.mediaInfo
 {
-		import com.kaltura.vo.KalturaMediaInfoFilter;
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.mediaInfo.MediaInfoListDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanMediaInfoFilter;
+		import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.delegates.mediaInfo.MediaInfoListDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* List media info objects by filter and pager
 	* 
 	**/
-	public class MediaInfoList extends KalturaCall
+	public class MediaInfoList extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param filter KalturaMediaInfoFilter
-		* @param pager KalturaFilterPager
+		* @param filter BorhanMediaInfoFilter
+		* @param pager BorhanFilterPager
 		**/
-		public function MediaInfoList( filter : KalturaMediaInfoFilter=null,pager : KalturaFilterPager=null )
+		public function MediaInfoList( filter : BorhanMediaInfoFilter=null,pager : BorhanFilterPager=null )
 		{
 			service= 'mediainfo';
 			action= 'list';
@@ -53,12 +53,12 @@ package com.kaltura.commands.mediaInfo
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (filter) { 
-				keyValArr = kalturaObject2Arrays(filter, 'filter');
+				keyValArr = borhanObject2Arrays(filter, 'filter');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = borhanObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

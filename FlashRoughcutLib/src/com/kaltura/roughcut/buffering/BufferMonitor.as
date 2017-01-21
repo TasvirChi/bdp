@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,20 +20,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.roughcut.buffering
+package com.borhan.roughcut.buffering
 {
-	import com.kaltura.assets.abstracts.AbstractAsset;
-	import com.kaltura.base.IDisposable;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.managers.downloadManagers.types.StreamingModes;
-	import com.kaltura.net.downloading.LoadingStatus;
-	import com.kaltura.net.interfaces.IMediaSource;
-	import com.kaltura.net.nonStreaming.SWFLoaderMediaSource;
-	import com.kaltura.net.streaming.ExNetStream;
-	import com.kaltura.net.streaming.NetClient;
-	import com.kaltura.plugin.types.transitions.TransitionTypes;
-	import com.kaltura.roughcut.Roughcut;
-	import com.kaltura.roughcut.buffering.events.BufferEvent;
+	import com.borhan.assets.abstracts.AbstractAsset;
+	import com.borhan.base.IDisposable;
+	import com.borhan.base.types.MediaTypes;
+	import com.borhan.managers.downloadManagers.types.StreamingModes;
+	import com.borhan.net.downloading.LoadingStatus;
+	import com.borhan.net.interfaces.IMediaSource;
+	import com.borhan.net.nonStreaming.SWFLoaderMediaSource;
+	import com.borhan.net.streaming.ExNetStream;
+	import com.borhan.net.streaming.NetClient;
+	import com.borhan.plugin.types.transitions.TransitionTypes;
+	import com.borhan.roughcut.Roughcut;
+	import com.borhan.roughcut.buffering.events.BufferEvent;
 
 	import flash.display.BitmapData;
 	import flash.events.EventDispatcher;
@@ -42,14 +42,14 @@ package com.kaltura.roughcut.buffering
 
 	/**
 	* Dispatched when the roughcut was fully downloaded to the client's machine.
-	* @eventType com.kaltura.roughcut.buffering.events.BufferEvent.DOWNLOAD_COMPLETE
+	* @eventType com.borhan.roughcut.buffering.events.BufferEvent.DOWNLOAD_COMPLETE
 	*/
-	[Event(name="downloadComplete", type="com.kaltura.roughcut.buffering.events.BufferEvent")]
+	[Event(name="downloadComplete", type="com.borhan.roughcut.buffering.events.BufferEvent")]
 	/**
 	* Dispatched when the roughcut completed downloading the plugins.
-	* @eventType com.kaltura.roughcut.buffering.events.BufferEvent.PLUGINS_DOWNLOAD_COMPLETE
+	* @eventType com.borhan.roughcut.buffering.events.BufferEvent.PLUGINS_DOWNLOAD_COMPLETE
 	*/
-	[Event(name="pluginsDownloadComplete", type="com.kaltura.roughcut.buffering.events.BufferEvent")]
+	[Event(name="pluginsDownloadComplete", type="com.borhan.roughcut.buffering.events.BufferEvent")]
 
 	/**
 	 * Buffer Manager monitors loading for roughcuts.
@@ -60,7 +60,7 @@ package com.kaltura.roughcut.buffering
 	{
 		/**
 		 *holds references to all the assets in the roughcut in a two dimentional array.
-		 *@see com.kaltura.roughcut.buffering.BufferMonitor#buildBufferArray
+		 *@see com.borhan.roughcut.buffering.BufferMonitor#buildBufferArray
 		 */
 		private var _buffer:Array = [];
 

@@ -1,18 +1,18 @@
-package com.kaltura.kdpfl.controller
+package com.borhan.bdpfl.controller
 {
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.DebugLevel;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.model.vo.ConfigVO;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.kdpfl.view.RootMediator;
-	import com.kaltura.vo.KalturaMediaEntry;
+	import com.borhan.config.BorhanConfig;
+	import com.borhan.bdpfl.ApplicationFacade;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.model.type.DebugLevel;
+	import com.borhan.bdpfl.model.type.SourceType;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.model.vo.ConfigVO;
+	import com.borhan.bdpfl.util.URLUtils;
+	import com.borhan.bdpfl.view.RootMediator;
+	import com.borhan.vo.BorhanMediaEntry;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -43,7 +43,7 @@ package com.kaltura.kdpfl.controller
 			
 			
 			// go over the flashvars that passed from any Flex/Flash Container, set or override as needed.
-			// read the flashvars from a main container (an application which loaded kdp)
+			// read the flashvars from a main container (an application which loaded bdp)
 			var o:Object = rm.root["flashvars"]; 
 			for(prop in o)
 				flashvars[prop] = o[prop];
@@ -77,8 +77,8 @@ package com.kaltura.kdpfl.controller
 			//set application flashvars to be the global flashvars
 			rm.root["flashvars"] = flashvars; 
 			rm.setBufferAnimation();
-			//create the kaltura client by passing it the configuration object base on the flashvars
-			setKalturaClientConfig( flashvars );
+			//create the borhan client by passing it the configuration object base on the flashvars
+			setBorhanClientConfig( flashvars );
 			
 
 			if(flashvars.externalInterfaceDisabled == "false" || flashvars.externalInterfaceDisabled == "0")
@@ -108,7 +108,7 @@ package com.kaltura.kdpfl.controller
 				
 			//create a new Media Entry if not exist
 			if(!mediaProxy.vo.entry)
-				mediaProxy.vo.entry = new KalturaMediaEntry();
+				mediaProxy.vo.entry = new BorhanMediaEntry();
 					
 			//set the entryId
 			mediaProxy.vo.entry.id=flashvars.entryId;
@@ -117,10 +117,10 @@ package com.kaltura.kdpfl.controller
 			ApplicationFacade.getInstance().debugLevel = (flashvars.debugLevel) ?  flashvars.debugLevel : DebugLevel.LOW;
 			
 			if(!flashvars.aboutPlayer)	
-				flashvars.aboutPlayer= "About Kaltura's Open Source Video Player";
+				flashvars.aboutPlayer= "About Borhan's Open Source Video Player";
 			
 			if(!flashvars.aboutPlayerLink)
-				flashvars.aboutPlayerLink= "http://corp.kaltura.com/technology/video_player";
+				flashvars.aboutPlayerLink= "http://corp.borhan.com/technology/video_player";
 			
 				
 			if(!flashvars.sourceType)
@@ -136,23 +136,23 @@ package com.kaltura.kdpfl.controller
 		}
 		
 		
-		private function setKalturaClientConfig( flashvars : Object ) : void
+		private function setBorhanClientConfig( flashvars : Object ) : void
 		{
-			var kalturaConfig : KalturaConfig = new KalturaConfig();
+			var borhanConfig : BorhanConfig = new BorhanConfig();
 			
-			if(flashvars.ks) kalturaConfig.ks = flashvars.ks;
-			if(flashvars.partnerId) kalturaConfig.partnerId = flashvars.partnerId;
-			// when KDP starts using a newer as3flexclient...
-			if(flashvars.httpProtocol) kalturaConfig.protocol = flashvars.httpProtocol; 
-			if(flashvars.host) kalturaConfig.domain = flashvars.host; 
-//			if(flashvars.host) kalturaConfig.domain = flashvars.httpProtocol + flashvars.host; //TODO: Check if i need to accept the 0,1,2,3 or it's deprecated 
-			if(flashvars.srvUrl) kalturaConfig.srvUrl = flashvars.srvUrl; 
+			if(flashvars.ks) borhanConfig.ks = flashvars.ks;
+			if(flashvars.partnerId) borhanConfig.partnerId = flashvars.partnerId;
+			// when BDP starts using a newer as3flexclient...
+			if(flashvars.httpProtocol) borhanConfig.protocol = flashvars.httpProtocol; 
+			if(flashvars.host) borhanConfig.domain = flashvars.host; 
+//			if(flashvars.host) borhanConfig.domain = flashvars.httpProtocol + flashvars.host; //TODO: Check if i need to accept the 0,1,2,3 or it's deprecated 
+			if(flashvars.srvUrl) borhanConfig.srvUrl = flashvars.srvUrl; 
 			
-			kalturaConfig.clientTag = "kdp:" + (facade as ApplicationFacade).kdpVersion; //set the clientTag to the current version on the kdp
-			if(flashvars.clientTag) kalturaConfig.clientTag += ","+flashvars.clientTag;//if clientTag passed from flashvars concat it to the clientTag as well
+			borhanConfig.clientTag = "bdp:" + (facade as ApplicationFacade).bdpVersion; //set the clientTag to the current version on the bdp
+			if(flashvars.clientTag) borhanConfig.clientTag += ","+flashvars.clientTag;//if clientTag passed from flashvars concat it to the clientTag as well
 			
 			var serviceProxy:ServicesProxy  = facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy;
-			serviceProxy.createClient( kalturaConfig );
+			serviceProxy.createClient( borhanConfig );
 		}
 		
 		

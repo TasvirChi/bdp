@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.bulkUpload
+package com.borhan.commands.bulkUpload
 {
-		import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.delegates.bulkUpload.BulkUploadListDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.delegates.bulkUpload.BulkUploadListDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* List bulk upload batch jobs
 	* 
 	**/
-	public class BulkUploadList extends KalturaCall
+	public class BulkUploadList extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param pager KalturaFilterPager
+		* @param pager BorhanFilterPager
 		**/
-		public function BulkUploadList( pager : KalturaFilterPager=null )
+		public function BulkUploadList( pager : BorhanFilterPager=null )
 		{
 			service= 'bulkupload';
 			action= 'list';
@@ -51,7 +51,7 @@ package com.kaltura.commands.bulkUpload
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
 			if (pager) { 
-				keyValArr = kalturaObject2Arrays(pager, 'pager');
+				keyValArr = borhanObject2Arrays(pager, 'pager');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

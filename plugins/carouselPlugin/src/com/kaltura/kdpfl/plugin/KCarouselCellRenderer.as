@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin {
+package com.borhan.bdpfl.plugin {
 
-	import com.kaltura.kdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.LayoutProxy;
 	import com.yahoo.astra.fl.controls.carouselClasses.CarouselCellRenderer;
 	
 	import flash.display.DisplayObject;

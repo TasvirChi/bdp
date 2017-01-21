@@ -1,9 +1,9 @@
-package com.kaltura.osmf.kalturaMix
+package com.borhan.osmf.borhanMix
 {
 	import __AS3__.vec.Vector;
 	
-	import com.kaltura.osmf.kaltura.KalturaBaseEntryResource;
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.borhan.osmf.borhan.BorhanBaseEntryResource;
+	import com.borhan.vo.BorhanMixEntry;
 	
 	import flash.errors.IllegalOperationError;
 	
@@ -13,17 +13,17 @@ package com.kaltura.osmf.kalturaMix
 	import org.osmf.media.PluginInfo;
 	import org.osmf.utils.OSMFStrings;
 
-	public class KalturaMixPluginInfo extends PluginInfo
+	public class BorhanMixPluginInfo extends PluginInfo
 	{
-		private var kalturaMixLoader:KalturaMixLoader = new KalturaMixLoader();
+		private var borhanMixLoader:BorhanMixLoader = new BorhanMixLoader();
 		private var mediaInfoObjects:Vector.<MediaFactoryItem>;			
 		public var disableUrlHashing : Boolean = false;
-		public function KalturaMixPluginInfo(isHashDisabled : Boolean)
+		public function BorhanMixPluginInfo(isHashDisabled : Boolean)
 		{
 			super(null,null);
 			mediaInfoObjects = new Vector.<MediaFactoryItem>();
 			disableUrlHashing = isHashDisabled;
-			var mediaInfo:MediaFactoryItem = new MediaFactoryItem("com.kaltura.osmf.KalturaMixElement", canHandleResource, createKalturaMixElement);
+			var mediaInfo:MediaFactoryItem = new MediaFactoryItem("com.borhan.osmf.BorhanMixElement", canHandleResource, createBorhanMixElement);
 			mediaInfoObjects.push(mediaInfo);
 
 		}
@@ -81,9 +81,9 @@ package com.kaltura.osmf.kalturaMix
 			return ((major > 0) || ((major == 0) && (minor >= 8) && (subMinor >= 0)));
 		}
 		
-		private function createKalturaMixElement():MediaElement
+		private function createBorhanMixElement():MediaElement
 		{
-			var newElement :KalturaMixElement = new KalturaMixElement(kalturaMixLoader);
+			var newElement :BorhanMixElement = new BorhanMixElement(borhanMixLoader);
 			newElement.disableUrlHashing = disableUrlHashing;
 			return newElement;
 		}
@@ -95,9 +95,9 @@ package com.kaltura.osmf.kalturaMix
 		 */		
 		public function canHandleResource(resource:MediaResourceBase):Boolean
 		{
-			//if (resource is KalturaEntryResource && (resource as KalturaEntryResource).entry is KalturaEntry)
+			//if (resource is BorhanEntryResource && (resource as BorhanEntryResource).entry is BorhanEntry)
 			//	return true;
-			if (resource is KalturaBaseEntryResource && (resource as KalturaBaseEntryResource).entry is KalturaMixEntry)
+			if (resource is BorhanBaseEntryResource && (resource as BorhanBaseEntryResource).entry is BorhanMixEntry)
 				return true;
 				
 			return false;

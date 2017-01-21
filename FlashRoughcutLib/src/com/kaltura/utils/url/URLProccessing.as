@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.utils.url
+package com.borhan.utils.url
 {
 	//xxx import mx.core.Application;
 	import mx.utils.URLUtil;
@@ -84,7 +84,7 @@ package com.kaltura.utils.url
 		 */
 		static public var urlClipVideo:String = "flvclipper/entry_id/";
 		/**
-		 * the kaltura server domain, without protocol and optional subdomain (kaldev is mandatory, www is optional) as defined by the config.
+		 * the borhan server domain, without protocol and optional subdomain (kaldev is mandatory, www is optional) as defined by the config.
 		 */
 		static public var serverDomain:String = '$urlUnDefined$';
 		/**
@@ -300,7 +300,7 @@ package com.kaltura.utils.url
 		 * @param thumb_height	the height of the thumbnail to create.
 		 * @param partnerPart	if the request require tracking, use the getPartnerPartForTracking method to create a valid partnerPart for the request.
 		 * @return 				a request url to get the desired thumbnail.
-		 * @see com.kaltura.utils.url.URLProccessing#getPartnerPartForTracking
+		 * @see com.borhan.utils.url.URLProccessing#getPartnerPartForTracking
 		 */
 		static public function getThumbnail (entry_id:String, entry_version:String, thumb_width:int = 640, thumb_height:int = 480, partnerPart:String = ''):String
 		{
@@ -425,11 +425,11 @@ package com.kaltura.utils.url
  			switch (host_code)
 			{
  				case "0":
- 				case "kaldev.kaltura.com":
-					hostURL = "kaldev.kaltura.com";
-					URLProccessing.serverDomain = "kaldev.kaltura.com";
-					URLProccessing.serverURL = protocol + "://kaldev.kaltura.com";
-					URLProccessing.cdnURL = protocol + "://cdnkaldev.kaltura.com";
+ 				case "kaldev.borhan.com":
+					hostURL = "kaldev.borhan.com";
+					URLProccessing.serverDomain = "kaldev.borhan.com";
+					URLProccessing.serverURL = protocol + "://kaldev.borhan.com";
+					URLProccessing.cdnURL = protocol + "://cdnkaldev.borhan.com";
 				break;
 
 				case null:
@@ -437,13 +437,13 @@ package com.kaltura.utils.url
 				case undefined:
 				case "":                        
 				case "1":
-				case "www.kaltura.com":
-				case "corp.kaltura.com":
-				case "kaltura.com":
-					hostURL = "www.kaltura.com";
-    				URLProccessing.serverDomain = "kaltura.com";
-					URLProccessing.serverURL = protocol + "://www.kaltura.com";
-					URLProccessing.cdnURL = protocol + "://cdn.kaltura.com";
+				case "www.borhan.com":
+				case "corp.borhan.com":
+				case "borhan.com":
+					hostURL = "www.borhan.com";
+    				URLProccessing.serverDomain = "borhan.com";
+					URLProccessing.serverURL = protocol + "://www.borhan.com";
+					URLProccessing.cdnURL = protocol + "://cdn.borhan.com";
 				break;
 
 				case "2":
@@ -455,11 +455,11 @@ package com.kaltura.utils.url
 				break;
 
 				case "3":
-				case "sandbox.kaltura.com":
-					hostURL = "sandbox.kaltura.com";
-					URLProccessing.serverDomain = "sandbox.kaltura.com";
-					URLProccessing.serverURL = "http://sandbox.kaltura.com";
-					URLProccessing.cdnURL = "http://cdnsandbox.kaltura.com";
+				case "sandbox.borhan.com":
+					hostURL = "sandbox.borhan.com";
+					URLProccessing.serverDomain = "sandbox.borhan.com";
+					URLProccessing.serverURL = "http://sandbox.borhan.com";
+					URLProccessing.cdnURL = "http://cdnsandbox.borhan.com";
 				break;
 
 				default:
@@ -478,8 +478,8 @@ package com.kaltura.utils.url
 		/**
 		 *completes a given url, replaces binding parameters in a given url.
 		 * <p>parmeters available:</p>
-		 * <code>{DOMAIN_NAME} - the domain (only, not protocol or optional subdomains) of the kaltura server the client is working with.</code>
-		 * <code>{SERVER_URL} - the full url (no protocol) of the kaltura server the client is working with.</code>
+		 * <code>{DOMAIN_NAME} - the domain (only, not protocol or optional subdomains) of the borhan server the client is working with.</code>
+		 * <code>{SERVER_URL} - the full url (no protocol) of the borhan server the client is working with.</code>
 		 * <code>{CDN_SERVER_URL} - the full url of the CDN the client is working with.</code>
 		 * @param url					source string to replace binding codes in.
 		 * @param binding_code			the code to replace, see description for available codes.

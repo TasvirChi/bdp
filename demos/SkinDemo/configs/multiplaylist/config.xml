@@ -2,7 +2,7 @@
   <HBox id="topLevel" width="100%" height="100%">
     <VBox id="player" width="100%" height="100%" styleName="black">
       <Plugin id="playlistAPI" width="0%" height="0%" includeInLayout="false" selectedDataProvider="{tabBar.selectedDataProvider}"/>
-      <Plugin id="kalturaMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
+      <Plugin id="borhanMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
       <Plugin id="statistics" width="0%" height="0%" includeInLayout="false"/>
       <Canvas height="100%" width="100%" id="PlayerHolder" styleName="black">
         <Video id="video" width="100%" height="100%"/>
@@ -13,7 +13,7 @@
           <Spacer height="100%"/>
         </VBox>
         <Screens id="screensLayer" width="100%" height="100%" mouseOverTarget="{PlayerHolder}" styleName="clickThrough" startScreenId="startScreen" startScreenOverId="startScreen" pauseScreenOverId="pauseScreen" pauseScreenId="pauseScreen" playScreenOverId="playScreen" endScreenId="endScreen" endScreenOverId="endScreen"/>
-        <Watermark id="watermark" width="100%" height="100%" watermarkPath="http://www.kaltura.com/content/uiconf/kaltura/kmc/appstudio/kdp3/exampleWatermark.png" watermarkClickPath="http://www.kaltura.com/" watermarkPosition="bottomLeft" padding="5"/>
+        <Watermark id="watermark" width="100%" height="100%" watermarkPath="http://www.borhan.com/content/uiconf/borhan/bmc/appstudio/bdp3/exampleWatermark.png" watermarkClickPath="http://www.borhan.com/" watermarkPosition="bottomLeft" padding="5"/>
         <Plugin id="gigya" width="100%" height="100%" shareEmailBody="Hi,&lt;br>I watched this video and thought you'd enjoy it too. &lt;br>$URL$ to watch.&lt;br> $sender$" shareEmailSubject="Take a look at this video" loadingPolicy="noWait" uiconfId="48502"/>
       </Canvas>
       <Canvas id="controlsHolder" width="100%" height="30">
@@ -37,7 +37,7 @@
             <Button id="fullScreenBtnControllerScreen" command="fullScreen" buttonType="iconButton" height="22" styleName="controllerScreen" icon="openFullScreenIcon" selectedUpIcon="closeFullScreenIcon" selectedOverIcon="closeFullScreenIcon" selectedDownIcon="closeFullScreenIcon" selectedDisabledIcon="closeFullScreenIcon" focusRectPadding="0" allowDisable="false" k_buttonType="buttonIconControllerArea" tooltip="Toggle fullscreen" color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" font="Arial"/>
           </HBox>
           <Spacer width="13"/>
-          <Button id="kalturaLogo" height="50" width="100" kClick="navigate('http://www.kaltura.com')" styleName="controllerScreen" icon="kalturaLogo"/>
+          <Button id="borhanLogo" height="50" width="100" kClick="navigate('http://www.borhan.com')" styleName="controllerScreen" icon="borhanLogo"/>
           <Spacer width="13"/>
         </HBox>
       </Canvas>
@@ -154,23 +154,23 @@
   </extraData>
   <uiVars>
     <var key="kpl0EntryId" value="0_9uyq2xp4"/>
-    <var key="playlistAPI.kpl0Url" value="http%3A%2F%2Fkaldev.kaltura.com%2Findex.php%2Fpartnerservices2%2Fexecuteplaylist%3Fplaylist_id%3D0_9uyq2xp4%26partner_id%3D569%26subp_id%3D56900%26format%3D8%26ks%3D%7Bks%7D"/>
+    <var key="playlistAPI.kpl0Url" value="http%3A%2F%2Fkaldev.borhan.com%2Findex.php%2Fpartnerservices2%2Fexecuteplaylist%3Fplaylist_id%3D0_9uyq2xp4%26partner_id%3D569%26subp_id%3D56900%26format%3D8%26ks%3D%7Bks%7D"/>
     <var key="playlistAPI.kpl0Name" value="baa"/>
     <var key="kpl1EntryId" value="0_2lckyptb"/>
-    <var key="playlistAPI.kpl1Url" value="http%3A%2F%2Fkaldev.kaltura.com%2Findex.php%2Fpartnerservices2%2Fexecuteplaylist%3Fplaylist_id%3D0_2lckyptb%26partner_id%3D569%26subp_id%3D56900%26format%3D8%26ks%3D%7Bks%7D"/>
+    <var key="playlistAPI.kpl1Url" value="http%3A%2F%2Fkaldev.borhan.com%2Findex.php%2Fpartnerservices2%2Fexecuteplaylist%3Fplaylist_id%3D0_2lckyptb%26partner_id%3D569%26subp_id%3D56900%26format%3D8%26ks%3D%7Bks%7D"/>
     <var key="playlistAPI.kpl1Name" value="name"/>
     <var key="kpl2EntryId" value="0_azj5yzj4"/>
-    <var key="playlistAPI.kpl2Url" value="http%3A%2F%2Fkaldev.kaltura.com%2Findex.php%2Fpartnerservices2%2Fexecuteplaylist%3Fplaylist_id%3D0_azj5yzj4%26partner_id%3D569%26subp_id%3D56900%26format%3D8%26ks%3D%7Bks%7D"/>
+    <var key="playlistAPI.kpl2Url" value="http%3A%2F%2Fkaldev.borhan.com%2Findex.php%2Fpartnerservices2%2Fexecuteplaylist%3Fplaylist_id%3D0_azj5yzj4%26partner_id%3D569%26subp_id%3D56900%26format%3D8%26ks%3D%7Bks%7D"/>
     <var key="playlistAPI.kpl2Name" value="My rule based playlist"/>
     <var key="kpl3EntryId" value="0_b0d9160e"/>
-    <var key="playlistAPI.kpl3Url" value="http%3A%2F%2Fkaldev.kaltura.com%2Findex.php%2Fpartnerservices2%2Fexecuteplaylist%3Fplaylist_id%3D0_b0d9160e%26partner_id%3D569%26subp_id%3D56900%26format%3D8%26ks%3D%7Bks%7D"/>
+    <var key="playlistAPI.kpl3Url" value="http%3A%2F%2Fkaldev.borhan.com%2Findex.php%2Fpartnerservices2%2Fexecuteplaylist%3Fplaylist_id%3D0_b0d9160e%26partner_id%3D569%26subp_id%3D56900%26format%3D8%26ks%3D%7Bks%7D"/>
     <var key="playlistAPI.kpl3Name" value="bozi"/>
     <var key="video.keepAspectRatio" value="true"/>
     <var key="playlistAPI.autoContinue" value="false"/>
     <var key="imageDefaultDuration" value="2"/>
     <var key="playlistAPI.autoPlay" value="false"/>
     <var key="autoMute" value="false"/>
-    <var key="playlistAPI.path" value="http://localhost/kdp3/kdp3/bin-debug/plugins/playlistAPIPlugin.swf" overrideFlashvar="true"/>
-    <var key="tabBar.path" value="http://localhost/kdp3/kdp3/bin-debug/plugins/tabBarPlugin.swf" overrideFlashvar="true"/>
+    <var key="playlistAPI.path" value="http://localhost/bdp3/bdp3/bin-debug/plugins/playlistAPIPlugin.swf" overrideFlashvar="true"/>
+    <var key="tabBar.path" value="http://localhost/bdp3/bdp3/bin-debug/plugins/tabBarPlugin.swf" overrideFlashvar="true"/>
   </uiVars>
 </layout>

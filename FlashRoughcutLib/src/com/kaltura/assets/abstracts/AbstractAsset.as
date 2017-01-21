@@ -1,9 +1,9 @@
 /*
-This file is part of the Kaltura Collaborative Media Suite which allows users
+This file is part of the Borhan Collaborative Media Suite which allows users
 to do with audio, video, and animation what Wiki platfroms allow them to do with
 text.
 
-Copyright (C) 2006-2008  Kaltura Inc.
+Copyright (C) 2006-2008  Borhan Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
@@ -20,17 +20,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 @ignore
 */
-package com.kaltura.assets.abstracts
+package com.borhan.assets.abstracts
 {
-	import com.kaltura.assets.AssetsFactory;
-	import com.kaltura.assets.dataStructures.audio.AudioGraph;
-	import com.kaltura.assets.interfaces.IAssetable;
-	import com.kaltura.base.IDisposable;
-	import com.kaltura.base.types.MediaTypes;
-	import com.kaltura.net.loaders.interfaces.IMediaSourceLoader;
-	import com.kaltura.plugin.logic.Plugin;
-	import com.kaltura.types.KalturaEntryStatus;
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.borhan.assets.AssetsFactory;
+	import com.borhan.assets.dataStructures.audio.AudioGraph;
+	import com.borhan.assets.interfaces.IAssetable;
+	import com.borhan.base.IDisposable;
+	import com.borhan.base.types.MediaTypes;
+	import com.borhan.net.loaders.interfaces.IMediaSourceLoader;
+	import com.borhan.plugin.logic.Plugin;
+	import com.borhan.types.BorhanEntryStatus;
+	import com.borhan.vo.BorhanPlayableEntry;
 
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -47,7 +47,7 @@ package com.kaltura.assets.abstracts
 	public class AbstractAsset extends EventDispatcher implements IAssetable, IDisposable
 	{
 		static public const DEFAULT_TRANSITION_TYPE:String = 'None';
-		static public var noneTransitionThumbnail:String = 'http://kaldev.kaltura.com/swf/plugins/cvesdk/transitions/no_transition_thumb.swf';
+		static public var noneTransitionThumbnail:String = 'http://kaldev.borhan.com/swf/plugins/cvesdk/transitions/no_transition_thumb.swf';
 		protected var _assetUid:String = '-1'; 									//run time generated unique id
 		protected var _mediaSource:* = null; 									//Media object, can be any type of media. (NetStream, bitmapData, Sound...)
 		protected var _mediaSourceLoader:IMediaSourceLoader;					//the MediaSource loader object, this is used to get info about loading status of media Source.
@@ -82,7 +82,7 @@ package com.kaltura.assets.abstracts
 		public var startByte:uint = 0;															//the byte offset of where this asset starts in the lage stream (discreteStreams mode)
 		public var endByte:uint = 0;																//the byte offset of where this asset ends in the lage stream (discreteStreams mode)
 		public var pluginAssetXml:XML = null;
-		private var _kalturaEntry:KalturaPlayableEntry;
+		private var _borhanEntry:BorhanPlayableEntry;
 
 		public var entrySourceLink:String;
 		public var entrySourceCode:int = 0;
@@ -132,11 +132,11 @@ package com.kaltura.assets.abstracts
 								is_focus:Boolean = false,
 								is_selected:Boolean = false,
 								media_source:* = null,
-								kaltura_entry:KalturaPlayableEntry = null ):void
+								borhan_entry:BorhanPlayableEntry = null ):void
 		{
-			_kalturaEntry = kaltura_entry;
-/*xxx 			if (_kalturaEntry != null)
-				_kalturaEntry.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, dispatchStatusChange, false, 0, true);
+			_borhanEntry = borhan_entry;
+/*xxx 			if (_borhanEntry != null)
+				_borhanEntry.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, dispatchStatusChange, false, 0, true);
  */			_assetUid = asset_uid;
 			_entryId = entry_id;
 			_entryName = entry_name;
@@ -154,13 +154,13 @@ package com.kaltura.assets.abstracts
 			_audioGraph = new AudioGraph (_length);
 		}
 
-		public function get kalturaEntry ():KalturaPlayableEntry
+		public function get borhanEntry ():BorhanPlayableEntry
 		{
-			return _kalturaEntry;
+			return _borhanEntry;
 		}
-		public function set kalturaEntry (value:KalturaPlayableEntry):void
+		public function set borhanEntry (value:BorhanPlayableEntry):void
 		{
-			_kalturaEntry = kalturaEntry;
+			_borhanEntry = borhanEntry;
 		}
 
 		[Bindable (event="propertyChange")]
@@ -168,11 +168,11 @@ package com.kaltura.assets.abstracts
 		{
 			var mediaUnChecked:uint = MediaTypes.SOLID | MediaTypes.SILENCE | MediaTypes.TRANSITION | MediaTypes.BITMAP_SOCKET | MediaTypes.EFFECT | MediaTypes.OVERLAY | MediaTypes.TEXT_OVERLAY;
 			if (mediaType & mediaUnChecked)
-				return KalturaEntryStatus.READY;
-			if (_kalturaEntry)
-				return _kalturaEntry.status;
+				return BorhanEntryStatus.READY;
+			if (_borhanEntry)
+				return _borhanEntry.status;
 			else
-				return KalturaEntryStatus.PENDING;
+				return BorhanEntryStatus.PENDING;
 		}
 
 /* 		private function dispatchStatusChange (event:PropertyChangeEvent):void
@@ -180,17 +180,17 @@ package com.kaltura.assets.abstracts
 			dispatchEvent (PropertyChangeEvent.createUpdateEvent (this, event.property, event.oldValue, event.newValue));
 			if (event.property == "duration")
 			{
-				_maxLength = _kalturaEntry.duration;
-				length = _kalturaEntry.duration;
-				_clipedStreamLen = _kalturaEntry.duration;
+				_maxLength = _borhanEntry.duration;
+				length = _borhanEntry.duration;
+				_clipedStreamLen = _borhanEntry.duration;
 			}
 			trace ("entryId: " + entryId + " changed property " + event.property + " to: " + event.newValue);
 		}
  */
 		/**
 		 *the media source loader, this object monitors the loading of the mediaSource object.
-		 * @see com.kaltura.net.loaders.interfaces.IMediaSourceLoader
-		 * @see com.kaltura.net.interfaces.ILoadableObject
+		 * @see com.borhan.net.loaders.interfaces.IMediaSourceLoader
+		 * @see com.borhan.net.interfaces.ILoadableObject
 		 */
 		public function get mediaSourceLoader ():IMediaSourceLoader
 		{
@@ -450,7 +450,7 @@ package com.kaltura.assets.abstracts
 		}
 
 		/**
-		 *the entry name as it is defined by the server (contributor in kaltura), this is not unique.
+		 *the entry name as it is defined by the server (contributor in borhan), this is not unique.
 		 */
 		public function get entryName ():String
 		{
@@ -695,8 +695,8 @@ package com.kaltura.assets.abstracts
 			var newAsset:AbstractAsset = AssetsFactory.create (_mediaType, "", _entryId,
 															_entryName, _thumbnailURL, _mediaURL, _length,
 															_maxLength, _startTime, _audioBalance, _transitionType, _transitionLength,
-															false, false, null, _kalturaEntry);
-			newAsset.kalturaEntry = kalturaEntry;
+															false, false, null, _borhanEntry);
+			newAsset.borhanEntry = borhanEntry;
 			newAsset.clipedStreamURL = _clipedStreamURL;
 			newAsset.clipedStreamStart = _clipedStreamStart;
 			newAsset.clipedStreamLen = _clipedStreamLen;

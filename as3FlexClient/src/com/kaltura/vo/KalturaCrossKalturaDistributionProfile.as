@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaConfigurableDistributionProfile;
+	import com.borhan.vo.BorhanConfigurableDistributionProfile;
 
 	[Bindable]
-	public dynamic class KalturaCrossKalturaDistributionProfile extends KalturaConfigurableDistributionProfile
+	public dynamic class BorhanCrossBorhanDistributionProfile extends BorhanConfigurableDistributionProfile
 	{
 		/**
 		**/
@@ -57,27 +57,27 @@ package com.kaltura.vo
 		public var metadataXpathsTriggerUpdate : Array = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var distributeCaptions : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var distributeCuePoints : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var distributeRemoteFlavorAssetContent : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var distributeRemoteThumbAssetContent : Boolean;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var distributeRemoteCaptionAssetContent : Boolean;
 
@@ -146,28 +146,28 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'metadataXpathsTriggerUpdate':
-					result = 'KalturaStringValue';
+					result = 'BorhanStringValue';
 					break;
 				case 'mapAccessControlProfileIds':
-					result = 'KalturaKeyValue';
+					result = 'BorhanKeyValue';
 					break;
 				case 'mapConversionProfileIds':
-					result = 'KalturaKeyValue';
+					result = 'BorhanKeyValue';
 					break;
 				case 'mapMetadataProfileIds':
-					result = 'KalturaKeyValue';
+					result = 'BorhanKeyValue';
 					break;
 				case 'mapStorageProfileIds':
-					result = 'KalturaKeyValue';
+					result = 'BorhanKeyValue';
 					break;
 				case 'mapFlavorParamsIds':
-					result = 'KalturaKeyValue';
+					result = 'BorhanKeyValue';
 					break;
 				case 'mapThumbParamsIds':
-					result = 'KalturaKeyValue';
+					result = 'BorhanKeyValue';
 					break;
 				case 'mapCaptionParamsIds':
-					result = 'KalturaKeyValue';
+					result = 'BorhanKeyValue';
 					break;
 				default:
 					result = super.getElementType(arrayName);

@@ -1,28 +1,28 @@
-package com.kaltura.kdpfl.model.vo
+package com.borhan.bdpfl.model.vo
 {
-	import com.kaltura.vo.KalturaUiConf;
-	import com.kaltura.vo.KalturaWidget;
+	import com.borhan.vo.BorhanUiConf;
+	import com.borhan.vo.BorhanWidget;
 	
 	/**
-	 * Class ConfigVO holds parameters related to the general configuration of the KDP. 
+	 * Class ConfigVO holds parameters related to the general configuration of the BDP. 
 	 * 
 	 */	
 	public class ConfigVO
 	{
 		/**
-		 * Parameter holds the flashvars passed to the KDP.
+		 * Parameter holds the flashvars passed to the BDP.
 		 */		
 		public var flashvars:Object;
 		/**
-		 * Parameter holds the information on the current KalturaWidget
+		 * Parameter holds the information on the current BorhanWidget
 		 */		
-		public var kw : KalturaWidget; 
+		public var kw : BorhanWidget; 
 		/**
 		 * Parameter to hold the Uiconf object of the player.
 		 */		
-		public var kuiConf : KalturaUiConf;
+		public var kuiConf : BorhanUiConf;
 		/**
-		 * A unique ID for the loaded instance of the KDP. 
+		 * A unique ID for the loaded instance of the BDP. 
 		 */		
 		public var sessionId : String;
 	}

@@ -1,4 +1,4 @@
-package com.kaltura.utils.parsers
+package com.borhan.utils.parsers
 {
 	/**
 	 * DateParser holds method for parsing dates.

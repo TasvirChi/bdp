@@ -1,21 +1,21 @@
-package com.kaltura.kdpfl
+package com.borhan.bdpfl
 {
-	import com.kaltura.kdpfl.controller.InitMacroCommand;
-	import com.kaltura.kdpfl.controller.LayoutReadyCommand;
-	import com.kaltura.kdpfl.controller.PlaybackCompleteCommand;
-	import com.kaltura.kdpfl.controller.SequenceItemPlayEndCommand;
-	import com.kaltura.kdpfl.controller.SequenceSkipNextCommand;
-	import com.kaltura.kdpfl.controller.StartupCommand;
-	import com.kaltura.kdpfl.controller.media.InitChangeMediaMacroCommand;
-	import com.kaltura.kdpfl.controller.media.LiveStreamCommand;
-	import com.kaltura.kdpfl.controller.media.MediaReadyCommand;
-	import com.kaltura.kdpfl.events.DynamicEvent;
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
-	import com.kaltura.kdpfl.model.type.DebugLevel;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.puremvc.as3.core.KView;
+	import com.borhan.bdpfl.controller.InitMacroCommand;
+	import com.borhan.bdpfl.controller.LayoutReadyCommand;
+	import com.borhan.bdpfl.controller.PlaybackCompleteCommand;
+	import com.borhan.bdpfl.controller.SequenceItemPlayEndCommand;
+	import com.borhan.bdpfl.controller.SequenceSkipNextCommand;
+	import com.borhan.bdpfl.controller.StartupCommand;
+	import com.borhan.bdpfl.controller.media.InitChangeMediaMacroCommand;
+	import com.borhan.bdpfl.controller.media.LiveStreamCommand;
+	import com.borhan.bdpfl.controller.media.MediaReadyCommand;
+	import com.borhan.bdpfl.events.DynamicEvent;
+	import com.borhan.bdpfl.model.ExternalInterfaceProxy;
+	import com.borhan.bdpfl.model.type.DebugLevel;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.puremvc.as3.core.KView;
 	
 	import flash.display.DisplayObject;
 	
@@ -30,9 +30,9 @@ package com.kaltura.kdpfl
 	public class ApplicationFacade extends Facade implements IFacade
 	{
 		/**
-		 * The current version of the KDP.
+		 * The current version of the BDP.
 		 */		
-		public var kdpVersion : String = "v3.9.9";
+		public var bdpVersion : String = "v3.9.9";
 
 
 		/**
@@ -56,12 +56,12 @@ package com.kaltura.kdpfl
 		 */		
 		public var bindObject:ObjectProxy = new ObjectProxy();	
 		/**
-		 * a reference to KDP3 main application
+		 * a reference to BDP3 main application
 		 */		
 		private var _app : DisplayObject;
 		
 		/**
-		 * the url of the kdp 
+		 * the url of the bdp 
 		 */
 		public var appFolder : String;
 		public var debugMode : Boolean = false;
@@ -96,7 +96,7 @@ package com.kaltura.kdpfl
 		public function start(app:DisplayObject):void
 		{
 			CONFIG::isSDK46 {
-				kdpVersion += ".sdk46";
+				bdpVersion += ".sdk46";
 			}
 			
 			_app = app;
@@ -158,10 +158,10 @@ package com.kaltura.kdpfl
 			}
 
 			super.sendNotification(notificationName, body, type);
-			//For external Flash/Flex application application listening to the KDP events
+			//For external Flash/Flex application application listening to the BDP events
 			_app.dispatchEvent(new DynamicEvent(notificationName, body));
 
-			//For external Javascript application listening to the KDP events
+			//For external Javascript application listening to the BDP events
 			if (externalInterface)
 				externalInterface.notifyJs(notificationName, body);
 
@@ -177,10 +177,10 @@ package com.kaltura.kdpfl
 			super.initializeController();
 			registerCommand(NotificationType.STARTUP, StartupCommand);
 			
-			// we do both init start KDP life cycle, and start to load the entry simultaneously 
+			// we do both init start BDP life cycle, and start to load the entry simultaneously 
 			registerCommand(NotificationType.INITIATE_APP, InitMacroCommand);
 			
-			//There are several things that need to be done as soon as the layout of the kdp is ready.
+			//There are several things that need to be done as soon as the layout of the bdp is ready.
 			registerCommand(NotificationType.LAYOUT_READY, LayoutReadyCommand );
 			//when one call change media we fire the load media command again
 			registerCommand(NotificationType.CHANGE_MEDIA, InitChangeMediaMacroCommand);

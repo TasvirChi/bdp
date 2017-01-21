@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,26 +25,26 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.conversionProfileAssetParams
+package com.borhan.commands.conversionProfileAssetParams
 {
-		import com.kaltura.vo.KalturaConversionProfileAssetParams;
-	import com.kaltura.delegates.conversionProfileAssetParams.ConversionProfileAssetParamsUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanConversionProfileAssetParams;
+	import com.borhan.delegates.conversionProfileAssetParams.ConversionProfileAssetParamsUpdateDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Update asset parmas of conversion profile by ID
 	* 
 	**/
-	public class ConversionProfileAssetParamsUpdate extends KalturaCall
+	public class ConversionProfileAssetParamsUpdate extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param conversionProfileId int
 		* @param assetParamsId int
-		* @param conversionProfileAssetParams KalturaConversionProfileAssetParams
+		* @param conversionProfileAssetParams BorhanConversionProfileAssetParams
 		**/
-		public function ConversionProfileAssetParamsUpdate( conversionProfileId : int,assetParamsId : int,conversionProfileAssetParams : KalturaConversionProfileAssetParams )
+		public function ConversionProfileAssetParamsUpdate( conversionProfileId : int,assetParamsId : int,conversionProfileAssetParams : BorhanConversionProfileAssetParams )
 		{
 			service= 'conversionprofileassetparams';
 			action= 'update';
@@ -56,7 +56,7 @@ package com.kaltura.commands.conversionProfileAssetParams
 			valueArr.push(conversionProfileId);
 			keyArr.push('assetParamsId');
 			valueArr.push(assetParamsId);
-				keyValArr = kalturaObject2Arrays(conversionProfileAssetParams, 'conversionProfileAssetParams');
+				keyValArr = borhanObject2Arrays(conversionProfileAssetParams, 'conversionProfileAssetParams');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

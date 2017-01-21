@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
 
-import com.kaltura.kdpfl.component.IComponent;
+import com.borhan.bdpfl.component.IComponent;
 
 import fl.controls.List;
 import fl.controls.SelectableList;

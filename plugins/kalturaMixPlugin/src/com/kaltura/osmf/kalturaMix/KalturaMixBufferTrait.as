@@ -1,16 +1,16 @@
-package com.kaltura.osmf.kalturaMix
+package com.borhan.osmf.borhanMix
 {
-	import com.kaltura.components.players.eplayer.Eplayer;
-	import com.kaltura.components.players.events.PlayerBufferEvent;
-	import com.kaltura.components.players.states.BufferStatuses;
+	import com.borhan.components.players.eplayer.Eplayer;
+	import com.borhan.components.players.events.PlayerBufferEvent;
+	import com.borhan.components.players.states.BufferStatuses;
 	
 	import org.osmf.traits.BufferTrait;
 
-	public class KalturaMixBufferTrait extends BufferTrait
+	public class BorhanMixBufferTrait extends BufferTrait
 	{
 		public var eplayer:Eplayer;
 
-		public function KalturaMixBufferTrait(_eplayer:Eplayer)
+		public function BorhanMixBufferTrait(_eplayer:Eplayer)
 		{
 			eplayer = _eplayer;
 			

@@ -1,20 +1,20 @@
 package
 {
 	import com.addthis.share.ShareAPI;
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.widget.WidgetAdd;
-	import com.kaltura.delegates.widget.WidgetAddDelegate;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.controls.KButton;
-	import com.kaltura.kdpfl.view.controls.KLabel;
-	import com.kaltura.types.KalturaWidgetSecurityType;
-	import com.kaltura.vo.KalturaWidget;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.widget.WidgetAdd;
+	import com.borhan.delegates.widget.WidgetAddDelegate;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.view.containers.KHBox;
+	import com.borhan.bdpfl.view.containers.KVBox;
+	import com.borhan.bdpfl.view.controls.KButton;
+	import com.borhan.bdpfl.view.controls.KLabel;
+	import com.borhan.types.BorhanWidgetSecurityType;
+	import com.borhan.vo.BorhanWidget;
 	import com.yahoo.astra.layout.modes.HorizontalAlignment;
 	import com.yahoo.astra.layout.modes.VerticalAlignment;
 	
@@ -25,7 +25,7 @@ package
 	
 	import org.puremvc.as3.interfaces.IFacade;
 	
-	public class kalturaSharePlugin extends KVBox implements IPluginFactory, IPlugin 
+	public class borhanSharePlugin extends KVBox implements IPluginFactory, IPlugin 
 	{
 		
 		
@@ -45,7 +45,7 @@ package
 		
 		private var _refferencer:Object = new Object();
 		[Bindable]
-		public var via:String = "Kaltura";
+		public var via:String = "Borhan";
 		
 		public var facebookLabel:String = "Facebook";
 		public var diggLabel:String = "Digg";
@@ -73,7 +73,7 @@ package
 		public var dynamicLink:String;
 		[Bindable]
 		public var directEmbed:String;
-		//with this attribute you can override the default Kaltura embed code wuth custom embed. 
+		//with this attribute you can override the default Borhan embed code wuth custom embed. 
 		//The value must be encoded E.G. %3Cscript%20src%3D%27http%3A%2F%2Fwww instead of <script src='http://www 
 		[Bindable]
 		public var dynamicEmbed:String;	
@@ -91,7 +91,7 @@ package
 		public var widgetId:String;
 		public var uiconfId:String;
 		private var _hadError:Boolean;
-		public var kc:KalturaClient;
+		public var kc:BorhanClient;
 		
 		public var customSnippetAfter:String;
 		
@@ -104,7 +104,7 @@ package
 		
 		
 		
-		public function kalturaSharePlugin()
+		public function borhanSharePlugin()
 		{
 		}
 		/**
@@ -133,7 +133,7 @@ package
 		
 		private function getWidget(entry_id:String,player_id:String):void
 		{
-			var kw:KalturaWidget = new KalturaWidget();
+			var kw:BorhanWidget = new BorhanWidget();
 			
 			var media:Object = facade.retrieveProxy("mediaProxy");
 			var config:Object = facade.retrieveProxy("configProxy");
@@ -163,12 +163,12 @@ package
 			{
 				
 			}
-			kw.securityType = KalturaWidgetSecurityType.NONE;
+			kw.securityType = BorhanWidgetSecurityType.NONE;
 			kw.addEmbedHtml5Support = addEmbedHtml5Support;
 			//add widget			
 			var addWidget:WidgetAdd = new WidgetAdd(kw);
-			addWidget.addEventListener(KalturaEvent.COMPLETE, onWidgetComplete);
-			addWidget.addEventListener(KalturaEvent.FAILED, onWidgetFailed);
+			addWidget.addEventListener(BorhanEvent.COMPLETE, onWidgetComplete);
+			addWidget.addEventListener(BorhanEvent.FAILED, onWidgetFailed);
 			kc.post(addWidget);
 		}
 		
@@ -199,12 +199,12 @@ package
 			return null;
 		}
 		
-		private var widget:KalturaWidget
+		private var widget:BorhanWidget
 		
 		private function onWidgetComplete(evt:Object):void {
 			//retrive 
 			_hadError = false;
-			widget = evt.data as KalturaWidget;
+			widget = evt.data as BorhanWidget;
 			
 			widgetId = widget.id; //evt.data.object.idvar widthHeightString:String = ""
 			

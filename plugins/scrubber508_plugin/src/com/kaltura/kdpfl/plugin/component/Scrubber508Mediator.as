@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.borhan.bdpfl.view.controls.KButton;
 	
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;

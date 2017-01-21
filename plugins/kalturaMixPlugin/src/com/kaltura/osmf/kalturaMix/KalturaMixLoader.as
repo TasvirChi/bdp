@@ -1,16 +1,16 @@
-package com.kaltura.osmf.kalturaMix
+package com.borhan.osmf.borhanMix
 {
-	import com.kaltura.osmf.kaltura.KalturaBaseEntryResource;
-	import com.kaltura.vo.KalturaMixEntry;
+	import com.borhan.osmf.borhan.BorhanBaseEntryResource;
+	import com.borhan.vo.BorhanMixEntry;
 	
 	import org.osmf.media.MediaResourceBase;
 	import org.osmf.traits.LoadState;
 	import org.osmf.traits.LoadTrait;
 	import org.osmf.traits.LoaderBase;
 
-	public class KalturaMixLoader extends LoaderBase
+	public class BorhanMixLoader extends LoaderBase
 	{
-		public function KalturaMixLoader()
+		public function BorhanMixLoader()
 		{
 			super();
 		}
@@ -39,9 +39,9 @@ package com.kaltura.osmf.kalturaMix
 		 */
 		override public function canHandleResource(resource:MediaResourceBase):Boolean
 		{
-			//if (resource is KalturaEntryResource && (resource as KalturaEntryResource).entry is KalturaEntry)
+			//if (resource is BorhanEntryResource && (resource as BorhanEntryResource).entry is BorhanEntry)
 			//	return true;
-			if (resource is KalturaBaseEntryResource && (resource as KalturaBaseEntryResource).entry is KalturaMixEntry)
+			if (resource is BorhanBaseEntryResource && (resource as BorhanBaseEntryResource).entry is BorhanMixEntry)
 				return true;
 				
 			return false;

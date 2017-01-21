@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaFlavorParamsOutput;
+	import com.borhan.vo.BorhanFlavorParamsOutput;
 
-	import com.kaltura.vo.KalturaJobData;
+	import com.borhan.vo.BorhanJobData;
 
 	[Bindable]
-	public dynamic class KalturaConvartableJobData extends KalturaJobData
+	public dynamic class BorhanConvartableJobData extends BorhanJobData
 	{
 		/**
 		**/
@@ -62,7 +62,7 @@ package com.kaltura.vo
 
 		/**
 		**/
-		public var flavorParamsOutput : KalturaFlavorParamsOutput;
+		public var flavorParamsOutput : BorhanFlavorParamsOutput;
 
 		/**
 		**/
@@ -110,13 +110,13 @@ package com.kaltura.vo
 			var result:String = '';
 			switch (arrayName) {
 				case 'srcFileSyncs':
-					result = 'KalturaSourceFileSyncDescriptor';
+					result = 'BorhanSourceFileSyncDescriptor';
 					break;
 				case 'flavorParamsOutput':
 					result = '';
 					break;
 				case 'pluginData':
-					result = 'KalturaKeyValue';
+					result = 'BorhanKeyValue';
 					break;
 				default:
 					result = super.getElementType(arrayName);

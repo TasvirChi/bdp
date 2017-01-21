@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.data
+package com.borhan.commands.data
 {
-		import com.kaltura.vo.KalturaDataEntry;
-	import com.kaltura.delegates.data.DataAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanDataEntry;
+	import com.borhan.delegates.data.DataAddDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Adds a new data entry
 	* 
 	**/
-	public class DataAdd extends KalturaCall
+	public class DataAdd extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param dataEntry KalturaDataEntry
+		* @param dataEntry BorhanDataEntry
 		**/
-		public function DataAdd( dataEntry : KalturaDataEntry )
+		public function DataAdd( dataEntry : BorhanDataEntry )
 		{
 			service= 'data';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.data
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(dataEntry, 'dataEntry');
+				keyValArr = borhanObject2Arrays(dataEntry, 'dataEntry');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

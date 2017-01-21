@@ -1,22 +1,22 @@
-package com.kaltura.kdpfl.controller
+package com.borhan.bdpfl.controller
 {
-	import com.kaltura.kdpfl.component.ComponentData;
-	import com.kaltura.kdpfl.controller.media.PostSequenceEndCommand;
-	import com.kaltura.kdpfl.controller.media.PreSequenceEndCommand;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.controls.ComboFlavorMediator;
-	import com.kaltura.kdpfl.view.controls.FullscreenMediator;
-	import com.kaltura.kdpfl.view.controls.FuncWrapper;
-	import com.kaltura.kdpfl.view.controls.PlayMediator;
-	import com.kaltura.kdpfl.view.controls.ScreensMediator;
-	import com.kaltura.kdpfl.view.controls.ScrubberMediator;
-	import com.kaltura.kdpfl.view.controls.TimerMediator;
-	import com.kaltura.kdpfl.view.controls.VolumeMediator;
-	import com.kaltura.kdpfl.view.controls.WatermarkMediator;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.bdpfl.component.ComponentData;
+	import com.borhan.bdpfl.controller.media.PostSequenceEndCommand;
+	import com.borhan.bdpfl.controller.media.PreSequenceEndCommand;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.controls.ComboFlavorMediator;
+	import com.borhan.bdpfl.view.controls.FullscreenMediator;
+	import com.borhan.bdpfl.view.controls.FuncWrapper;
+	import com.borhan.bdpfl.view.controls.PlayMediator;
+	import com.borhan.bdpfl.view.controls.ScreensMediator;
+	import com.borhan.bdpfl.view.controls.ScrubberMediator;
+	import com.borhan.bdpfl.view.controls.TimerMediator;
+	import com.borhan.bdpfl.view.controls.VolumeMediator;
+	import com.borhan.bdpfl.view.controls.WatermarkMediator;
+	import com.borhan.bdpfl.view.media.KMediaPlayer;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
 	
 	import flash.events.IEventDispatcher;
 	import flash.events.MouseEvent;

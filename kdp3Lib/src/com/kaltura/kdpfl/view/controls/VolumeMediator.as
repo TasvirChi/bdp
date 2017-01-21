@@ -5,12 +5,12 @@
  * @playerversion Flash 9.0.28.0
  * @author Dan Bacon / www.baconoppenheim.com
  */
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
 	
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
 	
 	import fl.core.UIComponent;
 	
@@ -52,7 +52,7 @@ package com.kaltura.kdpfl.view.controls
 			var volumeCookie : SharedObject;
 			try
 			{
-				volumeCookie= SharedObject.getLocal("KalturaVolume");
+				volumeCookie= SharedObject.getLocal("BorhanVolume");
 			}
 			catch (e : Error)
 			{

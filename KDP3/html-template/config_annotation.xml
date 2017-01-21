@@ -1,7 +1,7 @@
-<layout id="full" skinPath="http://cdnbakmi.kaltura.com/content/uiconf/kaltura/kmc/appstudio/kdp3/falcon/skin/v3.6.13/skin508.swf">
+<layout id="full" skinPath="http://cdnbakmi.borhan.com/content/uiconf/borhan/bmc/appstudio/bdp3/falcon/skin/v3.6.13/skin508.swf">
 	<HBox id="topLevel" width="100%" height="100%">
 		<VBox id="player" width="100%" height="100%" styleName="black">
-			<Plugin id="kalturaMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
+			<Plugin id="borhanMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
 			<Plugin id="captureThumbnail" width="0%" height="0%" includeInLayout="false"/>
 			<Plugin id="advanceSeek" width="0%" height="0%"/>
 			<!--Plugin id="audioDescription" width="0%" height="0%" includeInLayout="false"/-->
@@ -169,7 +169,7 @@
 				<HBox id="annotationsPluginContainer" styleName="darkBg" width="100%" height="100%" paddingLeft="12"
 					  paddingRight="12">
 					<Plugin id="annotations" width="100%" height="100%" userMode="editable" showAnnotationsPlugin="true"
-							maxChars="2000" submissionTarget="kaltura"/>
+							maxChars="2000" submissionTarget="borhan"/>
 				</HBox>
 			</VBox>
 			<VBox id="reviewerControls" width="100%" height="30" styleName="darkBg" visible="{annotations.isReviewer}"

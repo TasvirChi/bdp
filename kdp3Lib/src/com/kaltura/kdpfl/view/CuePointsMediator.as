@@ -1,20 +1,20 @@
-package com.kaltura.kdpfl.view
+package com.borhan.bdpfl.view
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdOpportunityType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.types.KalturaCuePointType;
-	import com.kaltura.utils.ObjectUtil;
-	import com.kaltura.vo.KalturaAdCuePoint;
-	import com.kaltura.vo.KalturaAnnotation;
-	import com.kaltura.vo.KalturaCodeCuePoint;
-	import com.kaltura.vo.KalturaCuePoint;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.AdOpportunityType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.osmf.proxy.KSwitchingProxyElement;
+	import com.borhan.types.BorhanAdType;
+	import com.borhan.types.BorhanCuePointType;
+	import com.borhan.utils.ObjectUtil;
+	import com.borhan.vo.BorhanAdCuePoint;
+	import com.borhan.vo.BorhanAnnotation;
+	import com.borhan.vo.BorhanCodeCuePoint;
+	import com.borhan.vo.BorhanCuePoint;
 	
 	import org.osmf.events.TimelineMetadataEvent;
 	import org.osmf.media.MediaElement;
@@ -25,7 +25,7 @@ package com.kaltura.kdpfl.view
 	import org.puremvc.as3.patterns.mediator.Mediator;
 
 	/**
-	 * New Mediator for the cue point data of the KDP 
+	 * New Mediator for the cue point data of the BDP 
 	 * @author Hila
 	 * 
 	 */	
@@ -34,7 +34,7 @@ package com.kaltura.kdpfl.view
 		public static const NAME : String = "cuePointsMediator";
 		
 		/**
-		 * The instance of the KDP's OSMF MediaPlayer.
+		 * The instance of the BDP's OSMF MediaPlayer.
 		 */		
 		private var _mediaPlayerInst : MediaPlayer;
 		/**
@@ -55,7 +55,7 @@ package com.kaltura.kdpfl.view
 		 */		
 		private var _sessionCuePointsMap : Object = new Object();
 		/**
-		 * The KDP flashvars.
+		 * The BDP flashvars.
 		 */		
 		private var _flashvars : Object;
 		/**
@@ -172,21 +172,21 @@ package com.kaltura.kdpfl.view
 			var startTimeInMS:Number = (startTime + _intimeOffset) * 1000;
 			
 			var shouldStartMidrollSequence : Boolean = false;
-			for each (var cuePoint : KalturaCuePoint in _sessionCuePointsMap[startTimeInMS])
+			for each (var cuePoint : BorhanCuePoint in _sessionCuePointsMap[startTimeInMS])
 			{
-				if ((cuePoint.type == KalturaCuePointType.AD || cuePoint is KalturaAdCuePoint) && !_reachedMediaEnd)
+				if ((cuePoint.type == BorhanCuePointType.AD || cuePoint is BorhanAdCuePoint) && !_reachedMediaEnd)
 				{
 					if (!_disableCuePointsMidroll)
 					{
 						sendNotification( NotificationType.AD_OPPORTUNITY , {context : SequenceContextType.MID, cuePoint : cuePoint, type: AdOpportunityType.CUE_POINT} );
 					}
 					
-					if ( ((cuePoint as KalturaAdCuePoint).adType == KalturaAdType.VIDEO) || ((cuePoint as KalturaAdCuePoint).forceStop > 0 ))
+					if ( ((cuePoint as BorhanAdCuePoint).adType == BorhanAdType.VIDEO) || ((cuePoint as BorhanAdCuePoint).forceStop > 0 ))
 					{
 						shouldStartMidrollSequence = true;
 					}
 				}
-				else if (cuePoint.type == KalturaCuePointType.CODE || cuePoint is KalturaCodeCuePoint || cuePoint is KalturaAnnotation)
+				else if (cuePoint.type == BorhanCuePointType.CODE || cuePoint is BorhanCodeCuePoint || cuePoint is BorhanAnnotation)
 				{
 					sendNotification( NotificationType.CUE_POINT_REACHED , { cuePoint : cuePoint} );
 				}
@@ -233,22 +233,22 @@ package com.kaltura.kdpfl.view
 		}
 		
 		/**
-		 * Adds the kalturaCuePoints from the given array to the KDP cue points 
+		 * Adds the borhanCuePoints from the given array to the BDP cue points 
 		 * should be called before MEDIA_LOADED
-		 * @param cpArray array of KalturaCuePoint
+		 * @param cpArray array of BorhanCuePoint
 		 * 
 		 */		
 		public function addCuePoints(cpArray:Array):void {
 			var sequenceProxy : SequenceProxy = facade.retrieveProxy(SequenceProxy.NAME) as SequenceProxy;
 			
 			for (var i:int = 0; i<cpArray.length; i++) {
-				var cp:KalturaCuePoint = cpArray[i] as KalturaCuePoint;
+				var cp:BorhanCuePoint = cpArray[i] as BorhanCuePoint;
 				if (!cp)
 					return;
 				
 				//preroll & postroll
 				if (cp.startTime==0 || cp.startTime==_entryDurationInMS) {
-					if (cp.type == KalturaCuePointType.AD || cp is KalturaAdCuePoint)
+					if (cp.type == BorhanCuePointType.AD || cp is BorhanAdCuePoint)
 					{
 						sendNotification( NotificationType.AD_OPPORTUNITY ,{context : (cp.startTime==0) ? SequenceContextType.PRE : SequenceContextType.POST, cuePoint : cp, type: AdOpportunityType.CUE_POINT} );	
 					}
@@ -266,7 +266,7 @@ package com.kaltura.kdpfl.view
 		//	sequenceProxy.initPostIndex();
 		}
 		
-		private function addToCPMap(cp:KalturaCuePoint):void {
+		private function addToCPMap(cp:BorhanCuePoint):void {
 			if (_cuePointsMap[cp.startTime])
 				_cuePointsMap[cp.startTime].push(cp);
 			else {
@@ -306,8 +306,8 @@ package com.kaltura.kdpfl.view
 			{
 				while ( prerollAdCuePoints.length )
 				{
-					var preCuePoint : KalturaCuePoint = prerollAdCuePoints[0];
-					if (preCuePoint.type == KalturaCuePointType.AD || preCuePoint is KalturaAdCuePoint)
+					var preCuePoint : BorhanCuePoint = prerollAdCuePoints[0];
+					if (preCuePoint.type == BorhanCuePointType.AD || preCuePoint is BorhanAdCuePoint)
 					{
 						sendNotification( NotificationType.AD_OPPORTUNITY ,{context : SequenceContextType.PRE, cuePoint : preCuePoint, type: AdOpportunityType.CUE_POINT} );
 						prerollAdCuePoints.shift();
@@ -321,8 +321,8 @@ package com.kaltura.kdpfl.view
 			{
 				while ( postrollAdCuePoints.length )
 				{
-					var postCuePoint : KalturaCuePoint = postrollAdCuePoints[0];
-					if (postCuePoint.type == KalturaCuePointType.AD || postCuePoint is KalturaAdCuePoint)
+					var postCuePoint : BorhanCuePoint = postrollAdCuePoints[0];
+					if (postCuePoint.type == BorhanCuePointType.AD || postCuePoint is BorhanAdCuePoint)
 					{
 						sendNotification( NotificationType.AD_OPPORTUNITY ,{context : SequenceContextType.POST, cuePoint : postCuePoint, type: AdOpportunityType.CUE_POINT} );
 						postrollAdCuePoints.shift();
@@ -335,14 +335,14 @@ package com.kaltura.kdpfl.view
 		
 		protected function isAdCuePoint (cuePoint : Object , index : int , array : Array) : Boolean
 		{
-			if (cuePoint is KalturaAdCuePoint)
+			if (cuePoint is BorhanAdCuePoint)
 				return true;
 			return false;
 		}
 		
 		protected function isNotAdCuePoint (cuePoint : Object , index : int , array : Array) : Boolean
 		{
-			if (!(cuePoint is KalturaAdCuePoint))
+			if (!(cuePoint is BorhanAdCuePoint))
 				return true;
 			return false;
 		}

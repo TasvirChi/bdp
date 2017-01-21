@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.model.type
+package com.borhan.bdpfl.plugin.model.type
 {
 
 	public class VASTAdResourceType

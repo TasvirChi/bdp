@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.plugin.component {
+package com.borhan.bdpfl.plugin.component {
 
 	
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
+	import com.borhan.bdpfl.ApplicationFacade;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.bdpfl.view.containers.KCanvas;
+	import com.borhan.osmf.proxy.KSwitchingProxyElement;
 	
 	import flash.display.Loader;
 	import flash.display.Sprite;

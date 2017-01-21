@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,16 +25,16 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.bulkUpload
+package com.borhan.commands.bulkUpload
 {
-	import com.kaltura.delegates.bulkUpload.BulkUploadGetDelegate;
-	import com.kaltura.net.KalturaCall;
+	import com.borhan.delegates.bulkUpload.BulkUploadGetDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Get bulk upload batch job by id
 	* 
 	**/
-	public class BulkUploadGet extends KalturaCall
+	public class BulkUploadGet extends BorhanCall
 	{
 		public var filterFields : String;
 		

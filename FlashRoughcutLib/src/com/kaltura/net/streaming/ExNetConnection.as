@@ -1,8 +1,8 @@
-package com.kaltura.net.streaming
+package com.borhan.net.streaming
 {
-	import com.kaltura.net.streaming.events.ExNetConnectionEvent;
-	import com.kaltura.net.streaming.parsers.StreamSourceVO;
-	import com.kaltura.net.streaming.status.NetStatus;
+	import com.borhan.net.streaming.events.ExNetConnectionEvent;
+	import com.borhan.net.streaming.parsers.StreamSourceVO;
+	import com.borhan.net.streaming.status.NetStatus;
 
 	import flash.events.AsyncErrorEvent;
 	import flash.events.ErrorEvent;
@@ -13,34 +13,34 @@ package com.kaltura.net.streaming
 
 	/**
 	 *  dispatched to notify the connection was closed.
-	 *  @eventType com.kaltura.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_CLOSED
+	 *  @eventType com.borhan.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_CLOSED
 	 */
-	[Event(name="netconnectionConnectClosed", type="com.kaltura.net.streaming.events.ExNetConnectionEvent")]
+	[Event(name="netconnectionConnectClosed", type="com.borhan.net.streaming.events.ExNetConnectionEvent")]
 	/**
 	 *  dispatched to notify the connection was failed.
-	 *  @eventType com.kaltura.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_FAILED
+	 *  @eventType com.borhan.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_FAILED
 	 */
-	[Event(name="netconnectionConnectFailed", type="com.kaltura.net.streaming.events.ExNetConnectionEvent")]
+	[Event(name="netconnectionConnectFailed", type="com.borhan.net.streaming.events.ExNetConnectionEvent")]
 	/**
 	 *  dispatched to notify the connection was opened succefully.
-	 *  @eventType com.kaltura.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_SUCCESS
+	 *  @eventType com.borhan.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_SUCCESS
 	 */
-	[Event(name="netconnectionConnectSuccess", type="com.kaltura.net.streaming.events.ExNetConnectionEvent")]
+	[Event(name="netconnectionConnectSuccess", type="com.borhan.net.streaming.events.ExNetConnectionEvent")]
 	/**
 	 *  dispatched to notify the connection was rejected by the server.
-	 *  @eventType com.kaltura.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_REJECTED
+	 *  @eventType com.borhan.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_REJECTED
 	 */
-	[Event(name="netconnectionConnectRejected", type="com.kaltura.net.streaming.events.ExNetConnectionEvent")]
+	[Event(name="netconnectionConnectRejected", type="com.borhan.net.streaming.events.ExNetConnectionEvent")]
 	/**
 	 *  dispatched to notify the application was closed on the server.
-	 *  @eventType com.kaltura.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_APPSHUTDOWN
+	 *  @eventType com.borhan.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_APPSHUTDOWN
 	 */
-	[Event(name="netconnectionConnectAppshutdown", type="com.kaltura.net.streaming.events.ExNetConnectionEvent")]
+	[Event(name="netconnectionConnectAppshutdown", type="com.borhan.net.streaming.events.ExNetConnectionEvent")]
 	/**
 	 *  dispatched to notify the connection was made to an invalid app, connection was refused to the given application.
-	 *  @eventType com.kaltura.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_INVALIDAPP
+	 *  @eventType com.borhan.net.streaming.events.ExNetConnectionEvent.NETCONNECTION_CONNECT_INVALIDAPP
 	 */
-	[Event(name="netconnectionConnectInvalidapp", type="com.kaltura.net.streaming.events.ExNetConnectionEvent")]
+	[Event(name="netconnectionConnectInvalidapp", type="com.borhan.net.streaming.events.ExNetConnectionEvent")]
 
 	public class ExNetConnection extends NetConnection
 	{
@@ -48,7 +48,7 @@ package com.kaltura.net.streaming
 
 		/**
 		 * holds the connection information (such app name, server, protocol, etc).
-		 * @see  com.kaltura.net.streaming.parsers.StreamSourceVO
+		 * @see  com.borhan.net.streaming.parsers.StreamSourceVO
 		 */
 		private var connectionSource:StreamSourceVO;
 
@@ -114,7 +114,7 @@ package com.kaltura.net.streaming
 
 		/**
 		 * monitors the status event.
-		 * @see com.kaltura.net.streaming.status.NetStatus
+		 * @see com.borhan.net.streaming.status.NetStatus
 		 */
 		private function netStatus(event:NetStatusEvent):void
 		{

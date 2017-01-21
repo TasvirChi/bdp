@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.model
+package com.borhan.bdpfl.plugin.model
 {
 	import org.osmf.vast.model.VASTNonLinearAd;
 	import org.osmf.vast.parser.base.VAST2NonLinearElement;

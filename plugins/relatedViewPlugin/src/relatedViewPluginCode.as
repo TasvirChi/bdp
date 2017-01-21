@@ -1,11 +1,11 @@
 package
 {
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.AbstractView;
-	import com.kaltura.kdpfl.plugin.component.RelatedViewMediator;
-	import com.kaltura.kdpfl.plugin.component.TileView;
-	import com.kaltura.kdpfl.plugin.component.ViewType;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.AbstractView;
+	import com.borhan.bdpfl.plugin.component.RelatedViewMediator;
+	import com.borhan.bdpfl.plugin.component.TileView;
+	import com.borhan.bdpfl.plugin.component.ViewType;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;
@@ -80,7 +80,7 @@ package
 			if (view && value)
 				view.dataProvider = _dataProvider;
 			
-			resizeKdp();
+			resizeBdp();
 		}
 
 		public function get itemRenderer():String
@@ -135,7 +135,7 @@ package
 			facade.registerMediator(_mediator);	
 			createView();
 			
-			resizeKdp();
+			resizeBdp();
 		}
 		
 		private function createView():void {	
@@ -173,7 +173,7 @@ package
 				{
 					view.itemRendererXML = _itemRendererXML;
 				}
-				view.addEventListener( Event.ADDED_TO_STAGE , resizeKdp );
+				view.addEventListener( Event.ADDED_TO_STAGE , resizeBdp );
 				view.width = width;
 				view.height = height;
 				view.addEventListener(AbstractView.ITEM_CHANGED, onViewItemChanged);
@@ -215,7 +215,7 @@ package
 		 * @param event
 		 * 
 		 */		
-		private function resizeKdp( event : Event = null ) : void
+		private function resizeBdp( event : Event = null ) : void
 		{	
 			/*if(_facade)
 				_facade.retrieveMediator("stageMediator")["onResize"]();		*/

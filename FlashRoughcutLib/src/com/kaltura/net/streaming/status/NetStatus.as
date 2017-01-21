@@ -1,6 +1,6 @@
-package com.kaltura.net.streaming.status
+package com.borhan.net.streaming.status
 {
-	import com.kaltura.utils.KStringUtil;
+	import com.borhan.utils.KStringUtil;
 
 	final public class NetStatus
 	{

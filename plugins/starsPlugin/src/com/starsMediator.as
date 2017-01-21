@@ -1,12 +1,12 @@
 package com
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.baseEntry.BaseEntryAnonymousRank;
-	import com.kaltura.commands.baseEntry.BaseEntryGet;
-	import com.kaltura.controls.Stars;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.MultiRequest;
+	import com.borhan.commands.baseEntry.BaseEntryAnonymousRank;
+	import com.borhan.commands.baseEntry.BaseEntryGet;
+	import com.borhan.controls.Stars;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.vo.BorhanBaseEntry;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -17,7 +17,7 @@ package com
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
 	/**
-	 * Class starsMediator manages the communication between the KDP and the Stars component. 
+	 * Class starsMediator manages the communication between the BDP and the Stars component. 
 	 * @author Hila
 	 * 
 	 */	
@@ -36,7 +36,7 @@ package com
 		 */		
 		public var rating : Number;
 		/**
-		 * Parameter holds the KDP's MediaProxy. 
+		 * Parameter holds the BDP's MediaProxy. 
 		 */		
 		public var mediaProxy : Proxy;
 		/**
@@ -81,7 +81,7 @@ package com
 			return viewComponent as DisplayObject;
 		}
 		/**
-		 * Function returns the array of KDP notifications that are of interest to the plugin. 
+		 * Function returns the array of BDP notifications that are of interest to the plugin. 
 		 * @return 
 		 * 
 		 */		
@@ -92,7 +92,7 @@ package com
 		}
 		/**
 		 * Noitifcation handler of the Plugin. 
-		 * @param notification the KDP notification intercepted by the mediator.
+		 * @param notification the BDP notification intercepted by the mediator.
 		 * 
 		 */		
 		override public function handleNotification(notification:INotification):void
@@ -101,7 +101,7 @@ package com
 			var currId : String = mediaProxy["vo"]["entry"]["id"];
 			if(lastEntryId !=  currId){
 				lastEntryId = currId;
-				var entry : KalturaBaseEntry = mediaProxy["vo"]["entry"] as KalturaBaseEntry;
+				var entry : BorhanBaseEntry = mediaProxy["vo"]["entry"] as BorhanBaseEntry;
 				stars.rebuildStars();
 				stars.editable = editable;
 				if (rating == 0)
@@ -121,7 +121,7 @@ package com
 		private function onStarsRated ( e: Event) :void
 		{
 			trace("rated")
-			var kClient : Object = facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var kClient : Object = facade.retrieveProxy("servicesProxy")["borhanClient"];
 			var mr:MultiRequest = new MultiRequest();
 			var entryId : String = mediaProxy["vo"]["entry"]["id"];
 			if (!useExternalRatingSystem)
@@ -130,9 +130,9 @@ package com
 				mr.addAction(starsRate);
 				var getEntry : BaseEntryGet = new BaseEntryGet(entryId);
 				mr.addAction(getEntry);
-				mr.addEventListener(KalturaEvent.COMPLETE , onRateComplete);
-				mr.addEventListener(KalturaEvent.FAILED , onRateFailed);
-				(kClient as KalturaClient).post(mr);
+				mr.addEventListener(BorhanEvent.COMPLETE , onRateComplete);
+				mr.addEventListener(BorhanEvent.FAILED , onRateFailed);
+				(kClient as BorhanClient).post(mr);
 			}
 			else
 			{
@@ -140,17 +140,17 @@ package com
 			}
 		}
 		
-		private function onRateComplete (e : KalturaEvent) : void
+		private function onRateComplete (e : BorhanEvent) : void
 		{
 			trace("rate successful");
 		}
-		private function onRateFailed ( e: KalturaEvent ) : void
+		private function onRateFailed ( e: BorhanEvent ) : void
 		{
 			trace("Rate failed");
 		}  
 
 		/**
-		 * Flag indicating whether the rating request should be opposite the Kaltura CMS or an external data base. 
+		 * Flag indicating whether the rating request should be opposite the Borhan CMS or an external data base. 
 		 */
 		public function get useExternalRatingSystem():Boolean
 		{

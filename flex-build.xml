@@ -5,11 +5,11 @@
 	<import file="machine-properties.xml"/>
 	
 	<!-- The following properties are static -->
-	<property name="dir.kaltura.artifacts" value="${dir.kaltura.cihome}/artifacts" description="Kaltura CI artifacts directory" />
-	<property name="dir.kaltura.bin" value="${dir.kaltura.artifacts}/bin" description="Kaltura CI bin output directory" />
-	<property name="dir.kaltura.resources" value="${dir.kaltura.cihome}/resources" description="Kaltura CI resources directory" />
-	<property name="dir.kaltura.ant" value="${dir.kaltura.resources}/ant" description="Kaltura ant resources directory" />
-	<property name="dir.kaltura.flexlibs" value="${dir.kaltura.resources}/flexlibs" description="Kaltura flex external libs directory" />
+	<property name="dir.borhan.artifacts" value="${dir.borhan.cihome}/artifacts" description="Borhan CI artifacts directory" />
+	<property name="dir.borhan.bin" value="${dir.borhan.artifacts}/bin" description="Borhan CI bin output directory" />
+	<property name="dir.borhan.resources" value="${dir.borhan.cihome}/resources" description="Borhan CI resources directory" />
+	<property name="dir.borhan.ant" value="${dir.borhan.resources}/ant" description="Borhan ant resources directory" />
+	<property name="dir.borhan.flexlibs" value="${dir.borhan.resources}/flexlibs" description="Borhan flex external libs directory" />
 	<property name="flex.compile.debug" value="false" description="Default build is with debug=false" />
 	
 	<!-- Define the flex ant tasks -->

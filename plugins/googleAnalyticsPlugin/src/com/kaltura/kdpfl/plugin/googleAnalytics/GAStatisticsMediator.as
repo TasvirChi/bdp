@@ -1,15 +1,15 @@
-package com.kaltura.kdpfl.plugin.googleAnalytics
+package com.borhan.bdpfl.plugin.googleAnalytics
 {
 	import com.google.analytics.GATracker;
 	import com.google.analytics.core.RequestObject;
-	import com.kaltura.commands.stats.StatsCollect;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.types.KalturaStatsEventType;
-	import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.vo.KalturaStatsEvent;
+	import com.borhan.commands.stats.StatsCollect;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.types.BorhanStatsEventType;
+	import com.borhan.vo.BorhanBaseEntry;
+	import com.borhan.vo.BorhanStatsEvent;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -47,7 +47,7 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 			NotificationType.DO_PAUSE,
 			NotificationType.DO_REPLAY,
 			NotificationType.DURATION_CHANGE,
-			"kdpReady",
+			"bdpReady",
 			"doDownload",
 			"doGigya",
 			"showAdvancedShare",
@@ -71,7 +71,7 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 		 */		
 		public var urchinCode : String;
 		
-		public var defaultCategory:String = 'Kaltura Video Events';
+		public var defaultCategory:String = 'Borhan Video Events';
 		private var _isLive:Boolean = false;
 		/**
 		 *Constructor. 
@@ -109,20 +109,20 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 		
 		/**
 		 *Build a generic statistics object for easier tracking. 
-		 * @param kc	The Kaltura Client (from the flex Kaltura APIs Client Library).
-		 * @return 		A generic Kaltura statistics event.
+		 * @param kc	The Borhan Client (from the flex Borhan APIs Client Library).
+		 * @return 		A generic Borhan statistics event.
 		 */		
-		private function getBasicStatsEntry(kc:Object) : com.kaltura.vo.KalturaStatsEvent
+		private function getBasicStatsEntry(kc:Object) : com.borhan.vo.BorhanStatsEvent
 		{
 			var config: Object =  facade.retrieveProxy("configProxy");
 			var mediaPlayer : KMediaPlayerMediator = facade.retrieveMediator(KMediaPlayerMediator.NAME) as KMediaPlayerMediator;
-			var kse : com.kaltura.vo.KalturaStatsEvent = new com.kaltura.vo.KalturaStatsEvent();
+			var kse : com.borhan.vo.BorhanStatsEvent = new com.borhan.vo.BorhanStatsEvent();
 			kse.partnerId = config["vo"]["flashvars"].partnerId;
 			kse.widgetId = config["vo"]["flashvars"].id;
             kse.uiconfId = config["vo"].flashvars.uiConfId;
             kse.entryId =  (facade.retrieveProxy("mediaProxy"))["vo"].entry.id;
 			_isLive = (facade.retrieveProxy("mediaProxy"))["vo"]["isLive"];
- 		    kse.clientVer = "3.0:" + facade["kdpVersion"];
+ 		    kse.clientVer = "3.0:" + facade["bdpVersion"];
             var dt:Date = new Date();
             kse.eventTimestamp = dt.time + dt.timezoneOffset-dt.timezoneOffset*60000; // milisec UTC + users timezone offset
             if(mediaPlayer)
@@ -168,11 +168,11 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 		override public function handleNotification(notification:INotification):void
 		{
 			log("RECEIVED: "+notification.getName());	
-			var kc: Object =  facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var kc: Object =  facade.retrieveProxy("servicesProxy")["borhanClient"];
 			var sp: SequenceProxy =  (facade.retrieveProxy("sequenceProxy") as SequenceProxy);
-			var kse : com.kaltura.vo.KalturaStatsEvent = this.getBasicStatsEntry(kc);
+			var kse : com.borhan.vo.BorhanStatsEvent = this.getBasicStatsEntry(kc);
 			var kw:Object	= facade.retrieveProxy("configProxy")["vo"]["kw"];
-			var entry : KalturaBaseEntry  	= (facade.retrieveProxy("mediaProxy")["vo"]["entry"] as KalturaBaseEntry);
+			var entry : BorhanBaseEntry  	= (facade.retrieveProxy("mediaProxy")["vo"]["entry"] as BorhanBaseEntry);
 			var data:Object = notification.getBody();
 			var note:String	= notification.getName();
 			var value:Number;
@@ -183,7 +183,7 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 			var shouldPublish:Boolean 	= true;
 			var currTime:Number	= new Date().time;
 			switch(note){
-				case "kdpReady":
+				case "bdpReady":
 					/*
 					//stop tracking pageview
 					var siteUrl:String	= facade.retrieveProxy("configProxy")["vo"]["flashvars"]["referer"];
@@ -468,7 +468,7 @@ package com.kaltura.kdpfl.plugin.googleAnalytics
 		 */		
 		public function setupGa (urchin_code:String):void {
 			urchinCode = urchin_code;
-			log("KDPGA - ga_id: " + urchinCode);
+			log("BDPGA - ga_id: " + urchinCode);
 			_ga = new GATracker( view, urchinCode, "AS3", visualDebug);
 		}
 		

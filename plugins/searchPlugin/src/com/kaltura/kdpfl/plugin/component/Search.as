@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	//import com.kaltura.kdpfl.component.IComponent;
+	//import com.borhan.bdpfl.component.IComponent;
 	
-	import com.kaltura.kdpfl.view.containers.KHBox;
+	import com.borhan.bdpfl.view.containers.KHBox;
 	
 	import fl.controls.TextInput;
 	import fl.data.DataProvider;

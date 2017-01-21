@@ -1,9 +1,9 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.view.ComscoreMediator;
-	import com.kaltura.utils.ObjectUtil;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.KPluginEvent;
+	import com.borhan.bdpfl.view.ComscoreMediator;
+	import com.borhan.utils.ObjectUtil;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -32,7 +32,7 @@ package
 		protected var _cs_eidr : String;
 		protected var _cs_adid : String;
 		protected var failedFlag : Boolean;
-		protected var _comscoreVersion : String = "kdp3.6.15";
+		protected var _comscoreVersion : String = "bdp3.6.15";
 		
 		public function ComscorePluginCode()
 		{

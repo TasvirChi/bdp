@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.borhan.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaUser extends BaseFlexVo
+	public dynamic class BorhanUser extends BaseFlexVo
 	{
 		/**
 		**/
@@ -91,12 +91,12 @@ package com.kaltura.vo
 		public var adminTags : String = null;
 
 		/**
-		* @see com.kaltura.types.KalturaGender
+		* @see com.borhan.types.BorhanGender
 		**/
 		public var gender : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaUserStatus
+		* @see com.borhan.types.BorhanUserStatus
 		**/
 		public var status : int = int.MIN_VALUE;
 
@@ -143,12 +143,12 @@ package com.kaltura.vo
 		public var lastName : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var isAdmin : Boolean;
 
 		/**
-		* @see com.kaltura.types.KalturaLanguageCode
+		* @see com.borhan.types.BorhanLanguageCode
 		**/
 		public var language : String = null;
 
@@ -165,7 +165,7 @@ package com.kaltura.vo
 		public var deletedAt : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var loginEnabled : Boolean;
 
@@ -178,7 +178,7 @@ package com.kaltura.vo
 		public var roleNames : String = null;
 
 		/**
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var isAccountOwner : Boolean;
 

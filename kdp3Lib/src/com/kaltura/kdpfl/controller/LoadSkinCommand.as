@@ -1,18 +1,18 @@
-package com.kaltura.kdpfl.controller
+package com.borhan.bdpfl.controller
 {
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.style.KStyleManager;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.style.KStyleManager;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.AsyncCommand;
 
 	/**
-	 * This class is responsible for loading KDP skin file 
+	 * This class is responsible for loading BDP skin file 
 	 */
 	public class LoadSkinCommand extends AsyncCommand implements IResponder
 	{
 		/**
-		 * load KDP skin 
+		 * load BDP skin 
 		 * @param notification
 		 */		
 		override public function execute(notification:INotification):void

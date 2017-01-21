@@ -1,10 +1,10 @@
 package {
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.events.DynamicEvent;
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.controls.BufferAnimation;
+	import com.borhan.bdpfl.ApplicationFacade;
+	import com.borhan.bdpfl.events.DynamicEvent;
+	import com.borhan.bdpfl.model.ExternalInterfaceProxy;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.controls.BufferAnimation;
 	
 	import fl.events.ComponentEvent;
 	
@@ -20,11 +20,11 @@ package {
 	[SWF(backgroundColor=0xEEEEEE, frameRate=30)]
 	[Frame(factoryClass="ApplicationLoader")]
 	/**
-	 * Main class of the KDP3 
+	 * Main class of the BDP3 
 	 * @author Hila
 	 * 
 	 */	
-	public class kdp3 extends Sprite implements IKDP3 {
+	public class bdp3 extends Sprite implements IBDP3 {
 
 		/**
 		 * One time reference to the Pure MVC facade
@@ -44,10 +44,10 @@ package {
 
 
 		/**
-		 * KDP_3 Constructor
+		 * BDP_3 Constructor
 		 *
 		 */
-		public function kdp3() {
+		public function bdp3() {
 
 			Security.allowDomain("*");
 
@@ -97,10 +97,10 @@ package {
 
 
 		/**
-		 * Start the KDP sequence commands to build layout, load styles and set them, add add the main built view to
+		 * Start the BDP sequence commands to build layout, load styles and set them, add add the main built view to
 		 * the stage.
 		 *
-		 * this method is called automaticlly on stand alone KDP, but a KDP in a Flex/Flash wrapper should call init()
+		 * this method is called automaticlly on stand alone BDP, but a BDP in a Flex/Flash wrapper should call init()
 		 * by itself
 		 */
 		public function init(kml:XML = null):void {
@@ -108,7 +108,7 @@ package {
 			//start the lifecycle of the 
 			_facade.start(this.root);
 			this.root.addEventListener("skinLoaded", onSkinLoaded);
-			// pass the real root and not a kdp3 instance
+			// pass the real root and not a bdp3 instance
 		
 		    
 			if (_width) {
@@ -137,7 +137,7 @@ package {
 		}
 
 		/**
-		 * Flex Application that load the KDP can use sendNotification to dispatch notifications
+		 * Flex Application that load the BDP can use sendNotification to dispatch notifications
 		 * @param notificationName
 		 * @param body
 		 * @param type
@@ -149,7 +149,7 @@ package {
 
 
 		/**
-		 * KDP 3 Provide a way to set any data attribute using this function from any Flash/Flex Container
+		 * BDP 3 Provide a way to set any data attribute using this function from any Flash/Flex Container
 		 * @param componentName
 		 * @param prop
 		 * @param newValue
@@ -161,7 +161,7 @@ package {
 
 
 		/**
-		 * KDP 3 Provide a way to set any data attribute using this function from any Flash/Flex Container
+		 * BDP 3 Provide a way to set any data attribute using this function from any Flash/Flex Container
 		 * @param componentName
 		 * @param prop
 		 * @param newValue
@@ -173,7 +173,7 @@ package {
 
 
 		/**
-		 * Free memory and clean static vars that use to store KDP configuration
+		 * Free memory and clean static vars that use to store BDP configuration
 		 */
 		public function dispose():void {
 			_facade.dispose();

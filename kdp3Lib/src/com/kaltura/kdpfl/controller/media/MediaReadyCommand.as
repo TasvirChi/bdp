@@ -1,14 +1,14 @@
-package com.kaltura.kdpfl.controller.media
+package com.borhan.bdpfl.controller.media
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.vo.SequenceVO;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.types.KalturaMediaType;
-	import com.kaltura.vo.KalturaMediaEntry;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.vo.SequenceVO;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.types.BorhanMediaType;
+	import com.borhan.vo.BorhanMediaEntry;
 	
 	import org.osmf.media.MediaPlayer;
 	import org.puremvc.as3.interfaces.INotification;
@@ -69,8 +69,8 @@ package com.kaltura.kdpfl.controller.media
 				
 			}		
 			//In case of an image entry, there is no need to enable GUI
-			if( _mediaProxy.vo.entry is KalturaMediaEntry && 
-				(_mediaProxy.vo.entry as KalturaMediaEntry).mediaType == KalturaMediaType.IMAGE &&
+			if( _mediaProxy.vo.entry is BorhanMediaEntry && 
+				(_mediaProxy.vo.entry as BorhanMediaEntry).mediaType == BorhanMediaType.IMAGE &&
 				(!playerMediator.player.duration || isNaN(playerMediator.player.duration)))
 			{
 				sendNotification(NotificationType.ENABLE_GUI, {guiEnabled : false , enableType : EnableType.CONTROLS});

@@ -1,13 +1,13 @@
-package com.kaltura.kdpfl.view
+package com.borhan.bdpfl.view
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAdCuePoint;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.AdsNotificationTypes;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.types.BorhanAdType;
+	import com.borhan.vo.BorhanAdCuePoint;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -127,9 +127,9 @@ package com.kaltura.kdpfl.view
 							//whether this start time was already saved to _startTimeArray
 							var startTimeSaved:Boolean = false;
 							for (var i:int = 0; i<cpArray.length; i++) {
-								if (cpArray[i] is KalturaAdCuePoint) {
-									var curCp:KalturaAdCuePoint = cpArray[i] as KalturaAdCuePoint;
-									if (curCp.adType == KalturaAdType.VIDEO && !startTimeSaved) {
+								if (cpArray[i] is BorhanAdCuePoint) {
+									var curCp:BorhanAdCuePoint = cpArray[i] as BorhanAdCuePoint;
+									if (curCp.adType == BorhanAdType.VIDEO && !startTimeSaved) {
 										_startTimeArray.push(inTime);
 										startTimeSaved = true;
 										_numOfSegments++;	
@@ -144,8 +144,8 @@ package com.kaltura.kdpfl.view
 				
 				case NotificationType.AD_OPPORTUNITY:
 					var msDuration:int = (facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry.msDuration;
-					var cp:KalturaAdCuePoint = notification.getBody().cuePoint as KalturaAdCuePoint;
-					if (cp.startTime!=0 && cp.startTime!=msDuration && cp.adType == KalturaAdType.VIDEO) {
+					var cp:BorhanAdCuePoint = notification.getBody().cuePoint as BorhanAdCuePoint;
+					if (cp.startTime!=0 && cp.startTime!=msDuration && cp.adType == BorhanAdType.VIDEO) {
 						for (var j:int =0 ; j<_startTimeArray.length; j++) {
 							if (_startTimeArray[j]==cp.startTime) {
 								//add 1 since array is zero based and segment is 1 based, 

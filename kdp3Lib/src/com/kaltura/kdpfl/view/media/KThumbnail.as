@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.media
+package com.borhan.bdpfl.view.media
 {
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.component.IComponent;
+	import com.borhan.bdpfl.view.controls.KTrace;
 	
 	import fl.core.UIComponent;
 	
@@ -31,7 +31,7 @@ package com.kaltura.kdpfl.view.media
 		private var _firstTimeIOError : Boolean = true;
 		
 		/**
-		 *The flashvars of the KDP 
+		 *The flashvars of the BDP 
 		 */		
 		private var _flashvars : Object;
 		

@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.type.StreamerType;
 	
 	import fl.data.DataProvider;
 	
@@ -13,8 +13,8 @@ package com.kaltura.kdpfl.view.controls
 	import org.puremvc.as3.patterns.facade.Facade;
 	
 	/**
-	 * Class KFlavorComboBox represents the uinique Kaltura ComboBox which allows the user to toggle the
-	 * video quality. This ComboBox wil be empty of flavor bitrate values in case the media playing in the KDP is a KalturaMixEntry. 
+	 * Class KFlavorComboBox represents the uinique Borhan ComboBox which allows the user to toggle the
+	 * video quality. This ComboBox wil be empty of flavor bitrate values in case the media playing in the BDP is a BorhanMixEntry. 
 	 * The data in the ComboBox is displayed in units of kbps (kilo-bytes per second).
 	 * @author Hila
 	 * 
@@ -69,7 +69,7 @@ package com.kaltura.kdpfl.view.controls
 		 */		
 		private var _isHttpStreaming : Boolean = false;
 		/**
-		 * This property stands for the current transmission mode of the KDP. Values are "http" (progressive download), "rtmp" (adaptive streaming) or "live" (live streaming media).
+		 * This property stands for the current transmission mode of the BDP. Values are "http" (progressive download), "rtmp" (adaptive streaming) or "live" (live streaming media).
 		 */		
 		private var _streamerType : String;
 		/**

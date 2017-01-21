@@ -1,28 +1,28 @@
-package com.kaltura.kdpfl.component
+package com.borhan.bdpfl.component
 {
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.borhan.bdpfl.view.controls.KButton;
 	
 	import fl.controls.Button;
 	import fl.core.UIComponent;
 	
 	import flash.utils.getDefinitionByName;KButton;
-	import com.kaltura.kdpfl.view.containers.KVBox;KVBox;
-	import com.kaltura.kdpfl.view.containers.KHBox;KHBox;
-	import com.kaltura.kdpfl.view.containers.KCanvas;KCanvas;
-	import com.kaltura.kdpfl.view.containers.KTile;KTile;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;KMediaPlayer;
-	import com.kaltura.kdpfl.view.controls.KScrubber;KScrubber;
-	import com.kaltura.kdpfl.view.controls.KVolumeBar;KVolumeBar;
-	import com.kaltura.kdpfl.view.controls.KTimer;KTimer;
-	import com.kaltura.kdpfl.view.controls.KLabel;KLabel;
-	import com.kaltura.kdpfl.view.controls.Screens;Screens;
-	import com.kaltura.kdpfl.view.controls.Watermark;Watermark;
-	import com.kaltura.kdpfl.view.media.KThumbnail;KThumbnail;
-	import com.kaltura.kdpfl.view.controls.KFlavorComboBox;KFlavorComboBox;
+	import com.borhan.bdpfl.view.containers.KVBox;KVBox;
+	import com.borhan.bdpfl.view.containers.KHBox;KHBox;
+	import com.borhan.bdpfl.view.containers.KCanvas;KCanvas;
+	import com.borhan.bdpfl.view.containers.KTile;KTile;
+	import com.borhan.bdpfl.view.media.KMediaPlayer;KMediaPlayer;
+	import com.borhan.bdpfl.view.controls.KScrubber;KScrubber;
+	import com.borhan.bdpfl.view.controls.KVolumeBar;KVolumeBar;
+	import com.borhan.bdpfl.view.controls.KTimer;KTimer;
+	import com.borhan.bdpfl.view.controls.KLabel;KLabel;
+	import com.borhan.bdpfl.view.controls.Screens;Screens;
+	import com.borhan.bdpfl.view.controls.Watermark;Watermark;
+	import com.borhan.bdpfl.view.media.KThumbnail;KThumbnail;
+	import com.borhan.bdpfl.view.controls.KFlavorComboBox;KFlavorComboBox;
 	import fl.core.UIComponent;
-	import com.kaltura.kdpfl.view.controls.KTextField;KTextField;
-	import com.kaltura.kdpfl.view.controls.KList;KList;
-	import com.kaltura.kdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.controls.KTextField;KTextField;
+	import com.borhan.bdpfl.view.controls.KList;KList;
+	import com.borhan.bdpfl.view.controls.KTrace;
 
 
 	////////////////////////////////////////////////////////
@@ -35,28 +35,28 @@ package com.kaltura.kdpfl.component
 	public class ComponentFactory
 	{
 		/**
-		 * Map object between the config.xml tag names and the KDP associated classes. 
+		 * Map object between the config.xml tag names and the BDP associated classes. 
 		 */		
 		public static var _componentMap : Object = 
 		{
-			Button:"com.kaltura.kdpfl.view.controls.KButton",
-			VBox:"com.kaltura.kdpfl.view.containers.KVBox",
-			HBox:"com.kaltura.kdpfl.view.containers.KHBox",
-			Canvas:"com.kaltura.kdpfl.view.containers.KCanvas",
-			Tile:"com.kaltura.kdpfl.view.containers.KTile",
-			Video:"com.kaltura.kdpfl.view.media.KMediaPlayer",
-			Scrubber:"com.kaltura.kdpfl.view.controls.KScrubber",
-			VolumeBar:"com.kaltura.kdpfl.view.controls.KVolumeBar",
-			Label:"com.kaltura.kdpfl.view.controls.KLabel",
-			Timer:"com.kaltura.kdpfl.view.controls.KTimer",
-			Screens:"com.kaltura.kdpfl.view.controls.Screens",
-			Watermark:"com.kaltura.kdpfl.view.controls.Watermark",
-			Image:"com.kaltura.kdpfl.view.media.KThumbnail",
+			Button:"com.borhan.bdpfl.view.controls.KButton",
+			VBox:"com.borhan.bdpfl.view.containers.KVBox",
+			HBox:"com.borhan.bdpfl.view.containers.KHBox",
+			Canvas:"com.borhan.bdpfl.view.containers.KCanvas",
+			Tile:"com.borhan.bdpfl.view.containers.KTile",
+			Video:"com.borhan.bdpfl.view.media.KMediaPlayer",
+			Scrubber:"com.borhan.bdpfl.view.controls.KScrubber",
+			VolumeBar:"com.borhan.bdpfl.view.controls.KVolumeBar",
+			Label:"com.borhan.bdpfl.view.controls.KLabel",
+			Timer:"com.borhan.bdpfl.view.controls.KTimer",
+			Screens:"com.borhan.bdpfl.view.controls.Screens",
+			Watermark:"com.borhan.bdpfl.view.controls.Watermark",
+			Image:"com.borhan.bdpfl.view.media.KThumbnail",
 			Spacer:"fl.core.UIComponent",
-			FlavorCombo:"com.kaltura.kdpfl.view.controls.KFlavorComboBox",
-			Text:"com.kaltura.kdpfl.view.controls.KTextField",
-			ComboBox:"com.kaltura.kdpfl.view.controls.KComboBox",
-			List:"com.kaltura.kdpfl.view.controls.KList"
+			FlavorCombo:"com.borhan.bdpfl.view.controls.KFlavorComboBox",
+			Text:"com.borhan.bdpfl.view.controls.KTextField",
+			ComboBox:"com.borhan.bdpfl.view.controls.KComboBox",
+			List:"com.borhan.bdpfl.view.controls.KList"
 		}
 		
 		/**
@@ -67,9 +67,9 @@ package com.kaltura.kdpfl.component
 		
 		
 		/**
-		 * Creates the components supported by the KDP 
+		 * Creates the components supported by the BDP 
 		 * @param UIComponent type
-		 * @return KDP UIComponent 
+		 * @return BDP UIComponent 
 		 * 
 		 */		
 		public function getComponent(type:String):UIComponent

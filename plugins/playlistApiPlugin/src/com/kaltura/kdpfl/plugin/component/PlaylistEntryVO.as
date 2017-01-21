@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.borhan.vo.BorhanPlayableEntry;
 	
 	import mx.utils.ObjectProxy;
 	
@@ -13,13 +13,13 @@ package com.kaltura.kdpfl.plugin.component
 	public class PlaylistEntryVO extends ObjectProxy
 	{
 		/**
-		 * Kaltura entry object 
+		 * Borhan entry object 
 		 */		
-		public var entry:KalturaPlayableEntry;
+		public var entry:BorhanPlayableEntry;
 		
 		public var isOver:Boolean;
 		
-		public function PlaylistEntryVO(entry:KalturaPlayableEntry)
+		public function PlaylistEntryVO(entry:BorhanPlayableEntry)
 		{
 			this.entry = entry;
 

@@ -1,8 +1,8 @@
-package com.kaltura.kdpfl.plugin.component {
-	//import com.kaltura.kdpfl.component.IComponent;
+package com.borhan.bdpfl.plugin.component {
+	//import com.borhan.bdpfl.component.IComponent;
 	
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.types.KalturaCaptionType;
+	import com.borhan.bdpfl.view.containers.KHBox;
+	import com.borhan.types.BorhanCaptionType;
 	
 	import fl.controls.ScrollPolicy;
 	import fl.events.ComponentEvent;
@@ -180,7 +180,7 @@ package com.kaltura.kdpfl.plugin.component {
 				
 				_captionsURLLoader = new URLLoader();
 				_captionsURLLoader.dataFormat = URLLoaderDataFormat.TEXT;
-				_captionsURLLoader.addEventListener(Event.COMPLETE, (fileType == "tt" || fileType == KalturaCaptionType.DFXP) ? parseTimedText : parseSRT);
+				_captionsURLLoader.addEventListener(Event.COMPLETE, (fileType == "tt" || fileType == BorhanCaptionType.DFXP) ? parseTimedText : parseSRT);
 				
 				_captionsURLLoader.addEventListener(ErrorEvent.ERROR, onError)
 				_captionsURLLoader.addEventListener(AsyncErrorEvent.ASYNC_ERROR, onError);

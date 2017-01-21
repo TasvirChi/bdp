@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,15 +25,15 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura {
-	import com.kaltura.commands.QueuedRequest;
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.net.KalturaCall;
+package com.borhan {
+	import com.borhan.commands.QueuedRequest;
+	import com.borhan.config.BorhanConfig;
+	import com.borhan.net.BorhanCall;
 	
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 
-	public class KalturaClient extends EventDispatcher {
+	public class BorhanClient extends EventDispatcher {
 		
 		[Event(name="callQueued", type="Event")]
 		
@@ -47,7 +47,7 @@ package com.kaltura {
 		public static const NULL_STRING:String = "__null_string__"; 
 		public static const API_VERSION:String = "3.1.5"; 
 		
-		protected var _currentConfig:KalturaConfig;
+		protected var _currentConfig:BorhanConfig;
 
 		/**
 		 * @copy #queueing
@@ -60,14 +60,14 @@ package com.kaltura {
 		protected var _queue:QueuedRequest;
 
 
-		public function KalturaClient(config:KalturaConfig) {
+		public function BorhanClient(config:BorhanConfig) {
 			_currentConfig = config;
 		}
 
 
 		//Setters & Getters
 		/**
-		 * @copy KalturaConfig#partnerId
+		 * @copy BorhanConfig#partnerId
 		 */
 		public function get partnerId():String {
 			return _currentConfig ? this._currentConfig.partnerId : null;
@@ -75,7 +75,7 @@ package com.kaltura {
 
 
 		/**
-		 * @copy KalturaConfig#domain
+		 * @copy BorhanConfig#domain
 		 */
 		public function get domain():String {
 			return _currentConfig ? this._currentConfig.domain : null;
@@ -83,7 +83,7 @@ package com.kaltura {
 
 
 		/**
-		 * @copy KalturaConfig#ks
+		 * @copy BorhanConfig#ks
 		 */
 		public function set ks(currentConfig:String):void {
 			_currentConfig.ks = currentConfig;
@@ -97,7 +97,7 @@ package com.kaltura {
 
 
 		/**
-		 * @copy KalturaConfig#protocol
+		 * @copy BorhanConfig#protocol
 		 */
 		public function set protocol(value:String):void {
 			_currentConfig.protocol = value;
@@ -110,7 +110,7 @@ package com.kaltura {
 
 
 		/**
-		 * @copy KalturaConfig#clientTag
+		 * @copy BorhanConfig#clientTag
 		 */
 		public function set clientTag(value:String):void {
 			_currentConfig.clientTag = value;
@@ -122,7 +122,7 @@ package com.kaltura {
 		}
 
 
-		public function post(call:KalturaCall):KalturaCall {
+		public function post(call:BorhanCall):BorhanCall {
 			if (_currentConfig) {
 				call.config = _currentConfig;
 				call.initialize();
@@ -134,7 +134,7 @@ package com.kaltura {
 				}
 			}
 			else {
-				throw new Error("Cannot post a call; no kaltura config has been set.");
+				throw new Error("Cannot post a call; no borhan config has been set.");
 			}
 			return call;
 		}
@@ -143,12 +143,12 @@ package com.kaltura {
 		 * add a call to the calls queue 
 		 * @param call call to add
 		 */
-		protected function queue(call:KalturaCall):void {
+		protected function queue(call:BorhanCall):void {
 			if (!_queue) {
 				_queue = new QueuedRequest();
 			}
 			_queue.addAction(call);
-			dispatchEvent(new Event(KalturaClient.CALL_QUEUED));
+			dispatchEvent(new Event(BorhanClient.CALL_QUEUED));
 		}
 		
 		
@@ -165,7 +165,7 @@ package com.kaltura {
 					_queue.calls[0].execute();
 				}
 				_queue = null;
-				dispatchEvent(new Event(KalturaClient.QUEUE_FLUSHED));
+				dispatchEvent(new Event(BorhanClient.QUEUE_FLUSHED));
 			}
 		}
 

@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.view.strings
+package com.borhan.bdpfl.view.strings
 {
 	public class AnnotationStrings
 	{
@@ -43,7 +43,7 @@ package com.kaltura.kdpfl.view.strings
 		
 		//Annotation submission locations:
 		
-		public static const KALTURA :String = "kaltura";
+		public static const BORHAN :String = "borhan";
 		
 		public static const LOCAL_DB : String = "localDB";
 		

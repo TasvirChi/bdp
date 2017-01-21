@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.flavorAsset.FlavorAssetGetByEntryId;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.vo.KalturaFlavorAsset;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.flavorAsset.FlavorAssetGetByEntryId;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.vo.BorhanFlavorAsset;
 	
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -55,10 +55,10 @@ package com.kaltura.kdpfl.plugin.component
 						mediaProxy = facade.retrieveProxy("mediaProxy") as MediaProxy;
 						entryId=mediaProxy.vo.entry.id;
 						var entry:Object = mediaProxy.vo.entry;
-						var kClient : KalturaClient = facade.retrieveProxy("servicesProxy")["kalturaClient"] as KalturaClient;
+						var kClient : BorhanClient = facade.retrieveProxy("servicesProxy")["borhanClient"] as BorhanClient;
 						var flavorAssetByEntryId:FlavorAssetGetByEntryId = new FlavorAssetGetByEntryId(entryId);
-						flavorAssetByEntryId.addEventListener(KalturaEvent.COMPLETE, result);
-						flavorAssetByEntryId.addEventListener(KalturaEvent.FAILED, fault);
+						flavorAssetByEntryId.addEventListener(BorhanEvent.COMPLETE, result);
+						flavorAssetByEntryId.addEventListener(BorhanEvent.FAILED, fault);
 						kClient.post(flavorAssetByEntryId);
 					}
 					break;
@@ -125,7 +125,7 @@ package com.kaltura.kdpfl.plugin.component
 			}
 			
 			
-			for each (var o:KalturaFlavorAsset in data.data) 
+			for each (var o:BorhanFlavorAsset in data.data) 
 			{
 				if(flavorParamId && flavorParamId == o.flavorParamsId.toString() )
 				{

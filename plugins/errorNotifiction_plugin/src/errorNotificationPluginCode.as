@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.ErrorNotificationMediator;
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.ErrorNotificationMediator;
+	import com.borhan.vo.BorhanBaseEntry;
 	
 	import flash.display.Sprite;
 	
@@ -70,7 +70,7 @@ package
 
 		/**
 		 * Initialize plugin mediator and data 
-		 * @param facade KDP application facade.
+		 * @param facade BDP application facade.
 		 * 
 		 */		
 		public function initializePlugin( facade : IFacade ) : void {

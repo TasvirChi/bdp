@@ -1,7 +1,7 @@
-package com.kaltura.kdpfl.plugin 
+package com.borhan.bdpfl.plugin 
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.view.controls.KScrubber;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.view.controls.KScrubber;
 	
 	import flash.events.*;
 	

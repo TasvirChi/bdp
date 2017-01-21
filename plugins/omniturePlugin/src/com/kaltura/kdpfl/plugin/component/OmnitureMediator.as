@@ -1,12 +1,12 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.ExternalInterfaceProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.vo.KalturaPlayableEntry;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.ExternalInterfaceProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.vo.BorhanPlayableEntry;
 	import com.omniture.AppMeasurement;
 	
 	import flash.display.DisplayObject;
@@ -143,7 +143,7 @@ package com.kaltura.kdpfl.plugin.component
 			//this feature allows to extract the configuration from the page
 			if(dynamicConfig == "true")
 			{
-				eip.addCallback("omnitureKdpJsReady",omnitureKdpJsReady);
+				eip.addCallback("omnitureBdpJsReady",omnitureBdpJsReady);
 				return;
 			}	else
 			{
@@ -157,7 +157,7 @@ package com.kaltura.kdpfl.plugin.component
 			}
 			prepareAppMeasurement();
 		}
-		public function omnitureKdpJsReady():void
+		public function omnitureBdpJsReady():void
 		{
 			s.visitorNamespace = getOmniVar("com.TI.Metrics.tcNameSpace");
 			s.trackingServer = getOmniVar("com.TI.Metrics.tcTrackingServer");
@@ -193,7 +193,7 @@ package com.kaltura.kdpfl.plugin.component
 		}
 		
 		/**
-		 * Hook to the relevant KDP notifications
+		 * Hook to the relevant BDP notifications
 		 */
 		override public function listNotificationInterests():Array
 		{
@@ -219,7 +219,7 @@ package com.kaltura.kdpfl.plugin.component
 				"watermarkClick",
 				NotificationType.DO_PLAY,
 				NotificationType.DO_REPLAY,
-				NotificationType.KDP_READY,
+				NotificationType.BDP_READY,
 				NotificationType.DO_SEEK
 												
 											];
@@ -235,7 +235,7 @@ package com.kaltura.kdpfl.plugin.component
 		{
 			if (statsDis) return;
 			//trace("in handle notification: ", note.getName());
-			var kc: Object =  facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var kc: Object =  facade.retrieveProxy("servicesProxy")["borhanClient"];
 			var data:Object = note.getBody();
 			var sequenceProxy : SequenceProxy = facade.retrieveProxy(SequenceProxy.NAME) as SequenceProxy;
 			switch(note.getName())
@@ -298,7 +298,7 @@ package com.kaltura.kdpfl.plugin.component
 				    	{
 							_mediaName = (facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry.name;
 							
-							var media:KalturaPlayableEntry = (facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry as KalturaPlayableEntry;
+							var media:BorhanPlayableEntry = (facade.retrieveProxy(MediaProxy.NAME) as MediaProxy).vo.entry as BorhanPlayableEntry;
 							if (media)
 								_duration = media.duration;
 				    		_played = false;
@@ -362,7 +362,7 @@ package com.kaltura.kdpfl.plugin.component
 					}
 				break;
 				
-				case NotificationType.KDP_READY:
+				case NotificationType.BDP_READY:
 				//Ready should not occur more than once
 					if (_ready) return;
 					_ready = true;

@@ -1,17 +1,17 @@
-package com.kaltura.osmf.kalturaMix
+package com.borhan.osmf.borhanMix
 {
-	import com.kaltura.assets.assets.VoiceAsset;
-	import com.kaltura.components.players.eplayer.Eplayer;
+	import com.borhan.assets.assets.VoiceAsset;
+	import com.borhan.components.players.eplayer.Eplayer;
 	
 	import org.osmf.events.SeekEvent;
 	import org.osmf.traits.SeekTrait;
 	import org.osmf.traits.TimeTrait;
 
-	public class KalturaMixSeekTrait extends SeekTrait
+	public class BorhanMixSeekTrait extends SeekTrait
 	{
 		public var eplayer:Eplayer;
 
-		public function KalturaMixSeekTrait(timeTrait:TimeTrait, _eplayer:Eplayer)
+		public function BorhanMixSeekTrait(timeTrait:TimeTrait, _eplayer:Eplayer)
 		{
 			super(timeTrait);
 			eplayer = _eplayer;

@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
 
 import fl.controls.listClasses.CellRenderer;

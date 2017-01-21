@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,22 +25,22 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.delegates {
+package com.borhan.delegates {
 	
-	import com.kaltura.config.IKalturaConfig;
-	import com.kaltura.net.KalturaCall;
+	import com.borhan.config.IBorhanConfig;
+	import com.borhan.net.BorhanCall;
 	
 	import flash.events.IEventDispatcher;
 	
-	public interface IKalturaCallDelegate extends IEventDispatcher {
+	public interface IBorhanCallDelegate extends IEventDispatcher {
 		
 		function close():void;
 		
-		function get call():KalturaCall;
-		function set call(newVal:KalturaCall):void;
+		function get call():BorhanCall;
+		function set call(newVal:BorhanCall):void;
 		
-		function get config():IKalturaConfig;
-		function set config(newVal:IKalturaConfig):void;
+		function get config():IBorhanConfig;
+		function set config(newVal:IBorhanConfig):void;
 	}
 	
 }

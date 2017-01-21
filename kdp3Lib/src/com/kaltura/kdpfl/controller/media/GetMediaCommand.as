@@ -1,94 +1,94 @@
-package com.kaltura.kdpfl.controller.media
+package com.borhan.bdpfl.controller.media
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.MultiRequest;
-	import com.kaltura.commands.baseEntry.BaseEntryGet;
-	import com.kaltura.commands.baseEntry.BaseEntryGetContextData;
-	import com.kaltura.commands.flavorAsset.FlavorAssetGetWebPlayableByEntryId;
-	import com.kaltura.errors.KalturaError;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.SourceType;
-	import com.kaltura.types.KalturaEntryModerationStatus;
-	import com.kaltura.types.KalturaEntryStatus;
-	import com.kaltura.vo.KalturaBaseEntry;
-	import com.kaltura.vo.KalturaEntryContextDataParams;
-	import com.kaltura.vo.KalturaLiveStreamEntry;KalturaLiveStreamEntry;
-	import com.kaltura.vo.KalturaLiveStreamAdminEntry; KalturaLiveStreamAdminEntry;
-	import com.kaltura.vo.KalturaLiveStreamBitrate; KalturaLiveStreamBitrate;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.MultiRequest;
+	import com.borhan.commands.baseEntry.BaseEntryGet;
+	import com.borhan.commands.baseEntry.BaseEntryGetContextData;
+	import com.borhan.commands.flavorAsset.FlavorAssetGetWebPlayableByEntryId;
+	import com.borhan.errors.BorhanError;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.model.type.SourceType;
+	import com.borhan.types.BorhanEntryModerationStatus;
+	import com.borhan.types.BorhanEntryStatus;
+	import com.borhan.vo.BorhanBaseEntry;
+	import com.borhan.vo.BorhanEntryContextDataParams;
+	import com.borhan.vo.BorhanLiveStreamEntry;BorhanLiveStreamEntry;
+	import com.borhan.vo.BorhanLiveStreamAdminEntry; BorhanLiveStreamAdminEntry;
+	import com.borhan.vo.BorhanLiveStreamBitrate; BorhanLiveStreamBitrate;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.AsyncCommand;
-	import com.kaltura.vo.KalturaFlavorAsset;
-	import com.kaltura.vo.KalturaWidevineFlavorAsset; KalturaWidevineFlavorAsset;
-	import com.kaltura.kdpfl.model.type.StreamerType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.view.media.KMediaPlayer;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.kdpfl.model.type.EnableType;
+	import com.borhan.vo.BorhanFlavorAsset;
+	import com.borhan.vo.BorhanWidevineFlavorAsset; BorhanWidevineFlavorAsset;
+	import com.borhan.bdpfl.model.type.StreamerType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.view.media.KMediaPlayer;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.bdpfl.model.type.EnableType;
 	import flash.events.Event;
-	import com.kaltura.vo.KalturaMetadataListResponse;
-	import com.kaltura.vo.KalturaMetadataFilter;
-	import com.kaltura.types.KalturaMetadataObjectType;
-	import com.kaltura.commands.metadata.MetadataList;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.commands.metadata.MetadataGet;
-	import com.kaltura.kdpfl.model.PlayerStatusProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.types.KalturaMetadataOrderBy;
-	import com.kaltura.vo.KalturaFilterPager;
-	import com.kaltura.vo.KalturaCuePointFilter;
-	import com.kaltura.commands.cuePoint.CuePointList;
-	import com.kaltura.vo.KalturaCuePointListResponse;
-	import com.kaltura.vo.KalturaCuePoint;
-	import com.kaltura.vo.KalturaAdCuePoint;KalturaAdCuePoint;
-	import com.kaltura.vo.KalturaCodeCuePoint;KalturaCodeCuePoint;
-	import com.kaltura.vo.KalturaCaptionAsset;
-	import com.kaltura.types.KalturaAdProtocolType;
-	import com.kaltura.types.KalturaAdType;
-	import com.kaltura.vo.KalturaAnnotation; KalturaAnnotation;
+	import com.borhan.vo.BorhanMetadataListResponse;
+	import com.borhan.vo.BorhanMetadataFilter;
+	import com.borhan.types.BorhanMetadataObjectType;
+	import com.borhan.commands.metadata.MetadataList;
+	import com.borhan.net.BorhanCall;
+	import com.borhan.commands.metadata.MetadataGet;
+	import com.borhan.bdpfl.model.PlayerStatusProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.types.BorhanMetadataOrderBy;
+	import com.borhan.vo.BorhanFilterPager;
+	import com.borhan.vo.BorhanCuePointFilter;
+	import com.borhan.commands.cuePoint.CuePointList;
+	import com.borhan.vo.BorhanCuePointListResponse;
+	import com.borhan.vo.BorhanCuePoint;
+	import com.borhan.vo.BorhanAdCuePoint;BorhanAdCuePoint;
+	import com.borhan.vo.BorhanCodeCuePoint;BorhanCodeCuePoint;
+	import com.borhan.vo.BorhanCaptionAsset;
+	import com.borhan.types.BorhanAdProtocolType;
+	import com.borhan.types.BorhanAdType;
+	import com.borhan.vo.BorhanAnnotation; BorhanAnnotation;
 	import flash.external.ExternalInterface;
 	import flash.net.URLRequest;
 	import flash.net.URLRequestMethod;
 	import flash.net.URLRequestHeader;
-	import com.kaltura.vo.BaseFlexVo;
-	import com.kaltura.vo.KalturaMetadata;
+	import com.borhan.vo.BaseFlexVo;
+	import com.borhan.vo.BorhanMetadata;
 	import org.osmf.net.StreamType;
-	import com.kaltura.kdpfl.model.vo.StorageProfileVO;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.commands.baseEntry.BaseEntryList;
-	import com.kaltura.vo.KalturaBaseEntryFilter;
-	import com.kaltura.vo.KalturaEntryContextDataResult;
-	import com.kaltura.commands.baseEntry.BaseEntryListByReferenceId;
-	import com.kaltura.commands.metadataProfile.MetadataProfileGet;
-	import com.kaltura.vo.KalturaAccessControlBlockAction;
-	import com.kaltura.vo.KalturaString;
-	import com.kaltura.commands.flavorAsset.FlavorAssetList;
-	import com.kaltura.vo.KalturaFlavorAssetListResponse;
-	import com.kaltura.vo.KalturaAssetFilter;
-	import com.kaltura.vo.KalturaFlavorAssetFilter;
-	import com.kaltura.types.KalturaFlavorAssetStatus;
-	import com.kaltura.kdpfl.util.SharedObjectUtil;
-	import com.kaltura.kdpfl.plugin.Plugin;
+	import com.borhan.bdpfl.model.vo.StorageProfileVO;
+	import com.borhan.bdpfl.view.controls.KTrace;
+	import com.borhan.commands.baseEntry.BaseEntryList;
+	import com.borhan.vo.BorhanBaseEntryFilter;
+	import com.borhan.vo.BorhanEntryContextDataResult;
+	import com.borhan.commands.baseEntry.BaseEntryListByReferenceId;
+	import com.borhan.commands.metadataProfile.MetadataProfileGet;
+	import com.borhan.vo.BorhanAccessControlBlockAction;
+	import com.borhan.vo.BorhanString;
+	import com.borhan.commands.flavorAsset.FlavorAssetList;
+	import com.borhan.vo.BorhanFlavorAssetListResponse;
+	import com.borhan.vo.BorhanAssetFilter;
+	import com.borhan.vo.BorhanFlavorAssetFilter;
+	import com.borhan.types.BorhanFlavorAssetStatus;
+	import com.borhan.bdpfl.util.SharedObjectUtil;
+	import com.borhan.bdpfl.plugin.Plugin;
 	import flash.events.IOErrorEvent;
 	import flash.events.SecurityErrorEvent;
 	import flash.events.ErrorEvent;
 	import flash.events.AsyncErrorEvent;
-	import com.kaltura.kdpfl.plugin.PluginManager;
+	import com.borhan.bdpfl.plugin.PluginManager;
 	import mx.utils.URLUtil;
-	import com.kaltura.kdpfl.util.URLUtils;
-	import com.kaltura.types.KalturaPlaybackProtocol;
+	import com.borhan.bdpfl.util.URLUtils;
+	import com.borhan.types.BorhanPlaybackProtocol;
 	import mx.controls.Text;
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.vo.KalturaLiveChannel;KalturaLiveChannel;
+	import com.borhan.bdpfl.util.KTextParser;
+	import com.borhan.vo.BorhanLiveChannel;BorhanLiveChannel;
 
  
 
 
 	/**
-	 * This is the class for the command used to retrieve the entry object and its related data from the Kaltura CMS. 
+	 * This is the class for the command used to retrieve the entry object and its related data from the Borhan CMS. 
 	 * @author Hila
 	 * 
 	 */	
@@ -106,8 +106,8 @@ package com.kaltura.kdpfl.controller.media
 		private var _waitForAkamaiLoad:Boolean;
 		
 		/**
-		 * The command's execution involves using the Kaltura Client to construct a multi-tiered call to the
-		 * Kaltura CMS (a MultiRequest) and populating it with single-tier calls to get the Entry object, the Flavors array,
+		 * The command's execution involves using the Borhan Client to construct a multi-tiered call to the
+		 * Borhan CMS (a MultiRequest) and populating it with single-tier calls to get the Entry object, the Flavors array,
 		 * the Entry Context Data and the Custom Metadata.
 		 * @param notification - the notifcation which triggered the command.
 		 * 
@@ -119,7 +119,7 @@ package com.kaltura.kdpfl.controller.media
 			var configProxy : ConfigProxy = facade.retrieveProxy( ConfigProxy.NAME ) as ConfigProxy;
 			_flashvars = configProxy.vo.flashvars;
 			_mediaProxy.vo.isMediaDisabled = false;
-			// for urls dont fetch entry from kaltura;
+			// for urls dont fetch entry from borhan;
 			if (_flashvars.sourceType == SourceType.URL || _flashvars.sourceType == SourceType.F4M)
 			{
 				if (!_mediaProxy.vo.entry.id || _mediaProxy.vo.entry.id == "" || _mediaProxy.vo.entry.id== "-1" )
@@ -135,14 +135,14 @@ package com.kaltura.kdpfl.controller.media
 				_mediaProxy.vo.entryLoadedBeforeChangeMedia = false;
 				_mediaProxy.vo.selectedFlavorId = _flashvars.flavorId;
 				
-				//If this is the first time that the player is running WITHOUT A KDP3WRAPPER, bypass this call, as the entry was retrieved in the LoadConfigCommand stage.
-				result({data:[_mediaProxy.vo.entry,_mediaProxy.vo.kalturaMediaFlavorArray,_mediaProxy.vo.entryExtraData, (_flashvars.requiredMetadataFields ? _mediaProxy.vo.entryMetadata : null)]});
+				//If this is the first time that the player is running WITHOUT A BDP3WRAPPER, bypass this call, as the entry was retrieved in the LoadConfigCommand stage.
+				result({data:[_mediaProxy.vo.entry,_mediaProxy.vo.borhanMediaFlavorArray,_mediaProxy.vo.entryExtraData, (_flashvars.requiredMetadataFields ? _mediaProxy.vo.entryMetadata : null)]});
 			}
 			else //else call to the get entry service again
 			{
 				//To do : make multirequest just fetching a new entryId .
 				
-				var kc : KalturaClient = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).kalturaClient;
+				var kc : BorhanClient = ( facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).borhanClient;
 				var entryId : String = _mediaProxy.vo.entry.id;	// assuming InitMediaChangeProcessCommand put it there
 				var refid : String = notification.getBody().referenceId;
 				
@@ -152,7 +152,7 @@ package com.kaltura.kdpfl.controller.media
 					var mr : MultiRequest = new MultiRequest();
 					
 					// get entry by refid / redirectEntryId / entryId
-					var baseEntryFilter:KalturaBaseEntryFilter = new KalturaBaseEntryFilter();	
+					var baseEntryFilter:BorhanBaseEntryFilter = new BorhanBaseEntryFilter();	
 					if (refid) {
 						baseEntryFilter.referenceIdEqual = refid;
 					} else if ( !_flashvars.disableEntryRedirect || _flashvars.disableEntryRedirect == "false" ) {
@@ -167,7 +167,7 @@ package com.kaltura.kdpfl.controller.media
 
 					ind ++;
 					
-					var keedp : KalturaEntryContextDataParams = new KalturaEntryContextDataParams();
+					var keedp : BorhanEntryContextDataParams = new BorhanEntryContextDataParams();
 					keedp.referrer = _flashvars.referrer;	
 					keedp.streamerType = _flashvars.streamerType;
 					if (_flashvars.flavorTags)
@@ -187,13 +187,13 @@ package com.kaltura.kdpfl.controller.media
 					
 					if (_flashvars.requiredMetadataFields)
 					{
-						var metadataAction : KalturaCall;
+						var metadataAction : BorhanCall;
 						
-						var metadataFilter : KalturaMetadataFilter = new KalturaMetadataFilter();
+						var metadataFilter : BorhanMetadataFilter = new BorhanMetadataFilter();
 						
-						metadataFilter.metadataObjectTypeEqual = KalturaMetadataObjectType.ENTRY;
+						metadataFilter.metadataObjectTypeEqual = BorhanMetadataObjectType.ENTRY;
 						
-						metadataFilter.orderBy = KalturaMetadataOrderBy.CREATED_AT_ASC;
+						metadataFilter.orderBy = BorhanMetadataOrderBy.CREATED_AT_ASC;
 						
 						metadataFilter.objectIdEqual = _mediaProxy.vo.entry.id;
 						
@@ -202,7 +202,7 @@ package com.kaltura.kdpfl.controller.media
 							metadataFilter.metadataProfileIdEqual = _flashvars.metadataProfileId;
 						}
 						
-						var metadataPager : KalturaFilterPager = new KalturaFilterPager();
+						var metadataPager : BorhanFilterPager = new BorhanFilterPager();
 						
 						metadataPager.pageSize = 1;
 						
@@ -216,7 +216,7 @@ package com.kaltura.kdpfl.controller.media
 					
 					if ( _flashvars.getCuePointsData == "true" && !_mediaProxy.vo.isFlavorSwitching && !_sequenceProxy.vo.isInSequence)
 					{
-						var cuePointFilter : KalturaCuePointFilter = new KalturaCuePointFilter();
+						var cuePointFilter : BorhanCuePointFilter = new BorhanCuePointFilter();
 						
 						cuePointFilter.entryIdEqual = _mediaProxy.vo.entry.id;
 						
@@ -229,8 +229,8 @@ package com.kaltura.kdpfl.controller.media
 					}
 					
 					
-					mr.addEventListener( KalturaEvent.COMPLETE , result );
-					mr.addEventListener( KalturaEvent.FAILED , fault );
+					mr.addEventListener( BorhanEvent.COMPLETE , result );
+					mr.addEventListener( BorhanEvent.FAILED , fault );
 					kc.post( mr );
 				}
 				else
@@ -252,12 +252,12 @@ package com.kaltura.kdpfl.controller.media
 			var i : int = 0;
 			var arr : Array = data.data as Array;
 			
-			var entry:KalturaBaseEntry; 
+			var entry:BorhanBaseEntry; 
 			
 			// get entry result:
 			// -------------------------
 			// check for API error
-			if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+			if(arr[i] is BorhanError || (arr[i].hasOwnProperty("error")))
 			{
 				_mediaProxy.vo.isMediaDisabled = true;
 				KTrace.getInstance().log("Error in Get Entry");
@@ -267,7 +267,7 @@ package com.kaltura.kdpfl.controller.media
 			// save the received value
 			else
 			{
-				// arr[i] is KalturaBaseEntryListResponse, take the first entry in the result array
+				// arr[i] is BorhanBaseEntryListResponse, take the first entry in the result array
 				if (arr[i].objects.length) {
 					entry = arr[i].objects[0];
 				}
@@ -279,7 +279,7 @@ package com.kaltura.kdpfl.controller.media
 					
 				_mediaProxy.vo.entry = entry;
 				
-				if(entry is KalturaLiveStreamEntry || _flashvars.streamerType == StreamerType.LIVE)
+				if(entry is BorhanLiveStreamEntry || _flashvars.streamerType == StreamerType.LIVE)
 				{
 					_mediaProxy.vo.deliveryType = StreamerType.LIVE;
 					_mediaProxy.vo.isLive = true;
@@ -306,7 +306,7 @@ package com.kaltura.kdpfl.controller.media
 	
 			// get ContextData result:
 			// -------------------------
-			if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+			if(arr[i] is BorhanError || (arr[i].hasOwnProperty("error")))
 			{
 				//TODO: Trace, Report, and notify the user
 				KTrace.getInstance().log("Warning : Empty Extra Params");
@@ -315,10 +315,10 @@ package com.kaltura.kdpfl.controller.media
 			{
 				_mediaProxy.vo.entryExtraData = arr[i];	
 					
-				if (_flashvars.streamerType == KalturaPlaybackProtocol.AUTO && _mediaProxy.vo.entryExtraData.streamerType && _mediaProxy.vo.entryExtraData.streamerType != "")
+				if (_flashvars.streamerType == BorhanPlaybackProtocol.AUTO && _mediaProxy.vo.entryExtraData.streamerType && _mediaProxy.vo.entryExtraData.streamerType != "")
 				{
 					_mediaProxy.vo.deliveryType = _mediaProxy.vo.entryExtraData.streamerType;
-					if (_mediaProxy.vo.entryExtraData.streamerType == KalturaPlaybackProtocol.AKAMAI_HDS || _mediaProxy.vo.entryExtraData.streamerType == KalturaPlaybackProtocol.AKAMAI_HD)
+					if (_mediaProxy.vo.entryExtraData.streamerType == BorhanPlaybackProtocol.AKAMAI_HDS || _mediaProxy.vo.entryExtraData.streamerType == BorhanPlaybackProtocol.AKAMAI_HD)
 					{
 						//load akamaiHD plugin, if it wasn't already loaded
 						var akamaiHdPlugin:Object = facade['bindObject']['Plugin_akamaiHD'];
@@ -346,7 +346,7 @@ package com.kaltura.kdpfl.controller.media
 						}
 					}
 					
-					if (_mediaProxy.vo.entryExtraData.streamerType == KalturaPlaybackProtocol.HDS || _mediaProxy.vo.entryExtraData.streamerType == KalturaPlaybackProtocol.AKAMAI_HDS)
+					if (_mediaProxy.vo.entryExtraData.streamerType == BorhanPlaybackProtocol.HDS || _mediaProxy.vo.entryExtraData.streamerType == BorhanPlaybackProtocol.AKAMAI_HDS)
 					{
 						_mediaProxy.vo.isHds = true;
 					}
@@ -385,15 +385,15 @@ package com.kaltura.kdpfl.controller.media
 				if(!_mediaProxy.vo.entryExtraData.flavorAssets || !_mediaProxy.vo.entryExtraData.flavorAssets.length)
 				{
 					KTrace.getInstance().log("Warning : Empty Flavors");
-					_mediaProxy.vo.kalturaMediaFlavorArray = null;
+					_mediaProxy.vo.borhanMediaFlavorArray = null;
 					
 					//if this is live entry we will create the flavors using 
-					if( entry is KalturaLiveStreamEntry )
+					if( entry is BorhanLiveStreamEntry )
 					{
 						var flavorAssetArray : Array = new Array(); 
 						for(var j:int=0; j<entry.bitrates.length; j++)
 						{
-							var flavorAsset : KalturaFlavorAsset = new KalturaFlavorAsset();
+							var flavorAsset : BorhanFlavorAsset = new BorhanFlavorAsset();
 							flavorAsset.bitrate = entry.bitrates[j].bitrate;
 							flavorAsset.height = entry.bitrates[j].height;
 							flavorAsset.width = entry.bitrates[j].width;
@@ -405,23 +405,23 @@ package com.kaltura.kdpfl.controller.media
 						}
 						
 						if(j>0)
-							_mediaProxy.vo.kalturaMediaFlavorArray = flavorAssetArray;
+							_mediaProxy.vo.borhanMediaFlavorArray = flavorAssetArray;
 						else
-							_mediaProxy.vo.kalturaMediaFlavorArray = null;
+							_mediaProxy.vo.borhanMediaFlavorArray = null;
 					}
 					else
 					{
-						_mediaProxy.vo.kalturaMediaFlavorArray = null;
+						_mediaProxy.vo.borhanMediaFlavorArray = null;
 					}
 				}
 				else
 				{
-					_mediaProxy.vo.kalturaMediaFlavorArray = _mediaProxy.vo.entryExtraData.flavorAssets;
+					_mediaProxy.vo.borhanMediaFlavorArray = _mediaProxy.vo.entryExtraData.flavorAssets;
 										
 					//save the highest bitrate available to cookie. This will be used to determine whether we should perform
 					//bandwidth check in the future
-					if (_mediaProxy.vo.kalturaMediaFlavorArray.length)
-						SharedObjectUtil.writeToCookie("Kaltura", "lastHighestBR", (_mediaProxy.vo.kalturaMediaFlavorArray[_mediaProxy.vo.kalturaMediaFlavorArray.length - 1] as KalturaFlavorAsset).bitrate, _flashvars.allowCookies);
+					if (_mediaProxy.vo.borhanMediaFlavorArray.length)
+						SharedObjectUtil.writeToCookie("Borhan", "lastHighestBR", (_mediaProxy.vo.borhanMediaFlavorArray[_mediaProxy.vo.borhanMediaFlavorArray.length - 1] as BorhanFlavorAsset).bitrate, _flashvars.allowCookies);
 				} 
 				
 				
@@ -432,7 +432,7 @@ package com.kaltura.kdpfl.controller.media
 			// -------------------------
 			if (_flashvars.requiredMetadataFields)
 			{
-				if(arr[i] is KalturaError || (arr[i].hasOwnProperty("error")))
+				if(arr[i] is BorhanError || (arr[i].hasOwnProperty("error")))
 				{
 					//TODO: Trace, Report, and notify the user
 					KTrace.getInstance().log("Warning : Meta data error");
@@ -446,9 +446,9 @@ package com.kaltura.kdpfl.controller.media
 					{
 						mediaProxy.vo.entryMetadata = new Object();
 						var serviceResponse : BaseFlexVo;
-						if (arr[i] is KalturaMetadataListResponse)
+						if (arr[i] is BorhanMetadataListResponse)
 						{
-							var listResponse:KalturaMetadataListResponse = arr[i] as KalturaMetadataListResponse;
+							var listResponse:BorhanMetadataListResponse = arr[i] as BorhanMetadataListResponse;
 							//take the latest profile
 							if (listResponse.objects && listResponse.objects.length)
 							{
@@ -457,7 +457,7 @@ package com.kaltura.kdpfl.controller.media
 						}
 						else //if we requested a specific profile id
 						{
-							serviceResponse = arr[i] as KalturaMetadata;
+							serviceResponse = arr[i] as BorhanMetadata;
 						}
 						if ( serviceResponse )
 						{
@@ -496,14 +496,14 @@ package com.kaltura.kdpfl.controller.media
 			// -------------------------
 			if ( _flashvars.getCuePointsData == "true" && !_mediaProxy.vo.isFlavorSwitching && !_sequenceProxy.vo.isInSequence)
 			{
-				if(arr[i] is KalturaError 
+				if(arr[i] is BorhanError 
 					|| (arr[i].hasOwnProperty("error")))
 				{
 					KTrace.getInstance().log("Warning : No cue points");
 				}
 				else
 				{
-					var cuePointListResponse : KalturaCuePointListResponse = arr[i] as KalturaCuePointListResponse;
+					var cuePointListResponse : BorhanCuePointListResponse = arr[i] as BorhanCuePointListResponse;
 					
 					_mediaProxy.vo.entryCuePoints = new Object();
 					
@@ -511,11 +511,11 @@ package com.kaltura.kdpfl.controller.media
 					
 					var cuePointsArray : Array = cuePointListResponse.objects;
 					
-					for each (var cuePoint : KalturaCuePoint in cuePointsArray)
+					for each (var cuePoint : BorhanCuePoint in cuePointsArray)
 					{
-						if (cuePoint is KalturaAdCuePoint && (cuePoint as KalturaAdCuePoint).sourceUrl)
+						if (cuePoint is BorhanAdCuePoint && (cuePoint as BorhanAdCuePoint).sourceUrl)
 						{
-							(cuePoint as KalturaAdCuePoint).sourceUrl = KTextParser.evaluate(facade["bindObject"], (cuePoint as KalturaAdCuePoint).sourceUrl ) as String;
+							(cuePoint as BorhanAdCuePoint).sourceUrl = KTextParser.evaluate(facade["bindObject"], (cuePoint as BorhanAdCuePoint).sourceUrl ) as String;
 						}
 							
 						// map cue point according to start time.
@@ -543,29 +543,29 @@ package com.kaltura.kdpfl.controller.media
 				//switch the entry status to print the right error to the screen
 				switch( entry.status )
 				{
-					case KalturaEntryStatus.BLOCKED: 
+					case BorhanEntryStatus.BLOCKED: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_REJECTED'), title: MessageStrings.getString('ENTRY_REJECTED_TITLE')}); sendEntryCannotBePlayed();
 						break;	
-					case KalturaEntryStatus.DELETED: 
+					case BorhanEntryStatus.DELETED: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_DELETED'), title: MessageStrings.getString('ENTRY_DELETED_TITLE')}); sendEntryCannotBePlayed(); 
 						break;	
-					case KalturaEntryStatus.ERROR_CONVERTING: 
+					case BorhanEntryStatus.ERROR_CONVERTING: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ERROR_PROCESSING_MEDIA'), title: MessageStrings.getString('ERROR_PROCESSING_MEDIA_TITLE')}); sendEntryCannotBePlayed(); 
 						break;	
-					case KalturaEntryStatus.ERROR_IMPORTING: 
+					case BorhanEntryStatus.ERROR_IMPORTING: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ERROR_PROCESSING_MEDIA'), title: MessageStrings.getString('ERROR_PROCESSING_MEDIA_TITLE')}); sendEntryCannotBePlayed(); 
 						break;	
-					case KalturaEntryStatus.IMPORT: 
+					case BorhanEntryStatus.IMPORT: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_CONVERTING'), title: MessageStrings.getString('ENTRY_CONVERTING_TITLE')}); sendEntryCannotBePlayed(); 
 						break;	
-					case KalturaEntryStatus.PRECONVERT: 
+					case BorhanEntryStatus.PRECONVERT: 
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_CONVERTING'), title: MessageStrings.getString('ENTRY_CONVERTING_TITLE')}); sendEntryCannotBePlayed(); 
 						break;
-					case KalturaEntryStatus.NO_CONTENT:
+					case BorhanEntryStatus.NO_CONTENT:
 						sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('NO_CONTENT'), title: MessageStrings.getString('NO_CONTENT_TITLE')}); sendEntryCannotBePlayed(); 
 						break;
 					
-					case KalturaEntryStatus.READY: 
+					case BorhanEntryStatus.READY: 
 						break;
 					
 					default: 
@@ -576,7 +576,7 @@ package com.kaltura.kdpfl.controller.media
 				//if this entry is not old and has extra data
 				if(_mediaProxy.vo.entryExtraData)
 				{
-					var entryExtraData:KalturaEntryContextDataResult = _mediaProxy.vo.entryExtraData;
+					var entryExtraData:BorhanEntryContextDataResult = _mediaProxy.vo.entryExtraData;
 					
 					// If the requesting user is not the admin:
 					if( !entryExtraData.isAdmin)
@@ -584,11 +584,11 @@ package com.kaltura.kdpfl.controller.media
 						//check if a moderation status alert should be raised
 						switch( entry.moderationStatus )
 						{
-							case KalturaEntryModerationStatus.REJECTED:
+							case BorhanEntryModerationStatus.REJECTED:
 								sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_REJECTED'), title: MessageStrings.getString('ENTRY_REJECTED_TITLE')});
 								sendEntryCannotBePlayed();
 								break;
-							case KalturaEntryModerationStatus.PENDING_MODERATION:
+							case BorhanEntryModerationStatus.PENDING_MODERATION:
 								sendNotification(NotificationType.ALERT,{message: MessageStrings.getString('ENTRY_MODERATE'), title: MessageStrings.getString('ENTRY_MODERATE_TITLE')});
 								sendEntryCannotBePlayed();
 								break;
@@ -645,14 +645,14 @@ package com.kaltura.kdpfl.controller.media
 							for (var k:int = 0; k<entryExtraData.accessControlActions.length; k++)
 							{
 								//if we have at least one block, display all access control messages
-								if (entryExtraData.accessControlActions[k] is KalturaAccessControlBlockAction)
+								if (entryExtraData.accessControlActions[k] is BorhanAccessControlBlockAction)
 								{
 									if (entryExtraData.accessControlMessages && entryExtraData.accessControlMessages.length)
 									{
 										var errString:String = '';
 										for (var l:int = 0; l<entryExtraData.accessControlMessages.length; l++)
 										{
-											errString += (entryExtraData.accessControlMessages[l] as KalturaString).value + '\n';
+											errString += (entryExtraData.accessControlMessages[l] as BorhanString).value + '\n';
 										}
 									}
 									//no messages- display generic access control message
@@ -706,7 +706,7 @@ package com.kaltura.kdpfl.controller.media
 			//TODO: Send more information on the Error
 			sendNotification(NotificationType.ENTRY_FAILED );
 
-		 if (data && data.error && (data.error is KalturaError)) 
+		 if (data && data.error && (data.error is BorhanError)) 
 			KTrace.getInstance().log(data.error.errorMsg);
 		}
 		

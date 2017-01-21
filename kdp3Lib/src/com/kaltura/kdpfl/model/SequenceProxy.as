@@ -1,20 +1,20 @@
-package com.kaltura.kdpfl.model
+package com.borhan.bdpfl.model
 {
-	import com.kaltura.kdpfl.model.type.AdOpportunityType;
-	import com.kaltura.kdpfl.model.type.AdsNotificationTypes;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.model.vo.MediaVO;
-	import com.kaltura.kdpfl.model.vo.SequenceVO;
-	import com.kaltura.kdpfl.plugin.IMidrollSequencePlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.Plugin;
-	import com.kaltura.kdpfl.util.Cloner;
-	import com.kaltura.kdpfl.view.controls.KTrace;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
-	import com.kaltura.osmf.proxy.KSwitchingProxyElement;
-	import com.kaltura.vo.KalturaCuePoint;
+	import com.borhan.bdpfl.model.type.AdOpportunityType;
+	import com.borhan.bdpfl.model.type.AdsNotificationTypes;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.bdpfl.model.vo.MediaVO;
+	import com.borhan.bdpfl.model.vo.SequenceVO;
+	import com.borhan.bdpfl.plugin.IMidrollSequencePlugin;
+	import com.borhan.bdpfl.plugin.ISequencePlugin;
+	import com.borhan.bdpfl.plugin.Plugin;
+	import com.borhan.bdpfl.util.Cloner;
+	import com.borhan.bdpfl.view.controls.KTrace;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.osmf.proxy.KSwitchingProxyElement;
+	import com.borhan.vo.BorhanCuePoint;
 	
 	//We include parallel element to support backward compatibility. This should be removed in the future, Once
 	//we know who is using CUSTOM vast and freeWheel plugins that might break if we remove this import.
@@ -87,8 +87,8 @@ package com.kaltura.kdpfl.model
 		}
 		
 		/**
-		 * Function which checks whether the sequence plugin lined up to play plays withing the KDP or as an independent swf. 
-		 * @return <code>true</code> if the plugin plays in the KDP; <code>false</code> otherwise.
+		 * Function which checks whether the sequence plugin lined up to play plays withing the BDP or as an independent swf. 
+		 * @return <code>true</code> if the plugin plays in the BDP; <code>false</code> otherwise.
 		 * 
 		 */        
 		public function hasMediaElement () : Boolean
@@ -120,12 +120,12 @@ package com.kaltura.kdpfl.model
 		/**
 		 * Function checks whether the sequence plugin lined up to play
 		 * has been loaded into the MediaPlayer (this check is performed only if the
-		 * sequence plugin plays in the MediaPlayer of the KDP and not as a custom swf.
+		 * sequence plugin plays in the MediaPlayer of the BDP and not as a custom swf.
 		 * 
 		 */        
 		public function hasMediaLoaded () : Boolean
 		{
-			//Check whether the plugin media is loaded into the KDP.
+			//Check whether the plugin media is loaded into the BDP.
 			
 			var mediaProxy : MediaProxy = facade.retrieveProxy(MediaProxy.NAME) as MediaProxy;
 			
@@ -366,7 +366,7 @@ package com.kaltura.kdpfl.model
 		
 		/**
 		 * Function evaluates the pre sequence index to 0
-		 * if the kdp has pre sequence configured. 
+		 * if the bdp has pre sequence configured. 
 		 * 
 		 */		
 		public function initPreIndex() : void
@@ -671,7 +671,7 @@ package com.kaltura.kdpfl.model
 		 * @param cuePointObj - cue point object that will be send on AD_PPORUNITY 
 		 * 
 		 */		
-		public function startMidSequence(sendAdOpportunity:Boolean, cuePointObj:KalturaCuePoint = null):void 
+		public function startMidSequence(sendAdOpportunity:Boolean, cuePointObj:BorhanCuePoint = null):void 
 		{
 			if (sendAdOpportunity)
 			{

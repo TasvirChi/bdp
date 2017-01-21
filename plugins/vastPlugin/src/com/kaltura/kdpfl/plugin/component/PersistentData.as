@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
 	import flash.net.SharedObject;
 	
@@ -7,7 +7,7 @@ package com.kaltura.kdpfl.plugin.component
 	public class PersistentData {
 		
 		
-		private var _soName:String = "kaltura/vast_";
+		private var _soName:String = "borhan/vast_";
 		
 		public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24;
 		

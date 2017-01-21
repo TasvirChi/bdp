@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.puremvc.as3.patterns.mediator.MultiMediator;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.puremvc.as3.patterns.mediator.MultiMediator;
 	
 	import flash.events.Event;
 	import flash.net.SharedObject;
@@ -11,7 +11,7 @@ package com.kaltura.kdpfl.view.controls
 	import org.puremvc.as3.interfaces.INotification;
 
 	/**
-	 * Mediator for the KDP flavor selction combo box of type KFlavorComboBox.
+	 * Mediator for the BDP flavor selction combo box of type KFlavorComboBox.
 	 * @author Hila
 	 * 
 	 */
@@ -27,7 +27,7 @@ package com.kaltura.kdpfl.view.controls
 		private var _prevMessage:String = "";
 		
 		/**
-		 * kdp flashvars 
+		 * bdp flashvars 
 		 */		
 		private var _flashvars:Object;
 		
@@ -190,7 +190,7 @@ package com.kaltura.kdpfl.view.controls
 			var flavorCookie : SharedObject;
 			try
 			{
-				flavorCookie = SharedObject.getLocal("Kaltura");
+				flavorCookie = SharedObject.getLocal("Borhan");
 			}
 			catch (e : Error)
 			{

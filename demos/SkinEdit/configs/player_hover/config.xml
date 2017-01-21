@@ -1,7 +1,7 @@
 <layout id="full" skinPath="assets/skin.swf">
   <HBox id="topLevel" width="100%" height="100%">
     <VBox id="player" width="100%" height="100%" styleName="black">
-      <Plugin id="kalturaMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
+      <Plugin id="borhanMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
       <Plugin id="statistics" width="0%" height="0%" includeInLayout="false"/>
       <Plugin id="fader" width="0%" height="0%" includeInLayout="false" target="{controllersVbox}" hoverTarget="{PlayerHolder}" duration="0.5"/>
       <Canvas id="PlayerHolder" height="100%" width="100%" styleName="black">
@@ -13,7 +13,7 @@
           <Spacer height="100%"/>
         </VBox>
         <Screens id="screensLayer" width="100%" height="100%" mouseOverTarget="{PlayerHolder}" styleName="clickThrough" startScreenId="startScreen" startScreenOverId="startScreen" pauseScreenOverId="pauseScreen" pauseScreenId="pauseScreen" playScreenOverId="playScreen" endScreenId="endScreen" endScreenOverId="endScreen"/>
-        <Watermark id="watermark" width="100%" height="100%" watermarkPath="http://www.kaltura.com/content/uiconf/kaltura/kmc/appstudio/kdp3/exampleWatermark.png" watermarkClickPath="http://www.kaltura.com/" watermarkPosition="topRight" padding="5"/>
+        <Watermark id="watermark" width="100%" height="100%" watermarkPath="http://www.borhan.com/content/uiconf/borhan/bmc/appstudio/bdp3/exampleWatermark.png" watermarkClickPath="http://www.borhan.com/" watermarkPosition="topRight" padding="5"/>
         <VBox id="controllersVbox" width="100%" height="100%" verticalAlign="Bottom" paddingRight="5" paddingLeft="5">
           <Spacer id="controllerPusher" width="100%" height="100%"/>
           <HBox id="ControllerScreenHolder" width="100%" height="30" verticalAlign="middle" styleName="hoverBg">
@@ -34,7 +34,7 @@
               <Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="fullScreenBtnControllerScreen" command="fullScreen" buttonType="iconButton" height="22" styleName="controllerScreen" icon="openFullScreenIcon" selectedUpIcon="closeFullScreenIcon" selectedOverIcon="closeFullScreenIcon" selectedDownIcon="closeFullScreenIcon" selectedDisabledIcon="closeFullScreenIcon" focusRectPadding="0" allowDisable="false" k_buttonType="buttonIconControllerArea" tooltip="Toggle fullscreen" font="Arial"/>
             </HBox>
             <Spacer width="13"/>
-            <Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="kalturaLogo" height="50" width="100" kClick="navigate('http://www.kaltura.com')" styleName="controllerScreen" icon="kalturaLogo"/>
+            <Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="borhanLogo" height="50" width="100" kClick="navigate('http://www.borhan.com')" styleName="controllerScreen" icon="borhanLogo"/>
             <Spacer width="13"/>
           </HBox>
           <Spacer id="PaddingBottom" height="5"/>

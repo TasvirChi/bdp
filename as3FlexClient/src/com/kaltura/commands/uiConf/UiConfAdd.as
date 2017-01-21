@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.uiConf
+package com.borhan.commands.uiConf
 {
-		import com.kaltura.vo.KalturaUiConf;
-	import com.kaltura.delegates.uiConf.UiConfAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanUiConf;
+	import com.borhan.delegates.uiConf.UiConfAddDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
-	* UIConf Add action allows you to add a UIConf to Kaltura DB
+	* UIConf Add action allows you to add a UIConf to Borhan DB
 	* 
 	**/
-	public class UiConfAdd extends KalturaCall
+	public class UiConfAdd extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param uiConf KalturaUiConf
+		* @param uiConf BorhanUiConf
 		**/
-		public function UiConfAdd( uiConf : KalturaUiConf )
+		public function UiConfAdd( uiConf : BorhanUiConf )
 		{
 			service= 'uiconf';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.uiConf
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(uiConf, 'uiConf');
+				keyValArr = borhanObject2Arrays(uiConf, 'uiConf');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

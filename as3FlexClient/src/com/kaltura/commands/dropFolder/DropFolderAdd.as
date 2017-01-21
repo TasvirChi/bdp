@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.dropFolder
+package com.borhan.commands.dropFolder
 {
-		import com.kaltura.vo.KalturaDropFolder;
-	import com.kaltura.delegates.dropFolder.DropFolderAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanDropFolder;
+	import com.borhan.delegates.dropFolder.DropFolderAddDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
-	* Allows you to add a new KalturaDropFolder object
+	* Allows you to add a new BorhanDropFolder object
 	* 
 	**/
-	public class DropFolderAdd extends KalturaCall
+	public class DropFolderAdd extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param dropFolder KalturaDropFolder
+		* @param dropFolder BorhanDropFolder
 		**/
-		public function DropFolderAdd( dropFolder : KalturaDropFolder )
+		public function DropFolderAdd( dropFolder : BorhanDropFolder )
 		{
 			service= 'dropfolder_dropfolder';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.dropFolder
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(dropFolder, 'dropFolder');
+				keyValArr = borhanObject2Arrays(dropFolder, 'dropFolder');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

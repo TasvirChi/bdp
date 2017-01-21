@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,24 +25,24 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.genericDistributionProvider
+package com.borhan.commands.genericDistributionProvider
 {
-		import com.kaltura.vo.KalturaGenericDistributionProvider;
-	import com.kaltura.delegates.genericDistributionProvider.GenericDistributionProviderAddDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanGenericDistributionProvider;
+	import com.borhan.delegates.genericDistributionProvider.GenericDistributionProviderAddDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Add new Generic Distribution Provider
 	* 
 	**/
-	public class GenericDistributionProviderAdd extends KalturaCall
+	public class GenericDistributionProviderAdd extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
-		* @param genericDistributionProvider KalturaGenericDistributionProvider
+		* @param genericDistributionProvider BorhanGenericDistributionProvider
 		**/
-		public function GenericDistributionProviderAdd( genericDistributionProvider : KalturaGenericDistributionProvider )
+		public function GenericDistributionProviderAdd( genericDistributionProvider : BorhanGenericDistributionProvider )
 		{
 			service= 'contentdistribution_genericdistributionprovider';
 			action= 'add';
@@ -50,7 +50,7 @@ package com.kaltura.commands.genericDistributionProvider
 			var keyArr : Array = new Array();
 			var valueArr : Array = new Array();
 			var keyValArr : Array = new Array();
-				keyValArr = kalturaObject2Arrays(genericDistributionProvider, 'genericDistributionProvider');
+				keyValArr = borhanObject2Arrays(genericDistributionProvider, 'genericDistributionProvider');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

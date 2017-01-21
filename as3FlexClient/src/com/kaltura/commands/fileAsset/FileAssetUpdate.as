@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.fileAsset
+package com.borhan.commands.fileAsset
 {
-		import com.kaltura.vo.KalturaFileAsset;
-	import com.kaltura.delegates.fileAsset.FileAssetUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanFileAsset;
+	import com.borhan.delegates.fileAsset.FileAssetUpdateDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Update file asset by id
 	* 
 	**/
-	public class FileAssetUpdate extends KalturaCall
+	public class FileAssetUpdate extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id int
-		* @param fileAsset KalturaFileAsset
+		* @param fileAsset BorhanFileAsset
 		**/
-		public function FileAssetUpdate( id : int,fileAsset : KalturaFileAsset )
+		public function FileAssetUpdate( id : int,fileAsset : BorhanFileAsset )
 		{
 			service= 'fileasset';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.fileAsset
 			var keyValArr : Array = new Array();
 			keyArr.push('id');
 			valueArr.push(id);
-				keyValArr = kalturaObject2Arrays(fileAsset, 'fileAsset');
+				keyValArr = borhanObject2Arrays(fileAsset, 'fileAsset');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

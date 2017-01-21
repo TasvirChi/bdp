@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
 	import org.osmf.media.MediaElement;
 

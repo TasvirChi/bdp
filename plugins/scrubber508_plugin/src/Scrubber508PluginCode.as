@@ -1,8 +1,8 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.Scrubber508;
-	import com.kaltura.kdpfl.plugin.component.Scrubber508Mediator;
-	import com.kaltura.kdpfl.view.controls.KButton;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.Scrubber508;
+	import com.borhan.bdpfl.plugin.component.Scrubber508Mediator;
+	import com.borhan.bdpfl.view.controls.KButton;
 	
 	import fl.core.UIComponent;
 	

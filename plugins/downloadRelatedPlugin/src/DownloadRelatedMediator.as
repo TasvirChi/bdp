@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
+	import com.borhan.BorhanClient;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -39,7 +39,7 @@ package
 			{
 				case NotificationType.MEDIA_READY:
 				case NotificationType.PRE_SEQUENCE_COMPLETE:
-					_plugin.client = (facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).kalturaClient as KalturaClient;
+					_plugin.client = (facade.retrieveProxy( ServicesProxy.NAME ) as ServicesProxy ).borhanClient as BorhanClient;
 					_plugin.fetchAttachments(entryId);
 				break;
 				case "showRelatedFiles":

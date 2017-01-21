@@ -1,10 +1,10 @@
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.style.TextFormatManager;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.style.TextFormatManager;
+	import com.borhan.bdpfl.view.containers.KCanvas;
 	import com.yahoo.astra.fl.events.AlertEvent;
 	import com.yahoo.astra.fl.managers.AlertManager;
 	
@@ -18,7 +18,7 @@ package com.kaltura.kdpfl.view.controls
 	import org.puremvc.as3.patterns.facade.Facade;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	/**
-	 * This class handles presenting KDP alerts to the user. 
+	 * This class handles presenting BDP alerts to the user. 
 	 * @author Hila
 	 * 
 	 */

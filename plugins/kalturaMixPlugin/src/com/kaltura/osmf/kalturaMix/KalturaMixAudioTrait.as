@@ -1,14 +1,14 @@
-package com.kaltura.osmf.kalturaMix
+package com.borhan.osmf.borhanMix
 {
-	import com.kaltura.components.players.eplayer.Eplayer;
+	import com.borhan.components.players.eplayer.Eplayer;
 	
 	import org.osmf.traits.AudioTrait;
 
-	public class KalturaMixAudioTrait extends AudioTrait
+	public class BorhanMixAudioTrait extends AudioTrait
 	{
 		public var eplayer:Eplayer;
 
-		public function KalturaMixAudioTrait(_eplayer:Eplayer)
+		public function BorhanMixAudioTrait(_eplayer:Eplayer)
 		{
 			eplayer = _eplayer;
 			super();

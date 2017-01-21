@@ -19,7 +19,7 @@
 *  Incorporated. All Rights Reserved. 
 *  
 *****************************************************/
-package com.kaltura.osmf.buffering
+package com.borhan.osmf.buffering
 {
 	import org.osmf.elements.ProxyElement;
 	import org.osmf.events.BufferEvent;

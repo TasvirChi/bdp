@@ -1,9 +1,9 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.baseEntry.BaseEntryGet;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.vo.KalturaMediaEntry;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.baseEntry.BaseEntryGet;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.vo.BorhanMediaEntry;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -92,11 +92,11 @@ package com.kaltura.kdpfl.plugin.component
 						}
 						else
 						{
-							var kc:KalturaClient =  facade.retrieveProxy("servicesProxy")["kalturaClient"];
+							var kc:BorhanClient =  facade.retrieveProxy("servicesProxy")["borhanClient"];
 							var getEntry:BaseEntryGet = new BaseEntryGet (flashvars.captions.entryID);
 
-							getEntry.addEventListener (KalturaEvent.COMPLETE, onGetEntryResult);
-							getEntry.addEventListener (KalturaEvent.FAILED, onGetEntryError);
+							getEntry.addEventListener (BorhanEvent.COMPLETE, onGetEntryResult);
+							getEntry.addEventListener (BorhanEvent.FAILED, onGetEntryError);
 							kc.post (getEntry);
 						}
 					}
@@ -143,7 +143,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		private function onGetEntryResult(evt:Object):void
 		{
-			var me:KalturaMediaEntry = evt["data"] as KalturaMediaEntry;
+			var me:BorhanMediaEntry = evt["data"] as BorhanMediaEntry;
 			loadFile(me.downloadUrl);
 		}
 		

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,12 +25,12 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.BaseFlexVo;
+	import com.borhan.vo.BaseFlexVo;
 
 	[Bindable]
-	public dynamic class KalturaWidget extends BaseFlexVo
+	public dynamic class BorhanWidget extends BaseFlexVo
 	{
 		/**
 		**/
@@ -57,7 +57,7 @@ package com.kaltura.vo
 		public var uiConfId : int = int.MIN_VALUE;
 
 		/**
-		* @see com.kaltura.types.KalturaWidgetSecurityType
+		* @see com.borhan.types.BorhanWidgetSecurityType
 		**/
 		public var securityType : int = int.MIN_VALUE;
 
@@ -86,7 +86,7 @@ package com.kaltura.vo
 		/**
 		* Should enforce entitlement on feed entries
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var enforceEntitlement : Boolean;
 
@@ -99,7 +99,7 @@ package com.kaltura.vo
 		/**
 		* Addes the HTML5 script line to the widget's embed code
 		* 
-		* @see com.kaltura.types.kalturaBoolean
+		* @see com.borhan.types.borhanBoolean
 		**/
 		public var addEmbedHtml5Support : Boolean;
 

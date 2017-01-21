@@ -1,11 +1,11 @@
-package com.kaltura.kdpfl.model.vo
+package com.borhan.bdpfl.model.vo
 {
-	import com.kaltura.kdpfl.view.containers.KCanvas;
+	import com.borhan.bdpfl.view.containers.KCanvas;
 	
 	import mx.utils.ObjectProxy;
 	
 	/**
-	 * Class LayoutVO holds parameters related to the visual layout of the KDP. 
+	 * Class LayoutVO holds parameters related to the visual layout of the BDP. 
 	 * @author Hila
 	 * 
 	 */	

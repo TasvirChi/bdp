@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.util
+package com.borhan.bdpfl.plugin.util
 {
 	public class CompanionAdParser
 	{

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.thumbParams
+package com.borhan.commands.thumbParams
 {
-		import com.kaltura.vo.KalturaThumbParams;
-	import com.kaltura.delegates.thumbParams.ThumbParamsUpdateDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanThumbParams;
+	import com.borhan.delegates.thumbParams.ThumbParamsUpdateDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Update Thumb Params by ID
 	* 
 	**/
-	public class ThumbParamsUpdate extends KalturaCall
+	public class ThumbParamsUpdate extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id int
-		* @param thumbParams KalturaThumbParams
+		* @param thumbParams BorhanThumbParams
 		**/
-		public function ThumbParamsUpdate( id : int,thumbParams : KalturaThumbParams )
+		public function ThumbParamsUpdate( id : int,thumbParams : BorhanThumbParams )
 		{
 			service= 'thumbparams';
 			action= 'update';
@@ -53,7 +53,7 @@ package com.kaltura.commands.thumbParams
 			var keyValArr : Array = new Array();
 			keyArr.push('id');
 			valueArr.push(id);
-				keyValArr = kalturaObject2Arrays(thumbParams, 'thumbParams');
+				keyValArr = borhanObject2Arrays(thumbParams, 'thumbParams');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			applySchema(keyArr, valueArr);

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,14 +25,14 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.vo
+package com.borhan.vo
 {
-	import com.kaltura.vo.KalturaBulkUploadObjectData;
+	import com.borhan.vo.BorhanBulkUploadObjectData;
 
-	import com.kaltura.vo.KalturaJobData;
+	import com.borhan.vo.BorhanJobData;
 
 	[Bindable]
-	public dynamic class KalturaBulkUploadJobData extends KalturaJobData
+	public dynamic class BorhanBulkUploadJobData extends BorhanJobData
 	{
 		/**
 		**/
@@ -83,7 +83,7 @@ package com.kaltura.vo
 		/**
 		* Type of object for bulk upload
 		* 
-		* @see com.kaltura.types.KalturaBulkUploadObjectType
+		* @see com.borhan.types.BorhanBulkUploadObjectType
 		**/
 		public var bulkUploadObjectType : String = null;
 
@@ -97,12 +97,12 @@ package com.kaltura.vo
 		* Data pertaining to the objects being uploaded
 		* 
 		**/
-		public var objectData : KalturaBulkUploadObjectData;
+		public var objectData : BorhanBulkUploadObjectData;
 
 		/**
 		* Type of bulk upload
 		* 
-		* @see com.kaltura.types.KalturaBulkUploadType
+		* @see com.borhan.types.BorhanBulkUploadType
 		**/
 		public var type : String = null;
 

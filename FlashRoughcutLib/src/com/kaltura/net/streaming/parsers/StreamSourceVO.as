@@ -1,4 +1,4 @@
-package com.kaltura.net.streaming.parsers
+package com.borhan.net.streaming.parsers
 {
 	public class StreamSourceVO
 	{

@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,25 +25,25 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands.eventNotificationTemplate
+package com.borhan.commands.eventNotificationTemplate
 {
-		import com.kaltura.vo.KalturaEventNotificationTemplate;
-	import com.kaltura.delegates.eventNotificationTemplate.EventNotificationTemplateCloneDelegate;
-	import com.kaltura.net.KalturaCall;
+		import com.borhan.vo.BorhanEventNotificationTemplate;
+	import com.borhan.delegates.eventNotificationTemplate.EventNotificationTemplateCloneDelegate;
+	import com.borhan.net.BorhanCall;
 
 	/**
 	* Allows you to clone exiting event notification template object and create a new one with similar configuration
 	* 
 	**/
-	public class EventNotificationTemplateClone extends KalturaCall
+	public class EventNotificationTemplateClone extends BorhanCall
 	{
 		public var filterFields : String;
 		
 		/**
 		* @param id int
-		* @param eventNotificationTemplate KalturaEventNotificationTemplate
+		* @param eventNotificationTemplate BorhanEventNotificationTemplate
 		**/
-		public function EventNotificationTemplateClone( id : int,eventNotificationTemplate : KalturaEventNotificationTemplate=null )
+		public function EventNotificationTemplateClone( id : int,eventNotificationTemplate : BorhanEventNotificationTemplate=null )
 		{
 			service= 'eventnotification_eventnotificationtemplate';
 			action= 'clone';
@@ -54,7 +54,7 @@ package com.kaltura.commands.eventNotificationTemplate
 			keyArr.push('id');
 			valueArr.push(id);
 			if (eventNotificationTemplate) { 
-				keyValArr = kalturaObject2Arrays(eventNotificationTemplate, 'eventNotificationTemplate');
+				keyValArr = borhanObject2Arrays(eventNotificationTemplate, 'eventNotificationTemplate');
 				keyArr = keyArr.concat(keyValArr[0]);
 				valueArr = valueArr.concat(keyValArr[1]);
 			} 

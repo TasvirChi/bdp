@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,17 +25,17 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.commands {
-	import com.kaltura.delegates.MultiRequestDelegate;
-	import com.kaltura.net.KalturaCall;
+package com.borhan.commands {
+	import com.borhan.delegates.MultiRequestDelegate;
+	import com.borhan.net.BorhanCall;
 
-	public class MultiRequest extends KalturaCall {
+	public class MultiRequest extends BorhanCall {
 		private var _addedParams:Object = new Object();
 		private var _mapParamArr:Array = new Array();
 
 
 		/**
-		 * a list of KalturaCall-s in this MultiRequest
+		 * a list of BorhanCall-s in this MultiRequest
 		 */
 		public var actions:Array = new Array();
 
@@ -47,10 +47,10 @@ package com.kaltura.commands {
 
 		/**
 		 * add the given call to the calls list
-		 * @param kalturaCall	call to add
+		 * @param borhanCall	call to add
 		 */
-		public function addAction(kalturaCall:KalturaCall):void {
-			actions.push(kalturaCall);
+		public function addAction(borhanCall:BorhanCall):void {
+			actions.push(borhanCall);
 		}
 
 
@@ -86,7 +86,7 @@ package com.kaltura.commands {
 				keyArray.push((j + 1) + ":action");
 				valueArr.push(actions[j].action);
 
-				var argsArr:Array = ((actions[j] as KalturaCall).args.toString()).split('&');
+				var argsArr:Array = ((actions[j] as BorhanCall).args.toString()).split('&');
 				for (var k:int = 0; k < argsArr.length; k++) {
 					var inMap:Boolean = false;
 					var key:String = decodeURIComponent(argsArr[k].split('=')[0]);

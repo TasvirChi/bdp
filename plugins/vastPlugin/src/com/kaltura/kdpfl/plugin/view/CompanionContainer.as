@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.view
+package com.borhan.bdpfl.plugin.view
 {
-	import com.kaltura.kdpfl.plugin.model.UniformCompanionAd;
+	import com.borhan.bdpfl.plugin.model.UniformCompanionAd;
 	import org.osmf.utils.HTTPLoader;
 	import flash.display.Loader;
 	import flash.display.Sprite;

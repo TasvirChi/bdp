@@ -1,4 +1,4 @@
-package com.kaltura.osmf.kontiki
+package com.borhan.osmf.kontiki
 {
 	import org.osmf.traits.LoaderBase;
 	import org.osmf.media.MediaResourceBase;

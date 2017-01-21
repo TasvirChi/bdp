@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.plugin.model
+package com.borhan.bdpfl.plugin.model
 {
-	import com.kaltura.kdpfl.plugin.model.type.VASTAdResourceType;
+	import com.borhan.bdpfl.plugin.model.type.VASTAdResourceType;
 	
 	import org.osmf.vast.model.VASTCompanionAd;
 	import org.osmf.vast.parser.base.VAST2CompanionElement;

@@ -1,11 +1,11 @@
 package
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.vo.KalturaBaseEntry;
+	import com.borhan.BorhanClient;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.vo.BorhanBaseEntry;
 	
 	import org.osmf.media.MediaPlayer;
 	import org.puremvc.as3.interfaces.INotification;
@@ -15,13 +15,13 @@ package
 	{
 		public static const NAME:String = "advancedShareMediator";
 		
-		private var _advancedSharePlugin:kalturaSharePlugin; 
+		private var _advancedSharePlugin:borhanSharePlugin; 
 		
-		public var entry:KalturaBaseEntry;
+		public var entry:BorhanBaseEntry;
 		public var metadata:Object;
 		public var mediaProxy:MediaProxy
 		
-		public function AdvancedShareMediator(asp:kalturaSharePlugin=null)
+		public function AdvancedShareMediator(asp:borhanSharePlugin=null)
 		{
 			_advancedSharePlugin = asp;
 			
@@ -30,7 +30,7 @@ package
 		public function init():void
 		{
 			mediaProxy = facade.retrieveProxy("mediaProxy") as MediaProxy;
-			_advancedSharePlugin.kc = facade.retrieveProxy("servicesProxy")["kalturaClient"] as KalturaClient;
+			_advancedSharePlugin.kc = facade.retrieveProxy("servicesProxy")["borhanClient"] as BorhanClient;
 		}
 		
 		override public function listNotificationInterests():Array

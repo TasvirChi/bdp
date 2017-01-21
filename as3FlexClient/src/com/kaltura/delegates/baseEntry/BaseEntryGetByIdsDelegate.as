@@ -4,11 +4,11 @@
 //                          | ' </ _` | |  _| || | '_/ _` |
 //                          |_|\_\__,_|_|\__|\_,_|_| \__,_|
 //
-// This file is part of the Kaltura Collaborative Media Suite which allows users
+// This file is part of the Borhan Collaborative Media Suite which allows users
 // to do with audio, video, and animation what Wiki platfroms allow them to do with
 // text.
 //
-// Copyright (C) 2006-2011  Kaltura Inc.
+// Copyright (C) 2006-2011  Borhan Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -25,20 +25,20 @@
 //
 // @ignore
 // ===================================================================================================
-package com.kaltura.delegates.baseEntry
+package com.borhan.delegates.baseEntry
 {
-	import com.kaltura.vo.KalturaBaseEntry;KalturaBaseEntry;;
+	import com.borhan.vo.BorhanBaseEntry;BorhanBaseEntry;;
 
-	import com.kaltura.core.KClassFactory;
+	import com.borhan.core.KClassFactory;
 
-	import com.kaltura.config.KalturaConfig;
-	import com.kaltura.net.KalturaCall;
-	import com.kaltura.delegates.WebDelegateBase;
+	import com.borhan.config.BorhanConfig;
+	import com.borhan.net.BorhanCall;
+	import com.borhan.delegates.WebDelegateBase;
 	import flash.utils.getDefinitionByName;
 
 	public class BaseEntryGetByIdsDelegate extends WebDelegateBase
 	{
-		public function BaseEntryGetByIdsDelegate(call:KalturaCall, config:KalturaConfig)
+		public function BaseEntryGetByIdsDelegate(call:BorhanCall, config:BorhanConfig)
 		{
 			super(call, config);
 		}
@@ -48,7 +48,7 @@ package com.kaltura.delegates.baseEntry
 			var arr : Array = new Array();
 			for( var i:int=0; i<result.result.children().length() ; i++)
 			{
-				var cls : Class = getDefinitionByName('com.kaltura.vo.'+ result.result.children()[i].objectType) as Class;
+				var cls : Class = getDefinitionByName('com.borhan.vo.'+ result.result.children()[i].objectType) as Class;
 				var obj : * = (new KClassFactory( cls )).newInstanceFromXML( XMLList(result.result.children()[i]) );
 				arr.push(obj);
 			}

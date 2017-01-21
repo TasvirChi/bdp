@@ -1,14 +1,14 @@
-package com.kaltura.kdpfl.view
+package com.borhan.bdpfl.view
 {
-	import com.kaltura.kdpfl.ApplicationFacade;
-	import com.kaltura.kdpfl.model.ConfigProxy;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.Plugin;
-	import com.kaltura.kdpfl.util.KTextParser;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.bdpfl.ApplicationFacade;
+	import com.borhan.bdpfl.model.ConfigProxy;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.plugin.Plugin;
+	import com.borhan.bdpfl.util.KTextParser;
+	import com.borhan.bdpfl.view.containers.KCanvas;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
 	
 	import fl.core.UIComponent;
 	import fl.events.ComponentEvent;
@@ -41,14 +41,14 @@ package com.kaltura.kdpfl.view
 			view.addEventListener(ComponentEvent.HIDE, onFlashCompEvent);
 			view.addEventListener(ComponentEvent.RESIZE, onFlashCompEvent);
 			view.addEventListener(ComponentEvent.MOVE, onFlashCompEvent);
-			//This section is necessary to stop propagation of "common" events, so they are not received outside of the kdp,
-			// like the drilldown pop-up in kmc Content.
+			//This section is necessary to stop propagation of "common" events, so they are not received outside of the bdp,
+			// like the drilldown pop-up in bmc Content.
 			view.addEventListener("change", onIndexChange);
 			view.addEventListener("childIndexChange", onIndexChange);
 			view.addEventListener("headerShift", onIndexChange); 
 			
 			
-			//Initially save the enable configuration of the uicomponents in the kdp
+			//Initially save the enable configuration of the uicomponents in the bdp
 			var corrComp : Object;
 			var allObjects : Object = facade["bindObject"];
 			for each(var uicomp:* in allObjects)
@@ -276,7 +276,7 @@ package com.kaltura.kdpfl.view
 		} 
 		
 		/**
-		 * This function creates the context menu (menu which opens on right-clicking the kdp).
+		 * This function creates the context menu (menu which opens on right-clicking the bdp).
 		 * @param flashvars the flashvars Object containing the parsed flashvars
 		 * 
 		 */		
@@ -289,7 +289,7 @@ package com.kaltura.kdpfl.view
 			
 			if (!_flashvars.emptyContextMenu || _flashvars.emptyContextMenu!="true")
 			{
-				var menuItem:ContextMenuItem = new ContextMenuItem( "kdp version: " + ApplicationFacade.getInstance().kdpVersion );
+				var menuItem:ContextMenuItem = new ContextMenuItem( "bdp version: " + ApplicationFacade.getInstance().bdpVersion );
 				
 				var credits:ContextMenuItem = new ContextMenuItem(_flashvars.aboutPlayer);
 				

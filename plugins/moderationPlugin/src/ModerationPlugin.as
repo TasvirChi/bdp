@@ -1,13 +1,13 @@
 package {
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.component.AssetsRefferencer;
-	import com.kaltura.kdpfl.plugin.component.ModerationMediator;
-	import com.kaltura.kdpfl.plugin.view.Message;
-	import com.kaltura.kdpfl.plugin.view.ModerationScreen;
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.types.KalturaModerationFlagType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.plugin.component.AssetsRefferencer;
+	import com.borhan.bdpfl.plugin.component.ModerationMediator;
+	import com.borhan.bdpfl.plugin.view.Message;
+	import com.borhan.bdpfl.plugin.view.ModerationScreen;
+	import com.borhan.bdpfl.view.containers.KHBox;
+	import com.borhan.types.BorhanModerationFlagType;
 	import com.yahoo.astra.fl.containers.HBoxPane;
 	import com.yahoo.astra.fl.containers.layoutClasses.AdvancedLayoutPane;
 	import com.yahoo.astra.fl.containers.layoutClasses.BaseLayoutPane;
@@ -39,6 +39,16 @@ package {
 		 * defines the value of the notification which triggers this plugin 
 		 */		
 		public static const FLAG_FOR_REVIEW:String = "flagForReview";
+		
+		
+		/**
+		 * defines the value of the notification which turns off the shortcut 508 plugin 
+		 */		
+		public static const DISABLE_SHORTCUT_PLUGIN:String = "disableShortcutPlugin";
+		/**
+		 * defines the value of the notification which turns on the shortcut 508 plugin 
+		 */		
+		public static const ENABLE_SHORTCUT_PLUGIN:String = "enableShortcutPlugin";
 		
 		
 		/**
@@ -165,11 +175,11 @@ package {
 		 * shows the moderation ui over the player
 		 * */
 		public function showScreen():void {
-			// disable KDP gui, stop entry from playing, exit fullscreen 
+			// disable BDP gui, stop entry from playing, exit fullscreen 
 			_mediator.sendNotification(NotificationType.CLOSE_FULL_SCREEN);
 			_mediator.sendNotification(NotificationType.ENABLE_GUI, {guiEnabled : false, enableType : "full"});
 			_mediator.sendNotification(NotificationType.DO_PAUSE);
-			
+			_mediator.sendNotification(DISABLE_SHORTCUT_PLUGIN);
 			// show flagging form
 			if (_ui == null) {
 				_ui = new ModerationScreen();
@@ -181,10 +191,10 @@ package {
 					_ui.windowText = text;
 				}
 				
-				_ui.reasonsDataProvider = [{label:reasonSex, type:KalturaModerationFlagType.SEXUAL_CONTENT}, 
-									{label:reasonViolence, type:KalturaModerationFlagType.VIOLENT_REPULSIVE}, 
-									{label:reasonHarmful, type:KalturaModerationFlagType.HARMFUL_DANGEROUS}, 
-									{label:reasonSpam, type:KalturaModerationFlagType.SPAM_COMMERCIALS}]
+				_ui.reasonsDataProvider = [{label:reasonSex, type:BorhanModerationFlagType.SEXUAL_CONTENT}, 
+									{label:reasonViolence, type:BorhanModerationFlagType.VIOLENT_REPULSIVE}, 
+									{label:reasonHarmful, type:BorhanModerationFlagType.HARMFUL_DANGEROUS}, 
+									{label:reasonSpam, type:BorhanModerationFlagType.SPAM_COMMERCIALS}]
 				//set custom behaviour for reasons combo 
 				_ui.comboSelectedIndex = comboSelectedIndex;
 				
@@ -215,6 +225,7 @@ package {
 			_ui.clearData();
 			removeChild(_ui);
 			end();
+			_mediator.sendNotification(ENABLE_SHORTCUT_PLUGIN);
 		}
 		
 		

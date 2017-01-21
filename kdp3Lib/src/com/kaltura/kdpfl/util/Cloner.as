@@ -1,6 +1,6 @@
-package com.kaltura.kdpfl.util
+package com.borhan.bdpfl.util
 {
-	import com.kaltura.kdpfl.model.vo.MediaVO;
+	import com.borhan.bdpfl.model.vo.MediaVO;
 	
 	import flash.sampler.getMemberNames;
 	import flash.utils.describeType;

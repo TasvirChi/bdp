@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin
+package com.borhan.bdpfl.plugin
 {
 	import com.yahoo.astra.animation.AnimationEvent;
 	import com.yahoo.astra.fl.controls.carouselClasses.SlidingCarouselRenderer;

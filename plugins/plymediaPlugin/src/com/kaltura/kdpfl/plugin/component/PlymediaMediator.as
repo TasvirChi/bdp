@@ -1,4 +1,4 @@
-package com.kaltura.kdpfl.plugin.component
+package com.borhan.bdpfl.plugin.component
 {
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
@@ -18,11 +18,11 @@ package com.kaltura.kdpfl.plugin.component
 	public class PlymediaMediator extends Mediator
 	{
 		public static const NAME:String = "plymediaMediator";
-		public static const DEFAULT_HOST:String = "www.kaltura.com";
+		public static const DEFAULT_HOST:String = "www.borhan.com";
 		private var pageString:String; 
 		private var checkSubtitlesPage:String;
 		//private static const PAGE_STRING:String = '/extservices/plymedia?movie=entry_';
-		//private static const CHECK_SUBTITLES_PAGE:String = "http://content.plymedia.com/initialize?video=";//http://www.kaltura.com/extservices/plymedia?movie=entry_";	
+		//private static const CHECK_SUBTITLES_PAGE:String = "http://content.plymedia.com/initialize?video=";//http://www.borhan.com/extservices/plymedia?movie=entry_";	
 	
 		private var _plyClip:Object;		
 		private var _view:Sprite;	
@@ -40,7 +40,7 @@ package com.kaltura.kdpfl.plugin.component
 		private static var _curLanguageIndex:int = 0;
 		private var _firstCondition:Boolean = false;
 		
-		public var partner:String = "Kaltura";
+		public var partner:String = "Borhan";
 		
 		/**
 		 *  
@@ -85,8 +85,8 @@ package com.kaltura.kdpfl.plugin.component
 						"playerPlayed",
 						"mediaReady",
 						"durationChange",
-						"kdpReady",
-						"kdpEmpty",
+						"bdpReady",
+						"bdpEmpty",
 						"showSubtitles"
 					];
 		}
@@ -99,7 +99,7 @@ package com.kaltura.kdpfl.plugin.component
 					
 		override public function handleNotification(note:INotification):void
 		{
-			var kc: Object =  facade.retrieveProxy("servicesProxy")["kalturaClient"];
+			var kc: Object =  facade.retrieveProxy("servicesProxy")["borhanClient"];
 			var media : Object = facade.retrieveProxy("mediaProxy");
 			var entry:String = media["vo"]["entry"]["id"];
 			var data:Object = note.getBody();
@@ -131,8 +131,8 @@ package com.kaltura.kdpfl.plugin.component
 				}
 				break;	
 				
-				case "kdpReady":
-				case "kdpEmpty":
+				case "bdpReady":
+				case "bdpEmpty":
 					setMenuVisibility();
 					//indicates that at least one condition for setMenuVisibility exists
 					_firstCondition = true;
@@ -157,7 +157,7 @@ package com.kaltura.kdpfl.plugin.component
 		
 		/**
 		 * sets the plymedia menu visibility according to the given value, and only
-		 * if plyClip was loaded AND notification of either kdpReady or kdpEmpty was sent
+		 * if plyClip was loaded AND notification of either bdpReady or bdpEmpty was sent
 		 * */
 		private function setMenuVisibility() : void
 		{

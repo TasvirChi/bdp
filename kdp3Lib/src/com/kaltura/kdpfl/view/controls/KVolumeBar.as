@@ -1,12 +1,12 @@
 /**
  * KVolumeBar
  */
-package com.kaltura.kdpfl.view.controls
+package com.borhan.bdpfl.view.controls
 {
 	
-	import com.kaltura.kdpfl.component.IComponent;
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.kdpfl.view.containers.KVBox;
+	import com.borhan.bdpfl.component.IComponent;
+	import com.borhan.bdpfl.view.containers.KHBox;
+	import com.borhan.bdpfl.view.containers.KVBox;
 	import com.yahoo.astra.fl.containers.layoutClasses.AdvancedLayoutPane;
 	
 	import fl.controls.ScrollPolicy;
@@ -26,7 +26,7 @@ package com.kaltura.kdpfl.view.controls
 	
 	import mx.binding.utils.BindingUtils;
 	/**
-	 * Class representing the Volume Bar in the KDP. 
+	 * Class representing the Volume Bar in the BDP. 
 	 * @author Hila
 	 * 
 	 */

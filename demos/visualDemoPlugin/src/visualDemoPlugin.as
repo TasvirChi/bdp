@@ -1,7 +1,7 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
 	
 	import flash.display.Sprite;
 	import flash.system.Security;
@@ -19,14 +19,14 @@ package
 		 */		
 		public function visualDemoPlugin():void
 		{
-			//must write this if you want the plugin to communicate with the KDP
+			//must write this if you want the plugin to communicate with the BDP
 			Security.allowDomain("*");			
 		} 
 		
 		
 		/**
 		 * This function creates an instance of visualDemoCode, which is the actual plugin.
-		 * This way KDP can create multiple instances of the same class.  
+		 * This way BDP can create multiple instances of the same class.  
 		 * @param pluginName	name of a plugin. used to differentiate between different 
 		 * 						instances of the same plugin.
 		 * @return 	instance of the actual plugin class.
