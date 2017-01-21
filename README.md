@@ -13,7 +13,7 @@
 
 ## Build-Release Instructions
 1. Install Apache Ant
-2. go to: BDP3 --> build_BDP.xml --> run as Ant build
+2. go to: BDP3 --> build_BDP.xml --> run as Ant build .
 
 ## Documentation
 * [BDP release notes] (http://knowledge.borhan.com/bdp-release-notes)
