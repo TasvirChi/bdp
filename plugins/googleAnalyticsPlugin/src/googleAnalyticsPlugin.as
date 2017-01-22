@@ -1,7 +1,7 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.googleAnalytics.GAStatisticsMediator;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.plugin.googleAnalytics.GAStatisticsMediator;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -12,7 +12,7 @@ package {
 	import org.puremvc.as3.interfaces.IFacade;
 	
 	/**
-	 * A KDP 3 Google Analytics plugin for marshalling all statistics event to Google Analytics service using the ga library.
+	 * A BDP 3 Google Analytics plugin for marshalling all statistics event to Google Analytics service using the ga library.
 	 * @author Zohar Babin
 	 */	
 	public dynamic class googleAnalyticsPlugin extends Sprite implements IPlugin, IPluginFactory
@@ -71,7 +71,7 @@ package {
 		 */		
 		public var customEvents:String; 
 		
-		public var defaultCategory:String	= "Kaltura Video Events";
+		public var defaultCategory:String	= "Borhan Video Events";
 		
 		// Statistics Mediator to catch all important events & notifications
 		private var _statisticsMediator : GAStatisticsMediator;
@@ -88,7 +88,7 @@ package {
 		 * Used by the Plugin wrapper to create the instance of this class.
 		 * @param pluginName the plugin id from the uiConf (will be googleAnalytics).
 		 * @return this, an instance of itself.
-		 * @see com.kaltura.kdpfl.plugin.Plugin 
+		 * @see com.borhan.bdpfl.plugin.Plugin 
 		 */		
 		public function create(pluginName : String = null) : IPlugin	
 		{
@@ -96,9 +96,9 @@ package {
 		}
 		
 		/**
-		 * After the plugin was loaded, this function is being called passing the KDP Facade. 
-		 * @param facade	PureMVC Facade; used to communicate with the KDP application, create mediators, listen to events, etc.
-		 * @see com.kaltura.kdpfl.ApplicationFacade
+		 * After the plugin was loaded, this function is being called passing the BDP Facade. 
+		 * @param facade	PureMVC Facade; used to communicate with the BDP application, create mediators, listen to events, etc.
+		 * @see com.borhan.bdpfl.ApplicationFacade
 		 */		
 		
 		
@@ -133,7 +133,7 @@ package {
 		}
 		
 		/**
-		 * Called by the KDP during initialization of the components, this allows us plugin creators to get a handle to the skin
+		 * Called by the BDP during initialization of the components, this allows us plugin creators to get a handle to the skin
 		 * We'd like to use for the plugin as defined in the uiConf.
 		 * @param styleName			The name of the skin defined for this plugin in the uiConf.
 		 * @param setSkinSize		Should we set the skin size or use the default as set inside the fla.

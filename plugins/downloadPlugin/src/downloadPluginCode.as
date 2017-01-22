@@ -1,7 +1,7 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.DownloadMediator;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.DownloadMediator;
 	
 	import flash.display.Sprite;
 	

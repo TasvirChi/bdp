@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.WVMediaElement;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.plugin.WVMediaElement;
 	
 	import flash.display.Sprite;
 	

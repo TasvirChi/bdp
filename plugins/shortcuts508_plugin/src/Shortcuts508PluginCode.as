@@ -1,6 +1,6 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.Shortcuts508Mediator;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.Shortcuts508Mediator;
 	
 	import fl.core.UIComponent;
 	

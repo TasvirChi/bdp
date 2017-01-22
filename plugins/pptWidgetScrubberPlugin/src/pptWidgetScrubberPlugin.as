@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.PPTWidgetScrubber;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.plugin.PPTWidgetScrubber;
 	
 	import flash.display.Sprite;
 	import flash.system.Security;

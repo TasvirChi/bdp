@@ -1,8 +1,8 @@
 package {
-	import com.kaltura.kdfl.plugin.Bumper;
-	import com.kaltura.kdfl.plugin.BumperMediator;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
+	import com.borhan.kdfl.plugin.Bumper;
+	import com.borhan.kdfl.plugin.BumperMediator;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.ISequencePlugin;
 	
 	import fl.core.UIComponent;
 	

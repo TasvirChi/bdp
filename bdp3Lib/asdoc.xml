@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="asdoc" default="main" basedir="./">
+
+	<target name="main" depends="clean,compile" description="full build of asdocs"/>
+	<target name="clean">
+		<delete includeemptydirs="true">
+    		<fileset dir="docs/asdoc" includes="**/*"/>
+	  	</delete>
+	</target>
+	<target name="compile" depends="clean">
+		<mkdir dir="docs/asdoc"/>
+		<exec executable="C:\Program Files\Adobe\Adobe Flash Builder 4\sdks\3.5.0\bin\asdoc.exe" failonerror="true" >
+			<arg line='-source-path src'/>
+			<!--arg line='-keep-xml'/>
+			<arg line='-skip-xsl'/>
+			<arg line='-doc-sources src'/>
+			<arg line='-exclude-sources src/com/yahoo'/-->
+			<arg line='-doc-classes 
+	com.borhan.bdpfl.ApplicationFacade
+    com.borhan.bdpfl.component.ComponentData
+    com.borhan.bdpfl.component.ComponentFactory
+    com.borhan.bdpfl.component.IComponent
+    com.borhan.bdpfl.controller.AssignBehaviorCommand
+    com.borhan.bdpfl.controller.IResponder
+    com.borhan.bdpfl.controller.InitMacroCommand
+    com.borhan.bdpfl.controller.LayoutReadyCommand
+    com.borhan.bdpfl.controller.LoadConfigCommand
+    com.borhan.bdpfl.controller.LoadSkinCommand
+    com.borhan.bdpfl.controller.ParseLayoutCommand
+    com.borhan.bdpfl.controller.PlaybackCompleteCommand
+    com.borhan.bdpfl.controller.SaveFVCommand
+    com.borhan.bdpfl.controller.SequenceItemPlayEndCommand
+    com.borhan.bdpfl.controller.SequenceSkipNextCommand
+    com.borhan.bdpfl.controller.StartupCommand
+    com.borhan.bdpfl.controller.media.GetMediaCommand
+    com.borhan.bdpfl.controller.media.InitChangeMediaMacroCommand
+    com.borhan.bdpfl.controller.media.InitMediaChangeProcessCommand
+    com.borhan.bdpfl.controller.media.LiveStreamCommand
+    com.borhan.bdpfl.controller.media.LoadMediaCommand
+    com.borhan.bdpfl.controller.media.MediaReadyCommand
+    com.borhan.bdpfl.controller.media.PostSequenceEndCommand
+    com.borhan.bdpfl.controller.media.PreSequenceEndCommand
+    com.borhan.bdpfl.events.DynamicEvent
+    com.borhan.bdpfl.events.StyleEvent
+    com.borhan.bdpfl.model.ConfigProxy
+    com.borhan.bdpfl.model.ExternalInterfaceProxy
+    com.borhan.bdpfl.model.FuncsProxy
+    com.borhan.bdpfl.model.LayoutProxy
+    com.borhan.bdpfl.model.MediaProxy
+    com.borhan.bdpfl.model.SequenceProxy
+    com.borhan.bdpfl.model.ServicesProxy
+    com.borhan.bdpfl.model.strings.MessageStrings
+    com.borhan.bdpfl.model.type.AdsNotificationTypes
+    com.borhan.bdpfl.model.type.EnableType
+    com.borhan.bdpfl.model.type.NotificationType
+    com.borhan.bdpfl.model.type.SequenceContextType
+    com.borhan.bdpfl.model.type.SourceType
+    com.borhan.bdpfl.model.type.StreamerType
+    com.borhan.bdpfl.model.vo.ConfigVO
+    com.borhan.bdpfl.model.vo.ExternalInterfaceVO
+    com.borhan.bdpfl.model.vo.LayoutVO
+    com.borhan.bdpfl.model.vo.MediaVO
+    com.borhan.bdpfl.model.vo.SequenceVO
+    com.borhan.bdpfl.plugin.IPlugin
+    com.borhan.bdpfl.plugin.IPluginFactory
+    com.borhan.bdpfl.plugin.ISequencePlugin
+    com.borhan.bdpfl.plugin.Plugin
+    com.borhan.bdpfl.plugin.PluginLoader
+    com.borhan.bdpfl.plugin.PluginManager
+    com.borhan.bdpfl.style.FontManager
+    com.borhan.bdpfl.style.KStyleLoader
+    com.borhan.bdpfl.style.KStyleManager
+    com.borhan.bdpfl.style.TextFormatManager
+    com.borhan.bdpfl.util.Cloner
+    com.borhan.bdpfl.util.DateTimeUtils
+    com.borhan.bdpfl.util.Functor
+    com.borhan.bdpfl.util.KTextParser
+    com.borhan.bdpfl.util.ObjectUtils
+    com.borhan.bdpfl.util.URLProccessing
+    com.borhan.bdpfl.util.URLUtils
+    com.borhan.bdpfl.util.XMLUtils
+    com.borhan.bdpfl.view.ExternalInterfaceMediator
+    com.borhan.bdpfl.view.MainViewMediator
+    com.borhan.bdpfl.view.RootMediator
+    com.borhan.bdpfl.view.containers.KCanvas
+    com.borhan.bdpfl.view.containers.KHBox
+    com.borhan.bdpfl.view.containers.KTile
+    com.borhan.bdpfl.view.containers.KVBox
+    com.borhan.bdpfl.view.controls.AlertMediator
+    com.borhan.bdpfl.view.controls.ComboFlavorMediator
+    com.borhan.bdpfl.view.controls.FullscreenMediator
+    com.borhan.bdpfl.view.controls.FuncWrapper
+    com.borhan.bdpfl.view.controls.KButton
+    com.borhan.bdpfl.view.controls.KComboBox
+    com.borhan.bdpfl.view.controls.KFlavorComboBox
+    com.borhan.bdpfl.view.controls.KLabel
+    com.borhan.bdpfl.view.controls.KScrubber
+    com.borhan.bdpfl.view.controls.KSlider
+    com.borhan.bdpfl.view.controls.KTimer
+    com.borhan.bdpfl.view.controls.KVolumeBar
+    com.borhan.bdpfl.view.controls.PlayMediator
+    com.borhan.bdpfl.view.controls.PreLoader
+    com.borhan.bdpfl.view.controls.PreLoaderMediator
+    com.borhan.bdpfl.view.controls.Screens
+    com.borhan.bdpfl.view.controls.ScreensMediator
+    com.borhan.bdpfl.view.controls.ScrubberMediator
+    com.borhan.bdpfl.view.controls.TimerMediator
+    com.borhan.bdpfl.view.controls.ToolTipManager
+    com.borhan.bdpfl.view.controls.VolumeMediator
+    com.borhan.bdpfl.view.controls.Watermark
+    com.borhan.bdpfl.view.controls.WatermarkMediator
+    com.borhan.bdpfl.view.media.KMediaPlayer
+    com.borhan.bdpfl.view.media.KMediaPlayerMediator
+    com.borhan.bdpfl.view.media.KThumbnail
+    com.borhan.bdpfl.view.media.PostLiveStreamAssist
+    com.borhan.osmf.buffering.DualThresholdBufferingProxyElement
+    com.borhan.osmf.image.TimedImageAdapter
+    com.borhan.osmf.image.TimedImageElement
+    com.borhan.osmf.image.TimedImagePlayTrait
+    com.borhan.osmf.image.TimedImageTimeTrait
+    com.borhan.osmf.borhan.BorhanBaseEntryResource
+    com.borhan.puremvc.as3.patterns.mediator.MultiMediator
+    com.borhan.puremvc.as3.patterns.mediator.SequenceMultiMediator
+    com.yahoo.astra.containers.formClasses.FormLayoutStyle
+    com.yahoo.astra.fl.charts.BarChart
+    com.yahoo.astra.fl.charts.ICategoryChart
+    com.yahoo.astra.fl.charts.LineChart
+    com.yahoo.astra.fl.charts.StackedBarChart
+    com.yahoo.astra.fl.charts.axes.IStackingAxis
+    com.yahoo.astra.fl.charts.axes.ScaleType
+    com.yahoo.astra.fl.charts.legend.LegendItemData
+    com.yahoo.astra.fl.charts.series.ColumnSeries
+    com.yahoo.astra.fl.charts.series.StackedBarSeries
+    com.yahoo.astra.fl.charts.skins.IProgrammaticSkin
+    com.yahoo.astra.fl.charts.skins.TriangleSkin
+    com.yahoo.astra.fl.controls.Carousel
+    com.yahoo.astra.fl.controls.TabBar
+    com.yahoo.astra.fl.controls.autoCompleteClasses.AutoCompleteCellRenderer
+    com.yahoo.astra.fl.controls.carouselClasses.CarouselCellRenderer
+    com.yahoo.astra.fl.controls.carouselClasses.ICarouselLayoutRenderer
+    com.yahoo.astra.fl.controls.carouselClasses.SlidingCarouselRenderer
+    com.yahoo.astra.fl.controls.carouselClasses.StackCarouselRenderer
+    com.yahoo.astra.fl.controls.carouselClasses.astra_carousel_internal
+    com.yahoo.astra.fl.controls.containerClasses.AutoSizeButton
+    com.yahoo.astra.fl.controls.containerClasses.ButtonBar
+    com.yahoo.astra.fl.controls.containerClasses.DialogBox
+    com.yahoo.astra.fl.controls.containerClasses.MessageBox
+    com.yahoo.astra.fl.controls.containerClasses.TitleBar
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.AudioClip
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.IMediaClip
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.IMediaController
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.IMediaView
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.IconButton
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.MediaController
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.MediaControlsView
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.MediaInfoView
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.MediaScrubberView
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.MediaView
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.MuteToggleButton
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.PlayPauseToggleButton
+    com.yahoo.astra.fl.controls.mediaPlayerClasses.VolumeSlider
+    com.yahoo.astra.fl.controls.menuBarClasses.MenuButton
+    com.yahoo.astra.fl.controls.menuBarClasses.MenuButtonRow
+    com.yahoo.astra.fl.controls.menuClasses.MenuCellRenderer
+    com.yahoo.astra.fl.controls.tabBarClasses.TabButton
+    com.yahoo.astra.fl.controls.treeClasses.BranchNode
+    com.yahoo.astra.fl.controls.treeClasses.LeafNode
+    com.yahoo.astra.fl.controls.treeClasses.RootNode
+    com.yahoo.astra.fl.controls.treeClasses.TNode
+    com.yahoo.astra.fl.controls.treeClasses.TreeCellRenderer
+    com.yahoo.astra.fl.controls.treeClasses.TreeDataProvider
+    com.yahoo.astra.fl.data.XMLDataProvider
+    com.yahoo.astra.fl.events.DropdownEvent
+    com.yahoo.astra.fl.events.MediaEvent
+    com.yahoo.astra.fl.events.MenuButtonRowEvent
+    com.yahoo.astra.fl.events.MenuEvent
+    com.yahoo.astra.fl.events.TabBarEvent
+    com.yahoo.astra.fl.events.TreeEvent
+    com.yahoo.astra.fl.managers.AlertManager
+    com.yahoo.astra.fl.managers.PopUpManager
+    com.yahoo.astra.fl.utils.FlValueParser
+    com.yahoo.astra.fl.utils.UIComponentUtil
+    com.yahoo.astra.fl.utils.XMLUtil
+    com.yahoo.astra.layout.ILayoutContainer
+    com.yahoo.astra.layout.LayoutContainer
+    com.yahoo.astra.layout.LayoutManager
+    com.yahoo.astra.layout.events.LayoutEvent
+    com.yahoo.astra.layout.modes.BaseLayoutMode
+    com.yahoo.astra.layout.modes.BorderConstraints
+    com.yahoo.astra.layout.modes.BorderLayout
+    com.yahoo.astra.layout.modes.BoxLayout
+    com.yahoo.astra.layout.modes.FlowLayout
+    com.yahoo.astra.layout.modes.HorizontalAlignment
+    com.yahoo.astra.layout.modes.IAdvancedLayoutMode
+    com.yahoo.astra.layout.modes.ILayoutMode
+    com.yahoo.astra.layout.modes.LayoutModeUtil
+    com.yahoo.astra.layout.modes.PercentageSizeUtil
+    com.yahoo.astra.layout.modes.TileLayout
+    com.yahoo.astra.layout.modes.VerticalAlignment
+    com.yahoo.astra.managers.FormDataManager
+    com.yahoo.astra.managers.IFormDataManager
+    com.yahoo.astra.utils.AxisLabelUtil
+    com.yahoo.astra.utils.DateUtil
+    com.yahoo.astra.utils.DisplayObjectUtil
+    com.yahoo.astra.utils.DynamicRegistration
+    com.yahoo.astra.utils.GeomUtil
+    com.yahoo.astra.utils.GraphicsUtil
+    com.yahoo.astra.utils.IValueParser
+    com.yahoo.astra.utils.InstanceFactory
+    com.yahoo.astra.utils.MXValidationHelper
+    com.yahoo.astra.utils.NumberUtil
+    com.yahoo.astra.utils.TextUtil
+    com.yahoo.astra.utils.TimeUnit
+    com.yahoo.astra.utils.ValueParser
+    fl.core.UIComponent
+    mx.binding.ArrayElementWatcher
+    mx.binding.BindabilityInfo
+    mx.binding.Binding
+    mx.binding.BindingManager
+    mx.binding.EvalBindingResponder
+    mx.binding.FunctionReturnWatcher
+    mx.binding.IBindingClient
+    mx.binding.IWatcherSetupUtil
+    mx.binding.PropertyWatcher
+    mx.binding.RepeatableBinding
+    mx.binding.RepeaterComponentWatcher
+    mx.binding.RepeaterItemWatcher
+    mx.binding.StaticPropertyWatcher
+    mx.binding.Watcher
+    mx.binding.XMLWatcher
+    mx.binding.utils.BindingUtils
+    mx.binding.utils.ChangeWatcher
+    mx.collections.IList
+    mx.core.EventPriority
+    mx.core.IPropertyChangeNotifier
+    mx.core.IUID
+    mx.events.CollectionEvent
+    mx.events.PropertyChangeEvent
+    mx.events.PropertyChangeEventKind
+    mx.utils.Base64Encoder
+    mx.utils.DescribeTypeCache
+    mx.utils.DescribeTypeCacheRecord
+    mx.utils.IXMLNotifiable
+    mx.utils.ObjectProxy
+    mx.utils.ObjectUtil
+    mx.utils.UIDUtil
+    mx.utils.XMLNotifier
+    mx.utils.object_proxy
+    org.puremvc.as3.core.Controller
+    org.puremvc.as3.core.Model
+    org.puremvc.as3.core.View
+    org.puremvc.as3.interfaces.IAsyncCommand
+    org.puremvc.as3.interfaces.ICommand
+    org.puremvc.as3.interfaces.IController
+    org.puremvc.as3.interfaces.IFacade
+    org.puremvc.as3.interfaces.IMediator
+    org.puremvc.as3.interfaces.IModel
+    org.puremvc.as3.interfaces.INotification
+    org.puremvc.as3.interfaces.INotifier
+    org.puremvc.as3.interfaces.IObserver
+    org.puremvc.as3.interfaces.IProxy
+    org.puremvc.as3.interfaces.IView
+    org.puremvc.as3.patterns.command.AsyncCommand
+    org.puremvc.as3.patterns.command.AsyncMacroCommand
+    org.puremvc.as3.patterns.command.MacroCommand
+    org.puremvc.as3.patterns.command.SimpleCommand
+    org.puremvc.as3.patterns.facade.Facade
+    org.puremvc.as3.patterns.mediator.Mediator
+    org.puremvc.as3.patterns.observer.Notification
+    org.puremvc.as3.patterns.observer.Notifier
+    org.puremvc.as3.patterns.observer.Observer
+    org.puremvc.as3.patterns.proxy.Proxy'/>
+			
+			<arg line='-external-library-path ./libs ../as3FlexClient/bin ../vendors/OSMF/bin "C:\Program Files\Adobe\Adobe Flash Builder 4\sdks\3.5.0\frameworks\libs\player\10\playerglobal.swc"'/>
+			
+			<!--arg line='-lenient'/-->
+			<arg line='-main-title "bdp3Lib Documentation"' />
+			<arg line='-window-title "bdp3Lib Documentation"' />
+			<arg line='-output docs/asdoc' />
+		</exec>
+		<zip destfile="bin\bdp3Lib.swc" update="true">
+			<zipfileset dir="docs\asdoc" prefix="docs">
+				<include name="*.*"/>
+				<exclude name="ASDoc_Config.xml"/>
+				<exclude name="overviews.xml"/>
+			</zipfileset>
+		</zip>
+	</target>
+
+</project>
