@@ -1,9 +1,9 @@
 package 
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.TabBarKdp3;
-	import com.kaltura.kdpfl.plugin.component.TabBarKdp3Mediator;
-	import com.kaltura.kdpfl.style.TextFormatManager;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.TabBarBdp3;
+	import com.borhan.bdpfl.plugin.component.TabBarBdp3Mediator;
+	import com.borhan.bdpfl.style.TextFormatManager;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;
@@ -16,7 +16,7 @@ package
 
 	public class tabBarCodePlugin extends UIComponent implements IPlugin
 	{
-		private var _tabBarKdp3Mediator : TabBarKdp3Mediator;
+		private var _tabBarBdp3Mediator : TabBarBdp3Mediator;
 		private var _dataProvider:DataProvider;
 		private var _selectedDataProvider:DataProvider;
 		public var rightArrowLabel:String;
@@ -64,17 +64,17 @@ package
 		 */		
 		public function initializePlugin( facade : IFacade ) : void
 		{
-			var tabBar3:TabBarKdp3 = new TabBarKdp3();
+			var tabBar3:TabBarBdp3 = new TabBarBdp3();
 			tabBar3.height = this.height;
 			// Register Mideator
-			_tabBarKdp3Mediator = new TabBarKdp3Mediator( tabBar3 );
+			_tabBarBdp3Mediator = new TabBarBdp3Mediator( tabBar3 );
 			
 			
 			if (_dataProvider != null)
 			{
-				(_tabBarKdp3Mediator.view as TabBarKdp3).initialize(_dataProvider);
+				(_tabBarBdp3Mediator.view as TabBarBdp3).initialize(_dataProvider);
 			}
- 			var tb:TabBarKdp3 = _tabBarKdp3Mediator.view as TabBarKdp3;
+ 			var tb:TabBarBdp3 = _tabBarBdp3Mediator.view as TabBarBdp3;
 		
 			if(rightArrowStyleName)
 			{
@@ -123,15 +123,15 @@ package
 				tb.prevBut.buttonType =  buttonType;
 			}
 				
-			facade.registerMediator( _tabBarKdp3Mediator);
-			addChild( _tabBarKdp3Mediator.view );
+			facade.registerMediator( _tabBarBdp3Mediator);
+			addChild( _tabBarBdp3Mediator.view );
 			//hack to redraw the tabBar. if this was synced colors would not be renderered well 
 			setTimeout(setLabelsStyle,100);
 		}
 		
 		private function setLabelsStyle():void
 		{
-			var tb:TabBarKdp3 = _tabBarKdp3Mediator.view as TabBarKdp3;
+			var tb:TabBarBdp3 = _tabBarBdp3Mediator.view as TabBarBdp3;
 			// labels
 			var tf:TextFormat = TextFormatManager.getInstance().getTextFormat("tabBarLabel");
 			var tfSelected:TextFormat = TextFormatManager.getInstance().getTextFormat("tabBarLabelSelected");
@@ -179,20 +179,20 @@ package
 
 		override public function set width(value:Number):void
 		{
-			(_tabBarKdp3Mediator.view as TabBarKdp3).width = value;;
+			(_tabBarBdp3Mediator.view as TabBarBdp3).width = value;;
 		}	
 		public function set padding(value:Number):void
 		{
-			(_tabBarKdp3Mediator.view as TabBarKdp3).padding = value;;
+			(_tabBarBdp3Mediator.view as TabBarBdp3).padding = value;;
 		}	
 		
 		
 		override public function set height(value:Number):void
 		{
 			super.height= value;
-			if (_tabBarKdp3Mediator && _tabBarKdp3Mediator.view)
+			if (_tabBarBdp3Mediator && _tabBarBdp3Mediator.view)
 			{
-				_tabBarKdp3Mediator.view.height = value;				
+				_tabBarBdp3Mediator.view.height = value;				
 			}
 		}					
 	
@@ -201,9 +201,9 @@ package
 		{
 			
 			_dataProvider = value;
-			if (_tabBarKdp3Mediator != null)
+			if (_tabBarBdp3Mediator != null)
 			{
-				(_tabBarKdp3Mediator.view as TabBarKdp3).initialize(_dataProvider);
+				(_tabBarBdp3Mediator.view as TabBarBdp3).initialize(_dataProvider);
 			}
 		}
 		
@@ -218,7 +218,7 @@ package
 		{
 			_selectedDataProvider = value;
 			// notify the world that the index has changed
-			_tabBarKdp3Mediator.sendNotification(tabBarPlugin.INDEX_CHANGED, {newIndex:this.selectedIndex});
+			_tabBarBdp3Mediator.sendNotification(tabBarPlugin.INDEX_CHANGED, {newIndex:this.selectedIndex});
 		}
 		
 		public function get selectedDataProvider():DataProvider
@@ -230,14 +230,14 @@ package
 		 * currently selected index of the tab bar 
 		 */		
 		public function set selectedIndex(value:int):void {
-			(_tabBarKdp3Mediator.view as TabBarKdp3).selectedIndex = value;
+			(_tabBarBdp3Mediator.view as TabBarBdp3).selectedIndex = value;
 		}
 		
 		/**
 		 * @private 
 		 */		
 		public function get selectedIndex():int {
-			return (_tabBarKdp3Mediator.view as TabBarKdp3).selectedIndex;
+			return (_tabBarBdp3Mediator.view as TabBarBdp3).selectedIndex;
 		}
 
 	}

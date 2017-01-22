@@ -1,11 +1,11 @@
 package {
-	//import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.plugin.component.AdaptvAS3Mediator;
-	import com.kaltura.kdpfl.plugin.component.AdaptvAS3Player;
+	//import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.ISequencePlugin;
+	import com.borhan.bdpfl.plugin.KPluginEvent;
+	import com.borhan.bdpfl.plugin.component.AdaptvAS3Mediator;
+	import com.borhan.bdpfl.plugin.component.AdaptvAS3Player;
 	
 	import fl.core.UIComponent;
 	import fl.managers.*;

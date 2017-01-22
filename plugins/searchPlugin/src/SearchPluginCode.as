@@ -1,7 +1,7 @@
 package {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.Search;
-	import com.kaltura.kdpfl.plugin.component.SearchMediator;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.Search;
+	import com.borhan.bdpfl.plugin.component.SearchMediator;
 	
 	import fl.core.UIComponent;
 	import fl.data.DataProvider;

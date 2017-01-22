@@ -16,16 +16,16 @@ package
 	import com.google.ads.ima.api.ImaSdkSettings;
 	import com.google.ads.ima.api.ViewModes;
 	import com.google.ads.ima.wrappers.ImaSdkSettingsWrapper;
-	import com.kaltura.kdpfl.model.LayoutProxy;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.SequenceProxy;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.model.type.SequenceContextType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.ISequencePlugin;
-	import com.kaltura.kdpfl.plugin.component.DoubleclickMediator;
-	import com.kaltura.kdpfl.view.media.KMediaPlayerMediator;
+	import com.borhan.bdpfl.model.LayoutProxy;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.SequenceProxy;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.model.type.SequenceContextType;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.plugin.ISequencePlugin;
+	import com.borhan.bdpfl.plugin.component.DoubleclickMediator;
+	import com.borhan.bdpfl.view.media.KMediaPlayerMediator;
 	
 	import fl.core.UIComponent;
 	
@@ -731,8 +731,8 @@ package
 		public function subSequenceLength () : int{return 0;}//TODO: LOOK INTO USAGE FOR AD POD
 		
 		/**
-		 * Returns whether the Sequence Plugin plays within the KDP or loads its own media over it. 
-		 * @return The function returns <code>true</code> if the plugin media plays within the KDP
+		 * Returns whether the Sequence Plugin plays within the BDP or loads its own media over it. 
+		 * @return The function returns <code>true</code> if the plugin media plays within the BDP
 		 *  and <code>false</code> otherwise.
 		 * 
 		 */		
@@ -741,7 +741,7 @@ package
 		/**
 		 * Function for retrieving the entry id of the plugin media
 		 * @return The function returns the entry id of the plugin media. If the plugin does not play
-		 * a kaltura-based entry, the return value is the URL of the media of the plugin.
+		 * a borhan-based entry, the return value is the URL of the media of the plugin.
 		 */		
 		public function get entryId () : String
 		{
@@ -751,14 +751,14 @@ package
 		
 		/**
 		 * Function for retrieving the source type of the plugin media (url or entryId) 
-		 * @return If the plugin plays a Kaltura-Based entry the function returns <code>entryId</script>.
+		 * @return If the plugin plays a Borhan-Based entry the function returns <code>entryId</script>.
 		 * Otherwise the return value is <code>url</script>
 		 * 
 		 */		
 		public function get sourceType () : String{return "url";}
 		/**
-		 * Function to retrieve the MediaElement the plugin will play in the KDP. 
-		 * @return returns the MediaElement that the plugin will play in the KDP. 
+		 * Function to retrieve the MediaElement the plugin will play in the BDP. 
+		 * @return returns the MediaElement that the plugin will play in the BDP. 
 		 * 
 		 */		
 		public function get mediaElement () : Object{return new Object()}

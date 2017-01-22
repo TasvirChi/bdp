@@ -1,21 +1,21 @@
 package
 {
-	import com.kaltura.KalturaClient;
-	import com.kaltura.commands.attachmentAsset.AttachmentAssetGetUrl;
-	import com.kaltura.commands.attachmentAsset.AttachmentAssetList;
-	import com.kaltura.events.KalturaEvent;
-	import com.kaltura.kdpfl.model.type.EnableType;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.kdpfl.view.containers.KHBox;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.controls.KButton;
-	import com.kaltura.kdpfl.view.controls.KLabel;
-	import com.kaltura.kdpfl.view.controls.KTextField;
-	import com.kaltura.kdpfl.view.controls.ToolTipManager;
-	import com.kaltura.vo.KalturaAssetFilter;
+	import com.borhan.BorhanClient;
+	import com.borhan.commands.attachmentAsset.AttachmentAssetGetUrl;
+	import com.borhan.commands.attachmentAsset.AttachmentAssetList;
+	import com.borhan.events.BorhanEvent;
+	import com.borhan.bdpfl.model.type.EnableType;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.view.containers.KCanvas;
+	import com.borhan.bdpfl.view.containers.KHBox;
+	import com.borhan.bdpfl.view.containers.KVBox;
+	import com.borhan.bdpfl.view.controls.KButton;
+	import com.borhan.bdpfl.view.controls.KLabel;
+	import com.borhan.bdpfl.view.controls.KTextField;
+	import com.borhan.bdpfl.view.controls.ToolTipManager;
+	import com.borhan.vo.BorhanAssetFilter;
 	import com.yahoo.astra.fl.containers.VBoxPane;
 	import com.yahoo.astra.layout.modes.HorizontalAlignment;
 	import com.yahoo.astra.layout.modes.VerticalAlignment;
@@ -36,7 +36,7 @@ package
 		private var _mediator:DownloadRelatedMediator;
 		private var _mainVBox:KVBox;
 		public var files:Array;
-		public var client:KalturaClient; 
+		public var client:BorhanClient; 
 		
 		public var vboxVerticalGap:Number = 10;
 		public var vboxLeftPadding:Number = 10;
@@ -131,18 +131,18 @@ package
 		
 		public function fetchAttachments(entryId:String):void
 		{
-			var attachmentFilter:KalturaAssetFilter = new KalturaAssetFilter();
+			var attachmentFilter:BorhanAssetFilter = new BorhanAssetFilter();
 			attachmentFilter.entryIdIn = entryId;
 			var attachments:AttachmentAssetList = new AttachmentAssetList(attachmentFilter);
-			attachments.addEventListener(KalturaEvent.COMPLETE , onComplete);
-			attachments.addEventListener(KalturaEvent.FAILED , onFailed);
+			attachments.addEventListener(BorhanEvent.COMPLETE , onComplete);
+			attachments.addEventListener(BorhanEvent.FAILED , onFailed);
 			client.post(attachments);
 		}
-		public function onFailed(event:KalturaEvent):void
+		public function onFailed(event:BorhanEvent):void
 		{
 			trace('onFailed');	
 		}
-		public function onComplete(event:KalturaEvent):void
+		public function onComplete(event:BorhanEvent):void
 		{
 			if(event.data && event.data.hasOwnProperty('objects') && ((event.data.objects) is Array) && (event.data.objects as Array).length > 0 )
 			{
@@ -319,12 +319,12 @@ package
 			var item:UIComponent = evt.currentTarget as UIComponent;
 			var fileId:String = item.name;
 			var url:AttachmentAssetGetUrl = new AttachmentAssetGetUrl(fileId);
-			url.addEventListener(KalturaEvent.COMPLETE , onRecievedUrl);
-			url.addEventListener(KalturaEvent.FAILED , onFailedRecievingUrl);
+			url.addEventListener(BorhanEvent.COMPLETE , onRecievedUrl);
+			url.addEventListener(BorhanEvent.FAILED , onFailedRecievingUrl);
 			client.post(url);
 		} 
 		
-		private function onRecievedUrl(event:KalturaEvent):void{
+		private function onRecievedUrl(event:BorhanEvent):void{
 			var request:URLRequest = new URLRequest(event.data as String);
 
 			try {
@@ -333,7 +333,7 @@ package
 				trace("Error occurred!");
 			}
 		}
-		private function onFailedRecievingUrl(event:KalturaEvent):void{
+		private function onFailedRecievingUrl(event:BorhanEvent):void{
 			
 			trace(1);
 		}

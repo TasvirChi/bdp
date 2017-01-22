@@ -1,8 +1,8 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.ResizerMediator;
-	import com.kaltura.kdpfl.view.controls.KSlider;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.ResizerMediator;
+	import com.borhan.bdpfl.view.controls.KSlider;
 	
 	import fl.controls.SliderDirection;
 	import fl.core.InvalidationType;

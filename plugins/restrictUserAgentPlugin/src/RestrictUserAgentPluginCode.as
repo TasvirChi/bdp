@@ -1,7 +1,7 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.component.RestrictUserAgentMediator;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.component.RestrictUserAgentMediator;
 	
 	import fl.core.UIComponent;
 	

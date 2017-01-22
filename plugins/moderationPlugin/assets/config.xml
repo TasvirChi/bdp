@@ -1,8 +1,8 @@
 <layout id="full" skinPath="assets/skin.swf">
 
 	<VBox id="player" width="100%" height="100%" styleName="">
-		<!-- So that a player would be able to play Kaltura mixes -->
-		<Plugin id="kalturaMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
+		<!-- So that a player would be able to play Borhan mixes -->
+		<Plugin id="borhanMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
 		<!-- this plugins sends statistics events-->
 		<Plugin id="statistics" width="0%" height="0%" includeInLayout="false"/>
 		
@@ -81,8 +81,8 @@
 					k_buttonType="buttonIconControllerArea" upTooltip="open fullscreen"
 					selectedTooltip="close fullscreen" color1="11184810" color2="16777215" color3="16777215"
 					color4="11184810" color5="0" font="Arial"/>
-			<Button id="kalturaLogo" height="50" width="100" kClick="navigate('http://www.kaltura.com')"
-					styleName="controllerScreen" icon="kalturaLogo"/>
+			<Button id="borhanLogo" height="50" width="100" kClick="navigate('http://www.borhan.com')"
+					styleName="controllerScreen" icon="borhanLogo"/>
 		</HBox>
 	</VBox>
 	<screens>

@@ -1,17 +1,17 @@
 package
 {
-	import com.kaltura.kdpfl.model.strings.MessageStrings;
-	import com.kaltura.kdpfl.model.type.NotificationType;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.util.KAstraAdvancedLayoutUtil;
-	import com.kaltura.kdpfl.view.Annotation;
-	import com.kaltura.kdpfl.view.AnnotationBoxMediator;
-	import com.kaltura.kdpfl.view.AnnotationsBox;
-	import com.kaltura.kdpfl.view.EditAnnotationForm;
-	import com.kaltura.kdpfl.view.containers.KCanvas;
-	import com.kaltura.kdpfl.view.containers.KVBox;
-	import com.kaltura.kdpfl.view.strings.AnnotationStrings;
-	import com.kaltura.kdpfl.view.strings.Notifications;
+	import com.borhan.bdpfl.model.strings.MessageStrings;
+	import com.borhan.bdpfl.model.type.NotificationType;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.util.KAstraAdvancedLayoutUtil;
+	import com.borhan.bdpfl.view.Annotation;
+	import com.borhan.bdpfl.view.AnnotationBoxMediator;
+	import com.borhan.bdpfl.view.AnnotationsBox;
+	import com.borhan.bdpfl.view.EditAnnotationForm;
+	import com.borhan.bdpfl.view.containers.KCanvas;
+	import com.borhan.bdpfl.view.containers.KVBox;
+	import com.borhan.bdpfl.view.strings.AnnotationStrings;
+	import com.borhan.bdpfl.view.strings.Notifications;
 	
 	import fl.core.UIComponent;
 	
@@ -35,7 +35,7 @@ package
 		protected var _messageText : String = "";
 		protected var _maxChars : Number = 0;
 		//Added 17.5.2011 - new variable for annotation persistence target
-		protected var _submissionTarget : String = AnnotationStrings.KALTURA;
+		protected var _submissionTarget : String = AnnotationStrings.BORHAN;
 		protected var _useSharedObject : Boolean = true;
 		
 		public function annotationsPluginCode()

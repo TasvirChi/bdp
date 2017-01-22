@@ -1,7 +1,7 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
 	
 	import flash.display.Sprite;
 	import flash.system.Security;
@@ -14,7 +14,7 @@ package
 		public function freeWheelPlugin()
 		{
 			Security.allowDomain("*");			
-			trace("new KDPPlugin() - Version: " + VERSION + " RDK Version: " + RDK_VERSION);
+			trace("new BDPPlugin() - Version: " + VERSION + " RDK Version: " + RDK_VERSION);
 		}
 		
 		public function create(pluginName : String = null) : IPlugin

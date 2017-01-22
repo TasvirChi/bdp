@@ -1,10 +1,10 @@
 package
 {
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.IPluginFactory;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.osmf.kontiki.KontikiPluginInfo;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPluginFactory;
+	import com.borhan.bdpfl.plugin.KPluginEvent;
+	import com.borhan.osmf.kontiki.KontikiPluginInfo;
 	
 	import flash.display.Sprite;
 	

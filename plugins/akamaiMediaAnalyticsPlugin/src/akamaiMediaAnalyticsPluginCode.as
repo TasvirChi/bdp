@@ -1,12 +1,12 @@
 package
 {
 	import com.akamai.playeranalytics.osmf.OSMFCSMALoaderInfo;
-	import com.kaltura.KalturaClient;
-	import com.kaltura.kdpfl.model.MediaProxy;
-	import com.kaltura.kdpfl.model.ServicesProxy;
-	import com.kaltura.kdpfl.plugin.IPlugin;
-	import com.kaltura.kdpfl.plugin.KPluginEvent;
-	import com.kaltura.kdpfl.plugin.akamaiMediaAnalyticsMediator;
+	import com.borhan.BorhanClient;
+	import com.borhan.bdpfl.model.MediaProxy;
+	import com.borhan.bdpfl.model.ServicesProxy;
+	import com.borhan.bdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.KPluginEvent;
+	import com.borhan.bdpfl.plugin.akamaiMediaAnalyticsMediator;
 	
 	import fl.core.UIComponent;
 	
@@ -74,7 +74,7 @@ package
 			//Getting Static reference to Plugin.
 			var pluginInfoRef:Class = getDefinitionByName("com.akamai.playeranalytics.osmf.OSMFCSMALoaderInfo") as Class;
 			var pluginResource:MediaResourceBase = new PluginInfoResource(new pluginInfoRef);
-			var kc:KalturaClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).kalturaClient;
+			var kc:BorhanClient = (facade.retrieveProxy(ServicesProxy.NAME) as ServicesProxy).borhanClient;
 			var secured:Boolean = kc.protocol == "https://";
 			//Setting CSMA Plugin & Configuration data
 			pluginResource.addMetadataValue("csmaPluginPath", secured && securedSwfPath ? securedSwfPath : _swfPath);

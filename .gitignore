@@ -1,9 +1,9 @@
 # Compiled source #
 ###################
-KDP3/bin-debug/*
-KDP3/build-release/*
-KDP3/html-template/plugins/*
-kdp3Lib/bin/*
+BDP3/bin-debug/*
+BDP3/build-release/*
+BDP3/html-template/plugins/*
+bdp3Lib/bin/*
 as3FlexClient/bin/*
 plugins/*/bin-debug/*
 plugins/*/bin/*

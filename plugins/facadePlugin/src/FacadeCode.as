@@ -1,6 +1,6 @@
 package
 {
-	import com.kaltura.kdpfl.plugin.IPlugin;
+	import com.borhan.bdpfl.plugin.IPlugin;
 	
 	import flash.display.Sprite;
 	
